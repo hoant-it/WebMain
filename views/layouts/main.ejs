@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title><%- title %></title>
+    <!-- <title>Việt Nam Wacoal Website</title> -->
+    
+    <!-- <link rel="icon" href="/images/favicon.ico" type="image/ico" /> -->
+    <link rel="shortcut icon" type="image/png" href="images/Wacoal_images.png"/>
+    
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- NProgress -->
+    <!-- <link href="/vendors/nprogress/nprogress.css" rel="stylesheet"> -->
+    
+    <!-- jQuery custom content scroller -->
+    <link href="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    
+    <!-- iCheck -->
+    <!-- <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet"> -->
+    
+    <!-- bootstrap-progressbar -->
+    <!-- <link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"> -->
+    <!-- JQVMap -->
+    <!-- <link href="/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"> -->
+    <!-- bootstrap-daterangepicker -->
+    <!-- <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"> -->
+    
+    <!-- Custom Theme Style -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/style.min.css">
+</head>
+
+<body class="nav-md footer_fixed">
+    <div class="loader">
+        <img src="/images/loading.gif" alt="loading...">
+    </div>
+    <div class="container body">
+        <div class="main_container hidden">
+            <% include ../block/leftpanelV2 %>
+                <% include ../block/toppanelV2 %>
+                    <!-- page content -->
+                    <div class="right_col " role="main" style="min-height: 100vh">
+                        <div class="">
+                            <div class="page-title">
+                                <div class="title_left">
+                                    <h3> <small><strong></strong></small></h3>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <%- body %>
+
+                    </div>
+                    <!-- /page content -->
+
+                    <!-- footer content -->
+                    <footer>
+                        <div class="pull-right">
+                            Wacoal - Bootstrap Admin Template by <a href="/home">Thai Hoa</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </footer>
+                    <!-- /footer content -->
+        </div>
+    </div>
+
+
+<!-- jQuery -->
+<script src="/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FastClick -->
+<!-- <script src="/vendors/fastclick/lib/fastclick.js"></script> -->
+<!-- NProgress -->
+<!-- <script src="/vendors/nprogress/nprogress.js"></script> -->
+
+<!-- devexpress -->
+<script src="/cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+<script src="/cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
+<script src="/cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+<script>
+  window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))
+</script>
+<script src="/cdn3.devexpress.com/jslib/20.2.5/js/dx.all.js"></script>
+<script src="/unpkg.com/devextreme-aspnet-data@2.7.1/js/dx.aspnet.data.js"></script>
+<script src="/cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
+<script src="/cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
+<script src="/cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
+<script src="/cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
+
+
+<!-- Chart.js -->
+<!-- <script src="/vendors/Chart.js/dist/Chart.min.js"></script> -->
+<!-- gauge.js -->
+<!-- <script src="/vendors/gauge.js/dist/gauge.min.js"></script> -->
+<!-- bootstrap-progressbar -->
+<!-- <script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script> -->
+<!-- iCheck -->
+<!-- <script src="/vendors/iCheck/icheck.min.js"></script> -->
+<!-- Skycons: du bao thoi tiet-->
+<!-- <script src="/vendors/skycons/skycons.js"></script> -->
+<!-- Flot -->
+<script src="/vendors/Flot/jquery.flot.js"></script>
+<script src="/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="/vendors/Flot/jquery.flot.time.js"></script>
+<script src="/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="/vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="/vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="/vendors/DateJS/build/date.js"></script>
+
+<!-- JQVMap -->
+<!-- <script src="/vendors/jqvmap/dist/jquery.vmap.js"></script> -->
+<!-- <script src="/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script> -->
+<!-- <script src="/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script> -->
+
+<!-- bootstrap-daterangepicker -->
+<!-- <script src="/vendors/moment/min/moment.min.js"></script> -->
+<!-- <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script> -->
+
+<!-- Custom Theme Scripts -->
+<!-- <script src="/build/js/custom.min.js"></script> -->
+<script src="/build/js/custom.js"></script>
+
+<!-- PNotify thông báo -->
+<!-- <script src="/vendors/pnotify/dist/pnotify.js"></script> -->
+<!-- <script src="/vendors/pnotify/dist/pnotify.buttons.js"></script> -->
+<!-- <script src="/vendors/pnotify/dist/pnotify.nonblock.js"></script> -->
+
+<!-- jQuery custom content scroller -->
+<script src="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script>
+  var test = '';
+  var menu_section = document.getElementById("menu_section");
+  var mCSB_1_container = document.getElementById("mCSB_1_container");
+  test = '<%- html %>';
+  if (test !== '') {
+    localStorage.setItem('html', test)
+  }
+//   else{
+//    test= `<ul class="nav side-menu" id="side-menu"><li class="active"><a> Nhà máy Việt Nam Wacoal <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu" style="display:block"><li><a> Kĩ Thuật <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/kithuat/QTKT"> Quy Trình Kĩ Thuật</a></li></ul></li><li><a> Việt Nam Wacoal <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/VNWC/VNWC_SDTC"> Sơ Đồ Tổ Chức</a></li></ul></li><li><a> Quản lý Sản Xuất <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/SX/QTSX"> Quy Trình Sản Xuất</a></li></ul></li><li><a> Kho <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/Kho/QTQLNVL"> Quy Trình Quản Lý Nguyên Vật Liệu</a></li><li><a> Đặt Chỉ <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a> Dữ Liệu Nhập Một Lần <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/kho/MauChiMauNl"> DSLK Màu Chỉ theo Màu NL</a></li></ul></li><li><a> Dữ Liệu Nhập Hàng Tháng <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/kho/Order"> Nhập Đơn Hàng (Excel file)</a></li><li><a href="/kho/congodanmahanginputv2"> Nhập công đoạn theo mã hàng (excel file)</a></li></ul></li><li><a href="/kho/KhoOderTinhChiGridViewDev"> Tính chỉ theo đơn hàng</a></li></ul></li></ul></li><li><a> Cắt <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/Cat/SDTC"> Quy Trình Cắt</a></li></ul></li><li><a> May <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/May/QTSX"> Quy Trình sản Xuất BP May</a></li></ul></li><li><a> Kiểm Phẩm <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/kiempham/QTKP"> Quy Trình Kiểm Phẩm</a></li></ul></li><li><a> Administrator <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/admin/company"> Company List</a></li><li><a href="/admin/positionlist"> Poisition List</a></li><li><a href="/admin/userlistv2"> User List </a></li><li><a href="/admin/listmenu"> Menu List</a></li><li><a href="/admin/menuPermission"> Menu Permission</a></li><li><a href="/admin/rolePermission"> Role Permission</a></li><li><a href="/admin/department"> Deparment List</a></li></ul></li><li><a> Video <span class="fa fa-chevron-down"></span></a><ul class="nav child_menu"><li><a href="/video/videolist"> Video List</a></li></ul></li></ul></li></ul>`
+//    localStorage.setItem('html', test);
+//   }
+  menu_section.addEventListener('click', function () {
+    var mCSB_1_container = document.getElementById("mCSB_1_container");
+    test = menu_section.innerHTML;
+    var ulHtml = test.replace("current-page", "");
+    localStorage.setItem('html', ulHtml);
+    let mCSB_1_containerTop = mCSB_1_container.style.top;
+    localStorage.setItem("mCSB_1_containerTop", mCSB_1_containerTop);
+
+  })
+  menu_section.innerHTML = localStorage.getItem('html');
+
+  const loader = document.querySelector('.loader');
+                loader.classList.add('hidden');
+
+  const main_container= document.querySelector('.main_container');
+  main_container.classList.remove('hidden');
+
+
+</script>
+
+  
+
+
+
+</body>
+
+</html>
