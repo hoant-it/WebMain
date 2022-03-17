@@ -1,8 +1,8 @@
 const sqlConfig = {
     user: 'sa',
-    password: 'asd@123',
+    password: 'sa',
     database: 'wacoal',
-    server: '192.168.79.125',
+    server: 'localhost',
     pool: {
       max: 10,
       min: 0,

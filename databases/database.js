@@ -16,10 +16,10 @@ async function GetData(){
 }
 
 
-async function GetDataByQuery(){
+async function GetDataByQuery(query){
     try {
         let pool = await sql.connect(sqlConfig);
-        let res = await pool.request().query('SELECT TOP 10 * FROM dbo.CONGDOAN_MAHANG');
+        let res = await pool.request().query(query);
         // console.log(res.recordset);
         return res.recordset;
         

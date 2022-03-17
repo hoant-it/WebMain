@@ -9,12 +9,12 @@ router.get('/', async (req,res) =>{
 
 
 /* GET home page. */
-router.get('/home', async(req, res, next) => {
+router.get('/home', async (req, res, next) => {
   //test connection db
-  sql.GetDataByQuery()
-  .then(result =>{
-    res.json(result[0])
-  }) ;
+  await sql.GetDataByQuery('select top 10 * from ListUser').then(result =>{
+   console.log(result);
+  })
+  // console.log(await sql.GetDataByQuery());
   res.render('main/home', { 
     title: 'Home page',
     html:'' }
