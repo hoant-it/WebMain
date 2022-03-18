@@ -1,14 +1,14 @@
 const sql = require('mssql');
-const { mountpath } = require('../app');
 const sqlConfig = require('./dbconfig');
-async function GetData(){
-    try {
-        // let pool = await sql.connect(sqlConfig);
-        console.log('sql server connected...')
-    } catch (error) {
-        console.log('error' +error)
-    }
-}
+
+// module.exports.GetData = async() =>{
+//     try {
+//         // let pool = await sql.connect(sqlConfig);
+//         console.log('sql server connected...')
+//     } catch (error) {
+//         console.log('error' +error)
+//     }
+// }
 module.exports.GetDataByQuery = async(query) =>{
     try {
         console.log(sqlConfig);
@@ -22,4 +22,19 @@ module.exports.GetDataByQuery = async(query) =>{
         
     }
 }
+
+const tvp=new sql.Table();
+
+tvp.columns.add('a', sql.NVarChar(50))
+tvp.columns.add('b',sql.Int)
+
+tvp.rows.add('hello tvp',777)
+
+const req = new sql.Request()
+req.input('tvp',tvp)
+req.execute('MyCustomStoredProcedure',(err,result) =>{
+    console.log(result.recordset)
+})
+
+
 

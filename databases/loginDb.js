@@ -15,6 +15,7 @@ module.exports.sp_Wacoal_Web_ListUserGetRole= async(userName) =>{
         return res.recordset
         
     } catch (error) {
+        // return error
         console.log('error' +error)
         pool.close();
     }

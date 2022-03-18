@@ -5,6 +5,7 @@ module.exports.LoginAjax = async (req, res) => {
   const { userName, password } = req.body;
   let dataUserA = [];
   dataUserA = await sql.sp_Wacoal_Web_ListUserGetRole(userName.toUpperCase());
+ 
   if (dataUserA.length < 1) {
     res.render("main/login", {
       messageError: "User name không tồn tại",
