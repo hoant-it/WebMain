@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 var createError = require('http-errors');
 var express = require('express');
 const expressLayouts = require('express-ejs-layouts');
@@ -5,7 +8,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var mainRouter = require('./routes/main.router');
 var VNWCRouter= require('./routes/WCVN.Router')
 
 var app = express();
@@ -20,10 +23,10 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.CookieParser));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', mainRouter);
 app.use('/VNWC', VNWCRouter);
 
 // catch 404 and forward to error handler

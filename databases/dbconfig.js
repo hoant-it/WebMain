@@ -1,8 +1,8 @@
 const sqlConfig = {
-    user: 'sa',
-    password: 'sa',
-    database: 'wacoal',
-    server: 'localhost',
+    user: process.env.Db_User,
+    password: process.env.Db_Pw,
+    database: process.env.Db_Name,
+    server: process.env.Db_Server,
     pool: {
       max: 10,
       min: 0,

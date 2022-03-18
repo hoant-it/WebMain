@@ -1,11 +1,6 @@
-const sql = require('mssql')
+const sql = require('mssql');
+const { mountpath } = require('../app');
 const sqlConfig = require('./dbconfig');
-
-
-//   sql.on('error', err =>{
-//       console.log(err.message)
-//   })
-
 async function GetData(){
     try {
         // let pool = await sql.connect(sqlConfig);
@@ -14,10 +9,9 @@ async function GetData(){
         console.log('error' +error)
     }
 }
-
-
-async function GetDataByQuery(query){
+module.exports.GetDataByQuery = async(query) =>{
     try {
+        console.log(sqlConfig);
         let pool = await sql.connect(sqlConfig);
         let res = await pool.request().query(query);
         // console.log(res.recordset);
@@ -29,7 +23,3 @@ async function GetDataByQuery(query){
     }
 }
 
-module.exports = {
-    GetData: GetData,
-    GetDataByQuery:GetDataByQuery,
-}
