@@ -13,5 +13,12 @@ router.get('/login',homeMiddle.redirectHome, mainControl.LoginLoad)
 router.post('/login', mainControl.LoginAjax)
 /* Logout. */
 router.post('/logout', mainControl.LogOut)
+router.get('/error',async(req,res) =>{
+  res.render('error',{
+    title:'Error Page',
+    message: 'err',
+    html:''
+  })
+})
 
 module.exports = router;
