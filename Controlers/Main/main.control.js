@@ -105,13 +105,13 @@ module.exports.HomeLoad = async (req, res, next) => {
    res.render('main/home',{
      title:'Việt Nam Wacoal',
      userId:req.signedCookies.userId,
-     html:html
+     html:html,
    })
   } catch (error) {
     res.render('error',{
       title:'Error Page',
       message: 'err' +error,
-      html:''
+      html:'',
     });
   }
 

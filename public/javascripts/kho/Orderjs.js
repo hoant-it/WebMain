@@ -273,7 +273,8 @@ const upload=()=>{
         message: "Chọn file trước khi nhập",
         width: 450
     },"warning",5000)
-  } else{
+    return;
+  } 
       console.log(fileName);
       $.ajax({
           type:"POST",
@@ -305,7 +306,7 @@ const upload=()=>{
           }
       })
 
-  }
+  
 
 
 }
