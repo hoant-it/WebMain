@@ -4,7 +4,7 @@ const searchBoxMaHang=() =>{
     const selectBoxData =  DevExpress.data.AspNet.createStore({
         key: "MAHANG",
         loadMode:"raw",
-        loadUrl:"/api/wacoal_MaHang_Select_V1",
+        loadUrl:"wacoal_MaHang_Select_V1",
     });
 
     var searchBox = $("#searchBoxMH").dxSelectBox({
@@ -42,7 +42,7 @@ const searchBoxMaHang=() =>{
 
 
 const GridviewMaHangLoad = (MaHang) => {
-    var url = "/api/wacoal_TinhChi_MaHang_V1/";
+    var url = "wacoal_TinhChi_MaHang_V1/";
     // console.log(" url " + url + oderNo+khachHang);
     var listTinhChi = DevExpress.data.AspNet.createStore({
         key: "keyMAHANG",
@@ -426,7 +426,7 @@ const GridviewMaHangLoad = (MaHang) => {
                     dataSource:DevExpress.data.AspNet.createStore({
                         key: "MAHANG",
                         loadMode:"raw",
-                        loadUrl:"/api/wacoal_MaHang_Select_V1",
+                        loadUrl:"wacoal_MaHang_Select_V1",
                     }),
                     placeholder: "Chọn Mã Hàng *",
 
@@ -560,7 +560,7 @@ const GridviewMaHangLoad = (MaHang) => {
 }
 
 const GridviewMauNLLoaiChiNewLoad = () => {
-    var url = "/api/wacoal_MauNL_LoaiChi_Moi_Load_Web_V1/";
+    var url = "wacoal_MauNL_LoaiChi_Moi_Load_Web_V1/";
     // console.log(" url " + url + oderNo+khachHang);
     var listTinhChi = DevExpress.data.AspNet.createStore({
         key: "keyMauNL_LoaiChi",

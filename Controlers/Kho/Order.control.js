@@ -1,9 +1,5 @@
 
 const db = require("../../databases/kho/orderdb");
-const readXlsxFile = require("read-excel-file/node");
-const sql = require("mssql");
-const sqlConfig = require("../../databases/dbconfig");
-
 module.exports.OrderLoad = async (req, res) => {
   res.render("kho/Order", {
     title: "Order",

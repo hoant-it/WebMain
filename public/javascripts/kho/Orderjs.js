@@ -117,11 +117,11 @@ const OrderGridLoad  = (MY) => {
         //     pageSize: 10
         // },
         columns: [
-            {
-                caption: "STT",
-                alignment:"left",
-                dataField: "STT",
-            },
+            // {
+            //     caption: "STT",
+            //     alignment:"left",
+            //     dataField: "STT",
+            // },
             {
                 caption: "Classification",
                 alignment:"left",
