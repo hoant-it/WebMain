@@ -10,26 +10,29 @@ module.exports.CongDoanMaHangLoad= async (req, res ) => {
 
 module.exports.wacoal_MaHang_Select_V1 = async(req, res) =>{
     try {
-       await  db.wacoal_MaHang_Select_V1().then(result=>{
-           res.json({
-               data:result,
-               message:`ok`
-           })
-       })
-        
-    } catch (error) {
+        const result= await db.wacoal_MaHang_Select_V1()
+        console.log(result[1])
         res.json({
-            data:{},
-            message:`Err ${error}`
+            data:result
         })
-    
+    } catch (error) {
+        const dataErr=[{
+            MAHANG: 'Err',
+            MAHANGNAME_VN: 'Err',
+            MAHANGNAME_EN: 'Err',
+            TIMECREATE: '',
+            USERCREATE: '',
+            TIMEUPDATE: '',
+            USERUPDATE: ''
+          }]
+        res.json({
+            data:dataErr
+        })
     }
 }
 
 module.exports.wacoal_TinhChi_MaHang_V1 = async(req, res) =>{
     const{MAHANG}= req.params
-    // console.log('mahang ' + MAHANG)
-    
     try {
        await  db.wacoal_TinhChi_MaHang_V1(MAHANG).then(result=>{
            res.json({
@@ -81,3 +84,17 @@ module.exports.wacoal_MauNL_LoaiChi_Moi_Load_Web_V1 = async(req,res) =>{
         
     }
 }
+
+module.exports.CongDoanMaHangInput = async(req,res)=>{
+    let lError={}
+    try {
+        let result= await db.CongDoanMaHangInput(req.file.filename,req.signedCookies.userId)
+        res.send(result);
+    } catch (error) {
+        lError.errMes = "Lỗi: " + error;
+        lError.statusErr = false;
+        res.send(lError)
+    }
+}
+
+

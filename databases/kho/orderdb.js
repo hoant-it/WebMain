@@ -1,6 +1,7 @@
 const sql = require("mssql");
 const sqlConfig = require("../dbconfig");
 const xlsx = require("xlsx");
+const del = require('del')
 
 module.exports.DONHANGITEM_3_MY_SearchBox_Web_V1 = async () => {
   try {
@@ -108,6 +109,7 @@ module.exports.OrderInsertByType = async (filename, userId) => {
       .input("tOrder", tOrder)
       .execute("OrderInserByType");
     if (ress.rowsAffected[5] > 0 || ress.rowsAffected[4] > 0) {
+      del([`./public/uploads/${filename}`]);
       return lError;
     } else {
       lError.errMes = "Lỗi ";

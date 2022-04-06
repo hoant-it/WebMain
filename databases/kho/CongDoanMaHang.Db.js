@@ -1,5 +1,7 @@
 const sql = require("mssql");
 const sqlConfig = require("../dbconfig");
+const del = require("del");
+const xlsx = require('xlsx');
 
 module.exports.wacoal_MaHang_Select_V1 = async () => {
   try {
@@ -56,90 +58,98 @@ module.exports.wacoal_MauNL_LoaiChi_Moi_Load_Web_V1 = async () => {
 };
 
 module.exports.CongDoanMaHangInput = async (filename, userId) => {
-    let lError = { errMes: "thành công", statusErr: true };
-    try {
-      const filePath = `./public/uploads/${filename}`;
-      const workbook = xlsx.readFile(filePath);
-      const sheet_name_list = workbook.SheetNames;
-      const workbookHeaders = xlsx.readFile(filePath, { sheetRows: 1 });
-      let tCDMH = new sql.Table();
-      tCDMH.columns.add("MAHANG", sql.NVarChar(50));
-      tCDMH.columns.add("MAUMH", sql.NVarChar(10));
-      tCDMH.columns.add("CONGDOAN", sql.NVarChar(50));
-      tCDMH.columns.add("UnitNo", sql.NVarChar(50));
-      tCDMH.columns.add("Style", sql.NVarChar(50));
-      tCDMH.columns.add("Cup", sql.NVarChar(50));
-      tCDMH.columns.add("Size", sql.NVarChar(50));
-      tCDMH.columns.add("Color", sql.NVarChar(50));
-      tCDMH.columns.add("OrderQty", sql.Int);
-      tCDMH.columns.add("Note", sql.NVarChar(50));
-      tCDMH.columns.add("TIMECREATE", sql.NVarChar(50));
-      tCDMH.columns.add("USERCREATE", sql.NVarChar(50));
-      tCDMH.columns.add("TIMEUPDATE", sql.NVarChar(50));
-      tCDMH.columns.add("USERUPDATE", sql.NVarChar(50));
-    
-      const columnsArrayHeaders = xlsx.utils.sheet_to_json(workbookHeaders.Sheets[workbook.SheetNames[0]], { header: 1 })[0];
-      const formatHeader = ["MAHANG", "MAUMH", "CONGDOAN", "TENCONGDOAN", "KYHIEUMAY", "LOAIMAY", "MAVITRICHI", "LOAICHI",
-       "BIENDO", "MATDO","MAUNL","MAMAUCHI","CHIEUDAI_CONGDOAN"];
-      for(let i =0; i<columnsArrayHeaders.length;i++){
-        let excelheaderName=columnsArrayHeaders[i];
-        let formatheaderName=formatHeader[i];
-        if(excelheaderName!==formatheaderName){
-          lError.errMes = `Lỗi: format Header không đúng ( ${excelheaderName} # ${formatheaderName} )`;
-          lError.statusErr = false;
-          return lError;
-        }
-      }
-      let jsonPagesArray = [];
-      sheet_name_list.forEach(function (sheet) {
-        const jsonPage = {
-          name: sheet,
-          content: JSON.parse(
-            JSON.stringify(
-              xlsx.utils.sheet_to_json(workbook.Sheets[sheet], { defval: "" })
-            )
-          ),
-        };
-        jsonPagesArray.push(jsonPage);
-      });
-      for(let i =0 ; i<jsonPagesArray[0].content.length;i++){
-        var contentValue=jsonPagesArray[0].content[i]
-        tOrder.rows.add(
-          contentValue.Classification,
-          contentValue.MY.toString(),
-          contentValue.Order,
-          contentValue.UnitNo,
-          contentValue.Style,
-          contentValue.Cup,
-          contentValue.Size,
-          contentValue.Color,
-          contentValue.OrderQty,
-          contentValue.Note,
-          '',
-          userId,
-          '',
-          ''
-          )
-      }
-      // console.log(tOrder)
-      let pool = await sql.connect(sqlConfig);
-      let ress = await pool
-        .request()
-        .input("tOrder", tOrder)
-        .execute("OrderInserByType");
-      if (ress.rowsAffected[5] > 0 || ress.rowsAffected[4] > 0) {
-        return lError;
-      } else {
-        lError.errMes = "Lỗi ";
+  let lError = { errMes: "thành công", statusErr: true };
+  try {
+    let pool = await sql.connect(sqlConfig);
+    const filePath = `./public/uploads/${filename}`;
+    const workbook = xlsx.readFile(filePath);
+    const sheet_name_list = workbook.SheetNames;
+    const workbookHeaders = xlsx.readFile(filePath, { sheetRows: 1 });
+    const columnsArrayHeaders = xlsx.utils.sheet_to_json(
+      workbookHeaders.Sheets[workbook.SheetNames[0]],
+      { header: 1 }
+    )[0];
+    const formatHeader = ["MAHANG","MAUMH","CONGDOAN","TENCONGDOAN","KYHIEUMAY","LOAIMAY","MAVITRICHI","LOAICHI","BIENDO","MATDO","MAUNL","MAMAUCHI","CHIEUDAI_CONGDOAN",];
+    if (columnsArrayHeaders.length !== formatHeader.length) {
+      lError.errMes = `Lỗi: format cột không đúng`;
+      lError.statusErr = false;
+    }
+    for (let i = 0; i < columnsArrayHeaders.length; i++) {
+      let excelheaderName = columnsArrayHeaders[i];
+      let formatheaderName = formatHeader[i];
+      if (excelheaderName !== formatheaderName) {
+        lError.errMes = `Lỗi: format Tên Cột không đúng ( ${excelheaderName} # ${formatheaderName} )`;
         lError.statusErr = false;
         return lError;
       }
-  
-      // console.log(res.recordset);
-      // return lError;
-    } catch (error) {
-      lError.errMes = "Lỗi: " + error;
-      lError.statusErr = false;
-      return lError;
     }
-  };
+    let jsonPagesArray = [];
+    sheet_name_list.forEach(function (sheet) {
+      const jsonPage = {
+        name: sheet,
+        content: JSON.parse(
+          JSON.stringify(
+            xlsx.utils.sheet_to_json(workbook.Sheets[sheet], { defval: "" })
+          )
+        ),
+      };
+      jsonPagesArray.push(jsonPage);
+    });
+
+    var MaHang, MauMH;
+    MaHang=jsonPagesArray[0].content[0].MAHANG;
+    MauMH=jsonPagesArray[0].content[0].MAUMH;
+   
+    await pool.request()
+    .input("MAHANG", sql.NVarChar(50), MaHang)
+    .input("MAUMH", sql.NVarChar(50), MauMH)
+    .execute('CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V2')
+
+
+    for (let i = 0; i < jsonPagesArray[0].content.length; i++) {
+      var contentValue = jsonPagesArray[0].content[i];
+      let MAHANG= contentValue.MAHANG
+      let MAUMH= contentValue.MAUMH
+      let CONGDOAN= contentValue.CONGDOAN
+      let TENCONGDOAN= contentValue.TENCONGDOAN
+      let KYHIEUMAY= contentValue.KYHIEUMAY
+      let LOAIMAY= contentValue.LOAIMAY
+      let MAVITRICHI= contentValue.MAVITRICHI
+      let LOAICHI= contentValue.LOAICHI
+      let BIENDO= contentValue.BIENDO===''?0:contentValue.BIENDO
+      let MATDO= contentValue.MATDO===''?0:contentValue.MATDO
+      let MAUNL= contentValue.MAUNL
+      let MAMAUCHI= contentValue.MAMAUCHI;
+      let CHIEUDAI_CONGDOAN= contentValue.CHIEUDAI_CONGDOAN===''?0:contentValue.CHIEUDAI_CONGDOAN;
+     
+      await pool
+        .request()
+        .input("MAHANG", sql.NVarChar(50), MAHANG)
+        .input("MAUMH", sql.NVarChar(50), MAUMH)
+        .input("CONGDOAN", sql.BigInt, CONGDOAN)
+        .input("TENCONGDOAN", sql.NVarChar(50), TENCONGDOAN)
+        .input("KYHIEUMAY", sql.NVarChar(sql.MAX), KYHIEUMAY)
+        .input("LOAIMAY", sql.NVarChar(50), LOAIMAY)
+        .input("MAVITRICHI", sql.NVarChar(5), MAVITRICHI)
+        .input("LOAICHI", sql.NVarChar(50), LOAICHI)
+        .input("BIENDO", sql.Numeric(9,3), BIENDO)
+        .input("MATDO", sql.Numeric(9,3), MATDO)
+        .input("MAUNL", sql.NVarChar(50), MAUNL)
+        .input("MAMAUCHI", sql.NVarChar(50), MAMAUCHI)
+        .input("CHIEUDAI_CONGDOAN", sql.Numeric(9,3), CHIEUDAI_CONGDOAN)
+        .input("UserName", sql.NVarChar(50), userId)
+        .execute("wacoal_CONGDOAN_MAHANG_Insert_V3");
+      // console.log(ress.rowsAffected);
+    }
+    await del([`./public/uploads/${filename}`]);
+    return lError;
+  } catch (error) {
+    await pool.request()
+    .input("MAHANG", sql.NVarChar(50), MaHang)
+    .input("MAUMH", sql.NVarChar(50), MauMH)
+    .execute('CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V2')
+    lError.errMes = "Lỗi: " + error;
+    lError.statusErr = false;
+    return lError;
+  }
+};

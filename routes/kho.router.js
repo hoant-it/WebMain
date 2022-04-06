@@ -22,6 +22,7 @@ router.get('/wacoal_MaHang_Select_V1', congdoanmahangControl.wacoal_MaHang_Selec
 router.get('/wacoal_TinhChi_MaHang_V1/:MAHANG', congdoanmahangControl.wacoal_TinhChi_MaHang_V1)
 router.get('/CONGDOAN_MAHANG_New_Web_Load_V1', congdoanmahangControl.CONGDOAN_MAHANG_New_Web_Load_V1)
 router.get('/wacoal_MauNL_LoaiChi_Moi_Load_Web_V1', congdoanmahangControl.wacoal_MauNL_LoaiChi_Moi_Load_Web_V1)
+router.post('/congodanmahanginputv2',upload.single('filename'), congdoanmahangControl.CongDoanMaHangInput)
 
 
 
