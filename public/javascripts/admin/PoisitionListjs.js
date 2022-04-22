@@ -1,6 +1,7 @@
 var _positionsCode = '';
 var _positionsName = '';
 var _positionsDescription='';
+var _positionsCodeSTRNext='';
 
 const editData = () => {
          //show modal
@@ -23,9 +24,26 @@ const resetForm = () => {
             $('#txtPositionsName').focus();
         }) 
     $('#txtPositionsCode').attr("readonly","true") 
-    $('#txtPositionsCode').val(positionsCodeSTRNext);
+    $('#txtPositionsCode').val(_positionsCodeSTRNext);
     $('#txtPositionsName').val('');
     $('#txtPositionsDescription').val('');
+}
+
+const GetpositionsCodeSTRNext=()=>{
+    $.ajax({
+        type: 'GET',
+        // data: JSON.stringify(data),
+        // contentType: 'application/json',
+        url: '/admin/ListPositions_PositionsCodeGetNext',
+        success: function(res) {
+            if (res.status) {
+                _positionsCodeSTRNext=res.data[0].PositionsCodeSTRNext
+            } else {
+                console.log(JSON.stringify(res));
+                alert( res);
+            }
+        }
+    });
 }
 
 const saveData = () => {
@@ -33,32 +51,33 @@ const saveData = () => {
         var positionsName = $('#txtPositionsName').val();
         var positionsDescription = $('#txtPositionsDescription').val();
         var status=$('#btnSave').val();
-        // console.log(status);
+
         var data = {
             PositionsCode: positionsCode,
             PositionsName: positionsName,
             PositionsDescription: positionsDescription,
             Status:status
         };
-
-        // data.Name=singleValues;
-        // data.title = "title";
-        // data.message = "message";
         $.ajax({
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
             url: '/admin/positionlist',
             success: function(res) {
-                if (res=== 'ok') {
-                    // console.log('success');
-                    console.log(JSON.stringify(res));
+                if (res.status) {
+                    DevExpress.ui.notify({
+                        message: res.mes,
+                        width: 450
+                    },"success",5000)
+                 
                     $('#modalAddUpdate').modal('hide');
-                    alert("Update success");
-                    location.reload();
+                    GridPositionLoad()
+                    GetpositionsCodeSTRNext()
                 } else {
-                    console.log(JSON.stringify(res));
-                    alert( res);
+                    DevExpress.ui.notify({
+                        message: res.mes,
+                        width: 450
+                    },"error",5000)
                 }
             }
         });
@@ -75,45 +94,202 @@ const saveData = () => {
             contentType: 'application/json',
             url: '/admin/positionlist/Deletepositionlist',
             success: (res) =>{
-                if(res.mes==='ok'){
-                    // console.log(JSON.stringify(res));
-                    alert("sucess");
+                if(res.status){
+                    DevExpress.ui.notify({
+                        message: res.mes,
+                        width: 450
+                    },"success",5000)
                     location.reload();
                 }
                 else{
-                    alert(res.send);
+                    DevExpress.ui.notify({
+                        message: res.mes,
+                        width: 450
+                    },"error",5000)
                 }
             }
         });
     }
+    function getCompanyDataItem(row) {
+        const rowData = row && row.data;
+        if (rowData) {
+            _positionsCode = rowData.PositionsCode;
+            _positionsName = rowData.PositionsName;
+            _positionsDescription = rowData.PositionsDescription;
+        }
+      }    
+
+    const GridPositionLoad = () => {
+        var url = "ListPositions_Load_Web_V1";
+        //   console.log(" url " + url + roleId);
+        var listMenu = DevExpress.data.AspNet.createStore({
+          key: "PositionsCode",
+          loadUrl: url,
+      
+          // insertUrl: url + "/InsertOrder",
+          // updateUrl: url + "/UpdateOrder",
+          // deleteUrl: url + "/DeleteOrder",
+          onBeforeSend: function (method, ajaxOptions) {
+            ajaxOptions.xhrFields = {
+              withCredentials: true,
+            };
+          },
+        });
+      
+        $("#GridPosition")
+          .dxDataGrid({
+            dataSource: listMenu,
+            // reshapeOnPush: true,
+            columnsAutoWidth: true,
+            height: 400,
+            allowColumnReordering: true,
+            rowAlternationEnabled: true,
+            showColumnLines: true,
+            showRowLines: true,
+            showBorders: true,
+            focusedRowEnabled: true,
+            //   rowDragging: {
+            //     data: 1,
+            //     group: "tasksGroup",
+            //     onAdd: onAdd,
+            //   },
+            // filterRow: {
+            //     visible: true,
+            //     applyFilter: "auto"
+            // },
+            // remoteOperations: true,
+            searchPanel: {
+              visible: true,
+              highlightCaseSensitive: true,
+              // width: 240,
+              // placeholder: "Search..."
+            },
+            // headerFilter: {
+            //     visible: false
+            // },
+            // groupPanel: {
+            //     visible: false
+            // },
+            scrolling: {
+              mode: "virtual",
+            },
+            //phan trang
+            // paging: {
+            //     pageSize: 10
+            // },
+            columns: [
+              {
+                caption: "PositionsCode",
+                alignment: "left",
+                dataField: "PositionsCode",
+              },
+              {
+                caption: "PositionsName",
+                alignment: "left",
+                dataField: "PositionsName",
+              },
+              {
+                caption: "PositionsDescription",
+                alignment: "left",
+                dataField: "PositionsDescription",
+              },
+            ],
+            onFocusedRowChanging: function (e) {
+              var rowsCount = e.component.getVisibleRows().length,
+                pageCount = e.component.pageCount(),
+                pageIndex = e.component.pageIndex(),
+                key = e.event && e.event.key;
+      
+              if (key && e.prevRowIndex === e.newRowIndex) {
+                if (e.newRowIndex === rowsCount - 1 && pageIndex < pageCount - 1) {
+                  e.component.pageIndex(pageIndex + 1).done(function () {
+                    e.component.option("focusedRowIndex", 0);
+                  });
+                } else if (e.newRowIndex === 0 && pageIndex > 0) {
+                  e.component.pageIndex(pageIndex - 1).done(function () {
+                    e.component.option("focusedRowIndex", rowsCount - 1);
+                  });
+                }
+              }
+            },
+            onFocusedRowChanged: function (e) {
+               getCompanyDataItem(e.row);
+            },
+            onToolbarPreparing: function (e) {
+              // var dataGrid = e.component;
+      
+              e.toolbarOptions.items.unshift(
+                {
+                  location: "alter",
+                  widget: "dxButton",
+                  options: {
+                    icon: "add",
+                    text: "",
+                    onInitialized: function (e) {
+                      e.element.attr("id", "btnAdd");
+                    },
+                    onClick: function () {
+                      // console.log("clicker")
+                      resetForm();
+                      // mauChiMauNL.resetForm();
+                    },
+                  },
+                },
+                {
+                  location: "alter",
+                  widget: "dxButton",
+                  options: {
+                    icon: "edit",
+                    text: "",
+                    onInitialized: function (e) {
+                      e.element.attr("id", "btnEdit");
+                    },
+                    onClick: function () {
+                      // console.log("clicker")
+                      editData();
+                    },
+                  },
+                },
+                {
+                  location: "alter",
+                  widget: "dxButton",
+                  options: {
+                    icon: "remove",
+                    text: "",
+                    onInitialized: function (e) {
+                      e.element.attr("id", "btnDelete");
+                    },
+                    onClick: function () {
+                      // console.log("clicker")
+                      if (!confirm("Are you sure you want to Delete selected row?")) {
+                      } else {
+                        deleteData();
+                      }
+                      // deleteData();
+                    },
+                  },
+                }
+              );
+            },
+          })
+          .dxDataGrid("instance");
+      };
 
     //ham khoi tao: goi tat ca cac ham khac trong day
 $(document).ready(function() {
-    var table = $('.mydatatable').DataTable();
-    $('.mydatatable tbody').on('click', 'tr', function() {
-        var data = table.row(this).data();
-        _positionsCode = data[0];
-        _positionsName = data[1];
-        _positionsDescription=data[2];
-        // alert('You clicked on ' + data[0] + '\'s row');
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
-        } else {
-            table.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-        }
-    });
+    GridPositionLoad()
+    GetpositionsCodeSTRNext()
 
-    $('#btnAddNew').click(function() {
+    // $('#btnAddNew').click(function() {
       
-        // console.log('test ' +test);
-        resetForm();
-    });
+    //     // console.log('test ' +test);
+    //     resetForm();
+    // });
 
-    $('#btnedit').click(function() {
+    // $('#btnedit').click(function() {
    
-        editData();
-    });
+    //     editData();
+    // });
 
     $('#btnSave').click(function(e) {
         e.preventDefault();
@@ -121,60 +297,14 @@ $(document).ready(function() {
         saveData();
     });
 
-    $('#btnDeleteId').click((e) =>{
-        e.preventDefault();
-        if (!confirm("Are you sure you want to Delete selected row?")){
-        }else{
-            deleteData();
-        }
+    // $('#btnDeleteId').click((e) =>{
+    //     e.preventDefault();
+    //     if (!confirm("Are you sure you want to Delete selected row?")){
+    //     }else{
+    //         deleteData();
+    //     }
       
-    })
-
-   
-    
-
+    // })
 
 });
 
-$(`.mydatatable`).DataTable({
-    scrollY: 350,
-    scrollX: true,
-    scrollCollapse: true,
-    paging: true,
-    // "bSort": false
-    "order": [],
-    "columnDefs": [
-        {
-            "targets": [0],
-            "visible": false,
-            "searchable": false
-        },
-
-    ]
-    // lengthChange: true,
-    // pagingType: full_numbers,
-
-    // initComplete:function () {
-    //     //fillter
-    //     this.api().columns().every( function () {
-    //         var column=this;
-    //         var select= $(`<select><option value=""> </option></select>`)
-    //         .appendTo($(column.header()).empty() )
-    //         .on( 'change', function () {
-    //             var val = $.fn.DataTable.util.escapeRegex(
-    //                 $(this).val()
-    //             );
-
-    //             column
-    //             .search( val ? '^'+val+'$' : '', true, false )
-    //             .draw();
-    //         } );
-
-    //         column.data().unique().sort().each( function (d, j){
-    //             select.append( '<option value="'+d+'">'+d+'</option>')
-    //         });
-
-    //     });
-    // },
-    //fillter
-});

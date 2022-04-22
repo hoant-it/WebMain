@@ -302,10 +302,8 @@ const GridCompanyLoad = () => {
         }
       },
       onFocusedRowChanged: function (e) {
-        const menuCode = getCompanyDataItem(e.row);
-        _sourceDataTask_ID = menuCode.menuCode;
-        // console.log("menuCode.subject " + menuCode.menuCode);
-        // const focusedRowKey = e.component.option("focusedRowKey");
+       getCompanyDataItem(e.row);
+
       },
       onToolbarPreparing: function (e) {
         // var dataGrid = e.component;

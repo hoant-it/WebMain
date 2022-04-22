@@ -21,7 +21,7 @@ module.exports.LoginAjax = async (req, res) => {
       messageError: "User name không tồn tại",
     });
   }
-  let webPass = dataUserA[0].WebPass;
+  let webPass = dataUserA[0].WebPass.toString();
   let iDAuthorization = dataUserA[0].IDAuthorization;
   let userInGroupID = dataUserA[0].UserInGroupID;
 

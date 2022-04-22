@@ -297,6 +297,7 @@ const searchBoxLoaiChi=() =>{
         // },
     }).dxSelectBox("instance");
 }
+
 const deleteData=() => {
     let data={
         mauNl:_MAUNL,
