@@ -9,8 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 }
 
 .loader img{
@@ -21,6 +19,11 @@
   animation: fadeOut 1s;
   animation-fill-mode: forwards;
 }
+
+/* .loader.active {
+  opacity: 1;
+ visibility: visible;
+} */
 
 @keyframes fadeOut {
   100%{
@@ -187,3 +190,5 @@
 
 @media (max-width: 1200px){.toggle{width:25%;}.sidebar-footer{width:25%;}}
 @media (max-width: 765px){.toggle{width:300px;}.sidebar-footer{width:300px;}}
+
+

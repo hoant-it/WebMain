@@ -1,0 +1,171 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Department List</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content" id="xcontentid">
+                <div id="GridCompany"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="modalAddUpdate" role="dialog">
+    <div class="modal-dialog modal-xl">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <h4 class="modal-title">Poisiton Update</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtCompanyCode" >Company Code</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control"  name="txtCompanyCode" id="txtCompanyCode">
+                            </div>
+                          </div>
+
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtCompanyName">Company Name</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control" name="txtCompanyName" id="txtCompanyName">
+                            </div>
+                          </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtAdrress" >Adrress</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control"  name="txtAdrress" id="txtAdrress">
+                            </div>
+                          </div>
+
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtPhoneNumber">PhoneNumber</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control" name="txtPhoneNumber" id="txtPhoneNumber">
+                            </div>
+                          </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtFax">Fax</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control" name="txtFax" id="txtFax">
+                            </div>
+                          </div>
+
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtPersonRepresent" >PersonRepresent</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control"  name="txtPersonRepresent" id="txtPersonRepresent">
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtPositions" >Positions</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control"  name="txtPositions" id="txtPositions">
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtBankName">BankName</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control" name="txtBankName" id="txtBankName">
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtBankAddress" >BankAddress</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control"  name="txtBankAddress" id="txtBankAddress">
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtBankAccount">BankAccount</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control" name="txtBankAccount" id="txtBankAccount">
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtMaSoThue" >MaSoThue</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control"  name="txtMaSoThue" id="txtMaSoThue">
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtTax">Tax</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control" name="txtTax" id="txtTax">
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 " for="txtEmail" >Email</label>
+                            <div class="col-md-9 col-sm-9 ">
+                              <input type="text" class="form-control"  name="txtEmail" id="txtEmail">
+                            </div>
+                          </div>
+                    </div>
+                </div>
+        
+        
+                
+    
+                <div class="modal-footer">
+                    <button type="submit" name="submitInsert" value="submitInsert" class="btn btn-primary" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                <!-- <div class="checkbox">
+                <label><input type="checkbox" id="ckStatus">Active</label>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+
+<script src="/javascripts/admin/CompanyListjs.js"></script>

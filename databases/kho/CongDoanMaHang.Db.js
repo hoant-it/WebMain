@@ -62,10 +62,10 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
   try {
     let pool = await sql.connect(sqlConfig);
     const filePath = `./public/uploads/${filename}`;
-    const workbook = xlsx.readFile(filePath);
+    const workbook = await xlsx.readFile(filePath);
     const sheet_name_list = workbook.SheetNames;
-    const workbookHeaders = xlsx.readFile(filePath, { sheetRows: 1 });
-    const columnsArrayHeaders = xlsx.utils.sheet_to_json(
+    const workbookHeaders = await xlsx.readFile(filePath, { sheetRows: 1 });
+    const columnsArrayHeaders = await xlsx.utils.sheet_to_json(
       workbookHeaders.Sheets[workbook.SheetNames[0]],
       { header: 1 }
     )[0];

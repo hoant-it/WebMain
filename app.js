@@ -9,8 +9,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const mainRouter = require('./routes/main.router');
-const VNWCRouter= require('./routes/WCVN.Router')
+const VNWCRouter= require('./routes/WCVN.Router');
 const khoRouter= require('./routes/kho.router');
+const adminRouter= require('./routes/admin.router');
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', mainRouter);
 app.use('/VNWC', VNWCRouter);
 app.use('/kho',khoRouter);
+app.use('/admin',adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

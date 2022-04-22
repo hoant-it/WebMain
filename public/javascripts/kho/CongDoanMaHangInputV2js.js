@@ -37,10 +37,6 @@ const searchBoxMaHang=() =>{
     }).dxSelectBox("instance");
 }
 
-
-
-
-
 const GridviewMaHangLoad = (MaHang) => {
     var url = "wacoal_TinhChi_MaHang_V1/";
     // console.log(" url " + url + oderNo+khachHang);
@@ -881,10 +877,30 @@ const GridMHCDNewLoad = () => {
     }).dxDataGrid("instance");
 
 }
+const loadPanel = $('.loadpanel').dxLoadPanel({
+    shadingColor: 'rgba(0,0,0,0.4)',
+    position: { of: '#GridTinhChi' },
+    visible: false,
+    showIndicator: true,
+    showPane: true, 
+    shading: false,//to den full man hinh
+    closeOnOutsideClick: false,
+    onShown() {
+    //   setTimeout(() => {
+    //     loadPanel.hide();
+    //   }, 3000);
+    },
+    onHidden() {
+        // GridviewMaHangLoad(MaHang);
+        GridviewMauNLLoaiChiNewLoad();
+        GridMHCDNewLoad();
+    },
+  }).dxLoadPanel('instance');
 
 
 
 const upload=()=>{
+    loadPanel.show();
     // let formData=new FormData($("frmUpload"));
     let formData  =new FormData(document.getElementById("frmUpload"));
     // for(let i=0; i<this.files.length;i++){
@@ -912,8 +928,18 @@ const upload=()=>{
         width: 450
     },"warning",5000)
   } else{
-      console.log(fileName);
+    //   console.log(fileName);
       $.ajax({
+        //   xhr: function(){
+        //       var xhr= new window.XMLHttpRequest();
+        //       xhr.upload.addEventListener("progress",function(evt){
+        //           if(evt.lengthComputable){
+        //               var percentComplete= evt.loaded/evt.total;
+        //               console.log(percentComplete)
+        //           }
+        //       },false)
+        //       return xhr;
+        //   },
           type:"POST",
         //   data:JSON.stringify(data),
         data:formData,
@@ -923,6 +949,8 @@ const upload=()=>{
           cache: false, 
           processData:false,
           success:(res)=>{
+            loadPanel.hide();
+  
 
               if(res.statusErr){
                 DevExpress.ui.notify({
@@ -957,9 +985,10 @@ const loadTooltip=(id,targetButton)=>{
 
 $(function(){
     MaHang='None';
-    GridviewMauNLLoaiChiNewLoad();
+   
     searchBoxMaHang();
     GridviewMaHangLoad(MaHang);
+    GridviewMauNLLoaiChiNewLoad();
     GridMHCDNewLoad();
     loadTooltip("tooltipUpload","btnUpload");
     
