@@ -275,7 +275,7 @@ const upload=()=>{
     },"warning",5000)
     return;
   } 
-      console.log(fileName);
+    //   console.log(fileName);
       $.ajax({
           type:"POST",
         //   data:JSON.stringify(data),
@@ -305,10 +305,6 @@ const upload=()=>{
 
           }
       })
-
-  
-
-
 }
 
 const loadTooltip=(id,targetButton)=>{

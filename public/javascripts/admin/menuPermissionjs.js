@@ -1,6 +1,7 @@
 
 
 var rulecode = '';
+var ruleName='';
 var _sourceDataTask_ID = '';
 var _targetDataTask_ID = '';
 var _targetHas_Items = '';
@@ -16,36 +17,22 @@ const UpdateDataTreeList = (sourceDataTask_ID, targetDataTask_ID, targetHas_Item
         Status: status
     };
 
-    // data.Name=singleValues;
-    // data.title = "title";
-    // data.message = "message";
     $.ajax({
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: '/admin/menuPermission',
+        url: 'MenuPermissionUpdate',
         success: function(res) {
-            // if (res!== 'ok') {
-            //     // console.log(JSON.stringify(res));
-            //     alert( res);
-            // } else {
-            //     rulecode =$('#selectRuleId').val();
-            //     loadTree();
-            //     loadGridMenu();
-            // }
-
             if (res.reload) {
-                if (res.mes !== 'ok') {
-                    // console.log(JSON.stringify(res));
+                if (!res.status) {
                     alert(res.mes);
                 } else {
-                    rulecode = $('#selectRuleId').val();
+                    // rulecode = $('#selectRuleId').val();
                     loadTree();
                     loadGridMenu();
                 }
             } else {
-                if (res.mes !== 'ok') {
-                    // console.log(JSON.stringify(res));
+                if (!res.status) {
                     alert(res.mes);
                 }
             }
@@ -55,7 +42,7 @@ const UpdateDataTreeList = (sourceDataTask_ID, targetDataTask_ID, targetHas_Item
 }
 
 const loadTree = () => {
-    var urlTree = "/api/treelist/" + rulecode;
+    var urlTree = "wacoal_ListMenu_By_Rule_Load_Web_v2/" + rulecode;
     var treeList,
         taskEmployees = DevExpress.data.AspNet.createStore({
             key: "Task_ID",
@@ -72,6 +59,8 @@ const loadTree = () => {
 
     treeList = $("#tree-list").dxTreeList({
         dataSource: taskEmployees,
+        height:555,
+    
         // drag & drop
         rootValue: "0",
         keyExpr: "Task_ID",
@@ -149,6 +138,10 @@ const loadTree = () => {
         searchPanel: {
             visible: true
         },
+        scrolling: {
+            mode: "virtual"
+        },
+     
         // headerFilter: {
         //     visible: true
         // },
@@ -239,6 +232,60 @@ const loadTree = () => {
             //     dataType: "date"
             // }
         ],
+        onToolbarPreparing: function (e) {
+            // var dataGrid = e.component;
+    
+            e.toolbarOptions.items.unshift(
+              {
+                location: "alter",
+                widget: "dxButton",
+                options: {
+                  icon: "movetofolder",
+                  text: "Move Inside",
+                  onInitialized: function (e) {
+                    e.element.attr("id", "btnMoveInside");
+                    e.element.attr("value", "submitMoveInside");
+                  },
+                  onClick: function () {
+                    // console.log("clicker")
+                    moveInside()
+                    // mauChiMauNL.resetForm();
+                  },
+                },
+              },
+              {
+                location: "alter",
+                widget: "dxButton",
+                options: {
+                  icon: "parentfolder",
+                  text: "Move Outside",
+                  onInitialized: function (e) {
+                    e.element.attr("id", "btnMoveOutSide");
+                    e.element.attr("value", "submitMoveOutSide");
+                  },
+                  onClick: function () {
+                    // console.log("clicker")
+                    moveOutside();
+                  },
+                },
+              },
+              {
+                location: "alter",
+                widget: "dxButton",
+                options: {
+                  icon: "deleterow",
+                  text: "Delete Row",
+                  onInitialized: function (e) {
+                    e.element.attr("id", "btnDeleteId");
+                    e.element.attr("value", "submitDelete");
+                  },
+                  onClick: function () {
+                        deleteRowInRule();
+                  },
+                },
+              }
+            );
+          },
         onFocusedRowChanged: function(e) {
                 var rowData = e.row && e.row.data
                     // ,
@@ -299,8 +346,8 @@ function getMenuDataItem(row) {
 const loadGridMenu = () => {
 
 
-    var url = "/api/gridview/";
-    console.log(" url " + url + rulecode);
+    var url = "MenuListLoadWeb/";
+    // console.log(" url " + url + rulecode);
     var listMenu = DevExpress.data.AspNet.createStore({
         key: "MenuCode",
         loadUrl: url + rulecode,
@@ -318,7 +365,7 @@ const loadGridMenu = () => {
     $("#grid").dxDataGrid({
         dataSource: listMenu,
         columnsAutoWidth: true,
-        height: 450,
+        height: 555,
         allowColumnReordering: true,
         rowAlternationEnabled: true,
         showBorders: true,
@@ -531,16 +578,15 @@ const SaveData = () => {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: '/admin/menuPermission/updateRule',
+        url: 'MenupermissionUpdateRule',
         success: function(res) {
-
-            if (res.mes !== 'ok') {
-                // console.log(JSON.stringify(res));
+            if (!res.status) {
                 alert(res.mes);
                 $('#modalAddUpdate').modal('show');
             } else {
-                alert('Update sucessfull!');
-                location.reload();
+                alert(res.mes);
+                $('#modalAddUpdate').modal('hide');
+               location.reload()
             }
         }
     });
@@ -557,81 +603,84 @@ const DeleteData = (ruleId) => {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: '/admin/menuPermission/deleteRule',
+        url: 'MenupermissionDeleteRule',
         success: function(res) {
-
-            if (res.mes !== 'ok') {
+            if (!res.status) {
                 // console.log(JSON.stringify(res));
                 alert(res.mes);
                 $('#modalAddUpdate').modal('show');
             } else {
-                alert('Update sucessfull!');
-                location.reload();
+                alert(res.mes);
+               location.reload()
             }
         }
     });
 }
 
-
-
-$(function() {
-
-    $('#selectRuleId').change(function() {
-
-        rulecode = $(this).val()
-            // alert('The option with value ' + rulecode + ' was selected.');
-
-        loadTree();
-        loadGridMenu();
+const PermisionGroup=() =>{
+    const selectBoxData =  DevExpress.data.AspNet.createStore({
+        key: "PermisionGroupCode",
+        loadMode:"raw",
+        loadUrl:"wacoal_PermisionGroupCode_load_Web_v2",
     });
 
-    $('#btnMoveInside').click((e) => {
-        e.preventDefault();
-        var dropInsideItem = true;
-        var status = $('#btnMoveInside').val();
-        console.log('_targetDataTask_ID ' + _targetDataTask_ID + ' _sourceDataTask_ID ' + _sourceDataTask_ID + ' _targetHas_Items ' + _targetHas_Items + ' status ' + status + " dropInsideItem " + dropInsideItem);
-        UpdateDataTreeList(_sourceDataTask_ID, _targetDataTask_ID, _targetHas_Items, dropInsideItem, status);
-
-    });
-
-    $('#btnDeleteId').click((e) => {
-        e.preventDefault();
-        if (!confirm("Are you sure you want to Delete selected row?")) {} else {
-            var dropInsideItem = true;
-            var status = $('#btnDeleteId').val();
-            //truong hop delete lay _targetDataTask_ID
-            console.log('_targetDataTask_ID ' + _targetDataTask_ID + ' _sourceDataTask_ID ' + _sourceDataTask_ID + ' _targetHas_Items ' + _targetHas_Items + ' status ' + status + " dropInsideItem " + dropInsideItem);
-            UpdateDataTreeList(_sourceDataTask_ID, _targetDataTask_ID, _targetHas_Items, dropInsideItem, status);
+    $("#searchBoxRule").dxSelectBox({
+        dataSource:selectBoxData,
+        displayExpr: 'PermisionGroupDescription',
+        valueExpr: "PermisionGroupCode",
+        searchEnabled: true,
+        searchExpr:'PermisionGroupDescription',
+        searchMode:'contains',
+        searchTimeout:400,
+        minSearchLength:0,
+        showDataBeforeSearch:false,
+        value:rulecode,
+        onValueChanged: function(e) {
+            let arrRule=e.value.split('_')
+            rulecode =arrRule[0].toString()
+            ruleName =arrRule[1].toString()
+            // ruleName=displayExpr
+            loadTree()
+            loadGridMenu()
         }
+        //       onValueChanged: function (data) {
+        //     // var $result = $(".current-value");
 
-    });
-    $('#btnMoveOutSide').click((e) => {
-        e.preventDefault();
-        var dropInsideItem = false;
-        var status = $('#btnMoveOutSide').val();
-        //   console.log('_targetDataTask_ID ' + _targetDataTask_ID + ' _sourceDataTask_ID ' + _sourceDataTask_ID + ' _targetHas_Items ' + _targetHas_Items
-        //   + ' status ' + status + " dropInsideItem "  +dropInsideItem);
-        UpdateDataTreeList(_sourceDataTask_ID, _targetDataTask_ID, _targetHas_Items, dropInsideItem, status);
+        //     if (data.value !== null) {
+        //         var selectedItem = data.component.option('selectedItem');
+        //         // $result.text(selectedItem.Name + " (ID: " + selectedItem.ID + ")");
+        //         console.log(" (ID: " + selectedItem.MAKH + ")")
+        //     } else {
+        //         console.log("Not selected")
+        //         // $result.text("Not selected");
+        //     }
+        // },
+    }).dxSelectBox("instance");
+      
+}
 
-    })
-
-    $('#btnNewRule').click(function() {
-        //show modal
-        $('#modalAddUpdate').modal('show');
-        $('#btnSave').val("submitInsert");
-        $('#txtRuleCode').removeAttr("readonly")
-        $('#modalAddUpdate').on('shown.bs.modal', function() {
-                $('#txtRuleCode').focus();
-            })
-        $('#txtRuleCode').val('');
-        $('#txtRuleName').val('');
-    });
-
-    $('#btnEditRule').click(() => {
-    var ruleName=    $( "#selectRuleId option:selected" ).text();
-    var ruleId=    $("#selectRuleId").val();
-    // console.log('ruleName ' + ruleName + ' ruleId ' +ruleId)
-    $('#txtRuleCode').val(ruleId);
+const ReLoad=()=>{
+    PermisionGroup()
+   
+    $('.addButton').dxButton({
+        icon:'add',
+        text: 'New Rule',
+        onClick: resetForm,
+      });
+      $('.editButton').dxButton({
+        icon:'edit',
+        text: 'Edit Rule',
+        onClick: editForm,
+      });
+      $('.deleteButton').dxButton({
+        icon:'remove',
+        text: 'delete Rule',
+        onClick: deleteForm,
+      });
+}
+const editForm=()=>{
+    // var ruleName= ''
+    $('#txtRuleCode').val(rulecode);
     $('#txtRuleName').val(ruleName);
     $('#modalAddUpdate').modal('show');
     $('#btnSave').val("submitUpdate");
@@ -640,24 +689,49 @@ $(function() {
     $('#modalAddUpdate').on('shown.bs.modal', function() {
         $('#txtRuleName').focus();
     })
-  
-  
-    });
+}
+const resetForm=()=>{
+   //show modal
+   $('#modalAddUpdate').modal('show');
+   $('#btnSave').val("submitInsert");
+   $('#txtRuleCode').removeAttr("readonly")
+   $('#modalAddUpdate').on('shown.bs.modal', function() {
+           $('#txtRuleCode').focus();
+       })
+   $('#txtRuleCode').val('');
+   $('#txtRuleName').val('');
+}
+const deleteForm=()=>{
+    if (!confirm("Are you sure you want to Delete rule " + rulecode + " - " + ruleName )) {} else {
+        DeleteData(rulecode);
+    }
+}
+ const moveInside=()=>{
+    var dropInsideItem = true;
+    var status = 'submitMoveInside';
+    // console.log('_targetDataTask_ID ' + _targetDataTask_ID + ' _sourceDataTask_ID ' + _sourceDataTask_ID + ' _targetHas_Items ' + _targetHas_Items + ' status ' + status + " dropInsideItem " + dropInsideItem);
+    UpdateDataTreeList(_sourceDataTask_ID, _targetDataTask_ID, _targetHas_Items, dropInsideItem, status);
+ }
 
+ const moveOutside=()=>{
+    var dropInsideItem = false;
+    var status = 'submitMoveOutSide'
+    UpdateDataTreeList(_sourceDataTask_ID, _targetDataTask_ID, _targetHas_Items, dropInsideItem, status);
+ }
+ const deleteRowInRule=()=>{
+    if (!confirm("Are you sure you want to Delete selected row?")) {} else {
+        var dropInsideItem = true;
+        var status = 'submitDelete';
+        //truong hop delete lay _targetDataTask_ID
+        UpdateDataTreeList(_sourceDataTask_ID, _targetDataTask_ID, _targetHas_Items, dropInsideItem, status);
+    }
+ }
+
+$(function() {
+    ReLoad()
     $('#btnSave').click((e) => {
         e.preventDefault();
         SaveData();
-
     });
 
-    $('#btnDeleteRule').click((e) => {
-        var ruleId=    $("#selectRuleId").val();
-        var ruleName=    $( "#selectRuleId option:selected" ).text();
-        e.preventDefault();
-        e.preventDefault();
-        if (!confirm("Are you sure you want to Delete rule " + ruleId + " - " + ruleName )) {} else {
-            DeleteData(ruleId);
-        }
-      
-    });
 });

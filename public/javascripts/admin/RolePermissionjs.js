@@ -1,9 +1,10 @@
 
 
-var roleId = '';
-var _sourceDataTask_ID = '';
-var _targetDataTask_ID = '';
-var _targetHas_Items = '';
+var roleId = ''
+var roleName=''
+var _sourceDataTask_ID = ''
+var _targetDataTask_ID = ''
+var _targetHas_Items = ''
 
 function getMenuDataItem(row) {
     const rowData = row && row.data;
@@ -27,8 +28,8 @@ function getMenuDataItem(row) {
 }
 
 const loadGridRuleInRole = () => {
-    var url = "/api/gridviewRuleInRole/";
-    console.log(" url " + url + roleId);
+    var url = "RuleInRoleLoad/";
+    // console.log(" url " + url + roleId);
     var listMenu = DevExpress.data.AspNet.createStore({
         key: "PermisionGroupCode",
         loadUrl: url + roleId,
@@ -127,8 +128,8 @@ const loadGridRuleInRole = () => {
 }
 
 const loadGridRuleList = () => {
-    var url = "/api/gridviewRuleList/";
-    console.log(" url " + url + roleId);
+    var url = "ListPermisionGroupLoad/";
+    // console.log(" url " + url + roleId);
     var listMenu = DevExpress.data.AspNet.createStore({
         key: "PermisionGroupCode",
         loadUrl: url + roleId,
@@ -223,7 +224,7 @@ const loadGridRuleList = () => {
 }
 
 const loadGridUserInRole  = () => {
-    var url = "/api/gridviewUserInRole/";
+    var url = "UserInRoleLoad/";
     console.log(" url " + url + roleId);
     var listMenu = DevExpress.data.AspNet.createStore({
         key: "UserID",
@@ -326,11 +327,11 @@ const loadGridUserInRole  = () => {
 }
 
 const loadGridUserList = () => {
-    var url = "/api/gridviewUserList/";
-    console.log(" url " + url + roleId);
+    var url = "UserListLoad";
+    // console.log(" url " + url + roleId);
     var listMenu = DevExpress.data.AspNet.createStore({
         key: "UserID",
-        loadUrl: url + roleId,
+        loadUrl: url,
         onBeforeSend: function(method, ajaxOptions) {
             ajaxOptions.xhrFields = {
                 withCredentials: true
@@ -433,15 +434,12 @@ const MoveRuleInRole= (permisionGroupCode) =>{
         type:'POST',
         data:JSON.stringify(data),
         contentType:'application/json',
-        url:'/admin/rolePermission/moveRuleInRole',
+        url:'RolePermissionmoveRuleInRole',
         success: function (res) {
-            if(res.mes!=='ok'){
+            if(!res.status){
                 alert(res.mes);
             } else{
-                loadGridRuleInRole();
-                loadGridRuleList();
-                loadGridUserInRole();
-                loadGridUserList();
+                LoadAllGrid()
             }
         }
     })
@@ -456,15 +454,12 @@ const DeleteRuleInRole= (permisionGroupCode) =>{
         type:'POST',
         data:JSON.stringify(data),
         contentType:'application/json',
-        url:'/admin/rolePermission/deleteRuleInRole',
+        url:'RolePermissiondeleteRuleInRole',
         success: function (res) {
-            if(res.mes!=='ok'){
+            if(!res.status){
                 alert(res.mes);
             } else{
-                loadGridRuleInRole();
-                loadGridRuleList();
-                loadGridUserInRole();
-                loadGridUserList();
+                LoadAllGrid()
             }
         }
     })
@@ -480,15 +475,12 @@ const MoveUserInRole= (userId) =>{
         type:'POST',
         data:JSON.stringify(data),
         contentType:'application/json',
-        url:'/admin/rolePermission/moveUserInrRole',
+        url:'RolePermissionMoveUserInrRole',
         success: function (res) {
-            if(res.mes!=='ok'){
+            if(!res.status){
                 alert(res.mes);
             } else{
-                loadGridRuleInRole();
-                loadGridRuleList();
-                loadGridUserInRole();
-                loadGridUserList();
+                LoadAllGrid()
             }
         }
     });
@@ -503,15 +495,12 @@ const DeleteUserInRole= (userId) =>{
         type:'POST',
         data:JSON.stringify(data),
         contentType:'application/json',
-        url:'/admin/rolePermission/deleteUserInRole',
+        url:'RolePermissionDeleteUserInRole',
         success: function (res) {
-            if(res.mes!=='ok'){
+            if(!res.status){
                 alert(res.mes);
             } else{
-                loadGridRuleInRole();
-                loadGridRuleList();
-                loadGridUserInRole();
-                loadGridUserList();
+                LoadAllGrid()
             }
         }
     })
@@ -529,12 +518,8 @@ function onAdd(e) {
 
       } else {
         var ds = $("#GridRuleInRole").dxDataGrid("getDataSource");
- 
         MoveRuleInRole(permisionGroupCode);
-
-     
       }
-       
     }
     if(status === 2){
         if(userId){
@@ -542,7 +527,6 @@ function onAdd(e) {
         } else {
             DeleteRuleInRole(permisionGroupCode)
         }
-       
     }
     if(status === 3){
         if(permisionGroupCode){
@@ -557,7 +541,6 @@ function onAdd(e) {
         } else {
             DeleteUserInRole(userId)
         }
-
     }
 }
 
@@ -576,15 +559,14 @@ const SaveData = () => {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: '/admin/rolePermission/updateRole',
+        url: 'RolePermissionUpdate',
         success: function(res) {
-
-            if (res.mes !== 'ok') {
-                // console.log(JSON.stringify(res));
+            if (!res.status) {
                 alert(res.mes);
                 $('#modalAddUpdate').modal('show');
             } else {
-                alert('Update sucessfull!');
+                alert(res.mes);
+                $('#modalAddUpdate').modal('hide');
                 location.reload();
             }
         }
@@ -602,54 +584,70 @@ const DeleteData = (roleId) => {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: '/admin/rolePermission/deleteRule',
+        url: 'RolePermissionDelete',
         success: function(res) {
 
-            if (res.mes !== 'ok') {
-                // console.log(JSON.stringify(res));
+            if (!res.status) {
                 alert(res.mes);
                 $('#modalAddUpdate').modal('show');
             } else {
-                alert('Update sucessfull!');
-                location.reload();
+                alert(res.mes);
+               location.reload();
             }
         }
     });
 }
 
+const searchBoxRole = () => {
+  const selectBoxData = DevExpress.data.AspNet.createStore({
+    key: "GroupUserCode",
+    loadMode: "raw",
+    loadUrl: "wacoal_ListUserGroup_Load_Web_V2",
+  });
 
+  $("#searchBoxRole")
+    .dxSelectBox({
+      dataSource: selectBoxData,
+      displayExpr: "GroupUserDescription",
+      valueExpr: "GroupUserCode",
+      searchEnabled: true,
+      searchExpr: "GroupUserDescription",
+      searchMode: "contains",
+      searchTimeout: 400,
+      minSearchLength: 0,
+      showDataBeforeSearch: false,
+      value: roleId,
+      onValueChanged: function (e) {
+        let arrRole = e.value.split("_");
+        roleId = arrRole[0].toString();
+        roleName = arrRole[1].toString();
+        LoadAllGrid()
+    
+      },
+    })
+    .dxSelectBox("instance");
+};
+const LoadAllGrid=()=>{
+    loadGridRuleInRole()
+        loadGridRuleList()
+        loadGridUserInRole()
+        loadGridUserList()
+}
+const resetForm = () => {
+    //show modal
+    $('#modalAddUpdate').modal('show');
+    $('#btnSave').val("submitInsert");
+    $('#txtRoleCode').removeAttr("readonly")
+    $('#modalAddUpdate').on('shown.bs.modal', function() {
+            $('#txtRoleCode').focus();
+        })
+    $('#txtRoleCode').val('');
+    $('#txtRoleName').val('');
+  };
 
-$(function() {
-
-    $('#selectRoleId').change(function() {
-
-        roleId = $(this).val();
-        loadGridRuleInRole();
-        loadGridRuleList();
-        loadGridUserInRole();
-        loadGridUserList();
-    });
-
-
-
-
-
-
-    $('#btnNewRole').click(function() {
-        //show modal
-        $('#modalAddUpdate').modal('show');
-        $('#btnSave').val("submitInsert");
-        $('#txtRoleCode').removeAttr("readonly")
-        $('#modalAddUpdate').on('shown.bs.modal', function() {
-                $('#txtRoleCode').focus();
-            })
-        $('#txtRoleCode').val('');
-        $('#txtRoleName').val('');
-    });
-
-    $('#btnEditRole').click(() => {
-    var roleName=    $( "#selectRoleId option:selected" ).text();
-    var roleId=    $("#selectRoleId").val();
+const editForm=()=>{
+    // var roleName=    $( "#selectRoleId option:selected" ).text();
+    // var roleId=    $("#selectRoleId").val();
     // console.log('roleName ' + roleName + ' roleId ' +roleId)
     $('#txtRoleCode').val(roleId);
     $('#txtRoleName').val(roleName);
@@ -660,23 +658,39 @@ $(function() {
     $('#modalAddUpdate').on('shown.bs.modal', function() {
         $('#txtRoleName').focus();
     })
-  
-  
-    });
+}
 
-    $('#btnSave').click((e) => {
-        e.preventDefault();
-        SaveData();
+const deleteForm=()=>{
+    if (!confirm("Are you sure you want to Delete role "  + roleName )) {} else {
+        DeleteData(roleId);
+    }
+}
 
-    });
+const Reload = () => {
+    roleId=''
+    roleName=''
+  searchBoxRole();
+  $('.addButton').dxButton({
+    icon:'add',
+    text: 'New Role',
+    onClick: resetForm,
+  });
+  $('.editButton').dxButton({
+    icon:'edit',
+    text: 'Edit Role',
+    onClick: editForm,
+  });
+  $('.deleteButton').dxButton({
+    icon:'remove',
+    text: 'delete Role',
+    onClick: deleteForm,
+  });
+  $('#btnSave').click((e) => {
+    e.preventDefault();
+    SaveData();
+});
+};
 
-    $('#btnDeleteRole').click((e) => {
-        var roleId=    $("#selectRoleId").val();
-        var roleName=    $( "#selectRoleId option:selected" ).text();
-        e.preventDefault();
-        if (!confirm("Are you sure you want to Delete role "  + roleName )) {} else {
-            DeleteData(roleId);
-        }
-      
-    });
+$(function() {
+    Reload();
 });

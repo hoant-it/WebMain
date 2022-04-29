@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Rule Choice</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2 col-sm-2 ">
+                    <div id="searchBoxRule"></div>
+                </div>
+                <div class="addButton"></div>
+                <div class="editButton"></div>
+                <div class="deleteButton"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Menu Permission  List</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content" id="xcontentid">
+                <div id="tree-list"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Menu List</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content" id="xcontentid">
+                <div id="grid"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAddUpdate" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add/Update Rule</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="txtRuleCode">Rule Code</label>
+                    <input type="text" class="form-control" name="txtRuleCode" id="txtRuleCode">
+                    <!-- <input type="hidden" id="hidID" value="0" /> -->
+                </div>
+                <div class="form-group">
+                    <label for="txtRuleName">Rule Name</label>
+                    <input type="text" class="form-control" name="txtRuleName" id="txtRuleName">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="submitInsert" value="submitInsert" class="btn btn-primary" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+
+<script src="/javascripts/admin/menuPermissionjs.js"></script>
