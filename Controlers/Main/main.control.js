@@ -98,7 +98,7 @@ module.exports.HomeLoad = async (req, res, next) => {
     html="";
     html=`<ul class="nav side-menu" id="side-menu">`;
    await sql.sp_Wacoal_LoadMenuWeb_V1(req.signedCookies.IDAuthorization,req.signedCookies.UserInGroupID).then(result=>{
-     console.log(result);
+    //  console.log(result);
       list_cat=data_Tree(result,"0");
       html+=`</ul>`
     })

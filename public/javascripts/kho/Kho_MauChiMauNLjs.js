@@ -4,7 +4,7 @@ let _MAUNL='',_LOAICHI='',_MAUCHI=''
 
 const GridViewMauChi = () => {
 
-    var url = "/api/wacoal_MAUCHIMAUNL_Load_Web_V1";
+    var url = "wacoal_MAUCHIMAUNL_Load_Web_V1";
     // console.log(" url " + url + oderNo+khachHang);
     var listTinhChi = DevExpress.data.AspNet.createStore({
         key: "KeyCode",
@@ -265,7 +265,7 @@ const searchBoxLoaiChi=() =>{
     const selectBoxData =  DevExpress.data.AspNet.createStore({
         key: "LOAICHICODE",
         loadMode:"raw",
-        loadUrl:"/api/wacoal_LOAICHIITEM_Load_V1",
+        loadUrl:"wacoal_LOAICHIITEM_Load_V1",
     });
 
     var searchBox = $("#searchBoxLoaiChi").dxSelectBox({
@@ -308,7 +308,7 @@ const deleteData=() => {
         type:'POST',
         data:JSON.stringify(data),
         contentType:'application/json',
-        url:'/kho/MauChiMauNl/delete',
+        url:'MAUCHIMAUNL_Delete_Web_V1',
         success: (res) =>{
             if(res.statusErr){
                 DevExpress.ui.notify({
@@ -343,10 +343,9 @@ const SaveData = () => {
         type:'POST',
         data:JSON.stringify(data),
         contentType: 'application/json',
-        url:'/kho/MauChiMauNl',
+        url:'MauChiMauNLUpdate',
         success: (res) => {
             if(res.statusErr){
-    
                 $('#modalAddUpdate').modal('hide');
                 DevExpress.ui.notify({
                     message: res.errMes,
