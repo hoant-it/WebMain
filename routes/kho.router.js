@@ -5,14 +5,18 @@ const orderControl = require('../Controlers/Kho/Order.control')
 const congdoanmahangControl = require('../Controlers/Kho/CongDoanMaHang.Control');
 const MauChiMauNLControl=require('../Controlers/Kho/MauChiMauNL.Control')
 const QTQLNVLControl=require('../Controlers/Kho/QTQLNVL.Control')
+const OrderTinhChiControl=require('../Controlers/Kho/OrderTinhChi.Control')
+const KeHangControl=require('../Controlers/Kho/KeHang.Control')
 //Order
 router.get('/Order',orderControl.OrderLoad);
-
 router.get('/DONHANGITEM_3_MY_SearchBox_Web_V1',orderControl.DONHANGITEM_3_MY_SearchBox_Web_V1)
-
 router.get('/DONHANGITEM_3_Load_Web_V1/:MY',orderControl.DONHANGITEM_3_Load_Web_V1 )
-
 router.post('/Order', upload.single('filename'), orderControl.OrderInserByType)
+router.post('/OrderImportExcel', upload.single('filename'), orderControl.OrderImportExcel)
+
+router.get('/DONHANGITEM_DRAFT_Load_Web_V1/:MY',orderControl.DONHANGITEM_DRAFT_Load_Web_V1)
+router.get('/DONHANGITEM_DRAFT_MY_SearchBox_Web_V1',orderControl.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1)
+router.post('/OrderDraftImportExcel',upload.single('filenameDraft'),orderControl.OrderDraftImportExcel)
 
 //Cong Doan Ma Hang
 
@@ -55,6 +59,24 @@ router.get('/KIEMTRACHATLUONG',QTQLNVLControl.KIEMTRACHATLUONG)
 router.get('/GIAOHANG',QTQLNVLControl.GIAOHANG)
 //QLNVLDU
 router.get('/QLNVLDU',QTQLNVLControl.QLNVLDU)
+
+//Tinh chi theo Order
+router.get('/KhoOderTinhChiGridViewDev',OrderTinhChiControl.OrderTinhChiLoad)
+router.get('/Khowacoal_KHACHHANG_load_Web_V1',OrderTinhChiControl.Khowacoal_KHACHHANG_load_Web_V1)
+router.get('/wacoal_DONHANGHEAD_Load_Web_V1',OrderTinhChiControl.wacoal_DONHANGHEAD_Load_Web_V1)
+router.get('/khoOrderTinhchiGridviewMaHangMiss/:Order/:KhachHang',OrderTinhChiControl.khoOrderTinhchiGridviewMaHangMiss)
+router.get('/Order_TinhChi_Web_V3/:Order/:KhachHang',OrderTinhChiControl.Order_TinhChi_Web_V3)
+router.post('/OrderTinhChiPost',OrderTinhChiControl.OrderTinhChiPost)
+router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V2/:Order/:KhachHang',OrderTinhChiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V2)
+
+//ke hang
+router.get('/kehang',KeHangControl.kehangLoad)
+router.get('/wacoal_KEHANG_Load_By_Id_Web_V1/:ID',KeHangControl.wacoal_KEHANG_Load_By_Id_Web_V1)
+router.get('/wacoal_KEHANG_Web_Load_V1',KeHangControl.wacoal_KEHANG_Web_Load_V1)
+router.get('/wacoal_KHONL_Web_Load_V1/:SHEFTID',KeHangControl.wacoal_KHONL_Web_Load_V1)
+router.post('/SaveKeHangToDatabase',KeHangControl.SaveKeHangToDatabase)
+router.get('/wacoal_KHONLXUAT_Load_By_KHONLID_web_V1/:KHONLID',KeHangControl.wacoal_KHONLXUAT_Load_By_KHONLID_web_V1)
+
 
 
 module.exports=router;

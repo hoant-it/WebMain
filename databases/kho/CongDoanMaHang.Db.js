@@ -27,7 +27,7 @@ module.exports.wacoal_TinhChi_MaHang_V1 = async (maHang) => {
     let res = await pool
       .request()
       .input("MAHANG", sql.NVarChar(50), maHang)
-      .execute("wacoal_TinhChi_MaHang_V1");
+      .execute("wacoal_TinhChi_MaHang_V2");
     return res.recordset;
   } catch (error) {
     console.log("error" + error);

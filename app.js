@@ -12,6 +12,11 @@ const mainRouter = require('./routes/main.router');
 const VNWCRouter= require('./routes/WCVN.Router');
 const khoRouter= require('./routes/kho.router');
 const adminRouter= require('./routes/admin.router');
+const kythuatRouter=require('./routes/kithuat.router')
+const sanxuatRouter=require('./routes/sanxuat.router')
+const catRouter=require('./routes/Cat.Router')
+const mayRouter=require('./routes/May.Router')
+const kiemphamRouter=require('./routes/kiempham.router')
 
 var app = express();
 
@@ -33,6 +38,14 @@ app.use('/', mainRouter);
 app.use('/VNWC', VNWCRouter);
 app.use('/kho',khoRouter);
 app.use('/admin',adminRouter);
+app.use('/kithuat',kythuatRouter);
+app.use('/SX',sanxuatRouter);
+app.use('/Cat',catRouter);
+app.use('/May',mayRouter);
+app.use('/kiempham',kiemphamRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

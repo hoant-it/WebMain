@@ -329,23 +329,59 @@ const GridviewMaHangLoad = (MaHang) => {
                 }]
             } ,
             {
-                caption: "GOMU",
+                caption: "UN420",
                 alignment:"center",
                 columns: [{
                     caption: "COLOR",
                     alignment:"center",
-                    dataField: "COLOR_GOMU",
+                    dataField: "COLOR_UN420",
                     // format: "fixedPoint"
                 }, {
                     caption: "QTY",
                     alignment:"center",
-                    dataField: "SL_GOMU",
+                    dataField: "SL_UN420",
                     // format: function(value) {
                     //     return value==0?'-':value;
                     //   }
                     // format: "percent"
                 }]
             } ,
+            {
+                caption: "UN280",
+                alignment:"center",
+                columns: [{
+                    caption: "COLOR",
+                    alignment:"center",
+                    dataField: "COLOR_UN280",
+                    // format: "fixedPoint"
+                }, {
+                    caption: "QTY",
+                    alignment:"center",
+                    dataField: "SL_UN280",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                }]
+            } ,
+            // {
+            //     caption: "GOMU",
+            //     alignment:"center",
+            //     columns: [{
+            //         caption: "COLOR",
+            //         alignment:"center",
+            //         dataField: "COLOR_GOMU",
+            //         // format: "fixedPoint"
+            //     }, {
+            //         caption: "QTY",
+            //         alignment:"center",
+            //         dataField: "SL_GOMU",
+            //         // format: function(value) {
+            //         //     return value==0?'-':value;
+            //         //   }
+            //         // format: "percent"
+            //     }]
+            // } ,
             {
                 caption: "R50",
                 alignment:"center",
@@ -506,7 +542,17 @@ const GridviewMaHangLoad = (MaHang) => {
                 customizeText: function(data) {
                     return data.value;
                 }},
-                {column: "SL_GOMU",
+                // {column: "SL_GOMU",
+                // summaryType: "sum",
+                // customizeText: function(data) {
+                //     return data.value;
+                // }},
+                {column: "SL_UN420",
+                summaryType: "sum",
+                customizeText: function(data) {
+                    return data.value;
+                }},
+                {column: "SL_UN280",
                 summaryType: "sum",
                 customizeText: function(data) {
                     return data.value;

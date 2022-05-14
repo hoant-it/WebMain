@@ -61,7 +61,22 @@ module.exports.OrderInsertByType = async (filename, userId) => {
     tOrder.columns.add("USERUPDATE", sql.NVarChar(50));
   
     const columnsArrayHeaders = xlsx.utils.sheet_to_json(workbookHeaders.Sheets[workbook.SheetNames[0]], { header: 1 })[0];
-    const formatHeader = ["Classification", "MY", "Order", "UnitNo", "Style", "Cup", "Size", "Color", "OrderQty", "Note",];
+    const formatHeader = [
+      "Classification",
+      "OrderNo",
+      "UnitNo",
+      "Style",
+      "Cup",
+      "Size",
+      "Color",
+      "OrderQty",
+      "Note",
+      "MY",
+      "TIMECREATE",
+      "USERCREATE",
+      "TIMEUPDATE",
+      "USERUPDATE",
+    ];
     for(let i =0; i<columnsArrayHeaders.length;i++){
       let excelheaderName=columnsArrayHeaders[i];
       let formatheaderName=formatHeader[i];
@@ -125,6 +140,80 @@ module.exports.OrderInsertByType = async (filename, userId) => {
     return lError;
   }
 };
+
+module.exports.DONHANGITEM_DRAFT_Load_Web_V1=async(params)=>{
+  try {
+    const { MY } =params;
+    let pool=await sql.connect(sqlConfig)
+    let result=await pool.request()
+    .input('MY',sql.NVarChar(10),MY)
+    .execute('DONHANGITEM_DRAFT_Load_Web_V1')
+    return result.recordset
+  } catch (error) {
+    throw error
+  }
+}
+
+module.exports.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1=async()=>{
+  try {
+    let pool=await sql.connect(sqlConfig)
+    let result=await pool.request()
+    .execute('DONHANGITEM_DRAFT_MY_SearchBox_Web_V1')
+    return result.recordset
+    
+  } catch (error) {
+    throw error
+  }
+}
+
+module.exports.DONHANGITEM_DRAFT_Insert_Web_V1=async(content,userName)=>{
+  try {
+    const{Classification,MY,OrderNo,UnitNo,Style,Cup,Size,Color,OrderQty,Note}=content
+    
+    let pool=await sql.connect(sqlConfig)
+    await pool.request()
+    .input('Classification',sql.NVarChar(50),Classification)
+    .input('MY',sql.NVarChar(10),MY)
+    .input('OrderNo',sql.NVarChar(50),OrderNo)
+    .input('UnitNo',sql.NVarChar(50),UnitNo)
+    .input('Style',sql.NVarChar(50),Style)
+    .input('Cup',sql.NVarChar(50),Cup)
+    .input('Size',sql.NVarChar(50),Size)
+    .input('Color',sql.NVarChar(50),Color)
+    .input('OrderQty',sql.Int,OrderQty)
+    .input('Note',sql.NVarChar(50),Note)
+    .input('UserName',sql.NVarChar(50),userName)
+    .execute('DONHANGITEM_DRAFT_Insert_Web_V1')
+  } catch (error) {
+    throw error
+  }
+}
+
+module.exports.DONHANGITEM_3_Insert_Web_V1=async(content,userName)=>{
+  try {
+    const{Classification,MY,OrderNo,UnitNo,Style,Cup,Size,Color,OrderQty,Note}=content
+    
+    let pool=await sql.connect(sqlConfig)
+    await pool.request()
+    .input('Classification',sql.NVarChar(50),Classification)
+    .input('MY',sql.NVarChar(10),MY)
+    .input('OrderNo',sql.NVarChar(50),OrderNo)
+    .input('UnitNo',sql.NVarChar(50),UnitNo)
+    .input('Style',sql.NVarChar(50),Style)
+    .input('Cup',sql.NVarChar(50),Cup)
+    .input('Size',sql.NVarChar(50),Size)
+    .input('Color',sql.NVarChar(50),Color)
+    .input('OrderQty',sql.Int,OrderQty)
+    .input('Note',sql.NVarChar(50),Note)
+    .input('UserName',sql.NVarChar(50),userName)
+    .execute('DONHANGITEM_3_Insert_Web_V1')
+  } catch (error) {
+    throw error
+  }
+
+}
+
+
 
 sql.on("error", (err) => {
   lError.errMes = "Lỗi: " + err;
