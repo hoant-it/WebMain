@@ -84,3 +84,28 @@ module.exports.sp_Wacoal_LoadMenuWeb_V1 = async (iDAuthorization,userInGroupID) 
   }
 
 }
+
+module.exports.ListUser_WebPassGet_web_V1=async(userName)=>{
+  try {
+    let pool= await sql.connect(sqlConfig)
+    let result=await pool.request()
+    .input('UserName',sql.NVarChar(20),userName)
+    .execute('ListUser_WebPassGet_web_V1')
+    return result.recordset[0].WebPass
+  } catch (error) {
+    throw error
+  }
+}
+
+module.exports.ListUser_WebPassUpdate_web_V1=async(userName,wedPass)=>{
+  try {
+    let pool= await sql.connect(sqlConfig)
+     await pool.request()
+    .input('UserName',sql.NVarChar(20),userName)
+    .input('WebPass',sql.NVarChar(200),wedPass)
+    .execute('ListUser_WebPassUpdate_web_V1')
+  } catch (error) {
+    throw error
+  }
+
+}

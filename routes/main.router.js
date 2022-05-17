@@ -21,4 +21,9 @@ router.get('/error',async(req,res) =>{
   })
 })
 
+//Change pass
+router.get('/changepassword',mainControl.ChangePassword)
+router.get('/changePasswordFirst',mainControl.ChangePassword)
+router.post('/changepassword',mainControl.ChangePasswordSave)
+
 module.exports = router;

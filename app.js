@@ -17,7 +17,6 @@ const sanxuatRouter=require('./routes/sanxuat.router')
 const catRouter=require('./routes/Cat.Router')
 const mayRouter=require('./routes/May.Router')
 const kiemphamRouter=require('./routes/kiempham.router')
-
 var app = express();
 
 // view engine setup
@@ -43,6 +42,7 @@ app.use('/SX',sanxuatRouter);
 app.use('/Cat',catRouter);
 app.use('/May',mayRouter);
 app.use('/kiempham',kiemphamRouter);
+
 
 
 

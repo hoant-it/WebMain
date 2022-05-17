@@ -5,7 +5,10 @@
     <div class="nav toggle">
       <div class="toggle-left">
         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-        <a href="/home" class=""><img onerror="this.src='/images/user.png'"  src="/images/Wacoal_images.png" alt=""></a>
+        <% if(title !=='changePasswordFirst'){ %>
+          <a href="/home" class=""><img src="/images/Wacoal_images.png" alt=""></a>
+       <% } %>
+        <!-- <a href="/home" class=""><img onerror="this.src='/images/user.png'"  src="/images/Wacoal_images.png" alt=""></a> -->
       </div>
       <div class="toggle-right">
         <a id="expand"><i class="fa fa-sort-down"></i></a>
@@ -17,8 +20,10 @@
         <li class="nav-item dropdown open" style="padding-left: 15px;">
           <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
             data-toggle="dropdown" aria-expanded="false">
+            <%= userId %>
              <!-- img onerror dan toi duong link hinh neu link trong src error  -->
             <img onerror="this.src='/images/user.png'" src="/images/user.png" alt="">
+            
           
           </a>
           <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
