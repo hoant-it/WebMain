@@ -1,7 +1,7 @@
 const sql = require("mssql");
 const sqlConfig = require("../dbconfig");
 const xlsx = require("xlsx");
-const del = require('del')
+const del = require("del");
 
 module.exports.DONHANGITEM_3_MY_SearchBox_Web_V1 = async () => {
   try {
@@ -59,8 +59,11 @@ module.exports.OrderInsertByType = async (filename, userId) => {
     tOrder.columns.add("USERCREATE", sql.NVarChar(50));
     tOrder.columns.add("TIMEUPDATE", sql.NVarChar(50));
     tOrder.columns.add("USERUPDATE", sql.NVarChar(50));
-  
-    const columnsArrayHeaders = xlsx.utils.sheet_to_json(workbookHeaders.Sheets[workbook.SheetNames[0]], { header: 1 })[0];
+
+    const columnsArrayHeaders = xlsx.utils.sheet_to_json(
+      workbookHeaders.Sheets[workbook.SheetNames[0]],
+      { header: 1 }
+    )[0];
     const formatHeader = [
       "Classification",
       "OrderNo",
@@ -77,10 +80,10 @@ module.exports.OrderInsertByType = async (filename, userId) => {
       "TIMEUPDATE",
       "USERUPDATE",
     ];
-    for(let i =0; i<columnsArrayHeaders.length;i++){
-      let excelheaderName=columnsArrayHeaders[i];
-      let formatheaderName=formatHeader[i];
-      if(excelheaderName!==formatheaderName){
+    for (let i = 0; i < columnsArrayHeaders.length; i++) {
+      let excelheaderName = columnsArrayHeaders[i];
+      let formatheaderName = formatHeader[i];
+      if (excelheaderName !== formatheaderName) {
         lError.errMes = `Lỗi: format Header không đúng ( ${excelheaderName} # ${formatheaderName} )`;
         lError.statusErr = false;
         return lError;
@@ -98,8 +101,8 @@ module.exports.OrderInsertByType = async (filename, userId) => {
       };
       jsonPagesArray.push(jsonPage);
     });
-    for(let i =0 ; i<jsonPagesArray[0].content.length;i++){
-      var contentValue=jsonPagesArray[0].content[i]
+    for (let i = 0; i < jsonPagesArray[0].content.length; i++) {
+      var contentValue = jsonPagesArray[0].content[i];
       tOrder.rows.add(
         contentValue.Classification,
         contentValue.MY.toString(),
@@ -111,11 +114,11 @@ module.exports.OrderInsertByType = async (filename, userId) => {
         contentValue.Color,
         contentValue.OrderQty,
         contentValue.Note,
-        '',
+        "",
         userId,
-        '',
-        ''
-        )
+        "",
+        ""
+      );
     }
     // console.log(tOrder)
     let pool = await sql.connect(sqlConfig);
@@ -141,79 +144,101 @@ module.exports.OrderInsertByType = async (filename, userId) => {
   }
 };
 
-module.exports.DONHANGITEM_DRAFT_Load_Web_V1=async(params)=>{
+module.exports.DONHANGITEM_DRAFT_Load_Web_V1 = async (params) => {
   try {
-    const { MY } =params;
-    let pool=await sql.connect(sqlConfig)
-    let result=await pool.request()
-    .input('MY',sql.NVarChar(10),MY)
-    .execute('DONHANGITEM_DRAFT_Load_Web_V1')
-    return result.recordset
+    const { MY } = params;
+    let pool = await sql.connect(sqlConfig);
+    let result = await pool
+      .request()
+      .input("MY", sql.NVarChar(10), MY)
+      .execute("DONHANGITEM_DRAFT_Load_Web_V1");
+    return result.recordset;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
-module.exports.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1=async()=>{
+module.exports.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1 = async () => {
   try {
-    let pool=await sql.connect(sqlConfig)
-    let result=await pool.request()
-    .execute('DONHANGITEM_DRAFT_MY_SearchBox_Web_V1')
-    return result.recordset
-    
+    let pool = await sql.connect(sqlConfig);
+    let result = await pool
+      .request()
+      .execute("DONHANGITEM_DRAFT_MY_SearchBox_Web_V1");
+    return result.recordset;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
-module.exports.DONHANGITEM_DRAFT_Insert_Web_V1=async(content,userName)=>{
+module.exports.DONHANGITEM_DRAFT_Insert_Web_V1 = async (content, userName) => {
   try {
-    const{Classification,MY,OrderNo,UnitNo,Style,Cup,Size,Color,OrderQty,Note}=content
-    
-    let pool=await sql.connect(sqlConfig)
-    await pool.request()
-    .input('Classification',sql.NVarChar(50),Classification)
-    .input('MY',sql.NVarChar(10),MY)
-    .input('OrderNo',sql.NVarChar(50),OrderNo)
-    .input('UnitNo',sql.NVarChar(50),UnitNo)
-    .input('Style',sql.NVarChar(50),Style)
-    .input('Cup',sql.NVarChar(50),Cup)
-    .input('Size',sql.NVarChar(50),Size)
-    .input('Color',sql.NVarChar(50),Color)
-    .input('OrderQty',sql.Int,OrderQty)
-    .input('Note',sql.NVarChar(50),Note)
-    .input('UserName',sql.NVarChar(50),userName)
-    .execute('DONHANGITEM_DRAFT_Insert_Web_V1')
-  } catch (error) {
-    throw error
-  }
-}
+    const {
+      Classification,
+      MY,
+      OrderNo,
+      UnitNo,
+      Style,
+      Cup,
+      Size,
+      Color,
+      OrderQty,
+      Note,
+    } = content;
 
-module.exports.DONHANGITEM_3_Insert_Web_V1=async(content,userName)=>{
+    let pool = await sql.connect(sqlConfig);
+    await pool
+      .request()
+      .input("Classification", sql.NVarChar(50), Classification)
+      .input("MY", sql.NVarChar(10), MY.toString())
+      .input("OrderNo", sql.NVarChar(50), OrderNo)
+      .input("UnitNo", sql.NVarChar(50), UnitNo)
+      .input("Style", sql.NVarChar(50), Style)
+      .input("Cup", sql.NVarChar(50), Cup)
+      .input("Size", sql.NVarChar(50), Size)
+      .input("Color", sql.NVarChar(50), Color)
+      .input("OrderQty", sql.Int, OrderQty)
+      .input("Note", sql.NVarChar(50), Note)
+      .input("UserName", sql.NVarChar(50), userName)
+      .execute("DONHANGITEM_DRAFT_Insert_Web_V1");
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports.DONHANGITEM_3_Insert_Web_V1 = async (content, userName) => {
   try {
-    const{Classification,MY,OrderNo,UnitNo,Style,Cup,Size,Color,OrderQty,Note}=content
-    
-    let pool=await sql.connect(sqlConfig)
-    await pool.request()
-    .input('Classification',sql.NVarChar(50),Classification)
-    .input('MY',sql.NVarChar(10),MY)
-    .input('OrderNo',sql.NVarChar(50),OrderNo)
-    .input('UnitNo',sql.NVarChar(50),UnitNo)
-    .input('Style',sql.NVarChar(50),Style)
-    .input('Cup',sql.NVarChar(50),Cup)
-    .input('Size',sql.NVarChar(50),Size)
-    .input('Color',sql.NVarChar(50),Color)
-    .input('OrderQty',sql.Int,OrderQty)
-    .input('Note',sql.NVarChar(50),Note)
-    .input('UserName',sql.NVarChar(50),userName)
-    .execute('DONHANGITEM_3_Insert_Web_V1')
+    const {
+      Classification,
+      MY,
+      OrderNo,
+      UnitNo,
+      Style,
+      Cup,
+      Size,
+      Color,
+      OrderQty,
+      Note,
+    } = content;
+
+    let pool = await sql.connect(sqlConfig);
+    await pool
+      .request()
+      .input("Classification", sql.NVarChar(50), Classification)
+      .input("MY", sql.NVarChar(10), MY.toString())
+      .input("OrderNo", sql.NVarChar(50), OrderNo)
+      .input("UnitNo", sql.NVarChar(50), UnitNo)
+      .input("Style", sql.NVarChar(50), Style)
+      .input("Cup", sql.NVarChar(50), Cup)
+      .input("Size", sql.NVarChar(50), Size)
+      .input("Color", sql.NVarChar(50), Color)
+      .input("OrderQty", sql.Int, OrderQty)
+      .input("Note", sql.NVarChar(50), Note)
+      .input("UserName", sql.NVarChar(50), userName)
+      .execute("DONHANGITEM_3_Insert_Web_V1");
   } catch (error) {
-    throw error
+    throw error;
   }
-
-}
-
-
+};
 
 sql.on("error", (err) => {
   lError.errMes = "Lỗi: " + err;
