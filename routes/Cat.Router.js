@@ -1,18 +1,18 @@
-const express = require('express');
-const router = express.Router();
-const upload= require('../MiddleWares/upload.middle');
+const express = require('express')
+const router = express.Router()
+const upload= require('../MiddleWares/upload.middle')
 const CatControl=require('../Controlers/cat/Cat.Control')
 const CatRenControl=require('../Controlers/cat/CatRen.Control')
 //SDTC
-router.get('/SDTC',CatControl.CatSDTC);
+router.get('/SDTC',CatControl.CatSDTC)
 //TDLCard
-router.get('/TDLCard',CatControl.CatTDLCard);
+router.get('/TDLCard',CatControl.CatTDLCard)
 //LLKHCard
-router.get('/LLKHCard',CatControl.CatLHKHCard);
+router.get('/LLKHCard',CatControl.CatLHKHCard)
 //CatMasterPattern
-router.get('/CatMasterPattern',CatControl.CatMasterPattern);
+router.get('/CatMasterPattern',CatControl.CatMasterPattern)
 //CatGKT_Router
-router.get('/GKT',CatControl.CatGKT);
+router.get('/GKT',CatControl.CatGKT)
 
 //So do quy trinh cat ren
 router.get('/SDQTCatRen',CatRenControl.SDQTCatRenGet)
@@ -32,5 +32,7 @@ router.get('/GIAOKYTHUAT',CatRenControl.GIAOKYTHUAT)
 router.get('/LIENLACKHACHHANGXULY_RV',CatRenControl.LIENLACKHACHHANGXULY_RV)
 // NHAN_XEPREN_MHLL
 router.get('/NHAN_XEPREN_MHLL',CatRenControl.NHAN_XEPREN_MHLL)
+//Quy trinh nhan nguyen lieu
+router.get('/NhanNguyenLieu',CatRenControl.NhanNguyenLieu)
 
 module.exports=router;

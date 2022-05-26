@@ -77,3 +77,11 @@ module.exports.NHAN_XEPREN_MHLL= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.NhanNguyenLieu= async(req,res) =>{
+    res.render('Cat/NhanNguyenLieu', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
