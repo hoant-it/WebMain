@@ -74,3 +74,15 @@ module.exports.wacoal_KHONLXUAT_Load_By_KHONLID_web_V1=async(req,res)=>{
         })
     }
 }
+
+module.exports.uploadKeHang = async(req,res)=>{
+    let lError={}
+    try {
+        let result= await db.uploadKeHang(req.file.filename,req.signedCookies.userId)
+        res.send(result);
+    } catch (error) {
+        lError.errMes = "Lỗi: " + error;
+        lError.statusErr = false;
+        res.send(lError)
+    }
+}

@@ -356,7 +356,7 @@ function init_flot_chart() {
 
     if (typeof ($.plot) === 'undefined') { return; }
 
-    console.log('init_flot_chart');
+    // console.log('init_flot_chart');
     var randNum = function () {
         return (Math.floor(Math.random() * (1 + 40 - 20))) + 20;
     };
