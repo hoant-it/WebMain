@@ -35,4 +35,7 @@ router.get('/NHAN_XEPREN_MHLL',CatRenControl.NHAN_XEPREN_MHLL)
 //Quy trinh nhan nguyen lieu
 router.get('/NhanNguyenLieu',CatRenControl.NhanNguyenLieu)
 
+//trai vai hem/panel
+router.get('/TraiVaiHemPanel',CatRenControl.TraiVaiHemPanel)
+
 module.exports=router;

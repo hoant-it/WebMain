@@ -1,7 +1,7 @@
 const sql = require("mssql");
 const sqlConfig = require("../dbconfig");
 const del = require("del");
-const xlsx = require('xlsx');
+const xlsx = require("xlsx");
 
 module.exports.wacoal_MaHang_Select_V1 = async () => {
   try {
@@ -69,7 +69,21 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
       workbookHeaders.Sheets[workbook.SheetNames[0]],
       { header: 1 }
     )[0];
-    const formatHeader = ["MAHANG","MAUMH","CONGDOAN","TENCONGDOAN","KYHIEUMAY","LOAIMAY","MAVITRICHI","LOAICHI","BIENDO","MATDO","MAUNL","MAMAUCHI","CHIEUDAI_CONGDOAN",];
+    const formatHeader = [
+      "MAHANG",
+      "MAUMH",
+      "CONGDOAN",
+      "TENCONGDOAN",
+      "KYHIEUMAY",
+      "LOAIMAY",
+      "MAVITRICHI",
+      "LOAICHI",
+      "BIENDO",
+      "MATDO",
+      "MAUNL",
+      "MAMAUCHI",
+      "CHIEUDAI_CONGDOAN",
+    ];
     if (columnsArrayHeaders.length !== formatHeader.length) {
       lError.errMes = `Lỗi: format cột không đúng`;
       lError.statusErr = false;
@@ -97,31 +111,34 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
     });
 
     var MaHang, MauMH;
-    MaHang=jsonPagesArray[0].content[0].MAHANG;
-    MauMH=jsonPagesArray[0].content[0].MAUMH;
-   
-    await pool.request()
-    .input("MAHANG", sql.NVarChar(50), MaHang)
-    .input("MAUMH", sql.NVarChar(50), MauMH)
-    .execute('CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V2')
+    MaHang = jsonPagesArray[0].content[0].MAHANG;
+    MauMH = jsonPagesArray[0].content[0].MAUMH;
 
+    await pool
+      .request()
+      .input("MAHANG", sql.NVarChar(50), MaHang)
+      .input("MAUMH", sql.NVarChar(50), MauMH)
+      .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V2");
 
     for (let i = 0; i < jsonPagesArray[0].content.length; i++) {
       var contentValue = jsonPagesArray[0].content[i];
-      let MAHANG= contentValue.MAHANG
-      let MAUMH= contentValue.MAUMH
-      let CONGDOAN= contentValue.CONGDOAN
-      let TENCONGDOAN= contentValue.TENCONGDOAN
-      let KYHIEUMAY= contentValue.KYHIEUMAY
-      let LOAIMAY= contentValue.LOAIMAY
-      let MAVITRICHI= contentValue.MAVITRICHI
-      let LOAICHI= contentValue.LOAICHI
-      let BIENDO= contentValue.BIENDO===''?0:contentValue.BIENDO
-      let MATDO= contentValue.MATDO===''?0:contentValue.MATDO
-      let MAUNL= contentValue.MAUNL
-      let MAMAUCHI= contentValue.MAMAUCHI;
-      let CHIEUDAI_CONGDOAN= contentValue.CHIEUDAI_CONGDOAN===''?0:contentValue.CHIEUDAI_CONGDOAN;
-     
+      let MAHANG = contentValue.MAHANG;
+      let MAUMH = contentValue.MAUMH;
+      let CONGDOAN = contentValue.CONGDOAN;
+      let TENCONGDOAN = contentValue.TENCONGDOAN;
+      let KYHIEUMAY = contentValue.KYHIEUMAY;
+      let LOAIMAY = contentValue.LOAIMAY;
+      let MAVITRICHI = contentValue.MAVITRICHI;
+      let LOAICHI = contentValue.LOAICHI;
+      let BIENDO = contentValue.BIENDO === "" ? 0 : contentValue.BIENDO;
+      let MATDO = contentValue.MATDO === "" ? 0 : contentValue.MATDO;
+      let MAUNL = contentValue.MAUNL;
+      let MAMAUCHI = contentValue.MAMAUCHI;
+      let CHIEUDAI_CONGDOAN =
+        contentValue.CHIEUDAI_CONGDOAN === ""
+          ? 0
+          : contentValue.CHIEUDAI_CONGDOAN;
+
       await pool
         .request()
         .input("MAHANG", sql.NVarChar(50), MAHANG)
@@ -132,11 +149,11 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
         .input("LOAIMAY", sql.NVarChar(50), LOAIMAY)
         .input("MAVITRICHI", sql.NVarChar(5), MAVITRICHI)
         .input("LOAICHI", sql.NVarChar(50), LOAICHI)
-        .input("BIENDO", sql.Numeric(9,3), BIENDO)
-        .input("MATDO", sql.Numeric(9,3), MATDO)
+        .input("BIENDO", sql.Numeric(9, 3), BIENDO)
+        .input("MATDO", sql.Numeric(9, 3), MATDO)
         .input("MAUNL", sql.NVarChar(50), MAUNL)
-        .input("MAMAUCHI", sql.NVarChar(50), MAMAUCHI)
-        .input("CHIEUDAI_CONGDOAN", sql.Numeric(9,3), CHIEUDAI_CONGDOAN)
+        .input("MAMAUCHI", sql.NVarChar(50), MAMAUCHI.toString())
+        .input("CHIEUDAI_CONGDOAN", sql.Numeric(9, 3), CHIEUDAI_CONGDOAN)
         .input("UserName", sql.NVarChar(50), userId)
         .execute("wacoal_CONGDOAN_MAHANG_Insert_V3");
       // console.log(ress.rowsAffected);
@@ -144,10 +161,11 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
     await del([`./public/uploads/${filename}`]);
     return lError;
   } catch (error) {
-    await pool.request()
-    .input("MAHANG", sql.NVarChar(50), MaHang)
-    .input("MAUMH", sql.NVarChar(50), MauMH)
-    .execute('CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V2')
+    await pool
+      .request()
+      .input("MAHANG", sql.NVarChar(50), MaHang)
+      .input("MAUMH", sql.NVarChar(50), MauMH)
+      .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V2");
     lError.errMes = "Lỗi: " + error;
     lError.statusErr = false;
     return lError;
