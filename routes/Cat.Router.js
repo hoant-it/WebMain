@@ -14,6 +14,9 @@ router.get('/CatMasterPattern',CatControl.CatMasterPattern)
 //CatGKT_Router
 router.get('/GKT',CatControl.CatGKT)
 
+//trai vai hem/panel
+router.get('/TraiVaiHemPanel',CatRenControl.TraiVaiHemPanel)
+
 //So do quy trinh cat ren
 router.get('/SDQTCatRen',CatRenControl.SDQTCatRenGet)
 //NHANRENSENPATSU
@@ -35,7 +38,7 @@ router.get('/NHAN_XEPREN_MHLL',CatRenControl.NHAN_XEPREN_MHLL)
 //Quy trinh nhan nguyen lieu
 router.get('/NhanNguyenLieu',CatRenControl.NhanNguyenLieu)
 
-//trai vai hem/panel
-router.get('/TraiVaiHemPanel',CatRenControl.TraiVaiHemPanel)
+//KIEM_TRA_DM_TUNG_SIZE_SO_VOI_SL_ORDER
+router.get('/KTDMTungSizeSoVoiSLOrder',CatRenControl.KIEM_TRA_DM_TUNG_SIZE_SO_VOI_SL_ORDER)
 
 module.exports=router;
