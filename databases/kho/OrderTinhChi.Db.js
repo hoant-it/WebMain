@@ -66,7 +66,7 @@ module.exports.OrderTinhChiPost=async(body)=>{
     }
 }
 
-module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V2=async(params)=>{
+module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3=async(params)=>{
     try {
         const{Order,KhachHang}=params
         let pool=await sql.connect(sqlConfig)

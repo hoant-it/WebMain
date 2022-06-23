@@ -67,7 +67,7 @@ router.get('/wacoal_DONHANGHEAD_Load_Web_V1',OrderTinhChiControl.wacoal_DONHANGH
 router.get('/khoOrderTinhchiGridviewMaHangMiss/:Order/:KhachHang',OrderTinhChiControl.khoOrderTinhchiGridviewMaHangMiss)
 router.get('/Order_TinhChi_Web_V3/:Order/:KhachHang',OrderTinhChiControl.Order_TinhChi_Web_V3)
 router.post('/OrderTinhChiPost',OrderTinhChiControl.OrderTinhChiPost)
-router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V2/:Order/:KhachHang',OrderTinhChiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V2)
+router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3/:Order/:KhachHang',OrderTinhChiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3)
 
 //ke hang
 router.get('/kehang',KeHangControl.kehangLoad)

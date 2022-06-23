@@ -73,9 +73,9 @@ module.exports.OrderTinhChiPost=async(req,res)=>{
     }
 }
 
-module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V2=async(req,res)=>{
+module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3=async(req,res)=>{
     try {
-      let result=await db.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V2(req.params)
+      let result=await db.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3(req.params)
       res.json({
           data:result
       })

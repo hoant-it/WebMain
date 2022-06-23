@@ -477,24 +477,27 @@ const GridviewOrderLoad = (oderNo,khachHang) => {
                     // format: "percent"
                 }]
             } ,
-            {
-                caption: "300W",
-                alignment:"center",
-                columns: [{
-                    caption: "COLOR",
-                    alignment:"center",
-                    dataField: "COLOR_300W",
-                    // format: "fixedPoint"
-                }, {
-                    caption: "QTY",
-                    alignment:"center",
-                    dataField: "SL_300W",
-                    // format: function(value) {
-                    //     return value==0?'-':value;
-                    //   }
-                    // format: "percent"
-                }]
-            } ,
+
+            // 10:24 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
+
+            // {
+            //     caption: "300W",
+            //     alignment:"center",
+            //     columns: [{
+            //         caption: "COLOR",
+            //         alignment:"center",
+            //         dataField: "COLOR_300W",
+            //         // format: "fixedPoint"
+            //     }, {
+            //         caption: "QTY",
+            //         alignment:"center",
+            //         dataField: "SL_300W",
+            //         // format: function(value) {
+            //         //     return value==0?'-':value;
+            //         //   }
+            //         // format: "percent"
+            //     }]
+            // } ,
         ],
         summary: {
             totalItems: [{
@@ -548,11 +551,13 @@ const GridviewOrderLoad = (oderNo,khachHang) => {
                 customizeText: function(data) {
                     return data.value;
                 }},
-                {column: "SL_300W",
-                summaryType: "sum",
-                customizeText: function(data) {
-                    return data.value;
-                }},
+                // 10:24 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
+
+                // {column: "SL_300W",
+                // summaryType: "sum",
+                // customizeText: function(data) {
+                //     return data.value;
+                // }},
         ]
         },
         onFocusedRowChanging: function(e) {
@@ -583,7 +588,7 @@ const GridviewOrderLoad = (oderNo,khachHang) => {
 
 }
 const GridviewMaHangLoad = (oderNo,khachHang) => {
-    var url = "wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V2/";
+    var url = "wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3/";
     // console.log(" url " + url + oderNo+khachHang);
     var listTinhChi = DevExpress.data.AspNet.createStore({
         key: "keyMAHANG",
@@ -949,24 +954,25 @@ const GridviewMaHangLoad = (oderNo,khachHang) => {
                     // format: "percent"
                 }]
             } ,
-               {
-                caption: "300W",
-                alignment:"center",
-                columns: [{
-                    caption: "COLOR",
-                    alignment:"center",
-                    dataField: "COLOR_300W",
-                    // format: "fixedPoint"
-                }, {
-                    caption: "QTY",
-                    alignment:"center",
-                    dataField: "SL_300W",
-                    // format: function(value) {
-                    //     return value==0?'-':value;
-                    //   }
-                    // format: "percent"
-                }]
-            } ,
+            // 10:31 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
+            //    {
+            //     caption: "300W",
+            //     alignment:"center",
+            //     columns: [{
+            //         caption: "COLOR",
+            //         alignment:"center",
+            //         dataField: "COLOR_300W",
+            //         // format: "fixedPoint"
+            //     }, {
+            //         caption: "QTY",
+            //         alignment:"center",
+            //         dataField: "SL_300W",
+            //         // format: function(value) {
+            //         //     return value==0?'-':value;
+            //         //   }
+            //         // format: "percent"
+            //     }]
+            // } ,
         ],
         summary: {
             totalItems: [{
@@ -1033,11 +1039,13 @@ const GridviewMaHangLoad = (oderNo,khachHang) => {
                 customizeText: function(data) {
                     return data.value;
                 }},
-                {column: "SL_300W",
-                summaryType: "sum",
-                customizeText: function(data) {
-                    return data.value;
-                }},
+
+                // 10:31 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
+                // {column: "SL_300W",
+                // summaryType: "sum",
+                // customizeText: function(data) {
+                //     return data.value;
+                // }},
         ]},
         // onFocusedRowChanging: function(e) {
         //     var rowsCount = e.component.getVisibleRows().length,
