@@ -152,6 +152,11 @@ const OrderDraftGridLoad  = (MY) => {
                 alignment:"left",
                 dataField: "USERUPDATE",
             },
+            {
+                caption: "DRAFT",
+                alignment:"left",
+                // dataField: "USERUPDATE",
+            },
         ],
         onToolbarPreparing: function(e){
             e.toolbarOptions.items.unshift({

@@ -125,7 +125,7 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
       let MAHANG = contentValue.MAHANG;
       let MAUMH = contentValue.MAUMH;
       let CONGDOAN = contentValue.CONGDOAN;
-      let TENCONGDOAN = contentValue.TENCONGDOAN;
+      let TENCONGDOAN = contentValue.TENCONGDOAN.replace(/\n|\r/g, "");
       let KYHIEUMAY = contentValue.KYHIEUMAY;
       let LOAIMAY = contentValue.LOAIMAY;
       let MAVITRICHI = contentValue.MAVITRICHI;
