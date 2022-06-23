@@ -8,21 +8,15 @@ module.exports.wacoal_MaHang_Select_V1 = async () => {
     let pool = await sql.connect(sqlConfig);
     let res = await pool
       .request()
-      //   .input("UserName", sql.NVarChar, userName)
-      // .input('aaa', sql.NVarChar, userName)
       .execute("wacoal_MaHang_Select_V1");
-    // console.log(res.recordset);
     return res.recordset;
   } catch (error) {
-    // return error
-    console.log("error" + error);
-    pool.close();
+    throw error
   }
 };
 
-module.exports.wacoal_TinhChi_MaHang_V1 = async (maHang) => {
+module.exports.wacoal_TinhChi_MaHang_V2 = async (maHang) => {
   try {
-    console.log(maHang);
     let pool = await sql.connect(sqlConfig);
     let res = await pool
       .request()
@@ -30,8 +24,7 @@ module.exports.wacoal_TinhChi_MaHang_V1 = async (maHang) => {
       .execute("wacoal_TinhChi_MaHang_V2");
     return res.recordset;
   } catch (error) {
-    console.log("error" + error);
-    pool.close();
+    throw error
   }
 };
 
@@ -156,7 +149,6 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
         .input("CHIEUDAI_CONGDOAN", sql.Numeric(9, 3), CHIEUDAI_CONGDOAN)
         .input("UserName", sql.NVarChar(50), userId)
         .execute("wacoal_CONGDOAN_MAHANG_Insert_V3");
-      // console.log(ress.rowsAffected);
     }
     await del([`./public/uploads/${filename}`]);
     return lError;

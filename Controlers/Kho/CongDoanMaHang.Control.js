@@ -11,7 +11,6 @@ module.exports.CongDoanMaHangLoad= async (req, res ) => {
 module.exports.wacoal_MaHang_Select_V1 = async(req, res) =>{
     try {
         const result= await db.wacoal_MaHang_Select_V1()
-        console.log(result[1])
         res.json({
             data:result
         })
@@ -31,10 +30,10 @@ module.exports.wacoal_MaHang_Select_V1 = async(req, res) =>{
     }
 }
 
-module.exports.wacoal_TinhChi_MaHang_V1 = async(req, res) =>{
+module.exports.wacoal_TinhChi_MaHang_V2 = async(req, res) =>{
     const{MAHANG}= req.params
     try {
-       await  db.wacoal_TinhChi_MaHang_V1(MAHANG).then(result=>{
+       await  db.wacoal_TinhChi_MaHang_V2(MAHANG).then(result=>{
            res.json({
                data:result,
                message:`ok`

@@ -9,11 +9,6 @@ const searchBoxMaHang=() =>{
 
     var searchBox = $("#searchBoxMH").dxSelectBox({
         dataSource:selectBoxData,
-        // DevExpress.data.AspNet.createStore({
-        //     key: "MAKH",
-        //     loadUrl: serviceUrl + "/Khowacoal_KHACHHANG_load_Web_V1",
-        //     // insertUrl: serviceUrl + "/InsertAction"
-        // }),
         displayExpr: "MAHANG",
         valueExpr: "MAHANG",
         searchEnabled: true,
@@ -38,15 +33,10 @@ const searchBoxMaHang=() =>{
 }
 
 const GridviewMaHangLoad = (MaHang) => {
-    var url = "wacoal_TinhChi_MaHang_V1/";
-    // console.log(" url " + url + oderNo+khachHang);
+    var url = "wacoal_TinhChi_MaHang_V2/";
     var listTinhChi = DevExpress.data.AspNet.createStore({
         key: "keyMAHANG",
         loadUrl: url  + MaHang ,
-       
-        // insertUrl: url + "/InsertOrder",
-        // updateUrl: url + "/UpdateOrder",
-        // deleteUrl: url + "/DeleteOrder",
         onBeforeSend: function(method, ajaxOptions) {
             ajaxOptions.xhrFields = {
                 withCredentials: true
@@ -69,7 +59,6 @@ const GridviewMaHangLoad = (MaHang) => {
         },
         onExporting: function(e) {
 
-            console.log("exportting");
             var workbook = new ExcelJS.Workbook();
             var worksheet = workbook.addWorksheet('FORMAT ĐẶT CHỈ');
             
@@ -400,24 +389,26 @@ const GridviewMaHangLoad = (MaHang) => {
                     // format: "percent"
                 }]
             } ,
-               {
-                caption: "300W",
-                alignment:"center",
-                columns: [{
-                    caption: "COLOR",
-                    alignment:"center",
-                    dataField: "COLOR_300W",
-                    // format: "fixedPoint"
-                }, {
-                    caption: "QTY",
-                    alignment:"center",
-                    dataField: "SL_300W",
-                    // format: function(value) {
-                    //     return value==0?'-':value;
-                    //   }
-                    // format: "percent"
-                }]
-            } ,
+            //bo cot 300W (300W,W300,N300 là 1)
+
+            //    {
+            //     caption: "300W",
+            //     alignment:"center",
+            //     columns: [{
+            //         caption: "COLOR",
+            //         alignment:"center",
+            //         dataField: "COLOR_300W",
+            //         // format: "fixedPoint"
+            //     }, {
+            //         caption: "QTY",
+            //         alignment:"center",
+            //         dataField: "SL_300W",
+            //         // format: function(value) {
+            //         //     return value==0?'-':value;
+            //         //   }
+            //         // format: "percent"
+            //     }]
+            // } ,
         ],
         onToolbarPreparing: function(e){
             e.toolbarOptions.items.unshift({
@@ -445,7 +436,6 @@ const GridviewMaHangLoad = (MaHang) => {
                         e.element.attr("id", "btnUpload");
                     },
                     onClick: function (){
-                        // console.log("clicker")
                        upload();
                     }
                 }
@@ -478,29 +468,12 @@ const GridviewMaHangLoad = (MaHang) => {
                     onValueChanged: function(e) {
                         MaHang=e.value;
                         GridviewMaHangLoad(MaHang);
-                        // console.log("valuae "+e.value);
                         // dataGrid.clearGrouping();
                         // dataGrid.columnOption(e.value, "groupIndex", 0);
                         // $(".informer .count").text(getGroupCount(e.value));
                     }
                 }
             },
-            // {
-            //     location:"alter",
-            //     widget:"dxButton",
-            //     options:{
-            //         icon:"arrowdown",
-            //         text:"",
-            //         onClick: function (){
-            //             // console.log("clicker")
-            //             MaHang=$("#selectBoxMH").dxSelectBox('instance').option('value');
-            //             GridviewMaHangLoad(MaHang);
-            //         }
-            //     }
-            // },
-            
-
-
             )
         },
         summary: {
@@ -567,43 +540,18 @@ const GridviewMaHangLoad = (MaHang) => {
                 customizeText: function(data) {
                     return data.value;
                 }},
-                {column: "SL_300W",
-                summaryType: "sum",
-                customizeText: function(data) {
-                    return data.value;
-                }},
+                // {column: "SL_300W",
+                // summaryType: "sum",
+                // customizeText: function(data) {
+                //     return data.value;
+                // }},
         ]},
-        // onFocusedRowChanging: function(e) {
-        //     var rowsCount = e.component.getVisibleRows().length,
-        //         pageCount = e.component.pageCount(),
-        //         pageIndex = e.component.pageIndex(),
-        //         key = e.event && e.event.key;
-
-        //     if (key && e.prevRowIndex === e.newRowIndex) {
-        //         if (e.newRowIndex === rowsCount - 1 && pageIndex < pageCount - 1) {
-        //             e.component.pageIndex(pageIndex + 1).done(function() {
-        //                 e.component.option("focusedRowIndex", 0);
-        //             });
-        //         } else if (e.newRowIndex === 0 && pageIndex > 0) {
-        //             e.component.pageIndex(pageIndex - 1).done(function() {
-        //                 e.component.option("focusedRowIndex", rowsCount - 1);
-        //             });
-        //         }
-        //     }
-        // },
-        // onFocusedRowChanged: function(e) {
-        //     const menuCode = getMenuDataItem(e.row);
-        //     _sourceDataTask_ID = menuCode.menuCode;
-        //     // console.log("menuCode.subject " + menuCode.menuCode);
-        //     // const focusedRowKey = e.component.option("focusedRowKey");
-        // }
     }).dxDataGrid("instance");
 
 }
 
 const GridviewMauNLLoaiChiNewLoad = () => {
     var url = "wacoal_MauNL_LoaiChi_Moi_Load_Web_V1/";
-    // console.log(" url " + url + oderNo+khachHang);
     var listTinhChi = DevExpress.data.AspNet.createStore({
         key: "keyMauNL_LoaiChi",
         loadUrl: url   ,
@@ -632,8 +580,6 @@ const GridviewMauNLLoaiChiNewLoad = () => {
             enabled: true
         },
         onExporting: function(e) {
-
-            console.log("exportting");
             var workbook = new ExcelJS.Workbook();
             var worksheet = workbook.addWorksheet('MauNL_LoaiChi_New');
             
@@ -790,38 +736,13 @@ const GridviewMauNLLoaiChiNewLoad = () => {
             },
                
         ],
-        
-        // onFocusedRowChanging: function(e) {
-        //     var rowsCount = e.component.getVisibleRows().length,
-        //         pageCount = e.component.pageCount(),
-        //         pageIndex = e.component.pageIndex(),
-        //         key = e.event && e.event.key;
 
-        //     if (key && e.prevRowIndex === e.newRowIndex) {
-        //         if (e.newRowIndex === rowsCount - 1 && pageIndex < pageCount - 1) {
-        //             e.component.pageIndex(pageIndex + 1).done(function() {
-        //                 e.component.option("focusedRowIndex", 0);
-        //             });
-        //         } else if (e.newRowIndex === 0 && pageIndex > 0) {
-        //             e.component.pageIndex(pageIndex - 1).done(function() {
-        //                 e.component.option("focusedRowIndex", rowsCount - 1);
-        //             });
-        //         }
-        //     }
-        // },
-        // onFocusedRowChanged: function(e) {
-        //     const menuCode = getMenuDataItem(e.row);
-        //     _sourceDataTask_ID = menuCode.menuCode;
-        //     // console.log("menuCode.subject " + menuCode.menuCode);
-        //     // const focusedRowKey = e.component.option("focusedRowKey");
-        // }
     }).dxDataGrid("instance");
 
 }
 
 const GridMHCDNewLoad = () => {
     var url = "CONGDOAN_MAHANG_New_Web_Load_V1";
-    // console.log(" url " + url + oderNo+khachHang);
     var listTinhChi = DevExpress.data.AspNet.createStore({
         // type: 'odata',
         key: "KeyMHM",
@@ -870,7 +791,6 @@ const GridMHCDNewLoad = () => {
        
         onExporting: function(e) {
 
-            console.log("exportting");
             var workbook = new ExcelJS.Workbook();
             var worksheet = workbook.addWorksheet('MH_CD_New');
             
@@ -937,7 +857,6 @@ const loadPanel = $('.loadpanel').dxLoadPanel({
     //   }, 3000);
     },
     onHidden() {
-        // GridviewMaHangLoad(MaHang);
         GridviewMauNLLoaiChiNewLoad();
         GridMHCDNewLoad();
     },
@@ -974,50 +893,38 @@ const upload=()=>{
         width: 450
     },"warning",5000)
   } else{
-    //   console.log(fileName);
       $.ajax({
-        //   xhr: function(){
-        //       var xhr= new window.XMLHttpRequest();
-        //       xhr.upload.addEventListener("progress",function(evt){
-        //           if(evt.lengthComputable){
-        //               var percentComplete= evt.loaded/evt.total;
-        //               console.log(percentComplete)
-        //           }
-        //       },false)
-        //       return xhr;
-        //   },
-          type:"POST",
-        //   data:JSON.stringify(data),
-        data:formData,
-        //   contentType:"application/json" ,
-          contentType:false ,
-          url:"/kho/congodanmahanginputv2",
-          cache: false, 
-          processData:false,
-          success:(res)=>{
-            loadPanel.hide();
-  
+        type: "POST",
+        data: formData,
+        contentType: false,
+        url: "/kho/congodanmahanginputv2",
+        cache: false,
+        processData: false,
+        success: (res) => {
+          loadPanel.hide();
 
-              if(res.statusErr){
-                DevExpress.ui.notify({
-                    message: res.errMes,
-                    width: 450
-                },"success",5000)
-
-              } else{
-                DevExpress.ui.notify({
-                    message: res.errMes,
-                    width: 450
-                },"error",5000)
-
-              }
-
+          if (res.statusErr) {
+            DevExpress.ui.notify(
+              {
+                message: res.errMes,
+                width: 450,
+              },
+              "success",
+              5000
+            );
+          } else {
+            DevExpress.ui.notify(
+              {
+                message: res.errMes,
+                width: 450,
+              },
+              "error",
+              5000
+            );
           }
-      })
-
+        },
+      });
   }
-
-
 }
 
 const loadTooltip=(id,targetButton)=>{
@@ -1031,7 +938,6 @@ const loadTooltip=(id,targetButton)=>{
 
 $(function(){
     MaHang='None';
-   
     searchBoxMaHang();
     GridviewMaHangLoad(MaHang);
     GridviewMauNLLoaiChiNewLoad();
@@ -1039,13 +945,9 @@ $(function(){
     loadTooltip("tooltipUpload","btnUpload");
     
     $('#btnSearchId').click((e) => {
-        // console.log('click ne');
         e.preventDefault();
         MaHang=$("#searchBoxMH").dxSelectBox('instance').option('value');
-        // $('#selectKH').val();
         GridviewMaHangLoad(MaHang);
-      
-
     });
 });
 
