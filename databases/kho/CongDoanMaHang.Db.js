@@ -111,7 +111,9 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
       .request()
       .input("MAHANG", sql.NVarChar(50), MaHang)
       .input("MAUMH", sql.NVarChar(50), MauMH)
-      .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V2");
+      .input('UserName',sql.NVarChar(50),userId)
+      .input('statusErr',sql.Bit,1)
+      .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
 
     for (let i = 0; i < jsonPagesArray[0].content.length; i++) {
       var contentValue = jsonPagesArray[0].content[i];
@@ -153,13 +155,16 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
     await del([`./public/uploads/${filename}`]);
     return lError;
   } catch (error) {
+    lError.errMes = "Lỗi: " + error;
+    lError.statusErr = false;
     await pool
       .request()
       .input("MAHANG", sql.NVarChar(50), MaHang)
       .input("MAUMH", sql.NVarChar(50), MauMH)
-      .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V2");
-    lError.errMes = "Lỗi: " + error;
-    lError.statusErr = false;
+      .input('UserName',sql.NVarChar(50),userId)
+      .input('statusErr',sql.Bit,0)
+      .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
+  
     return lError;
   }
 };

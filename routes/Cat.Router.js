@@ -14,8 +14,14 @@ router.get('/CatMasterPattern',CatControl.CatMasterPattern)
 //CatGKT_Router
 router.get('/GKT',CatControl.CatGKT)
 
+// QTGIAOCHUYEN
+router.get('/QTGIAOCHUYEN',CatControl.QTGIAOCHUYEN)
+
 //trai vai hem/panel
 router.get('/TraiVaiHemPanel',CatRenControl.TraiVaiHemPanel)
+
+
+
 
 //So do quy trinh cat ren
 router.get('/SDQTCatRen',CatRenControl.SDQTCatRenGet)

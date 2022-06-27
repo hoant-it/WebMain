@@ -38,3 +38,12 @@ module.exports.CatTDLCard = async(req, res) => {
         html: ''
     })
 }
+
+
+module.exports.QTGIAOCHUYEN = async(req, res) => {
+    res.render('Cat/QTGIAOCHUYEN', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

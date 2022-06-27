@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const nodemailer= require('nodemailer');
 const upload= require('../MiddleWares/upload.middle');
 const orderControl = require('../Controlers/Kho/Order.control')
 const congdoanmahangControl = require('../Controlers/Kho/CongDoanMaHang.Control');
 const MauChiMauNLControl=require('../Controlers/Kho/MauChiMauNL.Control')
 const QTQLNVLControl=require('../Controlers/Kho/QTQLNVL.Control')
 const OrderTinhChiControl=require('../Controlers/Kho/OrderTinhChi.Control')
-const KeHangControl=require('../Controlers/Kho/KeHang.Control')
+const KeHangControl=require('../Controlers/Kho/KeHang.Control');
+const { password } = require('../databases/dbconfig');
 //Order
 router.get('/Order',orderControl.OrderLoad);
 router.get('/DONHANGITEM_3_MY_SearchBox_Web_V1',orderControl.DONHANGITEM_3_MY_SearchBox_Web_V1)
@@ -77,6 +79,75 @@ router.get('/wacoal_KHONL_Web_Load_V1/:SHEFTID',KeHangControl.wacoal_KHONL_Web_L
 router.post('/SaveKeHangToDatabase',KeHangControl.SaveKeHangToDatabase)
 router.get('/wacoal_KHONLXUAT_Load_By_KHONLID_web_V1/:KHONLID',KeHangControl.wacoal_KHONLXUAT_Load_By_KHONLID_web_V1)
 router.post('/upload',upload.single('filename'),KeHangControl.uploadKeHang)
+
+
+
+//send mail
+router.post('/sendMail', async (req,res) =>{
+    try {
+        let transpoter= nodemailer.createTransport({
+    //         host:"smtp-mail.outlook.com",
+    //         secure:false,
+    //         port:587,
+    //         auth:{
+    //             user:"hoanguyen@wacoal.com.vn",
+    //             password:"hoanguyen!@#"
+    //         },
+    //         tls:{
+    //             ciphers:'SSLv3'
+    //         }
+    service:"gmail",
+    auth:{
+    user:"portalwacoal@gmail.com",
+    pass:"ixjzpgmqeueakucl"
+    },
+    // host:'192.168.79.4',
+    // port:587,
+    // secure:false,
+    // auth:{
+    //     user:'wacoal@wacoal.com.vn',
+    //     password:"sE4M@1LWC!123"
+    // }
+
+    })
+        // let transpoter=nodemailer.createTransport("SMTP",{
+        //     service:'hotmail',
+        //     auth:{
+        //         user:"hoanguyen@wacoal.com.vn",
+        //         password:"hoanguyen!@#"
+        //     },
+        // })
+
+  
+
+
+        await transpoter.sendMail({
+            from:"portalwacoal@gmail.com",
+            // from:"hoanguyen@wacoal.com.vn",
+            
+            to:"<hoanguyen@wacoal.com.vn>,<hoathaigm@gmail.com>",
+           
+            // cc:''
+            subject:"V/v cập nhật đơn hàng vào hệ thống",
+            // text:"Hello world?",
+            html:`
+            <h1> Chào các Bp </h1>
+            <p> Đơn hàng đã cập nhật hệ thống.  </p>
+            <p> P/s: Đây là mail tự động từ hệ thống vui lòng không Relly</p>
+            <p> tks</p>
+            `
+            
+        })
+        res.json({
+            mes: `thành công`
+        })
+        
+    } catch (error) {
+        res.json({
+            mes: `${error}`
+        })
+    }
+})
 
 
 

@@ -19,7 +19,7 @@ module.exports.wacoal_MAUCHIMAUNL_Import_excel_Web_V1=async(MAUNL,LOAICHI,MAUCHI
          await pool.request()
         .input('MAUNL',sql.NVarChar(50),MAUNL)
         .input('LOAICHI',sql.NVarChar(50),LOAICHI)
-        .input('MAUCHI',sql.NVarChar(50),MAUCHI)
+        .input('MAUCHI',sql.NVarChar(50),MAUCHI.toString())
         .input('UserName',sql.NVarChar(50),UserName)
         .execute('wacoal_MAUCHIMAUNL_Import_excel_Web_V1')
     } catch (error) {
@@ -36,7 +36,7 @@ module.exports.MauChiMauNLUpdate = async (body, userName) => {
         .request()
         .input("MAUNL", sql.NVarChar(50), mauNL)
         .input("LOAICHI", sql.NVarChar(50), loaiChi)
-        .input("MAUCHI", sql.NVarChar(50), mauChi)
+        .input("MAUCHI", sql.NVarChar(50), mauChi.toString())
         .input("UserName", sql.NVarChar(50), userName)
         .execute("wacoal_MAUCHIMAUNL_Insert_Web_V1");
     }
