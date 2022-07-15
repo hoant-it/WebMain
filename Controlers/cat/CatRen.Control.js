@@ -86,6 +86,14 @@ module.exports.NhanNguyenLieu= async(req,res) =>{
     })
 }
 
+module.exports.XaVai= async(req,res) =>{
+    res.render('Cat/XaVai', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 module.exports.TraiVaiHemPanel= async(req,res) =>{
     res.render('Cat/TraiVaiHemPanel', {
         title: 'Express',

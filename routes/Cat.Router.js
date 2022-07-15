@@ -20,6 +20,12 @@ router.get('/QTGIAOCHUYEN',CatControl.QTGIAOCHUYEN)
 //trai vai hem/panel
 router.get('/TraiVaiHemPanel',CatRenControl.TraiVaiHemPanel)
 
+//Quy trinh nhan nguyen lieu
+router.get('/NhanNguyenLieu',CatRenControl.NhanNguyenLieu)
+
+//Quy trinh nhan nguyen lieu
+router.get('/XaVai',CatRenControl.XaVai)
+
 
 
 
@@ -41,8 +47,7 @@ router.get('/GIAOKYTHUAT',CatRenControl.GIAOKYTHUAT)
 router.get('/LIENLACKHACHHANGXULY_RV',CatRenControl.LIENLACKHACHHANGXULY_RV)
 // NHAN_XEPREN_MHLL
 router.get('/NHAN_XEPREN_MHLL',CatRenControl.NHAN_XEPREN_MHLL)
-//Quy trinh nhan nguyen lieu
-router.get('/NhanNguyenLieu',CatRenControl.NhanNguyenLieu)
+
 
 //KIEM_TRA_DM_TUNG_SIZE_SO_VOI_SL_ORDER
 router.get('/KTDMTungSizeSoVoiSLOrder',CatRenControl.KIEM_TRA_DM_TUNG_SIZE_SO_VOI_SL_ORDER)

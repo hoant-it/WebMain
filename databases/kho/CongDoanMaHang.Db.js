@@ -139,7 +139,7 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
         .input("MAHANG", sql.NVarChar(50), MAHANG)
         .input("MAUMH", sql.NVarChar(50), MAUMH)
         .input("CONGDOAN", sql.BigInt, CONGDOAN)
-        .input("TENCONGDOAN", sql.NVarChar(50), TENCONGDOAN)
+        .input("TENCONGDOAN", sql.NVarChar(sql.MAX), TENCONGDOAN)
         .input("KYHIEUMAY", sql.NVarChar(sql.MAX), KYHIEUMAY)
         .input("LOAIMAY", sql.NVarChar(50), LOAIMAY)
         .input("MAVITRICHI", sql.NVarChar(5), MAVITRICHI)

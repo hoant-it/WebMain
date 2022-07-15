@@ -90,9 +90,10 @@ const resetForm = () => {
     $('#modalAddUpdate').modal('show');
     $('#btnSave').val("submitInsert");
     $('#modalAddUpdate').on('shown.bs.modal', function () {
+ 
         $('#txtUserName').focus();
     }) 
-
+  $("#txtUserName").removeAttr("readonly");
   $("#txtUserName").val("");
   $("#txtFullName").val("");
   $("#txtEmail").val("");
