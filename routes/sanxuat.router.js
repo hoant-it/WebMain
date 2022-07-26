@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const upload= require('../MiddleWares/upload.middle');
 const QTSXControl=require('../Controlers/sanxuat/QTSX.Control')
 
 router.get('/QTSX',QTSXControl.QTSXLoad)

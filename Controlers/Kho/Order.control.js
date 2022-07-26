@@ -6,7 +6,6 @@ module.exports.OrderLoad = async (req, res) => {
     title: "Order",
     userId: req.signedCookies.userId,
     html: "",
-    // script:'<script src="/javascripts/kho/Orderjs.js"></script>'
   });
 };
 
@@ -25,10 +24,10 @@ module.exports.DONHANGITEM_3_MY_SearchBox_Web_V1 = async (req, res) => {
   }
 };
 
-module.exports.DONHANGITEM_3_Load_Web_V1 = async (req, res) => {
+module.exports.DONHANGITEM_3_Load_Web_V2 = async (req, res) => {
   const { MY } = req.params;
   try {
-    await db.DONHANGITEM_3_Load_Web_V1(MY).then((result) => {
+    await db.DONHANGITEM_3_Load_Web_V2(MY).then((result) => {
       res.json({
         data: result,
       });
@@ -56,9 +55,9 @@ module.exports.OrderInserByType = async (req, res) => {
   }
 };
 
-module.exports.DONHANGITEM_DRAFT_Load_Web_V1 = async (req, res) => {
+module.exports.DONHANGITEM_DRAFT_Load_Web_V2 = async (req, res) => {
   try {
-    let result = await db.DONHANGITEM_DRAFT_Load_Web_V1(req.params);
+    let result = await db.DONHANGITEM_DRAFT_Load_Web_V2(req.params);
     res.json({
       data: result,
     });

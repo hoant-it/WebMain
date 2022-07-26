@@ -7,6 +7,7 @@ const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const compression = require("compression");//nen file 
 
 const mainRouter = require("./routes/main.router");
 const VNWCRouter = require("./routes/WCVN.Router");
@@ -18,6 +19,7 @@ const catRouter = require("./routes/Cat.Router");
 const mayRouter = require("./routes/May.Router");
 const kiemphamRouter = require("./routes/kiempham.router");
 var app = express();
+app.use(compression());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

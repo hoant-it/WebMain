@@ -12,11 +12,11 @@ const { password } = require('../databases/dbconfig');
 //Order
 router.get('/Order',orderControl.OrderLoad);
 router.get('/DONHANGITEM_3_MY_SearchBox_Web_V1',orderControl.DONHANGITEM_3_MY_SearchBox_Web_V1)
-router.get('/DONHANGITEM_3_Load_Web_V1/:MY',orderControl.DONHANGITEM_3_Load_Web_V1 )
+router.get('/DONHANGITEM_3_Load_Web_V2/:MY',orderControl.DONHANGITEM_3_Load_Web_V2 )
 router.post('/Order', upload.single('filename'), orderControl.OrderInserByType)
 router.post('/OrderImportExcel', upload.single('filename'), orderControl.OrderImportExcel)
 
-router.get('/DONHANGITEM_DRAFT_Load_Web_V1/:MY',orderControl.DONHANGITEM_DRAFT_Load_Web_V1)
+router.get('/DONHANGITEM_DRAFT_Load_Web_V2/:MY',orderControl.DONHANGITEM_DRAFT_Load_Web_V2)
 router.get('/DONHANGITEM_DRAFT_MY_SearchBox_Web_V1',orderControl.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1)
 router.post('/OrderDraftImportExcel',upload.single('filenameDraft'),orderControl.OrderDraftImportExcel)
 

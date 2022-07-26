@@ -20,15 +20,13 @@ module.exports.DONHANGITEM_3_MY_SearchBox_Web_V1 = async () => {
   }
 };
 
-module.exports.DONHANGITEM_3_Load_Web_V1 = async (MY) => {
+module.exports.DONHANGITEM_3_Load_Web_V2 = async (MY) => {
   try {
     let pool = await sql.connect(sqlConfig);
     let res = await pool
       .request()
-      //   .input("UserName", sql.NVarChar, userName)
-      .input("MY", sql.NVarChar, MY)
-      .execute("DONHANGITEM_3_Load_Web_V1");
-    // console.log(res.recordset);
+      .input("MY", sql.NVarChar(sql.MAX), MY)
+      .execute("DONHANGITEM_3_Load_Web_V2");
     return res.recordset;
   } catch (error) {
     // return error
@@ -144,14 +142,14 @@ module.exports.OrderInsertByType = async (filename, userId) => {
   }
 };
 
-module.exports.DONHANGITEM_DRAFT_Load_Web_V1 = async (params) => {
+module.exports.DONHANGITEM_DRAFT_Load_Web_V2 = async (params) => {
   try {
     const { MY } = params;
     let pool = await sql.connect(sqlConfig);
     let result = await pool
       .request()
-      .input("MY", sql.NVarChar(10), MY)
-      .execute("DONHANGITEM_DRAFT_Load_Web_V1");
+      .input("MY", sql.NVarChar(sql.MAX), MY)
+      .execute("DONHANGITEM_DRAFT_Load_Web_V2");
     return result.recordset;
   } catch (error) {
     throw error;
