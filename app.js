@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
+// console.log(process.env.NODE_ENV);
 
 var createError = require("http-errors");
 var express = require("express");
@@ -7,7 +8,7 @@ const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const compression = require("compression");//nen file 
+const compression = require("compression"); //nen file
 
 const mainRouter = require("./routes/main.router");
 const VNWCRouter = require("./routes/WCVN.Router");

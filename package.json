@@ -4,9 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --inspect ./bin/www --exec babel-node",
-    "startDev": "concurrently \"npm run dev\" \"npm run watch\"",
-    "build": "babel webmain -d build",
-    "watch":"node-sass --watch resources/scss/ --output public/css/",
     "start": "node ./bin/www"
   },
   "dependencies": {
