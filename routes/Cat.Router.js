@@ -17,6 +17,9 @@ router.get('/GKT',CatControl.CatGKT)
 // QTGIAOCHUYEN
 router.get('/QTGIAOCHUYEN',CatControl.QTGIAOCHUYEN)
 
+// CAT_HEM_PANEL
+router.get('/HemPanel',CatControl.CAT_HEM_PANEL)
+
 //trai vai hem/panel
 router.get('/TraiVaiHemPanel',CatRenControl.TraiVaiHemPanel)
 
@@ -25,6 +28,8 @@ router.get('/NhanNguyenLieu',CatRenControl.NhanNguyenLieu)
 
 //Quy trinh nhan nguyen lieu
 router.get('/XaVai',CatRenControl.XaVai)
+
+
 
 
 

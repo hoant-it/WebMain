@@ -47,3 +47,11 @@ module.exports.QTGIAOCHUYEN = async(req, res) => {
         html: ''
     })
 }
+
+module.exports.CAT_HEM_PANEL = async(req, res) => {
+    res.render('Cat/CAT_HEM_PANEL', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
