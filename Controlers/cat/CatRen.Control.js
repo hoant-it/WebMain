@@ -109,3 +109,11 @@ module.exports.KIEM_TRA_DM_TUNG_SIZE_SO_VOI_SL_ORDER= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.Ren_CatTheoBangHuongDanVaKiemTraMauCat= async(req,res) =>{
+    res.render('Cat/Ren_CatTheoBangHuongDanVaKiemTraMauCat', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

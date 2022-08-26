@@ -20,6 +20,17 @@ module.exports.QTKTLoad = async (req,res) =>{
         html:"",
     })
   }
+
+  module.exports.NhanTLKT_Pattern_Mau_Dich = async (req,res) =>{
+    res.render('kithuat/NhanTLKT_Pattern_Mau_Dich',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+
+  
+
   module.exports.MAYMAU = async (req,res) =>{
     res.render('kithuat/MAYMAU',{
         title:'Quy Trình Kỹ Thuật',
@@ -36,4 +47,14 @@ module.exports.QTKTLoad = async (req,res) =>{
     })
   }
 
+  module.exports.LamBM_SWGD_HE_DoKichThuoc = async (req,res) =>{
+    res.render('kithuat/LamBM_SWGD_HE_DoKichThuoc',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+
+
+  
   

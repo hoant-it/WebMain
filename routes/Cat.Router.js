@@ -57,4 +57,7 @@ router.get('/NHAN_XEPREN_MHLL',CatRenControl.NHAN_XEPREN_MHLL)
 //KIEM_TRA_DM_TUNG_SIZE_SO_VOI_SL_ORDER
 router.get('/KTDMTungSizeSoVoiSLOrder',CatRenControl.KIEM_TRA_DM_TUNG_SIZE_SO_VOI_SL_ORDER)
 
+// Ren_CatTheoBangHuongDanVaKiemTraMauCat
+router.get('/Ren_CatTheoBangHuongDanVaKiemTraMauCat',CatRenControl.Ren_CatTheoBangHuongDanVaKiemTraMauCat)
+
 module.exports=router;
