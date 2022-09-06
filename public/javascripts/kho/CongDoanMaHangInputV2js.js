@@ -33,7 +33,7 @@ const searchBoxMaHang=() =>{
 }
 
 const GridviewMaHangLoad = (MaHang) => {
-    var url = "wacoal_TinhChi_MaHang_V2/";
+    var url = "wacoal_TinhChi_MaHang_V3/";
     var listTinhChi = DevExpress.data.AspNet.createStore({
         key: "keyMAHANG",
         loadUrl: url  + MaHang ,
@@ -94,72 +94,6 @@ const GridviewMaHangLoad = (MaHang) => {
                 }
               }
             })
-
-            // }).then(function(cellRange) {
-            //   // header
-            //   var headerRowFROM = worksheet.getRow(1);
-            // //   headerRowFROM.height = 30;
-            //   worksheet.mergeCells(1, 1, 1, 1);
-            //   headerRowFROM.getCell(1).value = 'FROM';
-            //   headerRowFROM.getCell(1).font = { name: 'Arial', size: 10 };
-            //   headerRowFROM.getCell(1).alignment = { horizontal: 'left' };
-
-            //   var headerRowVnWacoal = worksheet.getRow(1);
-            //   //   headerRowFROM.height = 30;
-            //     worksheet.mergeCells(1, 2, 1, 3);
-            //     headerRowVnWacoal.getCell(2).value = 'VIETNAM WACOAL';
-            //     headerRowVnWacoal.getCell(2).font = { name: 'Arial', size: 10 };
-            //     headerRowVnWacoal.getCell(2).alignment = { horizontal: 'left' };
-                
-            //   var headerRowTo = worksheet.getRow(2);
-            //     //   headerRowFROM.height = 30;
-            //       worksheet.mergeCells(2, 1, 2, 1);
-            //       headerRowTo.getCell(1).value = 'TO';
-            //       headerRowTo.getCell(1).font = { name: 'Arial', size: 10 };
-            //       headerRowTo.getCell(1).alignment = { horizontal: 'left' }; 
-
-            //   var headerRow2c2 = worksheet.getRow(2);
-            //       //   headerRowFROM.height = 30;
-            //       worksheet.mergeCells(2, 2, 2, 3);
-            //       headerRow2c2.getCell(2).value = 'WACOAL CORP.';
-            //       headerRow2c2.getCell(2).font = { name: 'Arial', size: 10 };
-            //       headerRow2c2.getCell(2).alignment = { horizontal: 'left' };
-
-            //   var headerRow3c1 = worksheet.getRow(3);
-            //         //   headerRowFROM.height = 30;
-            //         worksheet.mergeCells(3, 1, 3, 1);
-            //         headerRow3c1.getCell(1).value = 'ATTN';
-            //         headerRow3c1.getCell(1).font = { name: 'Arial', size: 10 };
-            //         headerRow3c1.getCell(1).alignment = { horizontal: 'left' }; 
-
-            //  var headerRow3c5 = worksheet.getRow(3);
-            //           //   headerRowFROM.height = 30;
-            //          worksheet.mergeCells(3, 5, 3, 8);
-            //          headerRow3c5.getCell(5).value = 'ORDER THREAD';
-            //          headerRow3c5.getCell(5).font = { name: 'Arial', size: 16 ,bold:true};
-            //          headerRow3c5.getCell(5).alignment = { horizontal: 'left' };  
-
-            //     var headerRow5c1 = worksheet.getRow(5);
-            //          worksheet.mergeCells(5, 1, 5, 1);
-            //          headerRow5c1.getCell(1).value = 'ORDER';
-            //          headerRow5c1.getCell(1).font = { name: 'Arial', size: 10 };
-            //          headerRow5c1.getCell(1).alignment = { horizontal: 'left' };   
-                        
-            //     var headerRow5c2 = worksheet.getRow(5);
-            //          worksheet.mergeCells(5, 2, 5, 3);
-            //          headerRow5c2.getCell(2).value = oderNo;
-            //          headerRow5c2.getCell(2).font = { name: 'Arial', size: 10 };
-            //          headerRow5c2.getCell(2).alignment = { horizontal: 'left' };
-              
-            //   // footer
-            // //   var footerRowIndex = cellRange.to.row + 2;
-            // //   var footerRow = worksheet.getRow(footerRowIndex);
-            // //   worksheet.mergeCells(footerRowIndex, 1, footerRowIndex, 8);
-              
-            // //   footerRow.getCell(1).value = 'www.wikipedia.org';
-            // //   footerRow.getCell(1).font = { color: { argb: 'BFBFBF' }, italic: true };
-            // //   footerRow.getCell(1).alignment = { horizontal: 'right' };
-            // })
             .then(function() {
               workbook.xlsx.writeBuffer().then(function(buffer) {
                   var maHangName='';
@@ -389,6 +323,24 @@ const GridviewMaHangLoad = (MaHang) => {
                     // format: "percent"
                 }]
             } ,
+            {
+                caption: "S80",
+                alignment:"center",
+                columns: [{
+                    caption: "COLOR",
+                    alignment:"center",
+                    dataField: "COLOR_S80",
+                    // format: "fixedPoint"
+                }, {
+                    caption: "QTY",
+                    alignment:"center",
+                    dataField: "SL_S80",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                }]
+            } ,
             //bo cot 300W (300W,W300,N300 là 1)
 
             //    {
@@ -505,11 +457,7 @@ const GridviewMaHangLoad = (MaHang) => {
                 customizeText: function(data) {
                     return data.value;
                 }},
-                {column: "SL_S80",
-                summaryType: "sum",
-                customizeText: function(data) {
-                    return data.value;
-                }},
+             
                 {column: "SL_KS60",
                 summaryType: "sum",
                 customizeText: function(data) {
@@ -536,6 +484,11 @@ const GridviewMaHangLoad = (MaHang) => {
                     return data.value;
                 }},
                 {column: "SL_R50",
+                summaryType: "sum",
+                customizeText: function(data) {
+                    return data.value;
+                }},
+                {column: "SL_S80",
                 summaryType: "sum",
                 customizeText: function(data) {
                     return data.value;

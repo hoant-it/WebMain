@@ -15,13 +15,13 @@ module.exports.wacoal_MaHang_Select_V1 = async () => {
   }
 };
 
-module.exports.wacoal_TinhChi_MaHang_V2 = async (maHang) => {
+module.exports.wacoal_TinhChi_MaHang_V3 = async (maHang) => {
   try {
     let pool = await sql.connect(sqlConfig);
     let res = await pool
       .request()
       .input("MAHANG", sql.NVarChar(50), maHang)
-      .execute("wacoal_TinhChi_MaHang_V2");
+      .execute("wacoal_TinhChi_MaHang_V3");
     return res.recordset;
   } catch (error) {
     throw error
