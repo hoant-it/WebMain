@@ -3,6 +3,7 @@ const router = express.Router()
 const upload= require('../MiddleWares/upload.middle')
 const CatControl=require('../Controlers/cat/Cat.Control')
 const CatRenControl=require('../Controlers/cat/CatRen.Control')
+const CatVaiControl= require('../Controlers/cat/CatVai.control')
 //SDTC
 router.get('/SDTC',CatControl.CatSDTC)
 //TDLCard
@@ -59,5 +60,11 @@ router.get('/KTDMTungSizeSoVoiSLOrder',CatRenControl.KIEM_TRA_DM_TUNG_SIZE_SO_VO
 
 // Ren_CatTheoBangHuongDanVaKiemTraMauCat
 router.get('/Ren_CatTheoBangHuongDanVaKiemTraMauCat',CatRenControl.Ren_CatTheoBangHuongDanVaKiemTraMauCat)
+
+
+//So do quy trinh vai
+router.get('/SDQTCatVai',CatVaiControl.SDQTVai)
+router.get('/KhoiDongMay',CatVaiControl.KhoiDongMay)
+router.get('/ChuanBiBanVai',CatVaiControl.ChuanBiBanVai)
 
 module.exports=router;

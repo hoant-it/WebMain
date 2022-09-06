@@ -95,7 +95,7 @@ const GridviewMaHangMissLoad = (oderNo,khachHang) => {
 
 const GridviewOrderLoad = (oderNo,khachHang) => {
     // var url = "/api/khoOrderTinhchiGridview/";
-    var url = "Order_TinhChi_Web_V3/";
+    var url = "Order_TinhChi_Web_V4/";
     
     // console.log(" url " + url + oderNo+khachHang);
     var listTinhChi = DevExpress.data.AspNet.createStore({
@@ -477,6 +477,24 @@ const GridviewOrderLoad = (oderNo,khachHang) => {
                     // format: "percent"
                 }]
             } ,
+            {
+                caption: "S80",
+                alignment:"center",
+                columns: [{
+                    caption: "COLOR",
+                    alignment:"center",
+                    dataField: "COLOR_S80",
+                    // format: "fixedPoint"
+                }, {
+                    caption: "QTY",
+                    alignment:"center",
+                    dataField: "SL_S80",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                }]
+            } ,
 
             // 10:24 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
 
@@ -551,6 +569,11 @@ const GridviewOrderLoad = (oderNo,khachHang) => {
                 customizeText: function(data) {
                     return data.value;
                 }},
+                {column: "SL_S80",
+                summaryType: "sum",
+                customizeText: function(data) {
+                    return data.value;
+                }},
                 // 10:24 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
 
                 // {column: "SL_300W",
@@ -588,7 +611,7 @@ const GridviewOrderLoad = (oderNo,khachHang) => {
 
 }
 const GridviewMaHangLoad = (oderNo,khachHang) => {
-    var url = "wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3/";
+    var url = "wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4/";
     // console.log(" url " + url + oderNo+khachHang);
     var listTinhChi = DevExpress.data.AspNet.createStore({
         key: "keyMAHANG",
@@ -655,72 +678,6 @@ const GridviewMaHangLoad = (oderNo,khachHang) => {
                 }
               }
             })
-
-            // }).then(function(cellRange) {
-            //   // header
-            //   var headerRowFROM = worksheet.getRow(1);
-            // //   headerRowFROM.height = 30;
-            //   worksheet.mergeCells(1, 1, 1, 1);
-            //   headerRowFROM.getCell(1).value = 'FROM';
-            //   headerRowFROM.getCell(1).font = { name: 'Arial', size: 10 };
-            //   headerRowFROM.getCell(1).alignment = { horizontal: 'left' };
-
-            //   var headerRowVnWacoal = worksheet.getRow(1);
-            //   //   headerRowFROM.height = 30;
-            //     worksheet.mergeCells(1, 2, 1, 3);
-            //     headerRowVnWacoal.getCell(2).value = 'VIETNAM WACOAL';
-            //     headerRowVnWacoal.getCell(2).font = { name: 'Arial', size: 10 };
-            //     headerRowVnWacoal.getCell(2).alignment = { horizontal: 'left' };
-                
-            //   var headerRowTo = worksheet.getRow(2);
-            //     //   headerRowFROM.height = 30;
-            //       worksheet.mergeCells(2, 1, 2, 1);
-            //       headerRowTo.getCell(1).value = 'TO';
-            //       headerRowTo.getCell(1).font = { name: 'Arial', size: 10 };
-            //       headerRowTo.getCell(1).alignment = { horizontal: 'left' }; 
-
-            //   var headerRow2c2 = worksheet.getRow(2);
-            //       //   headerRowFROM.height = 30;
-            //       worksheet.mergeCells(2, 2, 2, 3);
-            //       headerRow2c2.getCell(2).value = 'WACOAL CORP.';
-            //       headerRow2c2.getCell(2).font = { name: 'Arial', size: 10 };
-            //       headerRow2c2.getCell(2).alignment = { horizontal: 'left' };
-
-            //   var headerRow3c1 = worksheet.getRow(3);
-            //         //   headerRowFROM.height = 30;
-            //         worksheet.mergeCells(3, 1, 3, 1);
-            //         headerRow3c1.getCell(1).value = 'ATTN';
-            //         headerRow3c1.getCell(1).font = { name: 'Arial', size: 10 };
-            //         headerRow3c1.getCell(1).alignment = { horizontal: 'left' }; 
-
-            //  var headerRow3c5 = worksheet.getRow(3);
-            //           //   headerRowFROM.height = 30;
-            //          worksheet.mergeCells(3, 5, 3, 8);
-            //          headerRow3c5.getCell(5).value = 'ORDER THREAD';
-            //          headerRow3c5.getCell(5).font = { name: 'Arial', size: 16 ,bold:true};
-            //          headerRow3c5.getCell(5).alignment = { horizontal: 'left' };  
-
-            //     var headerRow5c1 = worksheet.getRow(5);
-            //          worksheet.mergeCells(5, 1, 5, 1);
-            //          headerRow5c1.getCell(1).value = 'ORDER';
-            //          headerRow5c1.getCell(1).font = { name: 'Arial', size: 10 };
-            //          headerRow5c1.getCell(1).alignment = { horizontal: 'left' };   
-                        
-            //     var headerRow5c2 = worksheet.getRow(5);
-            //          worksheet.mergeCells(5, 2, 5, 3);
-            //          headerRow5c2.getCell(2).value = oderNo;
-            //          headerRow5c2.getCell(2).font = { name: 'Arial', size: 10 };
-            //          headerRow5c2.getCell(2).alignment = { horizontal: 'left' };
-              
-            //   // footer
-            // //   var footerRowIndex = cellRange.to.row + 2;
-            // //   var footerRow = worksheet.getRow(footerRowIndex);
-            // //   worksheet.mergeCells(footerRowIndex, 1, footerRowIndex, 8);
-              
-            // //   footerRow.getCell(1).value = 'www.wikipedia.org';
-            // //   footerRow.getCell(1).font = { color: { argb: 'BFBFBF' }, italic: true };
-            // //   footerRow.getCell(1).alignment = { horizontal: 'right' };
-            // })
             .then(function() {
               workbook.xlsx.writeBuffer().then(function(buffer) {
              
@@ -953,6 +910,23 @@ const GridviewMaHangLoad = (oderNo,khachHang) => {
                     //   }
                     // format: "percent"
                 }]
+            } ,    {
+                caption: "S80",
+                alignment:"center",
+                columns: [{
+                    caption: "COLOR",
+                    alignment:"center",
+                    dataField: "COLOR_S80",
+                    // format: "fixedPoint"
+                }, {
+                    caption: "QTY",
+                    alignment:"center",
+                    dataField: "SL_S80",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                }]
             } ,
             // 10:31 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
             //    {
@@ -1003,11 +977,7 @@ const GridviewMaHangLoad = (oderNo,khachHang) => {
                 customizeText: function(data) {
                     return data.value;
                 }},
-                {column: "SL_S80",
-                summaryType: "sum",
-                customizeText: function(data) {
-                    return data.value;
-                }},
+         
                 {column: "SL_KS60",
                 summaryType: "sum",
                 customizeText: function(data) {
@@ -1024,17 +994,12 @@ const GridviewMaHangLoad = (oderNo,khachHang) => {
                     return data.value;
                 }},
 
-                // {column: "SL_GOMU",
-                // summaryType: "sum",
-                // customizeText: function(data) {
-                //     return data.value;
-                // }},
-               {column: "SL_K80",
+                {column: "SL_R50",
                 summaryType: "sum",
                 customizeText: function(data) {
                     return data.value;
-                }},
-                {column: "SL_R50",
+                }},  
+                {column: "SL_S80",
                 summaryType: "sum",
                 customizeText: function(data) {
                     return data.value;
@@ -1047,30 +1012,7 @@ const GridviewMaHangLoad = (oderNo,khachHang) => {
                 //     return data.value;
                 // }},
         ]},
-        // onFocusedRowChanging: function(e) {
-        //     var rowsCount = e.component.getVisibleRows().length,
-        //         pageCount = e.component.pageCount(),
-        //         pageIndex = e.component.pageIndex(),
-        //         key = e.event && e.event.key;
 
-        //     if (key && e.prevRowIndex === e.newRowIndex) {
-        //         if (e.newRowIndex === rowsCount - 1 && pageIndex < pageCount - 1) {
-        //             e.component.pageIndex(pageIndex + 1).done(function() {
-        //                 e.component.option("focusedRowIndex", 0);
-        //             });
-        //         } else if (e.newRowIndex === 0 && pageIndex > 0) {
-        //             e.component.pageIndex(pageIndex - 1).done(function() {
-        //                 e.component.option("focusedRowIndex", rowsCount - 1);
-        //             });
-        //         }
-        //     }
-        // },
-        // onFocusedRowChanged: function(e) {
-        //     const menuCode = getMenuDataItem(e.row);
-        //     _sourceDataTask_ID = menuCode.menuCode;
-        //     // console.log("menuCode.subject " + menuCode.menuCode);
-        //     // const focusedRowKey = e.component.option("focusedRowKey");
-        // }
     }).dxDataGrid("instance");
 
 }

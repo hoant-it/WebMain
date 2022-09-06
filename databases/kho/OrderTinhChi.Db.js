@@ -37,14 +37,14 @@ module.exports.khoOrderTinhchiGridviewMaHangMiss=async(params)=>{
     }
 }
 
-module.exports.Order_TinhChi_Web_V3=async(params)=>{
+module.exports.Order_TinhChi_Web_V4=async(params)=>{
     const{Order,KhachHang}=params;
     try {
         let pool=await sql.connect(sqlConfig)
         let result=await pool.request()
         .input('ORDERNO',sql.NVarChar(50),Order)
         .input('MAKH',sql.NVarChar(50),KhachHang)
-        .execute('Order_TinhChi_Web_V3')
+        .execute('Order_TinhChi_Web_V4')
         return result.recordset
     } catch (error) {
         throw error
@@ -66,14 +66,14 @@ module.exports.OrderTinhChiPost=async(body)=>{
     }
 }
 
-module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3=async(params)=>{
+module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4=async(params)=>{
     try {
         const{Order,KhachHang}=params
         let pool=await sql.connect(sqlConfig)
         let result=await pool.request()
         .input('ORDERNO',sql.NVarChar(50),Order)
         .input('MAKH',sql.NVarChar(50),KhachHang)
-        .execute('wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3')
+        .execute('wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4')
         return result.recordset
     } catch (error) {
         throw error

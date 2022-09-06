@@ -9,6 +9,7 @@ const QTQLNVLControl=require('../Controlers/Kho/QTQLNVL.Control')
 const OrderTinhChiControl=require('../Controlers/Kho/OrderTinhChi.Control')
 const KeHangControl=require('../Controlers/Kho/KeHang.Control');
 const { password } = require('../databases/dbconfig');
+const datChiControl= require('../Controlers/Kho/Datchi.Control')
 //Order
 router.get('/Order',orderControl.OrderLoad);
 router.get('/DONHANGITEM_3_MY_SearchBox_Web_V1',orderControl.DONHANGITEM_3_MY_SearchBox_Web_V1)
@@ -67,9 +68,9 @@ router.get('/KhoOderTinhChiGridViewDev',OrderTinhChiControl.OrderTinhChiLoad)
 router.get('/Khowacoal_KHACHHANG_load_Web_V1',OrderTinhChiControl.Khowacoal_KHACHHANG_load_Web_V1)
 router.get('/wacoal_DONHANGHEAD_Load_Web_V1',OrderTinhChiControl.wacoal_DONHANGHEAD_Load_Web_V1)
 router.get('/khoOrderTinhchiGridviewMaHangMiss/:Order/:KhachHang',OrderTinhChiControl.khoOrderTinhchiGridviewMaHangMiss)
-router.get('/Order_TinhChi_Web_V3/:Order/:KhachHang',OrderTinhChiControl.Order_TinhChi_Web_V3)
+router.get('/Order_TinhChi_Web_V4/:Order/:KhachHang',OrderTinhChiControl.Order_TinhChi_Web_V4)
 router.post('/OrderTinhChiPost',OrderTinhChiControl.OrderTinhChiPost)
-router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3/:Order/:KhachHang',OrderTinhChiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3)
+router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4/:Order/:KhachHang',OrderTinhChiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4)
 
 //ke hang
 router.get('/kehang',KeHangControl.kehangLoad)
@@ -158,6 +159,12 @@ router.post('/sendMail', async (req,res) =>{
     }
 })
 
+//Dat chi
+router.get('/DatChi',datChiControl.datChiLoad)
+router.get('/wacoal_Datchi_MauMH_Load_Web_V1/:MAHANG',datChiControl.wacoal_Datchi_MauMH_Load_Web_V1)
+router.get('/wacoal_CHUYEN_Load_Web_V1',datChiControl.wacoal_CHUYEN_Load_Web_V1)
+router.get('/wacoal_DatChi_MH_Mau_SL_Web_V1/:MAHANG/:MAUMH/:Qty',datChiControl.wacoal_DatChi_MH_Mau_SL_Web_V1)
+router.get('/wacoal_TinhChi_MaHang_Mau_SL_V1/:MAHANG/:MAUMH/:Qty',datChiControl.wacoal_TinhChi_MaHang_Mau_SL_V1)
 
 
 module.exports=router;

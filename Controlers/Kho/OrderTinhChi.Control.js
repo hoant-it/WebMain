@@ -50,9 +50,9 @@ module.exports.khoOrderTinhchiGridviewMaHangMiss=async(req,res)=>{
 
 }
 
-module.exports.Order_TinhChi_Web_V3=async(req,res)=>{
+module.exports.Order_TinhChi_Web_V4=async(req,res)=>{
     try {
-      let result=await db.Order_TinhChi_Web_V3(req.params)
+      let result=await db.Order_TinhChi_Web_V4(req.params)
       res.json({
           data:result
       })
@@ -73,9 +73,9 @@ module.exports.OrderTinhChiPost=async(req,res)=>{
     }
 }
 
-module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3=async(req,res)=>{
+module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4=async(req,res)=>{
     try {
-      let result=await db.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V3(req.params)
+      let result=await db.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4(req.params)
       res.json({
           data:result
       })
