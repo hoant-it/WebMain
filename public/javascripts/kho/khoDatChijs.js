@@ -160,7 +160,7 @@ const tabPanelLoad = () => {
     },
   });
 
-  var urlDatChiTotal = "wacoal_TinhChi_MaHang_Mau_SL_V1/";
+  var urlDatChiTotal = "wacoal_TinhChi_MaHang_Mau_SL_V2/";
 
   var listDataDatChiTotal = DevExpress.data.AspNet.createStore({
     key: "keyMAHANG",
@@ -437,6 +437,36 @@ const tabPanelLoad = () => {
                   },
                 ],
               },
+              {
+                caption: "S80",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_S80",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_S80",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                  {
+                    caption: "TOTAL",
+                    alignment: "right",
+                    dataField: "SLFN_S80",
+                    format: {
+                      // type: 'percent',
+                      precision: 1,
+                    },
+                  },
+                ],
+              },
             ],
             summary: {
               totalItems: [
@@ -478,13 +508,6 @@ const tabPanelLoad = () => {
                   },
                 },
                 {
-                  column: "SLFN_S80",
-                  summaryType: "sum",
-                  customizeText: function (data) {
-                    return data.value;
-                  },
-                },
-                {
                   column: "SLFN_KS60",
                   summaryType: "sum",
                   customizeText: function (data) {
@@ -514,6 +537,13 @@ const tabPanelLoad = () => {
                 },
                 {
                   column: "SLFN_R50",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SLFN_S80",
                   summaryType: "sum",
                   customizeText: function (data) {
                     return data.value;

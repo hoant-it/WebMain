@@ -55,7 +55,7 @@ module.exports.wacoal_MaHang_Select_V1 = async () => {
   };
 
 
-  module.exports.wacoal_TinhChi_MaHang_Mau_SL_V1 = async (MAHANG,MAUMH,Qty) => {
+  module.exports.wacoal_TinhChi_MaHang_Mau_SL_V2 = async (MAHANG,MAUMH,Qty) => {
     try {
       let pool = await sql.connect(sqlConfig);
       let res = await pool
@@ -63,7 +63,7 @@ module.exports.wacoal_MaHang_Select_V1 = async () => {
         .input("MAHANG",sql.NVarChar(50),MAHANG)
         .input("MAUMH",sql.NVarChar(50),MAUMH)
         .input("Qty",sql.Int,Qty)
-        .execute("wacoal_TinhChi_MaHang_Mau_SL_V1");
+        .execute("wacoal_TinhChi_MaHang_Mau_SL_V2");
       return res.recordset;
     } catch (error) {
       throw error
