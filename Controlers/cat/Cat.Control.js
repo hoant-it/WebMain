@@ -55,3 +55,11 @@ module.exports.CAT_HEM_PANEL = async(req, res) => {
         html: ''
     })
 }
+
+module.exports.TraiLinning = async(req, res) => {
+    res.render('Cat/TraiLinning', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

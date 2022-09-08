@@ -4,6 +4,7 @@ const upload= require('../MiddleWares/upload.middle')
 const CatControl=require('../Controlers/cat/Cat.Control')
 const CatRenControl=require('../Controlers/cat/CatRen.Control')
 const CatVaiControl= require('../Controlers/cat/CatVai.control')
+const CatLinningControl= require('../Controlers/cat/CatLinning.control')
 //SDTC
 router.get('/SDTC',CatControl.CatSDTC)
 //TDLCard
@@ -20,6 +21,9 @@ router.get('/QTGIAOCHUYEN',CatControl.QTGIAOCHUYEN)
 
 // CAT_HEM_PANEL
 router.get('/HemPanel',CatControl.CAT_HEM_PANEL)
+
+//trai vai hem/panel
+router.get('/TraiLinning',CatControl.TraiLinning)
 
 //trai vai hem/panel
 router.get('/TraiVaiHemPanel',CatRenControl.TraiVaiHemPanel)
@@ -66,5 +70,8 @@ router.get('/Ren_CatTheoBangHuongDanVaKiemTraMauCat',CatRenControl.Ren_CatTheoBa
 router.get('/SDQTCatVai',CatVaiControl.SDQTVai)
 router.get('/KhoiDongMay',CatVaiControl.KhoiDongMay)
 router.get('/ChuanBiBanVai',CatVaiControl.ChuanBiBanVai)
+
+//Cat Linning SDQT
+router.get('/CatLinningSDQT',CatLinningControl.CatLinningSDQT)
 
 module.exports=router;
