@@ -7,6 +7,7 @@ const datChiCaptionTotal = "Total";
 const datChiCaptionCT = "Details";
 const topRowCell=10
 
+
 const searchBoxMaHang = () => {
   const selectBoxData = DevExpress.data.AspNet.createStore({
     key: "MAHANG",
@@ -692,32 +693,6 @@ const tabPanelLoad = () => {
   });
 };
 
-const getDateTime=()=> {
-  var now     = new Date(); 
-  var year    = now.getFullYear();
-  var month   = now.getMonth()+1; 
-  var day     = now.getDate();
-  var hour    = now.getHours();
-  var minute  = now.getMinutes();
-  var second  = now.getSeconds(); 
-  if(month.toString().length == 1) {
-       month = '0'+month;
-  }
-  if(day.toString().length == 1) {
-       day = '0'+day;
-  }   
-  if(hour.toString().length == 1) {
-       hour = '0'+hour;
-  }
-  if(minute.toString().length == 1) {
-       minute = '0'+minute;
-  }
-  if(second.toString().length == 1) {
-       second = '0'+second;
-  }   
-  var dateTime =day+'-'+month+'-'+ year+' '+hour+':'+minute+':'+second;   
-   return dateTime;
-}
 
 const formatHeaderRow=(sheetName)=>{
   for(let i=1;i<topRowCell-1;i++){
@@ -736,6 +711,7 @@ const formatHeaderRow=(sheetName)=>{
 }
 
 const btnExportMultiExcel = () => {
+  const generalsa=new generals();
   $("#exportButton").dxButton({
     text: "",
     icon: "xlsxfile",
@@ -764,7 +740,7 @@ const btnExportMultiExcel = () => {
       TotalSheet.getRow(7).getCell(1).value = "Số Lượng";
       TotalSheet.getRow(7).getCell(2).value = soLuong
       TotalSheet.getRow(8).getCell(1).value = "Thời Gian";
-      TotalSheet.getRow(8).getCell(2).value = getDateTime();
+      TotalSheet.getRow(8).getCell(2).value = generalsa.getDateTime();
       formatHeaderRow(TotalSheet)
 
    
@@ -785,7 +761,7 @@ const btnExportMultiExcel = () => {
       CTSheet.getRow(7).getCell(1).value = "Số Lượng";
       CTSheet.getRow(7).getCell(2).value = soLuong
       CTSheet.getRow(8).getCell(1).value = "Thời Gian";
-      CTSheet.getRow(8).getCell(2).value = getDateTime();
+      CTSheet.getRow(8).getCell(2).value = generalsa.getDateTime();
       formatHeaderRow(CTSheet)
 
       
@@ -801,10 +777,10 @@ const btnExportMultiExcel = () => {
             };
           
           }
-          // excelCell.font={
-          //   size:'14',
-          //   name:"EUDC"
-          // }
+          excelCell.font={
+            size:'14',
+            name:"EUDC"
+          }
         }
       }
 
@@ -849,7 +825,7 @@ const btnExportMultiExcel = () => {
           workbook.xlsx.writeBuffer().then((buffer) => {
             saveAs(
               new Blob([buffer], { type: "application/octet-stream" }),
-              `DatChi_${order}_${chuyen}_${maHang}_${mauMH}_${soLuong}_${getDateTime()}.xlsx`
+              `DatChi_${order}_${chuyen}_${maHang}_${mauMH}_${soLuong}_${generalsa.getDateTime()}.xlsx`
             );
           });
         });
