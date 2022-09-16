@@ -5,3 +5,13 @@ module.exports.MayQTSX= async(req,res) =>{
        html:'',
     })
     }
+
+    
+
+    module.exports.NhanPLTuKho= async(req,res) =>{
+        res.render('May/NhanPLTuKho',{
+            title:'QT May',
+            userId:req.signedCookies.userId,
+           html:'',
+        })
+        }
