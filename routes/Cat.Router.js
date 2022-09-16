@@ -70,6 +70,10 @@ router.get('/Ren_CatTheoBangHuongDanVaKiemTraMauCat',CatRenControl.Ren_CatTheoBa
 router.get('/SDQTCatVai',CatVaiControl.SDQTVai)
 router.get('/KhoiDongMay',CatVaiControl.KhoiDongMay)
 router.get('/ChuanBiBanVai',CatVaiControl.ChuanBiBanVai)
+router.get('/CatVaiChinhHuongCatWacoalCard',CatVaiControl.CatVaiChinhHuongCatWacoalCard)
+router.get('/CatVaiChinhHuongCatGeMiNi',CatVaiControl.CatVaiChinhHuongCatGeMiNi)
+
+
 
 //Cat Linning SDQT
 router.get('/CatLinningSDQT',CatLinningControl.CatLinningSDQT)

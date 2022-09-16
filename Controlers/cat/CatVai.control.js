@@ -21,3 +21,19 @@ module.exports.ChuanBiBanVai= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.CatVaiChinhHuongCatWacoalCard= async(req,res) =>{
+    res.render('Cat/CatVaiChinhHuongCatWacoalCard', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+module.exports.CatVaiChinhHuongCatGeMiNi= async(req,res) =>{
+    res.render('Cat/CatVaiChinhHuongCatGeMiNi', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
