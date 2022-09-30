@@ -77,5 +77,12 @@ router.get('/CatVaiChinhHuongCatGeMiNi',CatVaiControl.CatVaiChinhHuongCatGeMiNi)
 
 //Cat Linning SDQT
 router.get('/CatLinningSDQT',CatLinningControl.CatLinningSDQT)
+router.get('/CatLinningKhoiDongMay',CatLinningControl.CatLinningKhoiDongMay)
+router.get('/CatLinningChuanBiVai',CatLinningControl.CatLinningChuanBiVai)
+router.get('/CatLinningCHCGeminiCad',CatLinningControl.CatLinningCHCGeminiCad)
+router.get('/CatLinningCHCWacoalCad',CatLinningControl.CatLinningCHCWacoalCad)
+
+
+
 
 module.exports=router;

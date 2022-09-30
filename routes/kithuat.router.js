@@ -11,4 +11,7 @@ router.get('/NhanTLKT_Pattern_Mau_Dich',QTKTControl.NhanTLKT_Pattern_Mau_Dich)
 router.get('/MAYMAU',QTKTControl.MAYMAU)
 router.get('/GHICHU_NPL',QTKTControl.GHICHU_NPL)
 router.get('/LamBM_SWGD_HE_DoKichThuoc',QTKTControl.LamBM_SWGD_HE_DoKichThuoc)
+router.get('/XNKQTuKH',QTKTControl.XNKQTuKH)
+router.get('/LuuTLTK',QTKTControl.LuuTLTK)
+
 module.exports=router;

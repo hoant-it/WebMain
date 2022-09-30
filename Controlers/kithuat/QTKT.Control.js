@@ -55,6 +55,21 @@ module.exports.QTKTLoad = async (req,res) =>{
     })
   }
 
+  module.exports.XNKQTuKH = async (req,res) =>{
+    res.render('kithuat/XNKQTuKH',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+  
+  module.exports.LuuTLTK = async (req,res) =>{
+    res.render('kithuat/LuuTLTK',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
 
   
   

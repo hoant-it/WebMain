@@ -5,6 +5,7 @@ const MayControl=require('../Controlers/may/QTSX.Control')
 router.get('/QTSX',MayControl.MayQTSX)
 
 router.get('/NhanPLTuKho',MayControl.NhanPLTuKho)
+router.get('/GiaoNLTungCD',MayControl.GiaoNLTungCD)
 
 
 module.exports=router;
