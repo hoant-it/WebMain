@@ -71,5 +71,13 @@ module.exports.QTKTLoad = async (req,res) =>{
     })
   }
 
+  module.exports.CungCapTLKT = async (req,res) =>{
+    res.render('kithuat/CungCapTLKT',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+
   
   

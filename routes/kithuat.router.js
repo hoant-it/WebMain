@@ -13,5 +13,7 @@ router.get('/GHICHU_NPL',QTKTControl.GHICHU_NPL)
 router.get('/LamBM_SWGD_HE_DoKichThuoc',QTKTControl.LamBM_SWGD_HE_DoKichThuoc)
 router.get('/XNKQTuKH',QTKTControl.XNKQTuKH)
 router.get('/LuuTLTK',QTKTControl.LuuTLTK)
+router.get('/CungCapTLKT',QTKTControl.CungCapTLKT)
+
 
 module.exports=router;
