@@ -63,3 +63,12 @@ module.exports.TraiLinning = async(req, res) => {
         html: ''
     })
 }
+
+
+module.exports.CatSDQtCad = async(req, res) => {
+    res.render('Cat/CatSDQtCad', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

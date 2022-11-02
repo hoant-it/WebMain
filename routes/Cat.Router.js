@@ -6,6 +6,7 @@ const CatRenControl=require('../Controlers/cat/CatRen.Control')
 const CatVaiControl= require('../Controlers/cat/CatVai.control')
 const CatLinningControl= require('../Controlers/cat/CatLinning.control')
 const catTraiVaiControl= require('../Controlers/cat/catTraiVai.control')
+const CatQTGiacSDControl = require('../Controlers/cat/CatQTGiacSD.control')
 //SDTC
 router.get('/SDTC',CatControl.CatSDTC)
 //TDLCard
@@ -90,6 +91,9 @@ router.get('/QtXacDinhGioXaNLMoi',catTraiVaiControl.QtXacDinhGioXaNLMoi)
 router.get('/TraiVai',catTraiVaiControl.TraiVai)
 
 
+//quy trinh giac so do
+router.get('/CatSDQtCad',CatControl.CatSDQtCad)
+router.get('/LamBangHDGiacSD',CatQTGiacSDControl.LamBangHDGiacSD)
 
 
 module.exports=router;
