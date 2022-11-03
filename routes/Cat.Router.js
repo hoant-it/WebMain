@@ -89,6 +89,8 @@ router.get('/SDTraivai',catTraiVaiControl.SDTraivai)
 router.get('/ChuanBiTruocKhiTraiVai',catTraiVaiControl.ChuanBiTruocKhiTraiVai)
 router.get('/QtXacDinhGioXaNLMoi',catTraiVaiControl.QtXacDinhGioXaNLMoi)
 router.get('/TraiVai',catTraiVaiControl.TraiVai)
+router.get('/KiemTraXuLyBanVai',catTraiVaiControl.KiemTraXuLyBanVai)
+
 
 
 //quy trinh giac so do

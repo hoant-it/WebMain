@@ -29,3 +29,12 @@ module.exports.TraiVai = async (req,res)=>{
         html: ''
     })
 }
+
+module.exports.KiemTraXuLyBanVai = async (req,res)=>{
+    res.render('Cat/KiemTraXuLyBanVai', {
+        title: 'Trai vai',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
