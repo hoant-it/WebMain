@@ -565,13 +565,13 @@ const tabPanelLoad = () => {
           return $("<div id='GridDatChiCT'>").dxDataGrid({
             width: "100%",
             columns: [
-              {
-                caption: "STT",
-                alignment: "right",
-                dataField: "STT",
-                width: 50,
-                // format: "number",
-              },
+              // {
+              //   caption: "STT",
+              //   alignment: "right",
+              //   dataField: "STT",
+              //   width: 50,
+              //   // format: "number",
+              // },
               // {
               //   caption: "MAHANG",
               //   alignment: "left",
@@ -584,25 +584,19 @@ const tabPanelLoad = () => {
               //   dataField: "MAUMH",
               //   format: "string",
               // },
-              {
-                caption: "Công Đoạn",
-                alignment: "right",
-                dataField: "CONGDOAN",
-                width: 100,
-            
-              },
+          
               {
                 caption: "Tên Công Đoạn",
                 alignment: "left",
                 dataField: "TENCONGDOAN",
-            
+                // width: 200,  
               },
               {
                 caption: "Ký Hiệu Máy",
                 alignment: "left",
                 dataField: "KYHIEUMAY",
                 format: "string",
-            
+                width: 100,            
               },
               {
                 caption: "Mã Vị Trí",
@@ -618,32 +612,7 @@ const tabPanelLoad = () => {
                 width: 150,
             
               },
-              {
-                caption: "Loại Chỉ",
-                alignment: "left",
-                dataField: "LOAICHI",
-                width: 77,
-          
-              },
-              //   {
-              //     caption: "BIENDO",
-              //     alignment: "right",
-              //     dataField: "BIENDO",
-              //     format: "number",
-              //   },
-              //   {
-              //     caption: "MATDO",
-              //     alignment: "right",
-              //     dataField: "MATDO",
-              //     format: "number",
-              //   },
-              {
-                caption: "Màu Chỉ",
-                alignment: "left",
-                dataField: "MauChi",
-                width: 77,
-                // format: "string",
-              },
+    
               {
                 caption: "SL/PCS (Mét) (1)",
                 alignment: "right",
@@ -657,6 +626,27 @@ const tabPanelLoad = () => {
                 dataField: "Qty",
                 width: 77,
                 // format: "number",
+              },
+              {
+                caption: "Công Đoạn",
+                alignment: "right",
+                dataField: "CONGDOAN",
+                width: 100,
+            
+              },
+              {
+                caption: "Loại Chỉ",
+                alignment: "left",
+                dataField: "LOAICHI",
+                width: 77,
+          
+              },
+              {
+                caption: "Màu Chỉ",
+                alignment: "left",
+                dataField: "MauChi",
+                width: 77,
+                // format: "string",
               },
               {
                 caption: "SL Chỉ(Mét) (1*2)",
@@ -723,8 +713,8 @@ const btnExportMultiExcel = () => {
       const TotalSheet = workbook.addWorksheet(datChiCaptionTotal);
       const CTSheet = workbook.addWorksheet(datChiCaptionCT);
 
-      TotalSheet.getRow(1).getCell(5).value = "Đặt chỉ Tổng";
-      TotalSheet.getRow(1).getCell(5).font = {
+      TotalSheet.getRow(1).getCell(1).value = "Đặt chỉ Tổng";
+      TotalSheet.getRow(1).getCell(1).font = {
         bold: true,
         size: 16,
         underline: "double",
@@ -744,8 +734,8 @@ const btnExportMultiExcel = () => {
       formatHeaderRow(TotalSheet)
 
    
-      CTSheet.getRow(1).getCell(5).value = "Đặt chỉ Chi Tiết";
-      CTSheet.getRow(1).getCell(5).font = {
+      CTSheet.getRow(1).getCell(1).value = "Đặt chỉ Chi Tiết";
+      CTSheet.getRow(1).getCell(1).font = {
         bold: true,
         size: 16,
         underline: "double",
@@ -779,8 +769,15 @@ const btnExportMultiExcel = () => {
           }
           excelCell.font={
             size:'14',
-            name:"EUDC"
+            name:'EUDC'
           }
+          excelCell.border = {
+            top: {style:'thin', color: {argb:'00000000'}},
+            left: {style:'thin', color: {argb:'00000000'}},
+            bottom: {style:'thin', color: {argb:'00000000'}},
+            right: {style:'thin', color: {argb:'00000000'}}
+          };
+          
         }
       }
 
@@ -822,6 +819,7 @@ const btnExportMultiExcel = () => {
           })
         )
         .then(() => {
+          
           workbook.xlsx.writeBuffer().then((buffer) => {
             saveAs(
               new Blob([buffer], { type: "application/octet-stream" }),
