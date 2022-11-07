@@ -96,6 +96,8 @@ router.get('/KiemTraXuLyBanVai',catTraiVaiControl.KiemTraXuLyBanVai)
 //quy trinh giac so do
 router.get('/CatSDQtCad',CatControl.CatSDQtCad)
 router.get('/LamBangHDGiacSD',CatQTGiacSDControl.LamBangHDGiacSD)
+router.get('/CadCaiDatDuLieuMoiWacoalCad',CatQTGiacSDControl.CadCaiDatDuLieuMoiWacoalCad)
+router.get('/CadCaiDatDuLieuMoiGemini',CatQTGiacSDControl.CadCaiDatDuLieuMoiGemini)
 
 
 module.exports=router;
