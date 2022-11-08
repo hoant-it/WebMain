@@ -191,7 +191,7 @@ const tabPanelLoad = () => {
                 dataField: "MAUMH",
               },
               {
-                caption: "SL Đặt",
+                caption: "SL Đánh",
                 alignment: "left",
                 dataField: "Qty",
               },
@@ -621,7 +621,7 @@ const tabPanelLoad = () => {
                 // format: "number",
               },
               {
-                caption: "SL Đặt (2)",
+                caption: "SL Đánh (2)",
                 alignment: "right",
                 dataField: "Qty",
                 width: 77,
@@ -713,7 +713,7 @@ const btnExportMultiExcel = () => {
       const TotalSheet = workbook.addWorksheet(datChiCaptionTotal);
       const CTSheet = workbook.addWorksheet(datChiCaptionCT);
 
-      TotalSheet.getRow(1).getCell(1).value = "Đặt chỉ Tổng";
+      TotalSheet.getRow(1).getCell(1).value = "Đánh chỉ Tổng";
       TotalSheet.getRow(1).getCell(1).font = {
         bold: true,
         size: 16,
@@ -734,7 +734,7 @@ const btnExportMultiExcel = () => {
       formatHeaderRow(TotalSheet)
 
    
-      CTSheet.getRow(1).getCell(1).value = "Đặt chỉ Chi Tiết";
+      CTSheet.getRow(1).getCell(1).value = "Đánh chỉ Chi Tiết";
       CTSheet.getRow(1).getCell(1).font = {
         bold: true,
         size: 16,
@@ -823,7 +823,7 @@ const btnExportMultiExcel = () => {
           workbook.xlsx.writeBuffer().then((buffer) => {
             saveAs(
               new Blob([buffer], { type: "application/octet-stream" }),
-              `DatChi_${order}_${chuyen}_${maHang}_${mauMH}_${soLuong}_${generalsa.getDateTime()}.xlsx`
+              `DanhChi_${order}_${chuyen}_${maHang}_${mauMH}_${soLuong}_${generalsa.getDateTime()}.xlsx`
             );
           });
         });
@@ -879,7 +879,7 @@ $(() => {
 
   $("#btn-datChi").dxButton({
     stylingMode: "contained",
-    text: "Đặt Chỉ",
+    text: "Đánh Chỉ",
     type: "default",
     width: 120,
     onClick() {
