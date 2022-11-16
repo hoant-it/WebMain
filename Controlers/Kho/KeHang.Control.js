@@ -79,6 +79,21 @@ module.exports.wacoal_KHONL_Web_Load_V2=async(req,res)=>{
     }
 }
 
+module.exports.wacoal_KHONL_Web_Load_V3=async(req,res)=>{
+    try {
+        let result= await db.wacoal_KHONL_Web_Load_V3(req.params)
+        res.json({
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            data:[]
+        })
+    }
+}
+
+
+
 module.exports.SaveKeHangToDatabase=async(req,res)=>{
     let lError={statusErr:true,errMes:'Thành Công'}
     try {
@@ -133,10 +148,22 @@ module.exports.wacoal_KHONLXUAT_Load_By_KHONLID_web_V2=async(req,res)=>{
 
 
 
-module.exports.uploadKeHang = async(req,res)=>{
+// module.exports.uploadKeHang = async(req,res)=>{
+//     let lError={}
+//     try {
+//         let result= await db.uploadKeHang(req.file.filename,req.signedCookies.userId)
+//         res.send(result);
+//     } catch (error) {
+//         lError.errMes = "Lỗi: " + error;
+//         lError.statusErr = false;
+//         res.send(lError)
+//     }
+// }
+
+module.exports.uploadKeHangv4 = async(req,res)=>{
     let lError={}
     try {
-        let result= await db.uploadKeHang(req.file.filename,req.signedCookies.userId)
+        let result= await db.uploadKeHangv4(req.file.filename,req.signedCookies.userId)
         res.send(result);
     } catch (error) {
         lError.errMes = "Lỗi: " + error;
