@@ -67,6 +67,9 @@ router.get('/KTDMTungSizeSoVoiSLOrder',CatRenControl.KIEM_TRA_DM_TUNG_SIZE_SO_VO
 // Ren_CatTheoBangHuongDanVaKiemTraMauCat
 router.get('/Ren_CatTheoBangHuongDanVaKiemTraMauCat',CatRenControl.Ren_CatTheoBangHuongDanVaKiemTraMauCat)
 
+// QT UI CWX
+router.get('/QTUICWX',CatControl.QTUICWX)
+
 
 //So do quy trinh vai
 router.get('/SDQTCatVai',CatVaiControl.SDQTVai)

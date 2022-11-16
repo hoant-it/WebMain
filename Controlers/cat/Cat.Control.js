@@ -72,3 +72,13 @@ module.exports.CatSDQtCad = async(req, res) => {
         html: ''
     })
 }
+
+
+module.exports.QTUICWX = async(req, res) => {
+    res.render('Cat/QTUICWX', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
