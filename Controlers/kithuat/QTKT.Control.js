@@ -79,5 +79,15 @@ module.exports.QTKTLoad = async (req,res) =>{
     })
   }
 
+  module.exports.HopZizenkentoLan1GiaiThichMaHang = async (req,res) =>{
+    res.render('kithuat/HopZizenkentoLan1GiaiThichMaHang',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+
+  
+
   
   
