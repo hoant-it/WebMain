@@ -617,7 +617,8 @@ const tabPanelLoad = () => {
                 caption: "SL/PCS (Mét) (1)",
                 alignment: "right",
                 dataField: "MET_PSC",
-                width: 77,
+                width: 111,
+                dataType: "number",
                 // format: "number",
               },
               {
@@ -625,13 +626,14 @@ const tabPanelLoad = () => {
                 alignment: "right",
                 dataField: "Qty",
                 width: 77,
+                // dataType: "number",
                 // format: "number",
               },
               {
                 caption: "Công Đoạn",
                 alignment: "right",
                 dataField: "CONGDOAN",
-                width: 100,
+                width: 77,
             
               },
               {
@@ -653,7 +655,7 @@ const tabPanelLoad = () => {
                 alignment: "right",
                 dataField: "SLChi",
                 width: 150,
-                dataType: "number",
+                dataType: "number",n
                 // format: "number",
               },
             ],

@@ -52,8 +52,9 @@ module.exports.wacoal_MauNL_LoaiChi_Moi_Load_Web_V1 = async () => {
 
 module.exports.CongDoanMaHangInput = async (filename, userId) => {
   let lError = { errMes: "thành công", statusErr: true };
+  let pool = await sql.connect(sqlConfig);
   try {
-    let pool = await sql.connect(sqlConfig);
+    
     const filePath = `./public/uploads/${filename}`;
     const workbook = await xlsx.readFile(filePath);
     const sheet_name_list = workbook.SheetNames;
@@ -155,8 +156,6 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
     await del([`./public/uploads/${filename}`]);
     return lError;
   } catch (error) {
-    lError.errMes = "Lỗi: " + error;
-    lError.statusErr = false;
     await pool
       .request()
       .input("MAHANG", sql.NVarChar(50), MaHang)
@@ -164,6 +163,8 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
       .input('UserName',sql.NVarChar(50),userId)
       .input('statusErr',sql.Bit,0)
       .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
+    lError.errMes = "Lỗi: " + error;
+    lError.statusErr = false;
   
     return lError;
   }

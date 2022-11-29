@@ -1,4 +1,6 @@
 var _keHangId='none';
+var _txtOrder='none';
+var _txtMaterial='none';
 var _NL;
 var _oderNo;
 var _color;
@@ -53,7 +55,7 @@ const KeHangGridLoad = () => {
   var url = "wacoal_KHONL_Web_Load_V3/";
   var listTinhChi = DevExpress.data.AspNet.createStore({
     key: "ID",
-    loadUrl: url + _keHangId,
+    loadUrl: url + _keHangId +"/"+_txtOrder +"/" +_txtMaterial,
     onBeforeSend: function (method, ajaxOptions) {
       ajaxOptions.xhrFields = {
         withCredentials: true,
@@ -81,6 +83,8 @@ const KeHangGridLoad = () => {
           e.component.columnOption('Kho', 'visible', false);
           e.component.columnOption('Kệ', 'visible', false);
           e.component.columnOption('Ô Kệ', 'visible', false);
+          e.component.columnOption('SL Xuất', 'visible', false);
+          e.component.columnOption('SL Tồn', 'visible', false);
           e.component.columnOption('ID', 'visible', true);
           e.component.columnOption('OKEID', 'visible', true);
           
@@ -138,11 +142,11 @@ const KeHangGridLoad = () => {
       //     pageSize: 10
       // },
       columns: [
-        {
-          caption: "STT",
-          alignment: "left",
-          dataField: "STT",
-        },
+        // {
+        //   caption: "STT",
+        //   alignment: "left",
+        //   dataField: "STT",
+        // },
         {
           caption: "ID",
           alignment: "left",
@@ -192,16 +196,16 @@ const KeHangGridLoad = () => {
           dataField: "QUANTITY",
         },
       
-        // {
-        //   caption: "SL Xuất",
-        //   alignment: "left",
-        //   dataField: "QUANTITYXUAT",
-        // },
-        // {
-        //   caption: "SL Tồn",
-        //   alignment: "left",
-        //   dataField: "QtyTon",
-        // },
+        {
+          caption: "SL Xuất",
+          alignment: "left",
+          dataField: "QUANTITYXUAT",
+        },
+        {
+          caption: "SL Tồn",
+          alignment: "left",
+          dataField: "QtyTon",
+        },
         {
           caption: "UNIT",
           alignment: "left",
@@ -244,21 +248,32 @@ const KeHangGridLoad = () => {
             location: "alter",
             widget: "dxButton",
             options: {
-              icon: "export",
-              text: "Xuất",
+              icon: "selectall",
+              text: "",
               onInitialized: function (e) {
-                e.element.attr("id", "btnEdit");
+                e.element.attr("id", "btnXuatTP");
               },
               onClick: function () {
-                if (_stausXuat === "xuatBP") {
+                  XuatTP();
+              },
+            },
+          },
+          {
+            location: "alter",
+            widget: "dxButton",
+            options: {
+              icon: "unselectall",
+              text: "",
+              onInitialized: function (e) {
+                e.element.attr("id", "btnXuatBP");
+              },
+              onClick: function () {
                   EditForm();
-                }
-                if (_stausXuat === "xuatTP") {
-                  SaveData();
-                }
+              
               },
             },
           }
+
         );
       },
       onFocusedRowChanged: function (e) {
@@ -269,14 +284,10 @@ const KeHangGridLoad = () => {
 };
 const LSXuatGridLoad = (KHONLID) => {
   var url = "wacoal_KHONLXUAT_Load_By_KHONLID_web_V2/";
-  // console.log(" url " + url + oderNo+khachHang);
   var listTinhChi = DevExpress.data.AspNet.createStore({
     key: "ID",
     loadUrl: url + KHONLID,
 
-    // insertUrl: url + "/InsertOrder",
-    // updateUrl: url + "/UpdateOrder",
-    // deleteUrl: url + "/DeleteOrder",
     onBeforeSend: function (method, ajaxOptions) {
       ajaxOptions.xhrFields = {
         withCredentials: true,
@@ -451,6 +462,7 @@ const EditForm = () => {
   $("#txtNL").val(_NL);
   $("#txtOrder").attr("readonly", "true");
   $("#txtOrder").val(_oderNo);
+
   $("#txtColor").attr("readonly", "true");
   $("#txtColor").val(_color);
   $("#txtQtyTon").attr("readonly", "true");
@@ -469,54 +481,26 @@ const EditForm = () => {
   // });
 };
 
-const SaveData = () => {
-  let data = {};
-  if (data.btnSave === "submitEdit") {
-    if (parseInt(data.txtQtyXuat) > parseInt(data.txtQtyTon)) {
-      DevExpress.ui.notify(
-        {
-          message: "Sl Xuất > SL Tồn",
-          width: 450,
-        },
-        "error",
-        5000
-      );
-      return;
-    }
-  }
-  if (_stausXuat === "xuatTP") {
-    data = {
-      btnSave: "submitEdit",
-      keHang: _keHangId,
-      txtNL: _NL,
-      txtOrder: _oderNo,
-      txtColor: _color,
-      txtQty: 0,
-      txtUnit: _donVi,
-      txtQtyTon: _slTon,
-      txtQtyXuat: _slTon,
-      khoId: _idKho,
-    };
-  } else {
-    data = {
-      btnSave: $("#btnSave").val(),
-      keHang: $("#txtKeHang").val(),
-      txtNL: $("#txtNL").val(),
-      txtOrder: $("#txtOrder").val(),
-      txtColor: $("#txtColor").val(),
-      txtQty: $("#txtQty").val(),
-      txtUnit: $("#txtUnit").val(),
-      txtQtyTon: $("#txtQtyTon").val(),
-      txtQtyXuat: $("#txtQtyXuat").val(),
-      khoId: _idKho,
-    };
-  }
+const XuatTP =()=>{
+  let data={};
+  data = {
+    btnSave: "submitEdit",
+    keHang: _keHangId,
+    txtNL: _NL,
+    txtOrder: _oderNo,
+    txtColor: _color,
+    txtQty: 0,
+    txtUnit: _donVi,
+    txtQtyTon: _slTon,
+    txtQtyXuat: _slTon,
+    khoId: _idKho,
+  };
 
   $.ajax({
     type: "POST",
     data: JSON.stringify(data),
     contentType: "application/json",
-    url: "SaveKeHangToDatabaseV2",
+    url: "SaveKeHangToDatabaseV3",
     success: (res) => {
       if (res.statusErr) {
         // DevExpress.ui.notify({
@@ -535,7 +519,66 @@ const SaveData = () => {
       }
     },
   });
-};
+}
+
+const xuatBanPhan = ()=>{
+  let data = {};
+  if (data.btnSave === "submitEdit") {
+    if (parseInt(data.txtQtyXuat) > parseInt(data.txtQtyTon)) {
+      DevExpress.ui.notify(
+        {
+          message: "Sl Xuất > SL Tồn",
+          width: 450,
+        },
+        "error",
+        5000
+      );
+      return;
+    }
+  }
+
+  data = {
+    btnSave: $("#btnSave").val(),
+    keHang: $("#txtKeHang").val(),
+    txtNL: $("#txtNL").val(),
+    txtOrder: $("#txtOrder").val(),
+    txtColor: $("#txtColor").val(),
+    txtQty: $("#txtQty").val(),
+    txtUnit: $("#txtUnit").val(),
+    txtQtyTon: $("#txtQtyTon").val(),
+    txtQtyXuat: $("#txtQtyXuat").val(),
+    khoId: _idKho,
+  };
+
+  $.ajax({
+    type: "POST",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    url: "SaveKeHangToDatabaseV3",
+    success: (res) => {
+      if (res.statusErr) {
+        // DevExpress.ui.notify({
+        //     message: res.errMes,
+        //     width: 450
+        // },"success",5000), //error,success,warning
+        alert(res.errMes);
+        $("#modalAddUpdate").modal("hide");
+        location.reload();
+      } else {
+        // DevExpress.ui.notify({
+        //     message: res.errMes,
+        //     width: 450
+        // },"error",5000)
+        alert(res.errMes);
+      }
+    },
+  });
+
+}
+
+
+
+
 
 const loadTooltip = (id, targetButton) => {
   $(`#${id}`).dxTooltip({
@@ -605,7 +648,7 @@ const upload = () => {
       type: "POST",
       data: formData,
       contentType: false,
-      url: "upload",
+      url: "uploadKeHang",
       cache: false,
       processData: false,
       success: (res) => {
@@ -619,6 +662,7 @@ const upload = () => {
             "success",
             5000
           );
+          KeHangGridLoad()
         } else {
           DevExpress.ui.notify(
             {
@@ -635,33 +679,55 @@ const upload = () => {
 };
 
 $(function () {
-  _keHangId =
-    unescape(!GetURLParameter("ke"))
-      ? 'none'
-      : unescape(GetURLParameter("ke"));
+  // const a =GetURLParameter("ke");
+  _keHangId = !GetURLParameter("ke")? 'none':GetURLParameter("ke")
+   
   GetKeHangName();
 
-  $(".addButton").dxButton({
-    icon: "add",
-    text: "Nhập",
-    onClick: resetForm,
-  });
-  $(".editButton").dxButton({
-    icon: "selectall",
-    text: "Xuất Toàn Phần",
+  // $(".addButton").dxButton({
+  //   icon: "add",
+  //   text: "",
+  //   onClick: resetForm,
+  // });
+
+
+    $(".xemTonBtn").dxButton({
+    icon: "checklist",
+    text: "Xem tồn",
     onClick: function () {
-      _stausXuat = "xuatTP";
+      const  txtOrder = $('#txtOrderSearch').dxTextBox('instance').option('value');
+      const  txtMaterial = $('#txtMaterialSearch').dxTextBox('instance').option('value');
+        _txtOrder=txtOrder===""?"none":txtOrder
+        _txtMaterial=txtMaterial===""?"none":txtMaterial
+      if(_keHangId==='none'){
+     
+        if(_txtOrder==="none" && _txtMaterial==="none"){
+          alert("vui lòng chọn Order hoặc Material")
+          return
+        }
+      }
+      // _stausXuat = "xuatBP";
       KeHangGridLoad();
     },
   });
-  $(".deleteButton").dxButton({
-    icon: "unselectall",
-    text: "Xuất Bán Phần",
-    onClick: function () {
-      _stausXuat = "xuatBP";
-      KeHangGridLoad();
-    },
+
+  $('#txtOrderSearch').dxTextBox({
+    value: '',
+    showClearButton: true,
+    placeholder: 'Order',
+
   });
+
+  $('#txtMaterialSearch').dxTextBox({
+    value: '',
+    showClearButton: true,
+    placeholder: 'Material',
+    // valueChangeEvent: 'keyup',
+    // onValueChanged(data) {
+    //   emailEditor.option('value', `${data.value.replace(/\s/g, '').toLowerCase()}@corp.com`);
+    // },
+  });
+
   $(".uploadButton").dxButton({
     icon: "upload",
     text: "",
@@ -670,12 +736,12 @@ $(function () {
     },
   });
 
-  loadTooltip("tooltipAdd", "btnAdd");
-  loadTooltip("tooltipEdit", "btnEdit");
+  loadTooltip("tooltipAdd", "addButton");
+  loadTooltip("tooltipXuatToanPhan", "btnXuatTP");
+  loadTooltip("tooltipXuatBanPhan", "btnXuatBP");
   $("#btnSave").click((e) => {
     e.preventDefault();
-    SaveData();
+    xuatBanPhan();
   });
-
   // console.log(sSearch);
 });

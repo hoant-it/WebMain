@@ -81,16 +81,17 @@ router.get('/wacoal_KEHANG_Web_Load_V1',KeHangControl.wacoal_KEHANG_Web_Load_V1)
 
 // router.get('/wacoal_KHONL_Web_Load_V1/:SHEFTID',KeHangControl.wacoal_KHONL_Web_Load_V1)
 router.get('/wacoal_KHONL_Web_Load_V2/:OKEID',KeHangControl.wacoal_KHONL_Web_Load_V2)
-router.get('/wacoal_KHONL_Web_Load_V3/:OKEID',KeHangControl.wacoal_KHONL_Web_Load_V3)
+router.get('/wacoal_KHONL_Web_Load_V3/:OKEID/:ORDERNO/:MATERIAL',KeHangControl.wacoal_KHONL_Web_Load_V3)
 
 
 router.post('/SaveKeHangToDatabase',KeHangControl.SaveKeHangToDatabase)
 router.post('/SaveKeHangToDatabaseV2',KeHangControl.SaveKeHangToDatabaseV2)
+router.post('/SaveKeHangToDatabaseV3',KeHangControl.SaveKeHangToDatabaseV3)
 
 // router.get('/wacoal_KHONLXUAT_Load_By_KHONLID_web_V1/:KHONLID',KeHangControl.wacoal_KHONLXUAT_Load_By_KHONLID_web_V1)
 router.get('/wacoal_KHONLXUAT_Load_By_KHONLID_web_V2/:KHONLID',KeHangControl.wacoal_KHONLXUAT_Load_By_KHONLID_web_V2)
 
-router.post('/upload',upload.single('filename'),KeHangControl.uploadKeHangv4)
+router.post('/uploadKeHang',upload.single('filename'),KeHangControl.uploadKeHangv4)
 
 
 

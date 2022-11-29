@@ -1,7 +1,7 @@
 const db=require('../../databases/kho/KeHang.Db')
 
 module.exports.kehangLoad = async (req,res) =>{
-    res.render('kho/kehang',{
+    res.render('kho/kehangV2',{
         title:'Quản Lý Ô Kệ',
         userId:req.signedCookies.userId,
         html:"",
@@ -118,6 +118,17 @@ module.exports.SaveKeHangToDatabaseV2=async(req,res)=>{
     }
 }
 
+module.exports.SaveKeHangToDatabaseV3=async(req,res)=>{
+    let lError={statusErr:true,errMes:'Thành Công'}
+    try {
+        await db.SaveKeHangToDatabaseV3(req.body,req.signedCookies.userId)
+        res.send(lError)
+    } catch (error) {
+        lError.statusErr=false
+        lError.errMes='Lỗi '+error
+        res.send(lError)
+    }
+}
 
 
 module.exports.wacoal_KHONLXUAT_Load_By_KHONLID_web_V1=async(req,res)=>{

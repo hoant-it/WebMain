@@ -69,11 +69,13 @@ module.exports.wacoal_KHONL_Web_Load_V2 = async (params) => {
 
 module.exports.wacoal_KHONL_Web_Load_V3 = async (params) => {
   try {
-    const { OKEID } = params;
+    const { OKEID,ORDERNO,MATERIAL } = params;
     let pool = await sql.connect(sqlConfig);
     let result = await pool
       .request()
       .input("OKEID", sql.VarChar(10), OKEID)
+      .input("ORDERNO", sql.VarChar(50), ORDERNO)
+      .input("MATERIAL", sql.VarChar(50), MATERIAL)
       .execute("wacoal_KHONL_Web_Load_V3");
     return result.recordset;
   } catch (error) {
@@ -160,6 +162,50 @@ module.exports.SaveKeHangToDatabaseV2 = async (body, userName) => {
     throw error;
   }
 };
+
+
+
+module.exports.SaveKeHangToDatabaseV3 = async(body,userName)=>{
+  const {
+    btnSave,
+    keHang,
+    txtNL,
+    txtKHONL_V3,
+    txtColor,
+    txtQty,
+    txtUnit,
+    txtQtyTon,
+    txtQtyXuat,
+    khoId,
+  } = body;
+  let pool = await sql.connect(sqlConfig);
+
+  if (btnSave == "submitInsert") {
+    await pool
+      .request()
+      .input("OKEID", sql.VarChar(10), keHang)
+      .input("MATERIAL", sql.NVarChar(50), txtNL)
+      .input("ORDERNO", sql.NVarChar(50), txtKHONL_V3)
+      .input("COLOR", sql.NVarChar(50), txtColor)
+      .input("QUANTITY", sql.Numeric(9, 3), txtQty)
+      .input("UNIT", sql.NVarChar(50), txtUnit)
+      .input("UserName", sql.NVarChar(50), userName)
+      .execute("wacoal_KeHang_Insert_web_v2");
+  }
+
+  if (btnSave == "submitEdit") {
+    await pool
+    .request()
+    .input("KHONLID", sql.NVarChar(100), khoId)
+    .input("QUANTITYXUAT", sql.Numeric(9, 3), txtQtyXuat)
+    .input("UserName", sql.NVarChar(50), userName)
+    .execute("wacoal_KHONLXUAT_Insert_Web_V3"); 
+  }
+
+
+  
+
+}
 
 module.exports.wacoal_KHONLXUAT_Load_By_KHONLID_web_V1 = async (params) => {
   try {

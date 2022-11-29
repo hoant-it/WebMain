@@ -38,3 +38,13 @@ module.exports.CatLinningCHCWacoalCad= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.CatLinningCat= async(req,res) =>{
+    res.render('Cat/CatLinningCat', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+
