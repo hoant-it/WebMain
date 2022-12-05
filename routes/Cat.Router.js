@@ -102,6 +102,7 @@ router.get('/CatSDQtCad',CatControl.CatSDQtCad)
 router.get('/LamBangHDGiacSD',CatQTGiacSDControl.LamBangHDGiacSD)
 router.get('/CadCaiDatDuLieuMoiWacoalCad',CatQTGiacSDControl.CadCaiDatDuLieuMoiWacoalCad)
 router.get('/CadCaiDatDuLieuMoiGemini',CatQTGiacSDControl.CadCaiDatDuLieuMoiGemini)
+router.get('/GhiChiThiGiacSoDo',CatQTGiacSDControl.GhiChiThiGiacSoDo)
 
 
 module.exports=router;

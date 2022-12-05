@@ -22,3 +22,13 @@ module.exports.CadCaiDatDuLieuMoiGemini= async(req,res) =>{
     })
 }
 
+module.exports.GhiChiThiGiacSoDo= async(req,res) =>{
+    res.render('Cat/GhiChiThiGiacSoDo', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+
+

@@ -313,8 +313,9 @@ module.exports.uploadKeHang = async (filename, userId) => {
 
 module.exports.uploadKeHangv4 = async (filename, userId) => {
   let lError = { errMes: "thành công", statusErr: true };
+  let pool = await sql.connect(sqlConfig);
   try {
-    let pool = await sql.connect(sqlConfig);
+   
     const filePath = `./public/uploads/${filename}`;
     const workbook = await xlsx.readFile(filePath);
     const sheet_name_list = workbook.SheetNames;
@@ -325,7 +326,7 @@ module.exports.uploadKeHangv4 = async (filename, userId) => {
     tKHONL_V3.columns.add("MATERIAL", sql.NVarChar(50));
     tKHONL_V3.columns.add("COLOR", sql.NVarChar(50));
     tKHONL_V3.columns.add("OKEID", sql.VarChar(10));
-    tKHONL_V3.columns.add("CTN", sql.Int);
+    tKHONL_V3.columns.add("CTN", sql.NVarChar(10));
     tKHONL_V3.columns.add("QUANTITY", sql.Numeric(9,3));
     tKHONL_V3.columns.add("UNIT", sql.NVarChar(50));
     tKHONL_V3.columns.add("USERCREATE", sql.NVarChar(50));
@@ -381,7 +382,7 @@ module.exports.uploadKeHangv4 = async (filename, userId) => {
       let MATERIAL = contentValue.MATERIAL;
      
       let COLOR = contentValue.COLOR;
-      let CTN = contentValue.CTN;
+      let CTN = contentValue.CTN.toString();
       let QUANTITY = contentValue.QUANTITY;
       let UNIT = contentValue.UNIT;
       let OKEID=contentValue.OKEID
