@@ -82,3 +82,12 @@ module.exports.QTUICWX = async(req, res) => {
     })
 }
 
+module.exports.DapLoGo = async(req, res) => {
+    res.render('Cat/DapLoGo', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+

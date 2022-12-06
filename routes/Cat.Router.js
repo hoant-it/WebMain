@@ -70,6 +70,10 @@ router.get('/Ren_CatTheoBangHuongDanVaKiemTraMauCat',CatRenControl.Ren_CatTheoBa
 // QT UI CWX
 router.get('/QTUICWX',CatControl.QTUICWX)
 
+//QT dập logo
+router.get('/DapLoGo',CatControl.DapLoGo)
+
+
 
 //So do quy trinh vai
 router.get('/SDQTCatVai',CatVaiControl.SDQTVai)
