@@ -78,9 +78,10 @@ const KeHangGridLoad = () => {
           enabled: true
       },
       onExporting(e) {
+        const general= new generals();
           e.component.beginUpdate();
           e.component.columnOption('STT', 'visible', false);
-          e.component.columnOption('Kho', 'visible', false);
+          // e.component.columnOption('Kho', 'visible', false);
           e.component.columnOption('Kệ', 'visible', false);
           e.component.columnOption('Ô Kệ', 'visible', false);
           e.component.columnOption('SL Xuất', 'visible', false);
@@ -106,7 +107,7 @@ const KeHangGridLoad = () => {
             autoFilterEnabled: true,
           }).then(() => {
             workbook.xlsx.writeBuffer().then((buffer) => {
-              saveAs(new Blob([buffer], { type: 'application/octet-stream' }), `Oke.xlsx`);
+              saveAs(new Blob([buffer], { type: 'application/octet-stream' }), `Oke_${general.getDateTime()}.xlsx`);
             });
           });
           e.cancel = true;
@@ -154,11 +155,11 @@ const KeHangGridLoad = () => {
           visible: false,
         },
      
-        {
-          caption: "Kho",
-          alignment: "left",
-          dataField: "KHO",
-        },
+        // {
+        //   caption: "Kho",
+        //   alignment: "left",
+        //   dataField: "KHO",
+        // },
         {
           caption: "Kệ",
           alignment: "left",
@@ -283,7 +284,7 @@ const KeHangGridLoad = () => {
     .dxDataGrid("instance");
 };
 const LSXuatGridLoad = (KHONLID) => {
-  var url = "wacoal_KHONLXUAT_Load_By_KHONLID_web_V2/";
+  var url = "wacoal_KHONLXUAT_Load_By_KHONLID_web_V3/";
   var listTinhChi = DevExpress.data.AspNet.createStore({
     key: "ID",
     loadUrl: url + KHONLID,

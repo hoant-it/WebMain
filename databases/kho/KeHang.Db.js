@@ -234,6 +234,23 @@ module.exports.wacoal_KHONLXUAT_Load_By_KHONLID_web_V2 = async (params) => {
   }
 };
 
+module.exports.wacoal_KHONLXUAT_Load_By_KHONLID_web_V3 = async (params) => {
+  try {
+    const { KHONLID } = params;
+    let pool = await sql.connect(sqlConfig);
+    let result = await pool
+      .request()
+      .input("KHONLID", sql.BigInt, KHONLID)
+      .execute("wacoal_KHONLXUAT_Load_By_KHONLID_web_V3");
+    return result.recordset;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+
 module.exports.uploadKeHang = async (filename, userId) => {
   let lError = { errMes: "thành công", statusErr: true };
   try {
@@ -321,7 +338,7 @@ module.exports.uploadKeHangv4 = async (filename, userId) => {
     const sheet_name_list = workbook.SheetNames;
     const workbookHeaders = await xlsx.readFile(filePath, { sheetRows: 1 });
     let tKHONL_V3= new sql.Table();
-    tKHONL_V3.columns.add("ID", sql.NVarChar(200));
+    tKHONL_V3.columns.add("ID", sql.BigInt);
     tKHONL_V3.columns.add("ORDERNO", sql.NVarChar(50));
     tKHONL_V3.columns.add("MATERIAL", sql.NVarChar(50));
     tKHONL_V3.columns.add("COLOR", sql.NVarChar(50));

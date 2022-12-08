@@ -90,6 +90,7 @@ router.post('/SaveKeHangToDatabaseV3',KeHangControl.SaveKeHangToDatabaseV3)
 
 // router.get('/wacoal_KHONLXUAT_Load_By_KHONLID_web_V1/:KHONLID',KeHangControl.wacoal_KHONLXUAT_Load_By_KHONLID_web_V1)
 router.get('/wacoal_KHONLXUAT_Load_By_KHONLID_web_V2/:KHONLID',KeHangControl.wacoal_KHONLXUAT_Load_By_KHONLID_web_V2)
+router.get('/wacoal_KHONLXUAT_Load_By_KHONLID_web_V3/:KHONLID',KeHangControl.wacoal_KHONLXUAT_Load_By_KHONLID_web_V3)
 
 router.post('/uploadKeHang',upload.single('filename'),KeHangControl.uploadKeHangv4)
 

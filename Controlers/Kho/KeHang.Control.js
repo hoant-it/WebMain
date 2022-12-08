@@ -157,6 +157,19 @@ module.exports.wacoal_KHONLXUAT_Load_By_KHONLID_web_V2=async(req,res)=>{
     }
 }
 
+module.exports.wacoal_KHONLXUAT_Load_By_KHONLID_web_V3=async(req,res)=>{
+    try {
+        let result= await db.wacoal_KHONLXUAT_Load_By_KHONLID_web_V3(req.params)
+        res.json({
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            data:[]
+        })
+    }
+}
+
 
 
 // module.exports.uploadKeHang = async(req,res)=>{
