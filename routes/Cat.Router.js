@@ -73,7 +73,7 @@ router.get('/QTUICWX',CatControl.QTUICWX)
 //QT dập logo
 router.get('/DapLoGo',CatControl.DapLoGo)
 
-
+router.get('/DapName',CatControl.DapName)
 
 //So do quy trinh vai
 router.get('/SDQTCatVai',CatVaiControl.SDQTVai)

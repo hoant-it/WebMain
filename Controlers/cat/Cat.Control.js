@@ -90,4 +90,12 @@ module.exports.DapLoGo = async(req, res) => {
     })
 }
 
+module.exports.DapName = async(req, res) => {
+    res.render('Cat/DapName', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 
