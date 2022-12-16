@@ -10,6 +10,8 @@ const OrderTinhChiControl=require('../Controlers/Kho/OrderTinhChi.Control')
 const KeHangControl=require('../Controlers/Kho/KeHang.Control');
 const { password } = require('../databases/dbconfig');
 const datChiControl= require('../Controlers/Kho/Datchi.Control')
+const giaCongDayVaiControl= require('../Controlers/Kho/GiaCongDayVai.Control');
+
 //Order
 router.get('/Order',orderControl.OrderLoad);
 router.get('/DONHANGITEM_3_MY_SearchBox_Web_V1',orderControl.DONHANGITEM_3_MY_SearchBox_Web_V1)
@@ -169,6 +171,15 @@ router.get('/wacoal_Datchi_MauMH_Load_Web_V1/:MAHANG',datChiControl.wacoal_Datch
 router.get('/wacoal_CHUYEN_Load_Web_V1',datChiControl.wacoal_CHUYEN_Load_Web_V1)
 router.get('/wacoal_DatChi_MH_Mau_SL_Web_V1/:MAHANG/:MAUMH/:Qty',datChiControl.wacoal_DatChi_MH_Mau_SL_Web_V1)
 router.get('/wacoal_TinhChi_MaHang_Mau_SL_V2/:MAHANG/:MAUMH/:Qty',datChiControl.wacoal_TinhChi_MaHang_Mau_SL_V2)
+
+//Gia Cong Day Vai
+router.get('/giacongdayvai',giaCongDayVaiControl.GiaCongDayVaiLoad)
+router.post('/giacongdayvai',upload.single('filename'), giaCongDayVaiControl.GiaCongDayVaiInput)
+router.get('/wacoal_GiaCongDayVai_MaHang_V1/:MAHANG', giaCongDayVaiControl.wacoal_GiaCongDayVai_MaHang_V1)
+router.get('/wacoal_MaHang_GCDV_Select_V1', giaCongDayVaiControl.wacoal_MaHang_GCDV_Select_V1)
+router.get('/wacoal_GiaCongDayVai_MaHang_CT_V1/:MAHANG', giaCongDayVaiControl.wacoal_GiaCongDayVai_MaHang_CT_V1)
+
+
 
 
 module.exports=router;
