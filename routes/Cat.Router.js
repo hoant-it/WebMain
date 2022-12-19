@@ -81,6 +81,7 @@ router.get('/KhoiDongMay',CatVaiControl.KhoiDongMay)
 router.get('/ChuanBiBanVai',CatVaiControl.ChuanBiBanVai)
 router.get('/CatVaiChinhHuongCatWacoalCard',CatVaiControl.CatVaiChinhHuongCatWacoalCard)
 router.get('/CatVaiChinhHuongCatGeMiNi',CatVaiControl.CatVaiChinhHuongCatGeMiNi)
+router.get('/CatVai',CatVaiControl.CatVai)
 
 
 
@@ -107,6 +108,7 @@ router.get('/LamBangHDGiacSD',CatQTGiacSDControl.LamBangHDGiacSD)
 router.get('/CadCaiDatDuLieuMoiWacoalCad',CatQTGiacSDControl.CadCaiDatDuLieuMoiWacoalCad)
 router.get('/CadCaiDatDuLieuMoiGemini',CatQTGiacSDControl.CadCaiDatDuLieuMoiGemini)
 router.get('/GhiChiThiGiacSoDo',CatQTGiacSDControl.GhiChiThiGiacSoDo)
+router.get('/InSoDoGemini',CatQTGiacSDControl.InSoDoGemini)
 
 
 module.exports=router;

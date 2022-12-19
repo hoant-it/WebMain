@@ -37,3 +37,11 @@ module.exports.CatVaiChinhHuongCatGeMiNi= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.CatVai= async(req,res) =>{
+    res.render('Cat/CatVai', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

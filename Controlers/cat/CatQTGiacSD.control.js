@@ -30,5 +30,13 @@ module.exports.GhiChiThiGiacSoDo= async(req,res) =>{
     })
 }
 
+module.exports.InSoDoGemini= async(req,res) =>{
+    res.render('Cat/InSoDoGemini', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 
 
