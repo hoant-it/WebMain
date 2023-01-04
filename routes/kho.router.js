@@ -11,6 +11,7 @@ const KeHangControl=require('../Controlers/Kho/KeHang.Control');
 const { password } = require('../databases/dbconfig');
 const datChiControl= require('../Controlers/Kho/Datchi.Control')
 const giaCongDayVaiControl= require('../Controlers/Kho/GiaCongDayVai.Control');
+const khoOrderTinhChiHisControl= require('../Controlers/Kho/KhoOrderTinhChiHis.Control')
 
 //Order
 router.get('/Order',orderControl.OrderLoad);
@@ -66,13 +67,20 @@ router.get('/GIAOHANG',QTQLNVLControl.GIAOHANG)
 router.get('/QLNVLDU',QTQLNVLControl.QLNVLDU)
 
 //Tinh chi theo Order
-router.get('/KhoOderTinhChiGridViewDev',OrderTinhChiControl.OrderTinhChiLoad)
+// router.get('/KhoOderTinhChiGridViewDev',OrderTinhChiControl.OrderTinhChiLoad)
 router.get('/Khowacoal_KHACHHANG_load_Web_V1',OrderTinhChiControl.Khowacoal_KHACHHANG_load_Web_V1)
 router.get('/wacoal_DONHANGHEAD_Load_Web_V1',OrderTinhChiControl.wacoal_DONHANGHEAD_Load_Web_V1)
 router.get('/khoOrderTinhchiGridviewMaHangMiss/:Order/:KhachHang',OrderTinhChiControl.khoOrderTinhchiGridviewMaHangMiss)
 router.get('/Order_TinhChi_Web_V4/:Order/:KhachHang',OrderTinhChiControl.Order_TinhChi_Web_V4)
 router.post('/OrderTinhChiPost',OrderTinhChiControl.OrderTinhChiPost)
 router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4/:Order/:KhachHang',OrderTinhChiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4)
+
+//tinh chi theo order V2
+// router.get('/KhoOderTinhChiGridViewDevV2',OrderTinhChiControl.OrderTinhChiLoadV2)
+router.get('/KhoOderTinhChiGridViewDev',OrderTinhChiControl.OrderTinhChiLoadV2)
+router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V5/:order/:groupKH/:datchiStatus',OrderTinhChiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V5)
+router.get('/Order_TinhChi_Web_V5/:order/:groupKH/:datchiStatus',OrderTinhChiControl.Order_TinhChi_Web_V5)
+router.post('/wacoal_KHOCHIHEADER_Load_Web_V1',OrderTinhChiControl.wacoal_KHOCHIHEADER_Load_Web_V1)
 
 //ke hang
 router.get('/kehang',KeHangControl.kehangLoad)
@@ -179,7 +187,12 @@ router.get('/wacoal_GiaCongDayVai_MaHang_V1/:MAHANG', giaCongDayVaiControl.wacoa
 router.get('/wacoal_MaHang_GCDV_Select_V1', giaCongDayVaiControl.wacoal_MaHang_GCDV_Select_V1)
 router.get('/wacoal_GiaCongDayVai_MaHang_CT_V1/:MAHANG', giaCongDayVaiControl.wacoal_GiaCongDayVai_MaHang_CT_V1)
 
-
-
+//Order tinh chi His
+router.get('/ordertinhchihis',khoOrderTinhChiHisControl.OrderTinhChiHisLoad)
+router.get('/KHOCHIHEADER_ORDERNO_load_web_wacoal_v1',khoOrderTinhChiHisControl.KHOCHIHEADER_ORDERNO_load_web_wacoal_v1)
+router.get('/KHOCHIHEADER_GROUPKH_Load_web_wacoal_V1/:order',khoOrderTinhChiHisControl.KHOCHIHEADER_GROUPKH_Load_web_wacoal_V1)
+router.get('/KHOCHIDETAIL_Load_By_Order_GroupKH_web_wacoal_V1/:order/:groupKH',khoOrderTinhChiHisControl.KHOCHIDETAIL_Load_By_Order_GroupKH_web_wacoal_V1)
+router.get('/KHOCHIDETAILGROUP_Load_web_wacoal_V1/:order/:groupKH',khoOrderTinhChiHisControl.KHOCHIDETAILGROUP_Load_web_wacoal_V1)
+router.post('/KHOCHIHEADER_TIMECREATE_USERCREATE_load_web_wacoal_V1',khoOrderTinhChiHisControl.KHOCHIHEADER_TIMECREATE_USERCREATE_load_web_wacoal_V1)
 
 module.exports=router;

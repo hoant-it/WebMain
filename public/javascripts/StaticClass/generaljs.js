@@ -41,6 +41,58 @@ class generals{
          return dateTime;
       }
 
+       formatHeaderRowExcel=(sheetName)=>{
+          for(let i=1;i<topRowCell-1;i++){
+            sheetName.getRow(i).getCell(1).font = {
+              bold: true,
+              size: 14,
+              // underline: "double",
+            };
+            sheetName.getRow(i).getCell(2).font = {
+              bold: true,
+              size: 14,
+              // underline: "double",
+            };
+        
+          }
+        }
+
+         setAlternatingRowsBackgroundExcel(gridCell, excelCell) {
+          if (gridCell.rowType === "header" || gridCell.rowType === "data") {
+            if (excelCell.fullAddress.row % 2 === 0) {
+              excelCell.fill = {
+                type: "pattern",
+                pattern: "solid",
+                fgColor: { argb: "D3D3D3" },
+                bgColor: { argb: "D3D3D3" },
+              };
+            
+            }
+            excelCell.font={
+              size:'11',
+              name:'EUDC'
+            }
+            excelCell.border = {
+              top: {style:'thin', color: {argb:'00000000'}},
+              left: {style:'thin', color: {argb:'00000000'}},
+              bottom: {style:'thin', color: {argb:'00000000'}},
+              right: {style:'thin', color: {argb:'00000000'}}
+            };
+            
+          }
+        }
+    
+         setHeaderRowsBackgroundExcel(gridCell, excelCell) {
+          if (gridCell.rowType === "header") {
+            excelCell.fill = {
+              type: "pattern",
+              pattern: "solid",
+              fgColor: { argb: "D3D3D3" },
+              bgColor: { argb: "D3D3D3" },
+            };
+          }
+        }
+
     
 
 

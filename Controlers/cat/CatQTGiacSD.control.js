@@ -30,6 +30,24 @@ module.exports.GhiChiThiGiacSoDo= async(req,res) =>{
     })
 }
 
+
+
+module.exports.GiacSoDoKTDMWacoalCad= async(req,res) =>{
+    res.render('Cat/GiacSoDoKTDMWacoalCad', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+module.exports.GiacSoDoKTDMGemini= async(req,res) =>{
+    res.render('Cat/GiacSoDoKTDMGemini', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 module.exports.InSoDoGemini= async(req,res) =>{
     res.render('Cat/InSoDoGemini', {
         title: 'Express',
@@ -38,5 +56,20 @@ module.exports.InSoDoGemini= async(req,res) =>{
     })
 }
 
+module.exports.InSoDoWacoalCad= async(req,res) =>{
+    res.render('Cat/InSoDoWacoalCad', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+module.exports.CatSoDoToMauBangTienDoGiacSoDoGiaoXeSoDo= async(req,res) =>{
+    res.render('Cat/CatSoDoToMauBangTienDoGiacSoDoGiaoXeSoDo', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
 
 

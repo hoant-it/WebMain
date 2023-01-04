@@ -16,6 +16,6 @@ router.get('/LuuTLTK',QTKTControl.LuuTLTK)
 router.get('/CungCapTLKT',QTKTControl.CungCapTLKT)
 router.get('/HopZizenkentoLan1GiaiThichMaHang',QTKTControl.HopZizenkentoLan1GiaiThichMaHang)
 
-
+router.get('/LineLeaderChuyenMayMau',QTKTControl.LineLeaderChuyenMayMau)
 
 module.exports=router;

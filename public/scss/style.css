@@ -16,14 +16,22 @@
 }
 
 .loader.hidden {
-  animation: fadeOut 1s;
-  animation-fill-mode: forwards;
+  -webkit-animation: fadeOut 1s;
+          animation: fadeOut 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 /* .loader.active {
   opacity: 1;
  visibility: visible;
 } */
+@-webkit-keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 @keyframes fadeOut {
   100% {
     opacity: 0;
@@ -205,7 +213,10 @@
   color: #333;
 }
 
-
-
+.dx-button-mode-contained.dx-button-warning {
+  background-color: #ffc107;
+  border-color: transparent;
+  color: #fff;
+}
 
 /*# sourceMappingURL=style.css.map *//*# sourceMappingURL=style.css.map */

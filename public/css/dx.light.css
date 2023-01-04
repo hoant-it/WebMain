@@ -2575,6 +2575,10 @@
   color: #fff;
 }
 
+
+
+
+
 .dx-button-mode-contained.dx-button-success .dx-icon {
   color: #fff;
 }
@@ -23695,6 +23699,9 @@ input.dx-hidden {
 .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-danger {
   background-color: #c9302c;
 }
+/* .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-warning {
+  background-color: #ffc107;
+} */
 
 .dx-device-mobile .dx-htmleditor-toolbar .dx-htmleditor-toolbar-separator,
 .dx-htmleditor-toolbar .dx-htmleditor-toolbar-separator {

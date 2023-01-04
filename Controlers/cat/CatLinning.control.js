@@ -47,4 +47,12 @@ module.exports.CatLinningCat= async(req,res) =>{
     })
 }
 
+module.exports.BocTapPhanMauCatLinning= async(req,res) =>{
+    res.render('Cat/BocTapPhanMauCatLinning', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 

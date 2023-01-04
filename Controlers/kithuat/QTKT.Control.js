@@ -87,6 +87,14 @@ module.exports.QTKTLoad = async (req,res) =>{
     })
   }
 
+  module.exports.LineLeaderChuyenMayMau = async (req,res) =>{
+    res.render('kithuat/LineLeaderChuyenMayMau',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+
   
 
   

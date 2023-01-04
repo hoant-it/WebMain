@@ -640,6 +640,37 @@ const GridviewMaHangLoad = (oderNo,khachHang) => {
         export:{
             enabled: true
         },
+        focusedRowEnabled: true,
+        scrolling: {
+            mode: "virtual"
+        },
+          // rowDragging:{
+        //     data: 1,
+        //     group: "tasksGroup",
+        //     onAdd: onAdd
+        // },
+        // filterRow: {
+        //     visible: true,
+        //     applyFilter: "auto"
+        // },
+        // remoteOperations: true,   
+        // searchPanel: {
+        //     visible: true,
+        //     highlightCaseSensitive: true,
+        //     // width: 240,
+        //     // placeholder: "Search..."
+        // },
+        // headerFilter: {
+        //     visible: false
+        // },
+        // groupPanel: {
+        //     visible: false
+        // },
+  
+        //phan trang
+        // paging: {
+        //     pageSize: 10
+        // },
         onExporting: function(e) {
 
             console.log("exportting");
@@ -686,36 +717,8 @@ const GridviewMaHangLoad = (oderNo,khachHang) => {
             });
             e.cancel = true;
           },
-        focusedRowEnabled: true,
-        // rowDragging:{
-        //     data: 1,
-        //     group: "tasksGroup",
-        //     onAdd: onAdd
-        // },
-        // filterRow: {
-        //     visible: true,
-        //     applyFilter: "auto"
-        // },
-        // remoteOperations: true,   
-        // searchPanel: {
-        //     visible: true,
-        //     highlightCaseSensitive: true,
-        //     // width: 240,
-        //     // placeholder: "Search..."
-        // },
-        // headerFilter: {
-        //     visible: false
-        // },
-        // groupPanel: {
-        //     visible: false
-        // },
-        scrolling: {
-            mode: "virtual"
-        },
-        //phan trang
-        // paging: {
-        //     pageSize: 10
-        // },
+      
+      
         columns: [
             {
                 caption: "MÃ HÀNG",

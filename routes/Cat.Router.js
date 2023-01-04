@@ -92,6 +92,7 @@ router.get('/CatLinningChuanBiVai',CatLinningControl.CatLinningChuanBiVai)
 router.get('/CatLinningCHCGeminiCad',CatLinningControl.CatLinningCHCGeminiCad)
 router.get('/CatLinningCHCWacoalCad',CatLinningControl.CatLinningCHCWacoalCad)
 router.get('/CatLinningCat',CatLinningControl.CatLinningCat)
+router.get('/BocTapPhanMauCatLinning',CatLinningControl.BocTapPhanMauCatLinning)
 
 // trai vai
 router.get('/SDTraivai',catTraiVaiControl.SDTraivai)
@@ -109,6 +110,12 @@ router.get('/CadCaiDatDuLieuMoiWacoalCad',CatQTGiacSDControl.CadCaiDatDuLieuMoiW
 router.get('/CadCaiDatDuLieuMoiGemini',CatQTGiacSDControl.CadCaiDatDuLieuMoiGemini)
 router.get('/GhiChiThiGiacSoDo',CatQTGiacSDControl.GhiChiThiGiacSoDo)
 router.get('/InSoDoGemini',CatQTGiacSDControl.InSoDoGemini)
+router.get('/GiacSoDoKTDMGemini',CatQTGiacSDControl.GiacSoDoKTDMGemini)
+router.get('/GiacSoDoKTDMWacoalCad',CatQTGiacSDControl.GiacSoDoKTDMWacoalCad)
+router.get('/InSoDoWacoalCad',CatQTGiacSDControl.InSoDoWacoalCad)
+router.get('/CatSoDoToMauBangTienDoGiacSoDoGiaoXeSoDo',CatQTGiacSDControl.CatSoDoToMauBangTienDoGiacSoDoGiaoXeSoDo)
+
+
 
 
 module.exports=router;

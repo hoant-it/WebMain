@@ -29,8 +29,9 @@
   }
 }
 @media (min-width: 768px) {
-  @supports (position: sticky) {
+  @supports ((position: -webkit-sticky) or (position: sticky)) {
     .bd-navbar {
+      position: -webkit-sticky;
       position: sticky;
       top: 0;
       z-index: 1071;
@@ -308,8 +309,9 @@
   padding-bottom: 1.5rem;
   font-size: 0.875rem;
 }
-@supports (position: sticky) {
+@supports ((position: -webkit-sticky) or (position: sticky)) {
   .bd-toc {
+    position: -webkit-sticky;
     position: sticky;
     top: 4rem;
     height: calc(100vh - 4rem);
@@ -346,8 +348,9 @@
   .bd-sidebar {
     border-right: 1px solid rgba(0, 0, 0, 0.1);
   }
-  @supports (position: sticky) {
+  @supports ((position: -webkit-sticky) or (position: sticky)) {
     .bd-sidebar {
+      position: -webkit-sticky;
       position: sticky;
       top: 4rem;
       z-index: 1000;
@@ -368,7 +371,7 @@
   margin-left: -15px;
 }
 @media (min-width: 768px) {
-  @supports (position: sticky) {
+  @supports ((position: -webkit-sticky) or (position: sticky)) {
     .bd-links {
       max-height: calc(100vh - 9rem);
       overflow-y: auto;
@@ -1193,7 +1196,10 @@
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .bd-placeholder-img-lg {
@@ -1454,13 +1460,19 @@
 .language-sh::before {
   color: #009;
   content: "$ ";
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .language-powershell::before {
   color: #009;
   content: "PM> ";
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .anchorjs-link {
