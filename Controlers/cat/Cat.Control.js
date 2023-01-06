@@ -7,6 +7,14 @@ module.exports.CatGKT = async(req, res) => {
     })
 }
 
+module.exports.QTSaoPattern = async(req, res) => {
+    res.render('Cat/QTSaoPattern', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 module.exports.CatLHKHCard = async(req, res) => {
     res.render('Cat/CatLLKHCard', {
         title: 'Express',
@@ -97,5 +105,23 @@ module.exports.DapName = async(req, res) => {
         html: ''
     })
 }
+
+module.exports.DoiUngGiacSoDo = async(req, res) => {
+    res.render('Cat/DoiUngGiacSoDo', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+module.exports.LLKHThieuDM = async(req, res) => {
+    res.render('Cat/LLKHThieuDM', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+
 
 

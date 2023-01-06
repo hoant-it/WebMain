@@ -110,14 +110,14 @@ const searchBoxNam=() =>{
                 checkStatusDatchi();
             // var $result = $(".current-value");
 
-            if (data.value !== null) {
-                var selectedItem = data.component.option('selectedItem');
-                // $result.text(selectedItem.Name + " (ID: " + selectedItem.ID + ")");
-                console.log(" (ID: " + selectedItem.MAKH + ")")
-            } else {
-                console.log("Not selected")
-                // $result.text("Not selected");
-            }
+            // if (data.value !== null) {
+            //     var selectedItem = data.component.option('selectedItem');
+            //     // $result.text(selectedItem.Name + " (ID: " + selectedItem.ID + ")");
+            //     console.log(" (ID: " + selectedItem.MAKH + ")")
+            // } else {
+            //     console.log("Not selected")
+            //     // $result.text("Not selected");
+            // }
         },
     }).dxSelectBox("instance");
 }

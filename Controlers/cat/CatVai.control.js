@@ -45,3 +45,11 @@ module.exports.CatVai= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.BocTapPhanMauVai= async(req,res) =>{
+    res.render('Cat/BocTapPhanMauVai', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

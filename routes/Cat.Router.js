@@ -18,6 +18,16 @@ router.get('/CatMasterPattern',CatControl.CatMasterPattern)
 //CatGKT_Router
 router.get('/GKT',CatControl.CatGKT)
 
+router.get('/QTSaoPattern',CatControl.QTSaoPattern)
+
+router.get('/DoiUngGiacSoDo',CatControl.DoiUngGiacSoDo)
+
+router.get('/LLKHThieuDM',CatControl.LLKHThieuDM)
+
+
+
+
+
 // QTGIAOCHUYEN
 router.get('/QTGIAOCHUYEN',CatControl.QTGIAOCHUYEN)
 
@@ -82,6 +92,7 @@ router.get('/ChuanBiBanVai',CatVaiControl.ChuanBiBanVai)
 router.get('/CatVaiChinhHuongCatWacoalCard',CatVaiControl.CatVaiChinhHuongCatWacoalCard)
 router.get('/CatVaiChinhHuongCatGeMiNi',CatVaiControl.CatVaiChinhHuongCatGeMiNi)
 router.get('/CatVai',CatVaiControl.CatVai)
+router.get('/BocTapPhanMauVai',CatVaiControl.BocTapPhanMauVai)
 
 
 
