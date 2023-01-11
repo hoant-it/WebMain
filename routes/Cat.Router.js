@@ -24,6 +24,11 @@ router.get('/DoiUngGiacSoDo',CatControl.DoiUngGiacSoDo)
 
 router.get('/LLKHThieuDM',CatControl.LLKHThieuDM)
 
+router.get('/HuyOrder',CatControl.HuyOrder)
+
+router.get('/DatThemNL',CatControl.DatThemNL)
+
+
 
 
 

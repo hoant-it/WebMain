@@ -122,6 +122,24 @@ module.exports.LLKHThieuDM = async(req, res) => {
     })
 }
 
+module.exports.HuyOrder = async(req, res) => {
+    res.render('Cat/HuyOrder', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+module.exports.DatThemNL = async(req, res) => {
+    res.render('Cat/DatThemNL', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+
+
 
 
 

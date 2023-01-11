@@ -1,9 +1,12 @@
 module.exports.QTQLNVLLoad = async(req,res) =>{
-    res.render('Kho/QTQLNVL',{
+
+
+    res.status(200).render('Kho/QTQLNVL',{
         title:'QTQL Nguyên Liệu',
         userId:req.signedCookies.userId,
        html:''
     })
+
     }
 
     module.exports.LienLacThieuDu= async(req, res) =>{
