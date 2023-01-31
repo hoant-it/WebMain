@@ -95,6 +95,14 @@ module.exports.QTKTLoad = async (req,res) =>{
     })
   }
 
+  module.exports.HopZizenkentoLan2 = async (req,res) =>{
+    res.render('kithuat/HopZizenkentoLan2',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+
   
 
   

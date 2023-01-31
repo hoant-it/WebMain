@@ -18,4 +18,6 @@ router.get('/HopZizenkentoLan1GiaiThichMaHang',QTKTControl.HopZizenkentoLan1Giai
 
 router.get('/LineLeaderChuyenMayMau',QTKTControl.LineLeaderChuyenMayMau)
 
+router.get('/HopZizenkentoLan2',QTKTControl.HopZizenkentoLan2)
+
 module.exports=router;
