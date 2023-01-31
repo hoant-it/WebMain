@@ -117,3 +117,11 @@ module.exports.Ren_CatTheoBangHuongDanVaKiemTraMauCat= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.LamDaoCatRen= async(req,res) =>{
+    res.render('Cat/LamDaoCatRen', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

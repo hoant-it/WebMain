@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Nhập Xuất Kho</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="xcontentid">
+                <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="nhap-tab" data-toggle="tab" href="#nhap" role="tab"
+                            aria-controls="nhap" aria-selected="true">Nhập Kho</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="xuat-tab" data-toggle="tab" href="#xuat" role="tab" aria-controls="xuat"
+                            aria-selected="false">Xuất Kho</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="nhap" role="tabpanel" aria-labelledby="nhap-tab">
+                       
+                            <div class="dx-field">
+                                <div class="dx-field-label">Loại Chỉ</div>
+                                <div class="dx-field-value">
+                                    <div id="searchBoxLoaiChiNhap"></div>
+                                </div>
+                            </div>
+                       
+                 
+                        <div class="dx-field">
+                            <div class="dx-field-label">Màu Chỉ</div>
+                            <div class="dx-field-value">
+                                <div id="searchBoxMauChiNhap"></div>
+                            </div>
+                        </div>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Số Lượng Nhập (Cuộn)</div>
+                            <div class="dx-field-value">
+                                <div id="numberNhap"></div>
+                            </div>
+                        </div>
+
+                        <div class="dx-field">
+                            <div class="dx-field-value">
+                               <div id="btnNhap"></div>
+                            </div>
+                        </div>
+
+                     
+
+                     
+
+                        <!-- <div id="GridOrderDraft"></div> -->
+                        <div class="loadpanel"></div>
+                    </div>
+                    <div class="tab-pane fade" id="xuat" role="tabpanel" aria-labelledby="xuat-tab">
+                        <!-- <div class="dx-field">
+                            <div class="dx-field-label">Mã Hàng</div>
+                            <div class="dx-field-value">
+                                <div id="searchBoxXuatMH"></div>
+                            </div>
+                        </div> -->
+                        <div class="dx-field">
+                            <div class="dx-field-label">Loại Chỉ</div>
+                            <div class="dx-field-value">
+                                <div id="searchLoaiChiXuat"></div>
+                            </div>
+                        </div>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Màu Chỉ</div>
+                            <div class="dx-field-value">
+                                <div id="searchMauChiXuat"></div>
+                            </div>
+                        </div>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Số Lượng Xuất (Cuộn)</div>
+                            <div class="dx-field-value">
+                                <div id="numberXuat"></div>
+                            </div>
+                        </div>
+                        <div class="dx-field">
+                            <div class="dx-field-value">
+                               <div id="btnXuat"></div>
+                            </div>
+                        </div>
+                      
+                        <div class="loadpanelCT"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div id="tooltipUpload">Nhập File Excel</div> -->
+
+<script src="/javascripts/kho/XuatNhapKhojs.js"></script>

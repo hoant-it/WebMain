@@ -53,3 +53,11 @@ module.exports.BocTapPhanMauVai= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.KiemHangChiaSoLuong= async(req,res) =>{
+    res.render('Cat/KiemHangChiaSoLuong', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

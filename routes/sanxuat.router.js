@@ -19,4 +19,8 @@ router.get('/SepKHSXChinhThuc',QTSXControl.SepKHSXChinhThuc);
 //XacNhanBaLance
 router.get('/XacNhanBaLance',QTSXControl.XacNhanBaLance);
 
+router.get('/PhatHanhKHSX',QTSXControl.PhatHanhKHSX);
+
+
+
 module.exports=router;

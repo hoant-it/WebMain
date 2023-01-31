@@ -57,3 +57,11 @@ module.exports.XacNhanBaLance= async(req,res) =>{
     html:'',
     })
 }
+
+module.exports.PhatHanhKHSX= async(req,res) =>{
+    res.render('SanXuat/PhatHanhKHSX',{
+        title:'Quy Trình Sản Xuất',
+        userId:req.signedCookies.userId,
+    html:'',
+    })
+}

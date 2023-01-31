@@ -12,6 +12,7 @@ const { password } = require('../databases/dbconfig');
 const datChiControl= require('../Controlers/Kho/Datchi.Control')
 const giaCongDayVaiControl= require('../Controlers/Kho/GiaCongDayVai.Control');
 const khoOrderTinhChiHisControl= require('../Controlers/Kho/KhoOrderTinhChiHis.Control')
+const XuatNhapKhoControl=require('../Controlers/Kho/XuatNhapKho.Control');
 
 //Order
 router.get('/Order',orderControl.OrderLoad);
@@ -195,4 +196,10 @@ router.get('/KHOCHIDETAIL_Load_By_Order_GroupKH_web_wacoal_V1/:order/:groupKH',k
 router.get('/KHOCHIDETAILGROUP_Load_web_wacoal_V1/:order/:groupKH',khoOrderTinhChiHisControl.KHOCHIDETAILGROUP_Load_web_wacoal_V1)
 router.post('/KHOCHIHEADER_TIMECREATE_USERCREATE_load_web_wacoal_V1',khoOrderTinhChiHisControl.KHOCHIHEADER_TIMECREATE_USERCREATE_load_web_wacoal_V1)
 
+//Xuat Nhap Kho
+
+router.get('/XuatNhapKho',XuatNhapKhoControl.XuatNhapKhoLoad)
+router.get('/LOAICHIITEM_Load_Web_Wacoal_V1',XuatNhapKhoControl.LOAICHIITEM_Load_Web_Wacoal_V1)
+router.get('/MAUCHIMAUNL_Load_MAUCHI_By_LOAICHI_Web_wacoal_V1/:LOAICHI',XuatNhapKhoControl.MAUCHIMAUNL_Load_MAUCHI_By_LOAICHI_Web_wacoal_V1)
+router.post('/KHOCHITON_Insert_Web_Wacoal_V1',XuatNhapKhoControl.KHOCHITON_Insert_Web_Wacoal_V1)
 module.exports=router;

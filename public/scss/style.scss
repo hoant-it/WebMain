@@ -57,7 +57,10 @@
     width: 300px; }
   
   .nav-md .container.body .right_col {
-    padding: 10px 20px 0;
+    max-height: calc(100vh - 90px);
+    overflow: hidden;
+    // margin-top: 70px;
+    padding: 10px 20px ;
     margin-left: 300px; }
   
   @media (max-width: 991px) {
@@ -74,10 +77,14 @@
   .nav li li.current-page a:hover {
     color: #d42424; }
   
-  .nav.child_menu > li > a {
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 12px;
-    padding: 5px; }
+    .nav.child_menu > li > a {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 12px;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      /* flex-wrap: wrap; */
+  }
   
   .top_nav .liQRCode a i {
     font-size: 35px;

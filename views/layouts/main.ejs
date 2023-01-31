@@ -43,7 +43,8 @@
 
     <link rel="stylesheet" type="text/css" href="/cdn3.devexpress.com/jslib/20.2.5/css/dx.light.min.css" />
 
-    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- <link rel="stylesheet" href="/css/style.min.css"> -->
+    <link rel="stylesheet" href="/scss/style.css">
 
     <!-- jQuery -->
     <script src="/vendors/jquery/dist/jquery.min.js"></script>
@@ -78,15 +79,15 @@
             <% include ../block/leftpanelV2 %>
                 <% include ../block/toppanelV2 %>
                     <!-- page content -->
-                    <div class="right_col " role="main" style="min-height: 100vh">
-                        <div class="">
+                    <div class="right_col "  role="main">
+                        <!-- <div class=""> -->
                             <div class="page-title">
                                 <div class="title_left">
                                     <h3> <small><strong></strong></small></h3>
 
                                 </div>
                             </div>
-                        </div>
+                        <!-- </div> -->
 
                         <%- body %>
 
@@ -96,7 +97,7 @@
                     <!-- footer content -->
                     <footer>
                         <div class="pull-right">
-                            Wacoal - Bootstrap Admin Template by <a href="/home">Thai Hoa</a>
+                            <a href="/home"> Wacoal </a> - Bootstrap Admin Template by Thai Hoa
                         </div>
                         <div class="clearfix"></div>
                     </footer>

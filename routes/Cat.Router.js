@@ -79,6 +79,9 @@ router.get('/NHAN_XEPREN_MHLL',CatRenControl.NHAN_XEPREN_MHLL)
 //KIEM_TRA_DM_TUNG_SIZE_SO_VOI_SL_ORDER
 router.get('/KTDMTungSizeSoVoiSLOrder',CatRenControl.KIEM_TRA_DM_TUNG_SIZE_SO_VOI_SL_ORDER)
 
+router.get('/LamDaoCatRen',CatRenControl.LamDaoCatRen)
+
+
 // Ren_CatTheoBangHuongDanVaKiemTraMauCat
 router.get('/Ren_CatTheoBangHuongDanVaKiemTraMauCat',CatRenControl.Ren_CatTheoBangHuongDanVaKiemTraMauCat)
 
@@ -90,6 +93,10 @@ router.get('/DapLoGo',CatControl.DapLoGo)
 
 router.get('/DapName',CatControl.DapName)
 
+router.get('/DapAppliQue',CatControl.DapAppliQue)
+
+
+
 //So do quy trinh vai
 router.get('/SDQTCatVai',CatVaiControl.SDQTVai)
 router.get('/KhoiDongMay',CatVaiControl.KhoiDongMay)
@@ -98,6 +105,7 @@ router.get('/CatVaiChinhHuongCatWacoalCard',CatVaiControl.CatVaiChinhHuongCatWac
 router.get('/CatVaiChinhHuongCatGeMiNi',CatVaiControl.CatVaiChinhHuongCatGeMiNi)
 router.get('/CatVai',CatVaiControl.CatVai)
 router.get('/BocTapPhanMauVai',CatVaiControl.BocTapPhanMauVai)
+router.get('/KiemHangChiaSoLuong',CatVaiControl.KiemHangChiaSoLuong)
 
 
 

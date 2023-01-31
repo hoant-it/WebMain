@@ -138,6 +138,13 @@ module.exports.DatThemNL = async(req, res) => {
     })
 }
 
+module.exports.DapAppliQue = async(req, res) => {
+    res.render('Cat/DapAppliQue', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
 
 
 
