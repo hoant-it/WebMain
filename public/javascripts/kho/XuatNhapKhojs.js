@@ -66,20 +66,11 @@ const searchBoxMaHangXuat = () => {
         showClearButton: true,
         placeholder: "Mã Hàng",
         onValueChanged: function (data) {
-          // var $result = $(".current-value");
-  
-          if (data.value !== null) {
-            // console.log(data)
-            // var selectedItem = data.component.option('selectedItem');
+       
             maHang = data.value;
-            console.log(maHang);
-            searchBoxMau();
-            // $result.text(selectedItem.Name + " (ID: " + selectedItem.ID + ")");
-            // console.log(" (ID: " + selectedItem.MAKH + ")")
-          } else {
-            console.log("Not selected");
-            // $result.text("Not selected");
-          }
+            if(!maHang) return;
+            searchBoxLoaiChiXuat(maHang)
+          
         },
       })
       .dxSelectBox("instance");
@@ -113,11 +104,11 @@ const searchBoxMaHangXuat = () => {
       .dxSelectBox("instance");
   };  
 
-  const searchBoxLoaiChiXuat = () => {
+  const searchBoxLoaiChiXuat = (maHang) => {
     const selectBoxData = DevExpress.data.AspNet.createStore({
       key: "LOAICHICODE",
       loadMode: "raw",
-      loadUrl: "LOAICHIITEM_Load_Web_Wacoal_V1",
+      loadUrl: "CONGDOAN_MAHANG_LOAICHI_load_By_MAHANG_web_wacoal_v1/"+maHang,
     });
   
     var searchBox = $("#searchLoaiChiXuat")
@@ -135,7 +126,7 @@ const searchBoxMaHangXuat = () => {
         placeholder: "Loại Chỉ",
         onValueChanged: function (data) {
             loaiChi = data.value==null?'none':data.value;
-            searchBoxMauChiXuat(loaiChi)
+            searchBoxMauChiXuat(maHang,loaiChi)
         },
       })
       .dxSelectBox("instance");
@@ -166,11 +157,11 @@ const searchBoxMaHangXuat = () => {
       .dxSelectBox("instance");
   };
 
-  const searchBoxMauChiXuat = (loaiChi) => {
+  const searchBoxMauChiXuat = (maHang,loaiChi) => {
     const selectBoxData = DevExpress.data.AspNet.createStore({
       key: "MAUCHI",
       loadMode: "raw",
-      loadUrl: "MAUCHIMAUNL_Load_MAUCHI_By_LOAICHI_Web_wacoal_V1/"+loaiChi,
+      loadUrl: "CONGDOAN_MAHANG_MAMAUCHI_Load_By_MAHANG_LOAICHI_web_wacoal_v1/"+maHang+"/"+loaiChi,
     });
   
     var searchBox = $("#searchMauChiXuat")
@@ -207,6 +198,7 @@ const searchBoxMaHangXuat = () => {
     let mauChi=$("#searchBoxMauChiNhap").dxSelectBox("instance").option('value');
     let slNhap= parseInt($("#numberNhap").dxNumberBox("instance").option('value')) ;
     let slXuat=0
+   
 
     if(!loaiChi){
       DevExpress.ui.notify({
@@ -235,19 +227,20 @@ const searchBoxMaHangXuat = () => {
       mauChi:mauChi,
       slNhap:slNhap,
       slXuat:slXuat,
+      maHang:''
     }
     $.ajax({
       type: 'POST',
       data: JSON.stringify(data),
       contentType: 'application/json',
-      url: '/kho/KHOCHITON_Insert_Web_Wacoal_V1',
+      url: '/kho/KHOCHITON_Insert_Web_Wacoal_V2',
       success: function(res) {
           if (res.status) {
             DevExpress.ui.notify({
               message: res.mes,
               width: 450
           },"success",5000)
-         
+          TonKhoLoadGrid()
           } else {
             DevExpress.ui.notify({
               message: res.mes,
@@ -256,6 +249,7 @@ const searchBoxMaHangXuat = () => {
           }
       }
   });
+
     
   }
 
@@ -264,6 +258,7 @@ const searchBoxMaHangXuat = () => {
     let mauChi=$("#searchMauChiXuat").dxSelectBox("instance").option('value');
     let slNhap= 0;
     let slXuat=parseInt($("#numberXuat").dxNumberBox("instance").option('value')) 
+    let maHang=$("#searchBoxXuatMH").dxSelectBox("instance").option('value');
     if(!loaiChi){
       DevExpress.ui.notify({
         message: "Vui Lòng Chọn Loại Chỉ",
@@ -292,19 +287,20 @@ const searchBoxMaHangXuat = () => {
       mauChi:mauChi,
       slNhap:slNhap,
       slXuat:slXuat,
+      maHang:maHang
     }
     $.ajax({
       type: 'POST',
       data: JSON.stringify(data),
       contentType: 'application/json',
-      url: '/kho/KHOCHITON_Insert_Web_Wacoal_V1',
+      url: '/kho/KHOCHITON_Insert_Web_Wacoal_V2',
       success: function(res) {
           if (res.status) {
             DevExpress.ui.notify({
               message: res.mes,
               width: 450
           },"success",5000)
-         
+          TonKhoLoadGrid()
           } else {
             DevExpress.ui.notify({
               message: res.mes,
@@ -370,6 +366,124 @@ const searchBoxMaHangXuat = () => {
 
   }
 
+  const TonKhoLoadGrid = () => {
+    var url = "KHOCHITON_Load_Web_Wacoal_V1";
+    var listTinhChi = DevExpress.data.AspNet.createStore({
+        // type: 'odata',
+        key: "keyTonKho",
+        loadUrl: url   ,
+       
+        // insertUrl: url + "/InsertOrder",
+        // updateUrl: url + "/UpdateOrder",
+        // deleteUrl: url + "/DeleteOrder",
+        onBeforeSend: function(method, ajaxOptions) {
+            ajaxOptions.xhrFields = {
+                withCredentials: true
+            };
+        }
+    })
+
+    $("#GridTonKho").dxDataGrid({
+        dataSource: listTinhChi,
+                 // phan trang
+                 paging: {
+                    pageSize: 5
+                },
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [10, 25, 50, 100],
+                  },
+        // reshapeOnPush: true,
+        columnsAutoWidth: true,
+        height: 555,
+        allowColumnReordering: true,
+        rowAlternationEnabled: true,
+        showColumnLines: true,
+        showRowLines: true,
+        showBorders: true,
+        columnAutoWidth: true,
+        export:{
+            enabled: true
+        },
+        focusedRowEnabled: true,
+        // searchPanel: {
+        //     visible: true,
+        //     highlightCaseSensitive: true,
+        //     // width: 240,
+        //     // placeholder: "Search..."
+        // },
+ 
+       
+        onExporting: function(e) {
+
+            var workbook = new ExcelJS.Workbook();
+            var worksheet = workbook.addWorksheet('MH_CD_New');
+            
+            DevExpress.excelExporter.exportDataGrid({
+              component: e.component,
+              worksheet: worksheet,
+            })
+            .then(function() {
+              workbook.xlsx.writeBuffer().then(function(buffer) {
+                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'TonKho.xlsx');
+              });
+            });
+            e.cancel = true;
+          },
+        // rowDragging:{
+        //     data: 1,
+        //     group: "tasksGroup",
+        //     onAdd: onAdd
+        // },
+        // filterRow: {
+        //     visible: true,
+        //     applyFilter: "auto"
+        // },
+        remoteOperations: true,   
+     
+        // headerFilter: {
+        //     visible: false
+        // },
+        // groupPanel: {
+        //     visible: false
+        // },
+        // scrolling: {
+        //     rowRenderingMode:"virtual"
+        //     // mode: "virtual"
+        // },
+      
+        
+        columns: [
+            {
+                caption: "LOAICHI",
+                alignment:"center",
+                dataField: "LOAICHI",
+            },
+            {
+                caption: "MAUCHI",
+                alignment:"center",
+                dataField: "MAUCHI",
+            },
+            {
+              caption: "TONGSLCUONNHAP",
+              alignment:"center",
+              dataField: "TONGSLCUONNHAP",
+          },
+          {
+            caption: "TONGSLCUONXUAT",
+            alignment:"center",
+            dataField: "TONGSLCUONXUAT",
+        },
+        {
+          caption: "TONKHO",
+          alignment:"center",
+          dataField: "TONKHO",
+      },
+        ],
+    }).dxDataGrid("instance");
+
+}
+
 $(function () {
 
   searchBoxLoaiChiNhap();
@@ -377,11 +491,14 @@ $(function () {
   numberNhap()
   btnNhap();
 
+  searchBoxMaHangXuat()
   searchBoxLoaiChiXuat();
   searchBoxMauChiXuat('none');
   numberXuat()
   btnXuat()
 
-  // searchBoxMaHangXuat()
+  TonKhoLoadGrid()
+
+  
   loadTooltip("tooltipUpload", "btnUpload");
 });

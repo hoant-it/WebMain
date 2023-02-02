@@ -55,3 +55,64 @@ module.exports.XuatNhapKhoLoad = async (req, res) => {
     }
     res.send(lMes)
   }
+
+  module.exports.KHOCHITON_Insert_Web_Wacoal_V2=async(req,res)=>{
+    let lMes={}
+    try {
+     await db.KHOCHITON_Insert_Web_Wacoal_V2(req.body,req.signedCookies.userId)
+     lMes.status=true;
+     lMes.mes="thành công"
+    
+      
+    } catch (error) {
+      lMes.status=false;
+     lMes.mes="Err: "+error
+    }
+    res.send(lMes)
+  }
+
+  module.exports.KHOCHITON_Load_Web_Wacoal_V1= async(req,res)=>{
+    
+    try {
+      result= await db.KHOCHITON_Load_Web_Wacoal_V1()
+      res.status(200).json({
+       data:result
+      })
+    } catch (error) {
+      res.status(403).json({
+        data:[]
+       })
+    }
+ 
+  }
+
+  module.exports.CONGDOAN_MAHANG_LOAICHI_load_By_MAHANG_web_wacoal_v1= async(req,res)=>{
+    
+    try {
+      result= await db.CONGDOAN_MAHANG_LOAICHI_load_By_MAHANG_web_wacoal_v1(req.params)
+      res.status(200).json({
+       data:result
+      })
+    } catch (error) {
+      res.status(403).json({
+        data:[]
+       })
+    }
+ 
+  }
+
+  module.exports.CONGDOAN_MAHANG_MAMAUCHI_Load_By_MAHANG_LOAICHI_web_wacoal_v1= async(req,res)=>{
+    
+    try {
+      result= await db.CONGDOAN_MAHANG_MAMAUCHI_Load_By_MAHANG_LOAICHI_web_wacoal_v1(req.params)
+      res.status(200).json({
+       data:result
+      })
+    } catch (error) {
+      res.status(403).json({
+        data:[]
+       })
+    }
+ 
+  }
+  

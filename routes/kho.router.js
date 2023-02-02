@@ -198,8 +198,17 @@ router.post('/KHOCHIHEADER_TIMECREATE_USERCREATE_load_web_wacoal_V1',khoOrderTin
 
 //Xuat Nhap Kho
 
+
 router.get('/XuatNhapKho',XuatNhapKhoControl.XuatNhapKhoLoad)
 router.get('/LOAICHIITEM_Load_Web_Wacoal_V1',XuatNhapKhoControl.LOAICHIITEM_Load_Web_Wacoal_V1)
 router.get('/MAUCHIMAUNL_Load_MAUCHI_By_LOAICHI_Web_wacoal_V1/:LOAICHI',XuatNhapKhoControl.MAUCHIMAUNL_Load_MAUCHI_By_LOAICHI_Web_wacoal_V1)
 router.post('/KHOCHITON_Insert_Web_Wacoal_V1',XuatNhapKhoControl.KHOCHITON_Insert_Web_Wacoal_V1)
+router.post('/KHOCHITON_Insert_Web_Wacoal_V2',XuatNhapKhoControl.KHOCHITON_Insert_Web_Wacoal_V2)
+
+router.get('/KHOCHITON_Load_Web_Wacoal_V1',XuatNhapKhoControl.KHOCHITON_Load_Web_Wacoal_V1)
+router.get('/CONGDOAN_MAHANG_LOAICHI_load_By_MAHANG_web_wacoal_v1/:MAHANG',XuatNhapKhoControl.CONGDOAN_MAHANG_LOAICHI_load_By_MAHANG_web_wacoal_v1)
+router.get('/CONGDOAN_MAHANG_MAMAUCHI_Load_By_MAHANG_LOAICHI_web_wacoal_v1/:MAHANG/:LOAICHI',XuatNhapKhoControl.CONGDOAN_MAHANG_MAMAUCHI_Load_By_MAHANG_LOAICHI_web_wacoal_v1)
+
+
+
 module.exports=router;
