@@ -125,3 +125,19 @@ module.exports.LamDaoCatRen= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.RenCotHangKiemMaHangSizeSLDongMocGiayGian= async(req,res) =>{
+    res.render('Cat/RenCotHangKiemMaHangSizeSLDongMocGiayGian', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+module.exports.RenDayHangVaoKhuVucGiaoChuyen= async(req,res) =>{
+    res.render('Cat/RenDayHangVaoKhuVucGiaoChuyen', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

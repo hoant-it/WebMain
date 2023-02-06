@@ -85,6 +85,10 @@ router.get('/LamDaoCatRen',CatRenControl.LamDaoCatRen)
 // Ren_CatTheoBangHuongDanVaKiemTraMauCat
 router.get('/Ren_CatTheoBangHuongDanVaKiemTraMauCat',CatRenControl.Ren_CatTheoBangHuongDanVaKiemTraMauCat)
 
+router.get('/RenCotHangKiemMaHangSizeSLDongMocGiayGian',CatRenControl.RenCotHangKiemMaHangSizeSLDongMocGiayGian)
+
+router.get('/RenDayHangVaoKhuVucGiaoChuyen',CatRenControl.RenDayHangVaoKhuVucGiaoChuyen)
+
 // QT UI CWX
 router.get('/QTUICWX',CatControl.QTUICWX)
 

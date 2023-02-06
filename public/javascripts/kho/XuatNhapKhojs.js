@@ -1,5 +1,6 @@
+// const nhapTab= document.getElementById("nhap-tab")
 
-
+// const XuatTab= document.getElementById("xuat-tab")
 
 
 const loadPanel = $(".loadpanel")
@@ -241,6 +242,9 @@ const searchBoxMaHangXuat = () => {
               width: 450
           },"success",5000)
           TonKhoLoadGrid()
+          $("#searchBoxLoaiChiNhap").dxSelectBox("instance").option('value',undefined);
+          $("#searchBoxMauChiNhap").dxSelectBox("instance").option('value',undefined);
+          $("#numberNhap").dxNumberBox("instance").option('value',undefined) ;
           } else {
             DevExpress.ui.notify({
               message: res.mes,
@@ -260,6 +264,7 @@ const searchBoxMaHangXuat = () => {
     let slXuat=parseInt($("#numberXuat").dxNumberBox("instance").option('value')) 
     let maHang=$("#searchBoxXuatMH").dxSelectBox("instance").option('value');
     if(!loaiChi){
+     
       DevExpress.ui.notify({
         message: "Vui Lòng Chọn Loại Chỉ",
         width: 450
@@ -301,6 +306,13 @@ const searchBoxMaHangXuat = () => {
               width: 450
           },"success",5000)
           TonKhoLoadGrid()
+          $("#searchLoaiChiXuat").dxSelectBox("instance").option('value',undefined);
+          $("#searchMauChiXuat").dxSelectBox("instance").option('value',undefined);
+          $("#numberXuat").dxNumberBox("instance").option('value',undefined)
+          $("#searchBoxXuatMH").dxSelectBox("instance").option('value',undefined)
+        // location.reload();
+
+
           } else {
             DevExpress.ui.notify({
               message: res.mes,
@@ -385,37 +397,61 @@ const searchBoxMaHangXuat = () => {
 
     $("#GridTonKho").dxDataGrid({
         dataSource: listTinhChi,
-                 // phan trang
-                 paging: {
-                    pageSize: 5
-                },
-                pager: {
-                    showPageSizeSelector: true,
-                    allowedPageSizes: [10, 25, 50, 100],
-                  },
-        // reshapeOnPush: true,
-        columnsAutoWidth: true,
-        height: 555,
-        allowColumnReordering: true,
-        rowAlternationEnabled: true,
-        showColumnLines: true,
-        showRowLines: true,
-        showBorders: true,
-        columnAutoWidth: true,
-        export:{
-            enabled: true
-        },
-        focusedRowEnabled: true,
-        // searchPanel: {
-        //     visible: true,
-        //     highlightCaseSensitive: true,
-        //     // width: 240,
-        //     // placeholder: "Search..."
-        // },
+             //phan trang
+             paging: {
+              pageSize: 10
+          },
+          pager: {
+              showPageSizeSelector: true,
+              allowedPageSizes: [10, 25, 50, 100]
+          },
+          // reshapeOnPush: true,
+          columnsAutoWidth: true,
+          height: 700,
+          allowColumnReordering: true,
+          rowAlternationEnabled: true,
+          showColumnLines: true,
+          showRowLines: true,
+          showBorders: true,
+          columnAutoWidth: true,
+          // export:{
+          //     enabled: true
+          // },
+    
+          focusedRowEnabled: true,
+          // rowDragging:{
+          //     data: 1,
+          //     group: "tasksGroup",
+          //     onAdd: onAdd
+          // },
+          filterRow: {
+              visible: true,
+              applyFilter: "auto"
+          },
+          // remoteOperations: true,   
+          searchPanel: {
+              visible: true,
+              highlightCaseSensitive: true,
+              // width: 240,
+              // placeholder: "Search..."
+          },
+          // headerFilter: {
+          //     visible: false
+          // },
+          // groupPanel: {
+          //     visible: false
+          // },
+          // scrolling: {
+          //     mode: "virtual"
+          // },
+   
  
-       
+        export:{
+          enabled: true
+      },
         onExporting: function(e) {
 
+          const generalsa=new generals();
             var workbook = new ExcelJS.Workbook();
             var worksheet = workbook.addWorksheet('MH_CD_New');
             
@@ -425,7 +461,7 @@ const searchBoxMaHangXuat = () => {
             })
             .then(function() {
               workbook.xlsx.writeBuffer().then(function(buffer) {
-                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'TonKho.xlsx');
+                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'TonKho_'+generalsa.getDateTime()+'.xlsx');
               });
             });
             e.cancel = true;
@@ -435,22 +471,18 @@ const searchBoxMaHangXuat = () => {
         //     group: "tasksGroup",
         //     onAdd: onAdd
         // },
-        // filterRow: {
-        //     visible: true,
-        //     applyFilter: "auto"
-        // },
-        remoteOperations: true,   
+  
+    
      
         // headerFilter: {
-        //     visible: false
+        //     visible: true
+        //     // groupInterval: null
         // },
+    
         // groupPanel: {
         //     visible: false
         // },
-        // scrolling: {
-        //     rowRenderingMode:"virtual"
-        //     // mode: "virtual"
-        // },
+      
       
         
         columns: [
