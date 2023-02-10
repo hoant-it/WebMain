@@ -110,6 +110,7 @@ router.get('/CatVaiChinhHuongCatGeMiNi',CatVaiControl.CatVaiChinhHuongCatGeMiNi)
 router.get('/CatVai',CatVaiControl.CatVai)
 router.get('/BocTapPhanMauVai',CatVaiControl.BocTapPhanMauVai)
 router.get('/KiemHangChiaSoLuong',CatVaiControl.KiemHangChiaSoLuong)
+router.get('/VaiGiaoHang',CatVaiControl.VaiGiaoHang)
 
 
 
