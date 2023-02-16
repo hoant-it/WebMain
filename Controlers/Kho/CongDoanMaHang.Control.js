@@ -8,6 +8,14 @@ module.exports.CongDoanMaHangLoad= async (req, res ) => {
     })
 }
 
+module.exports.CongDoanMaHangV3= async (req, res ) => {
+    res.render('kho/CongDoanMaHangV3',{
+        title:'Cong Doan Ma Hang',
+        userId:req.signedCookies.userId,
+        html:'',
+    })
+}
+
 module.exports.wacoal_MaHang_Select_V1 = async(req, res) =>{
     try {
         const result= await db.wacoal_MaHang_Select_V1()
@@ -96,4 +104,20 @@ module.exports.CongDoanMaHangInput = async(req,res)=>{
     }
 }
 
-
+module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async(req,res) =>{
+    try {
+        await db.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1(req.params).then(result=>{
+            res.json({
+                data:result,
+                message:'ok'
+            })
+        })
+        
+    } catch (error) {
+        res.json({
+            data:{},
+            message:'Err: '+error
+        })
+        
+    }
+}

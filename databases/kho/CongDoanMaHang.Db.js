@@ -169,3 +169,18 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
     return lError;
   }
 };
+
+module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async (params) => {
+  try {
+    let pool = await sql.connect(sqlConfig);
+    let res = await pool
+      .request()
+      .input('MAHANG',sql.NVarChar(50),params.MaHang)
+      .execute("CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1");
+    return res.recordset;
+  } catch (error) {
+    return res.error;
+  }
+};
+
+
