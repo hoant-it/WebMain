@@ -1,3 +1,11 @@
+var txtcurrentpassword = document.getElementById("txtcurrentpassword");
+txtnewpassword= document.getElementById("txtnewpassword");
+txtConfirmPassword= document.getElementById("txtConfirmPassword");
+
+
+let btnShowPassCurrent = document.getElementById("btnShowPassCurrent");
+let btnShowPassNew= document.getElementById("btnShowPassNew");
+let btnShowPassConfirm= document.getElementById("btnShowPassConfirm");
 const saveData = () => {
     var userId= $("#txtUserName").val();
     var currentpassword = $("#txtcurrentpassword").val();
@@ -8,7 +16,7 @@ const saveData = () => {
     $('.required').after(confirmPassword);
 
     if (newpassword.length < 8) {
-        $('#txtnewpassword').after('<span class="error">This field is required</span>');
+        $('#txtnewpassword').before('<span class="error">This field is required</span>');
       }
 
     var data={
@@ -39,8 +47,43 @@ const saveData = () => {
 
 }
 
-$(document).ready(function() {
+function showPassCurrent() {
+    if (txtcurrentpassword.type === 'password') {
+        txtcurrentpassword.type = "text"
+        btnShowPassCurrent.classList.replace("fa-eye", "fa-eye-slash")
+    } else {
+        txtcurrentpassword.type = "password"
+    
+        btnShowPassCurrent.classList.replace("fa-eye-slash", "fa-eye")
+    }
+}
 
+function showPassNew() {
+    if (txtnewpassword.type === 'password') {
+        txtnewpassword.type = "text"
+        btnShowPassNew.classList.replace("fa-eye", "fa-eye-slash")
+    } else {
+        txtnewpassword.type = "password"
+    
+        btnShowPassNew.classList.replace("fa-eye-slash", "fa-eye")
+    }
+}
+
+function showPassConfirm() {
+    if (txtConfirmPassword.type === 'password') {
+        txtConfirmPassword.type = "text"
+        btnShowPassConfirm.classList.replace("fa-eye", "fa-eye-slash")
+    } else {
+        txtConfirmPassword.type = "password"
+    
+        btnShowPassConfirm.classList.replace("fa-eye-slash", "fa-eye")
+    }
+}
+
+$(document).ready(function() {
+    btnShowPassCurrent.addEventListener("click", showPassCurrent)
+    btnShowPassNew.addEventListener("click", showPassNew)
+    btnShowPassConfirm.addEventListener("click", showPassConfirm)
     $("#txtUserName").attr("readonly","true");
 
     // Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này

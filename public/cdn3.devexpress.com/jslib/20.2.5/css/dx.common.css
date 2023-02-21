@@ -32,7 +32,6 @@
 .dx-user-select {
   -webkit-user-select: text;
   -moz-user-select: text;
-  -ms-user-select: text;
   user-select: text;
 }
 
@@ -396,7 +395,6 @@
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
 }
@@ -428,7 +426,6 @@
 
 .dx-sortable-dragging.dx-sortable-clone * {
   cursor: pointer;
-  cursor: -webkit-grabbing;
   cursor: grabbing;
 }
 
@@ -508,7 +505,6 @@
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
 }
@@ -660,7 +656,6 @@
   text-align: center;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-user-drag: none;
@@ -688,15 +683,6 @@
   box-shadow: none;
   border: none;
   background: 0 0;
-}
-
-@-webkit-keyframes dx-loadpanel-opacity {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 @keyframes dx-loadpanel-opacity {
   from {

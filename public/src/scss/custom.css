@@ -4889,14 +4889,11 @@ a.hiddenanchor {
 
 #signup:target ~ .login_wrapper .registration_form, #signin:target ~ .login_wrapper .login_form {
   z-index: 22;
-  -webkit-animation-name: fadeInLeft;
   animation-name: fadeInLeft;
-  -webkit-animation-delay: 0.1s;
   animation-delay: 0.1s;
 }
 
 #signup:target ~ .login_wrapper .login_form, #signin:target ~ .login_wrapper .registration_form {
-  -webkit-animation-name: fadeOutLeft;
   animation-name: fadeOutLeft;
 }
 
@@ -5154,7 +5151,6 @@ header {
 div[data-role=editor-toolbar] {
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 

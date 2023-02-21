@@ -41,7 +41,6 @@ nav {
   justify-content: space-between;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, .2); */
   background-color: #fff;
-  position: -webkit-sticky;
   position: sticky;
   top: 0px;
   z-index: 10;
@@ -245,7 +244,6 @@ a.sub-btn.active {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   flex-wrap: wrap;
@@ -265,7 +263,6 @@ a.sub-btn.active {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   flex-wrap: wrap;
