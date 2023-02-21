@@ -55,4 +55,12 @@ module.exports.BocTapPhanMauCatLinning= async(req,res) =>{
     })
 }
 
+module.exports.B6KiemHangChiaSoLuongGiaoHang= async(req,res) =>{
+    res.render('Cat/B6KiemHangChiaSoLuongGiaoHang', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 
