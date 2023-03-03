@@ -69,3 +69,11 @@ module.exports.VaiGiaoHang= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.B61KiemXuLyMauCatMepHem= async(req,res) =>{
+    res.render('Cat/B61KiemXuLyMauCatMepHem', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
