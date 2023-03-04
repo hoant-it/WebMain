@@ -65,3 +65,27 @@ module.exports.PhatHanhKHSX= async(req,res) =>{
     html:'',
     })
 }
+
+module.exports.PhatHanhKHXH= async(req,res) =>{
+    res.render('SanXuat/PhatHanhKHXH',{
+        title:'Quy Trình Sản Xuất',
+        userId:req.signedCookies.userId,
+    html:'',
+    })
+}
+
+module.exports.LienLacKHKHX= async(req,res) =>{
+    res.render('SanXuat/LienLacKHKHX',{
+        title:'Quy Trình Sản Xuất',
+        userId:req.signedCookies.userId,
+    html:'',
+    })
+}
+
+module.exports.HuyOrder= async(req,res) =>{
+    res.render('SanXuat/HuyOrder',{
+        title:'Quy Trình Sản Xuất',
+        userId:req.signedCookies.userId,
+    html:'',
+    })
+}

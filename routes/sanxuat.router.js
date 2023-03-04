@@ -20,6 +20,9 @@ router.get('/SepKHSXChinhThuc',QTSXControl.SepKHSXChinhThuc);
 router.get('/XacNhanBaLance',QTSXControl.XacNhanBaLance);
 
 router.get('/PhatHanhKHSX',QTSXControl.PhatHanhKHSX);
+router.get('/PhatHanhKHXH',QTSXControl.PhatHanhKHXH);
+router.get('/LienLacKHKHX',QTSXControl.LienLacKHKHX);
+router.get('/HuyOrder',QTSXControl.HuyOrder);
 
 
 
