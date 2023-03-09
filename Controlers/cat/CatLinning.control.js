@@ -63,6 +63,14 @@ module.exports.B6KiemHangChiaSoLuongGiaoHang= async(req,res) =>{
     })
 }
 
+module.exports.B61XuLyMauCat= async(req,res) =>{
+    res.render('Cat/B61XuLyMauCat', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 module.exports.B61CatThe= async(req,res) =>{
     res.render('Cat/B61CatThe', {
         title: 'Express',

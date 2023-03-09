@@ -72,6 +72,8 @@ router.get('/CAT_VA_KIEM_TRA_MC_VOI_PATTERN',CatRenControl.CAT_VA_KIEM_TRA_MC_VO
 router.get('/GIAOKYTHUAT',CatRenControl.GIAOKYTHUAT)
 //LIENLACKHACHHANGXULY_RV
 router.get('/LIENLACKHACHHANGXULY_RV',CatRenControl.LIENLACKHACHHANGXULY_RV)
+
+router.get('/PhanCongCongViecCatRen',CatRenControl.PhanCongCongViecCatRen)
 // NHAN_XEPREN_MHLL
 router.get('/NHAN_XEPREN_MHLL',CatRenControl.NHAN_XEPREN_MHLL)
 
@@ -124,6 +126,7 @@ router.get('/CatLinningCHCWacoalCad',CatLinningControl.CatLinningCHCWacoalCad)
 router.get('/CatLinningCat',CatLinningControl.CatLinningCat)
 router.get('/BocTapPhanMauCatLinning',CatLinningControl.BocTapPhanMauCatLinning)
 router.get('/B6KiemHangChiaSoLuongGiaoHang',CatLinningControl.B6KiemHangChiaSoLuongGiaoHang)
+router.get('/B61XuLyMauCat',CatLinningControl.B61XuLyMauCat)
 router.get('/B61CatThe',CatLinningControl.B61CatThe)
 
 // trai vai

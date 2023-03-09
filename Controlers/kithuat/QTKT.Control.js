@@ -79,6 +79,14 @@ module.exports.QTKTLoad = async (req,res) =>{
     })
   }
 
+  module.exports.HuyTLKT = async (req,res) =>{
+    res.render('kithuat/HuyTLKT',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+
   module.exports.HopZizenkentoLan1GiaiThichMaHang = async (req,res) =>{
     res.render('kithuat/HopZizenkentoLan1GiaiThichMaHang',{
         title:'Quy Trình Kỹ Thuật',

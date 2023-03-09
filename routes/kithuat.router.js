@@ -14,6 +14,7 @@ router.get('/LamBM_SWGD_HE_DoKichThuoc',QTKTControl.LamBM_SWGD_HE_DoKichThuoc)
 router.get('/XNKQTuKH',QTKTControl.XNKQTuKH)
 router.get('/LuuTLTK',QTKTControl.LuuTLTK)
 router.get('/CungCapTLKT',QTKTControl.CungCapTLKT)
+router.get('/HuyTLKT',QTKTControl.HuyTLKT)
 router.get('/HopZizenkentoLan1GiaiThichMaHang',QTKTControl.HopZizenkentoLan1GiaiThichMaHang)
 
 router.get('/LineLeaderChuyenMayMau',QTKTControl.LineLeaderChuyenMayMau)

@@ -68,6 +68,14 @@ module.exports.LIENLACKHACHHANGXULY_RV= async(req,res) =>{
     })
 }
 
+module.exports.PhanCongCongViecCatRen= async(req,res) =>{
+    res.render('Cat/PhanCongCongViecCatRen', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 // NHAN_XEPREN_MHLL
 
 module.exports.NHAN_XEPREN_MHLL= async(req,res) =>{
