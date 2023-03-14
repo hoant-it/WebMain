@@ -23,6 +23,7 @@ router.get('/PhatHanhKHSX',QTSXControl.PhatHanhKHSX);
 router.get('/PhatHanhKHXH',QTSXControl.PhatHanhKHXH);
 router.get('/LienLacKHKHX',QTSXControl.LienLacKHKHX);
 router.get('/HuyOrder',QTSXControl.HuyOrder);
+router.get('/SanXuatLai',QTSXControl.SanXuatLai);
 
 
 

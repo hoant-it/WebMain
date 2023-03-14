@@ -89,3 +89,11 @@ module.exports.HuyOrder= async(req,res) =>{
     html:'',
     })
 }
+
+module.exports.SanXuatLai= async(req,res) =>{
+    res.render('SanXuat/SanXuatLai',{
+        title:'Quy Trình Sản Xuất',
+        userId:req.signedCookies.userId,
+    html:'',
+    })
+}

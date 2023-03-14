@@ -111,6 +111,14 @@ module.exports.QTKTLoad = async (req,res) =>{
     })
   }
 
+  module.exports.HoanChinhTLKTSXDaiTra = async (req,res) =>{
+    res.render('kithuat/HoanChinhTLKTSXDaiTra',{
+        title:'Quy Trình Kỹ Thuật',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+
   
 
   
