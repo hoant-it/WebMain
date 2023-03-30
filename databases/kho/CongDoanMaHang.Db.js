@@ -135,6 +135,38 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
           ? 0
           : contentValue.CHIEUDAI_CONGDOAN;
 
+          if(
+          (LOAIMAY.includes("ZIGZAG") && BIENDO==0)
+          ){
+            lError.errMes = "Lỗi: Công đoạn "+ CONGDOAN +" "+TENCONGDOAN+" "+LOAIMAY+" Biên Độ <=0" ;
+            lError.statusErr = false;
+            await pool
+            .request()
+            .input("MAHANG", sql.NVarChar(50), MaHang)
+            .input("MAUMH", sql.NVarChar(50), MauMH)
+            .input('UserName',sql.NVarChar(50),userId)
+            .input('statusErr',sql.Bit,0)
+            .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
+            return lError;
+          } else if(LOAIMAY.includes("INTERLOCK") || LOAIMAY.includes("VATSO")){
+            if((BIENDO==0 || MATDO==0)){
+              lError.errMes = "Lỗi: Công đoạn "+ CONGDOAN +" "+TENCONGDOAN+" "+LOAIMAY+" Biên Độ hoặc Mật Độ <=0" ;
+              lError.statusErr = false;
+              await pool
+              .request()
+              .input("MAHANG", sql.NVarChar(50), MaHang)
+              .input("MAUMH", sql.NVarChar(50), MauMH)
+              .input('UserName',sql.NVarChar(50),userId)
+              .input('statusErr',sql.Bit,0)
+              .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
+              return lError;
+            }
+
+          }
+          
+           
+          
+
       await pool
         .request()
         .input("MAHANG", sql.NVarChar(50), MAHANG)
@@ -182,5 +214,9 @@ module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async (params) => 
     return res.error;
   }
 };
+
+
+
+
 
 

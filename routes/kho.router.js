@@ -193,6 +193,15 @@ router.get('/wacoal_GiaCongDayVai_MaHang_V1/:MAHANG', giaCongDayVaiControl.wacoa
 router.get('/wacoal_MaHang_GCDV_Select_V1', giaCongDayVaiControl.wacoal_MaHang_GCDV_Select_V1)
 router.get('/wacoal_GiaCongDayVai_MaHang_CT_V1/:MAHANG', giaCongDayVaiControl.wacoal_GiaCongDayVai_MaHang_CT_V1)
 
+
+//Gia Cong Day Vai V2
+router.get('/GCDVOrderTinhChi',giaCongDayVaiControl.GCDVOrderTinhChi)
+router.get('/Order_TinhChi_GCDV_Web_V1/:order/:groupKH',giaCongDayVaiControl.Order_TinhChi_GCDV_Web_V1)
+router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1/:order/:groupKH',giaCongDayVaiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1)
+
+
+
+
 //Order tinh chi His
 router.get('/ordertinhchihis',khoOrderTinhChiHisControl.OrderTinhChiHisLoad)
 router.get('/KHOCHIHEADER_ORDERNO_load_web_wacoal_v1',khoOrderTinhChiHisControl.KHOCHIHEADER_ORDERNO_load_web_wacoal_v1)

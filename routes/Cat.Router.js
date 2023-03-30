@@ -114,6 +114,8 @@ router.get('/BocTapPhanMauVai',CatVaiControl.BocTapPhanMauVai)
 router.get('/KiemHangChiaSoLuong',CatVaiControl.KiemHangChiaSoLuong)
 router.get('/VaiGiaoHang',CatVaiControl.VaiGiaoHang)
 router.get('/B61KiemXuLyMauCatMepHem',CatVaiControl.B61KiemXuLyMauCatMepHem)
+router.get('/B61DownSize',CatVaiControl.B61DownSize)
+
 
 
 

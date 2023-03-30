@@ -175,5 +175,33 @@ module.exports.GiaCongDayVaiInput = async (filename, userId) => {
   };
 
   
+  module.exports.Order_TinhChi_GCDV_Web_V1=async(params)=>{
+    const{order,groupKH}=params;
+    try {
+        let pool=await sql.connect(sqlConfig)
+        let result=await pool.request()
+        .input('ORDERNO',sql.NVarChar(50),order)
+        .input('GROUPKH',sql.NVarChar(50),groupKH)
+        .execute('Order_TinhChi_GCDV_Web_V1')
+        return result.recordset
+    } catch (error) {
+        throw error
+    }
+  }
+
+  module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1=async(params)=>{
+    const{order,groupKH}=params;
+    try {
+        let pool=await sql.connect(sqlConfig)
+        let result=await pool.request()
+        .input('ORDERNO',sql.NVarChar(50),order)
+        .input('GROUPKH',sql.NVarChar(50),groupKH)
+        .execute('wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1')
+        return result.recordset
+    } catch (error) {
+        throw error
+    }
+  }
 
 
+  

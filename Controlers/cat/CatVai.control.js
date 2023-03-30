@@ -77,3 +77,11 @@ module.exports.B61KiemXuLyMauCatMepHem= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.B61DownSize= async(req,res) =>{
+    res.render('Cat/B61DownSize', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

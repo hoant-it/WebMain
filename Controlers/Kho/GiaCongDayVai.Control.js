@@ -78,3 +78,40 @@ module.exports.wacoal_GiaCongDayVai_MaHang_CT_V1 = async(req, res) =>{
     }
 }
 
+module.exports.GCDVOrderTinhChi = async (req,res) =>{
+    res.render('kho/GCDVOrderTinhChi',{
+        title:'Tính Chỉ Gia Công Dây Vai',
+        userId:req.signedCookies.userId,
+        html:"",
+    })
+  }
+
+  module.exports.Order_TinhChi_GCDV_Web_V1=async(req,res)=>{
+    try {
+      let result=await db.Order_TinhChi_GCDV_Web_V1(req.params)
+      res.json({
+          data:result
+      })
+    } catch (error) {
+      res.json({
+          data:[]
+      })
+    }
+  
+  }
+
+  module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1=async(req,res)=>{
+    try {
+      let result=await db.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1(req.params)
+      res.json({
+          data:result
+      })
+    } catch (error) {
+      res.json({
+          data:[]
+      })
+    }
+  
+  }
+
+  
