@@ -87,6 +87,13 @@ module.exports.CatLinning_DayVaoKhuVucGiaoHang= async(req,res) =>{
     })
 }
 
+module.exports.B7ChamDau= async(req,res) =>{
+    res.render('Cat/B7ChamDau', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
 
 
 

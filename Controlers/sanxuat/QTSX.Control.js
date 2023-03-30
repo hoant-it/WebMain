@@ -97,3 +97,19 @@ module.exports.SanXuatLai= async(req,res) =>{
     html:'',
     })
 }
+
+module.exports.KHXHLai= async(req,res) =>{
+    res.render('SanXuat/KHXHLai',{
+        title:'Quy Trình Sản Xuất',
+        userId:req.signedCookies.userId,
+    html:'',
+    })
+}
+
+module.exports.QLTDXH= async(req,res) =>{
+    res.render('SanXuat/QLTDXH',{
+        title:'Quy Trình Sản Xuất',
+        userId:req.signedCookies.userId,
+    html:'',
+    })
+}

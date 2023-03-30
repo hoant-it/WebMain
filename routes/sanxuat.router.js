@@ -24,6 +24,9 @@ router.get('/PhatHanhKHXH',QTSXControl.PhatHanhKHXH);
 router.get('/LienLacKHKHX',QTSXControl.LienLacKHKHX);
 router.get('/HuyOrder',QTSXControl.HuyOrder);
 router.get('/SanXuatLai',QTSXControl.SanXuatLai);
+router.get('/KHXHLai',QTSXControl.KHXHLai);
+router.get('/QLTDXH',QTSXControl.QLTDXH);
+
 
 
 

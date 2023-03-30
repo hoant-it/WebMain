@@ -131,6 +131,7 @@ router.get('/B6KiemHangChiaSoLuongGiaoHang',CatLinningControl.B6KiemHangChiaSoLu
 router.get('/B61XuLyMauCat',CatLinningControl.B61XuLyMauCat)
 router.get('/B61CatThe',CatLinningControl.B61CatThe)
 router.get('/CatLinning_DayVaoKhuVucGiaoHang',CatLinningControl.CatLinning_DayVaoKhuVucGiaoHang)
+router.get('/B7ChamDau',CatLinningControl.B7ChamDau)
 
 // trai vai
 router.get('/SDTraivai',catTraiVaiControl.SDTraivai)
