@@ -149,3 +149,11 @@ module.exports.RenDayHangVaoKhuVucGiaoChuyen= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.RenXuLyMauCat= async(req,res) =>{
+    res.render('Cat/RenXuLyMauCat', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
