@@ -40,14 +40,14 @@ module.exports.KHOCHIDETAIL_Load_By_Order_GroupKH_web_wacoal_V1= async(params)=>
     }
 }
 
-module.exports.KHOCHIDETAILGROUP_Load_web_wacoal_V1= async(params)=>{
+module.exports.KHOCHIDETAILGROUP_Load_web_wacoal_V2= async(params)=>{
     let pool= await sql.connect(sqlConfig)
     const{order,groupKH}=params
     try {
         let result= await pool.request()
         .input('ORDERNO',sql.NVarChar(50),order)
         .input('GROUPKH',sql.NVarChar(50),groupKH)
-        .execute('KHOCHIDETAILGROUP_Load_web_wacoal_V1')
+        .execute('KHOCHIDETAILGROUP_Load_web_wacoal_V2')
         return result.recordset
     } catch (error) {
         throw error

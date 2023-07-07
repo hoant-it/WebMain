@@ -1,0 +1,118 @@
+<div class="col-md-12 col-sm-12  ">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2> Nhập Công Đoạn</h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Nhập Công Đoạn - Tính Chỉ Theo Mã Hàng</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+            aria-selected="false">DS Màu Chỉ mới theo màu NL-Loại Chỉ </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+            aria-selected="false">DS Mã Hàng upload Công Đoạn</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="loaimay-tab" data-toggle="tab" href="#loaimay" role="tab" aria-controls="loaimay"
+            aria-selected="false">DS Loại Máy mới</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="loaichi-tab" data-toggle="tab" href="#loaichi" role="tab" aria-controls="loaichi"
+            aria-selected="false">DS Loại chỉ mới</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+          <div id="boxOptions2">
+            <div data-options="dxItem: {ratio: 0, baseSize: 200}">
+              <div class="lagre">
+                <form action="/kho/congodanmahanginputv2" method="POST" enctype="multipart/form-data" id="frmUpload">
+                  <input type="file" name="filename" id="filename" />
+                  <!-- <div id="uploadButton"></div> -->
+                  <!-- <div id="searchBoxMH"></div> -->
+                  </from>
+              </div>
+            </div>
+            <div data-options="dxItem: {ratio: 0, baseSize: 50}">
+              <div class="lagre">
+                <div id="uploadButton"></div>
+              </div>
+            </div>
+            <div data-options="dxItem: {ratio: 0, baseSize: 100}">
+              <div class="lagre">
+                <div id="searchBoxMH"></div>
+              </div>
+            </div>
+
+            <div data-options="dxItem: {ratio: 0, baseSize: 50}" style="margin-left: 10px;">
+              <div class="lagre">
+                <div id="exportdButton"></div>
+              </div>
+            </div>
+          </div>
+          <!-- <div id="GridTinhChi"></div> -->
+          <div id="tabPanel"></div>
+
+          <div class="loadpanel"></div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div id="boxOptions3">
+            <div data-options="dxItem: {ratio: 0, baseSize: 50}" style="margin-left: 10px;">
+              <div class="lagre">
+                <div id="exportMauChiMauNlButton"></div>
+              </div>
+            </div>
+
+          </div>
+          <div id="tabPanelMauNlLoaiChi"></div>
+
+
+
+
+          <!-- <div id="GridMauNL_LoaiChi"></div> -->
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+          <div id="GridMHCDNew"></div>
+        </div>
+        <div class="tab-pane fade" id="loaimay" role="tabpanel" aria-labelledby="loaimay-tab">
+          <div id="boxOptionsLoaiMay">
+            <div data-options="dxItem: {ratio: 0, baseSize: 50}" style="margin-left: 10px;">
+              <div class="lagre">
+                <div id="exportLoaiMay"></div>
+              </div>
+            </div>
+
+          </div>
+          <div id="tabPanelLoaiMayNew"></div>
+        </div>
+
+        <div class="tab-pane fade" id="loaichi" role="tabpanel" aria-labelledby="loaichi-tab">
+          <div id="boxOptionsLoaiChi">
+            <div data-options="dxItem: {ratio: 0, baseSize: 50}" style="margin-left: 10px;">
+              <div class="lagre">
+                <div id="exportLoaiChi"></div>
+              </div>
+            </div>
+
+          </div>
+          <div id="tabPanelLoaiChiNew"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/javascripts/StaticClass/generaljs.js"></script>
+<script src="/javascripts/kho/CongDoanMaHangInputjsV4.js"></script>

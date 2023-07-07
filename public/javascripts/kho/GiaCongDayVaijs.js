@@ -28,11 +28,8 @@ const loadPanel = $('.loadpanel').dxLoadPanel({
 
 const upload=()=>{
     loadPanel.show();
-    // let formData=new FormData($("frmUpload"));
+    
     let formData  =new FormData(document.getElementById("frmUpload"));
-    // for(let i=0; i<this.files.length;i++){
-    //     formData.append('file',this.files[i]);
-    // }
   let fileName=  $('#filename').val();
   let fileType= fileName.split('.').pop();
 

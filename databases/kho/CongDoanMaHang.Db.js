@@ -50,6 +50,18 @@ module.exports.wacoal_MauNL_LoaiChi_Moi_Load_Web_V1 = async () => {
   }
 };
 
+module.exports.wacoal_MauNL_LoaiChi_Moi_MH_Load_Web_V1 = async () => {
+  try {
+    let pool = await sql.connect(sqlConfig);
+    let res = await pool
+      .request()
+      .execute("wacoal_MauNL_LoaiChi_Moi_MH_Load_Web_V1");
+    return res.recordset;
+  } catch (error) {
+    return res.error;
+  }
+};
+
 module.exports.CongDoanMaHangInput = async (filename, userId) => {
   let lError = { errMes: "thành công", statusErr: true };
   let pool = await sql.connect(sqlConfig);
@@ -181,7 +193,7 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
         .input("MATDO", sql.Numeric(9, 3), MATDO)
         .input("MAUNL", sql.NVarChar(50), MAUNL)
         .input("MAMAUCHI", sql.NVarChar(50), MAMAUCHI.toString())
-        .input("CHIEUDAI_CONGDOAN", sql.Numeric(9, 3), CHIEUDAI_CONGDOAN)
+        .input("CHIEUDAI_CONGDOAN", sql.Numeric(9, 3), Number(CHIEUDAI_CONGDOAN))
         .input("UserName", sql.NVarChar(50), userId)
         .execute("wacoal_CONGDOAN_MAHANG_Insert_V3");
     }
@@ -214,6 +226,34 @@ module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async (params) => 
     return res.error;
   }
 };
+
+module.exports.LOAIMAY_New_load_Wacoal_Web_V1 = async (params) => {
+  try {
+    let pool = await sql.connect(sqlConfig);
+    let res = await pool
+      .request()
+      .execute("LOAIMAY_New_load_Wacoal_Web_V1");
+    return res.recordset;
+  } catch (error) {
+    return res.error;
+  }
+};
+
+module.exports.LoaiChi_New_load_Wacoal_Web_V1 = async (params) => {
+  try {
+    let pool = await sql.connect(sqlConfig);
+    let res = await pool
+      .request()
+      .execute("LoaiChi_New_load_Wacoal_Web_V1");
+    return res.recordset;
+  } catch (error) {
+    return res.error;
+  }
+};
+
+
+
+
 
 
 

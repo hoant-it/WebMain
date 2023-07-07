@@ -51,6 +51,8 @@ router.get('/NhanNguyenLieu',CatRenControl.NhanNguyenLieu)
 //Quy trinh nhan nguyen lieu
 router.get('/XaVai',CatRenControl.XaVai)
 
+router.get('/QuyTrinhCatThe',CatControl.QuyTrinhCatThe)
+
 
 
 
@@ -117,6 +119,8 @@ router.get('/KiemHangChiaSoLuong',CatVaiControl.KiemHangChiaSoLuong)
 router.get('/VaiGiaoHang',CatVaiControl.VaiGiaoHang)
 router.get('/B61KiemXuLyMauCatMepHem',CatVaiControl.B61KiemXuLyMauCatMepHem)
 router.get('/B61DownSize',CatVaiControl.B61DownSize)
+router.get('/CatThe',CatVaiControl.CatThe)
+
 
 
 

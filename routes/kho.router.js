@@ -31,12 +31,24 @@ router.get('/congodanmahanginputv2',congdoanmahangControl.CongDoanMaHangLoad)
 
 router.get('/CongDoanMaHangV3',congdoanmahangControl.CongDoanMaHangV3)
 
+router.get('/CongDoanMaHangV4',congdoanmahangControl.CongDoanMaHangV4)
+
 
 router.get('/wacoal_MaHang_Select_V1', congdoanmahangControl.wacoal_MaHang_Select_V1)
 
 router.get('/wacoal_TinhChi_MaHang_V3/:MAHANG', congdoanmahangControl.wacoal_TinhChi_MaHang_V3)
 router.get('/CONGDOAN_MAHANG_New_Web_Load_V1', congdoanmahangControl.CONGDOAN_MAHANG_New_Web_Load_V1)
 router.get('/wacoal_MauNL_LoaiChi_Moi_Load_Web_V1', congdoanmahangControl.wacoal_MauNL_LoaiChi_Moi_Load_Web_V1)
+router.get('/wacoal_MauNL_LoaiChi_Moi_MH_Load_Web_V1', congdoanmahangControl.wacoal_MauNL_LoaiChi_Moi_MH_Load_Web_V1)
+
+router.get('/LOAIMAY_New_load_Wacoal_Web_V1', congdoanmahangControl.LOAIMAY_New_load_Wacoal_Web_V1)
+router.get('/LoaiChi_New_load_Wacoal_Web_V1', congdoanmahangControl.LoaiChi_New_load_Wacoal_Web_V1)
+
+
+
+
+
+
 router.post('/congodanmahanginputv2',upload.single('filename'), congdoanmahangControl.CongDoanMaHangInput)
 router.get('/CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1/:MaHang',congdoanmahangControl.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1)
 
@@ -207,7 +219,7 @@ router.get('/ordertinhchihis',khoOrderTinhChiHisControl.OrderTinhChiHisLoad)
 router.get('/KHOCHIHEADER_ORDERNO_load_web_wacoal_v1',khoOrderTinhChiHisControl.KHOCHIHEADER_ORDERNO_load_web_wacoal_v1)
 router.get('/KHOCHIHEADER_GROUPKH_Load_web_wacoal_V1/:order',khoOrderTinhChiHisControl.KHOCHIHEADER_GROUPKH_Load_web_wacoal_V1)
 router.get('/KHOCHIDETAIL_Load_By_Order_GroupKH_web_wacoal_V1/:order/:groupKH',khoOrderTinhChiHisControl.KHOCHIDETAIL_Load_By_Order_GroupKH_web_wacoal_V1)
-router.get('/KHOCHIDETAILGROUP_Load_web_wacoal_V1/:order/:groupKH',khoOrderTinhChiHisControl.KHOCHIDETAILGROUP_Load_web_wacoal_V1)
+router.get('/KHOCHIDETAILGROUP_Load_web_wacoal_V2/:order/:groupKH',khoOrderTinhChiHisControl.KHOCHIDETAILGROUP_Load_web_wacoal_V2)
 router.post('/KHOCHIHEADER_TIMECREATE_USERCREATE_load_web_wacoal_V1',khoOrderTinhChiHisControl.KHOCHIHEADER_TIMECREATE_USERCREATE_load_web_wacoal_V1)
 
 //Xuat Nhap Kho
@@ -232,6 +244,8 @@ router.get('/KHOCHITON_LichSuNhap_web_wacoal_v1',XuatNhapKhoControl.KHOCHITON_Li
 router.get('/KHOCHITON_LichSuXuat_web_wacoal_v1',XuatNhapKhoControl.KHOCHITON_LichSuXuat_web_wacoal_v1)
 router.post('/NhapKhoImportExcel',upload.single('filenameNhapKho'),XuatNhapKhoControl.NhapKhoImportExcel)
 // router.post('/Order', upload.single('filename'), orderControl.OrderInserByType)
+
+
 
 
 module.exports=router;

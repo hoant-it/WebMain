@@ -146,6 +146,14 @@ module.exports.DapAppliQue = async(req, res) => {
     })
 }
 
+module.exports.QuyTrinhCatThe = async(req, res) => {
+    res.render('Cat/QuyTrinhCatThe', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 
 
 

@@ -113,7 +113,7 @@ module.exports.Order_TinhChi_Web_V5=async(params,userId)=>{
         .input('GROUPKH',sql.NVarChar(50),groupKH)
         .input('DATCHISTATUS',sql.Int, parseInt(datchiStatus))
         .input('UserName',sql.NVarChar(50),userId)
-        .execute('Order_TinhChi_Web_V5')
+        .execute('Order_TinhChi_Web_V6')
         return result.recordset
     } catch (error) {
         throw error

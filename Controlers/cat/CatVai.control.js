@@ -85,3 +85,11 @@ module.exports.B61DownSize= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.CatThe= async(req,res) =>{
+    res.render('Cat/CatThe', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}

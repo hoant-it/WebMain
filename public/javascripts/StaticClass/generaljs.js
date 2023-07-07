@@ -58,8 +58,10 @@ class generals{
         }
 
          setAlternatingRowsBackgroundExcel(gridCell, excelCell) {
-          if (gridCell.rowType === "header" || gridCell.rowType === "data") {
-            if (excelCell.fullAddress.row % 2 === 0) {
+          if (
+            // gridCell.rowType === "header" || 
+          gridCell.rowType === "data") {
+            if (excelCell.fullAddress.row % 2 !== 0) {
               excelCell.fill = {
                 type: "pattern",
                 pattern: "solid",
@@ -68,18 +70,17 @@ class generals{
               };
             
             }
-            excelCell.font={
-              size:'11',
-              name:'EUDC'
-            }
-            excelCell.border = {
-              top: {style:'thin', color: {argb:'00000000'}},
-              left: {style:'thin', color: {argb:'00000000'}},
-              bottom: {style:'thin', color: {argb:'00000000'}},
-              right: {style:'thin', color: {argb:'00000000'}}
-            };
-            
           }
+          excelCell.font={
+            size:'11',
+            name:'EUDC'
+          }
+          excelCell.border = {
+            top: {style:'thin', color: {argb:'00000000'}},
+            left: {style:'thin', color: {argb:'00000000'}},
+            bottom: {style:'thin', color: {argb:'00000000'}},
+            right: {style:'thin', color: {argb:'00000000'}}
+          };
         }
     
          setHeaderRowsBackgroundExcel(gridCell, excelCell) {
@@ -87,9 +88,15 @@ class generals{
             excelCell.fill = {
               type: "pattern",
               pattern: "solid",
-              fgColor: { argb: "D3D3D3" },
-              bgColor: { argb: "D3D3D3" },
+              fgColor: { argb: "EEE8AA" },
+              bgColor: { argb: "EEE8AA" },
             };
+
+            excelCell.font={
+              bold:true,
+              size:'11',
+              name:'EUDC'
+            }
           }
         }
 

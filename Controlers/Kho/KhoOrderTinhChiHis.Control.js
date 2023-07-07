@@ -49,9 +49,9 @@ module.exports.KHOCHIDETAIL_Load_By_Order_GroupKH_web_wacoal_V1 = async(req,res)
     }
 }
 
-module.exports.KHOCHIDETAILGROUP_Load_web_wacoal_V1 = async(req,res)=>{
+module.exports.KHOCHIDETAILGROUP_Load_web_wacoal_V2 = async(req,res)=>{
     try {
-        let result= await db.KHOCHIDETAILGROUP_Load_web_wacoal_V1(req.params)
+        let result= await db.KHOCHIDETAILGROUP_Load_web_wacoal_V2(req.params)
         return res.json({
             data:result
         })

@@ -755,8 +755,8 @@ const MaHangXuatExcel = () => {
             excelCell.alignment = { horizontal: "left" };
           }
           if (gridCell.column.dataField.includes("SL")) {
-            excelCell.value = parseInt(gridCell.value);
-            excelCell.numFmt = "0;-0;-;@";
+            excelCell.value = Number(gridCell.value);
+            excelCell.numFmt = "0.000";
             excelCell.alignment = { horizontal: "right" };
           }
         }

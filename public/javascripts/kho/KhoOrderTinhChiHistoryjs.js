@@ -331,7 +331,7 @@ const tabPanelLoad = ( orderNo, groupKH) => {
 
 
   var urlDatChiTotal =
-    "KHOCHIDETAILGROUP_Load_web_wacoal_V1/" + orderNo + "/" + groupKH ;
+    "KHOCHIDETAILGROUP_Load_web_wacoal_V2/" + orderNo + "/" + groupKH ;
 
   var listDataTinhChiChiTotal = DevExpress.data.AspNet.createStore({
     key: "numberLoaichi",
