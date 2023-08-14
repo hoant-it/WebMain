@@ -204,12 +204,19 @@ router.post('/giacongdayvai',upload.single('filename'), giaCongDayVaiControl.Gia
 router.get('/wacoal_GiaCongDayVai_MaHang_V1/:MAHANG', giaCongDayVaiControl.wacoal_GiaCongDayVai_MaHang_V1)
 router.get('/wacoal_MaHang_GCDV_Select_V1', giaCongDayVaiControl.wacoal_MaHang_GCDV_Select_V1)
 router.get('/wacoal_GiaCongDayVai_MaHang_CT_V1/:MAHANG', giaCongDayVaiControl.wacoal_GiaCongDayVai_MaHang_CT_V1)
+router.get('/wacoal_MaHang_GCDV_Select_V1',giaCongDayVaiControl.wacoal_MaHang_GCDV_Select_V1)
+
+
 
 
 //Gia Cong Day Vai V2
 router.get('/GCDVOrderTinhChi',giaCongDayVaiControl.GCDVOrderTinhChi)
 router.get('/Order_TinhChi_GCDV_Web_V1/:order/:groupKH',giaCongDayVaiControl.Order_TinhChi_GCDV_Web_V1)
 router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1/:order/:groupKH',giaCongDayVaiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1)
+
+router.get('/GCDV_Load_By_MaHang_Web_Wacoal_V1/:MaHang',giaCongDayVaiControl.GCDV_Load_By_MaHang_Web_Wacoal_V1)
+router.get('/wacoal_TinhChi_GCDV_MaHang_V1/:MaHang',giaCongDayVaiControl.wacoal_TinhChi_GCDV_MaHang_V1)
+
 
 
 

@@ -114,4 +114,64 @@ module.exports.GCDVOrderTinhChi = async (req,res) =>{
   
   }
 
+
+  module.exports.wacoal_MaHang_GCDV_Select_V1 = async(req, res) =>{
+    try {
+        const result= await db.wacoal_MaHang_GCDV_Select_V1()
+        res.json({
+            data:result
+        })
+    } catch (error) {
+        const dataErr=[{
+            MAHANG: 'Err',
+            MAHANGNAME_VN: 'Err',
+            MAHANGNAME_EN: 'Err',
+            TIMECREATE: '',
+            USERCREATE: '',
+            TIMEUPDATE: '',
+            USERUPDATE: ''
+          }]
+        res.json({
+            data:dataErr
+        })
+    }
+}
+
+module.exports.GCDV_Load_By_MaHang_Web_Wacoal_V1 = async(req,res) =>{
+    console.log("params:" +req.params)
+    try {
+        await db.GCDV_Load_By_MaHang_Web_Wacoal_V1(req.params).then(result=>{
+            res.json({
+                data:result,
+                message:'ok'
+            })
+        })
+        
+    } catch (error) {
+        res.json({
+            data:{},
+            message:'Err: '+error
+        })
+        
+    }
+}
+
+module.exports.wacoal_TinhChi_GCDV_MaHang_V1 = async(req, res) =>{
+    const{MaHang}= req.params
+    try {
+       await  db.wacoal_TinhChi_GCDV_MaHang_V1(MaHang).then(result=>{
+           res.json({
+               data:result,
+               message:`ok`
+           })
+       })
+        
+    } catch (error) {
+        res.json({
+            data:{},
+            message:`Err ${error}`
+        })
+    
+    }
+}
   

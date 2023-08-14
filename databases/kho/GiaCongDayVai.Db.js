@@ -20,40 +20,25 @@ module.exports.GiaCongDayVaiInput = async (filename, userId) => {
       let tGCDV= new sql.Table();
       tGCDV.columns.add("MAHANG", sql.NVarChar(50));
       tGCDV.columns.add("MAUMH", sql.NVarChar(10));
-      tGCDV.columns.add("MAUNL", sql.NVarChar(10));
-      tGCDV.columns.add("MAMAUCHI", sql.NVarChar(10));
-      tGCDV.columns.add("QUYCACH", sql.VarChar(10));
-      tGCDV.columns.add("CONGDOAN", sql.NVarChar(10));
-      tGCDV.columns.add("TENCONGDOAN", sql.NVarChar(50));
-      tGCDV.columns.add("KYHIEUMAY", sql.NVarChar(sql.MAX));
       tGCDV.columns.add("LOAIMAY", sql.NVarChar(50));
+      tGCDV.columns.add("KYHIEUMAY", sql.NVarChar(sql.MAX));
       tGCDV.columns.add("MAVITRICHI", sql.VarChar(5));
       tGCDV.columns.add("LOAICHI", sql.NVarChar(50));
-      tGCDV.columns.add("BIENDO", sql.Numeric(9,3));
-      tGCDV.columns.add("MATDO", sql.Numeric(9,3));
-      tGCDV.columns.add("VITRI", sql.Int);
-      tGCDV.columns.add("BERONGDAYVAI", sql.Int);
-      tGCDV.columns.add("MET_PCS", sql.Numeric(9,3));
-      tGCDV.columns.add("GHICHU", sql.NVarChar(200));
-
+      tGCDV.columns.add("MAUNL", sql.NVarChar(10));
+      tGCDV.columns.add("MAMAUCHI", sql.NVarChar(10));
+      tGCDV.columns.add("MET_PSC", sql.Numeric(9,3));
+      tGCDV.columns.add("VITRIMAY", sql.Int);
       const formatHeader = [
         "MAHANG",
         "MAUMH",
-        "MAUNL",
-        "MAMAUCHI",
-        "QUYCACH",
-        "CONGDOAN",
-        "TENCONGDOAN",
-        "KYHIEUMAY",
         "LOAIMAY",
+        "KYHIEUMAY",
         "MAVITRICHI",
         "LOAICHI",
-        "BIENDO",
-        "MATDO",
-        "VITRI",
-        "BERONGDAYVAI",
-        "MET_PCS",
-        "GHICHU",
+        "MAUNL",
+        "MAMAUCHI",
+        "MET_PSC",
+        "VITRIMAY"
       ];
       if (columnsArrayHeaders.length !== formatHeader.length) {
         lError.errMes = `Lỗi: format cột không đúng`;
@@ -87,45 +72,33 @@ module.exports.GiaCongDayVaiInput = async (filename, userId) => {
         var contentValue = jsonPagesArray[0].content[i];
         let MAHANG = contentValue.MAHANG;
         let MAUMH = contentValue.MAUMH;
-        let MAUNL = contentValue.MAUNL;
-        let MAMAUCHI = contentValue.MAMAUCHI.toString();
-        let QUYCACH=contentValue.QUYCACH
-        let CONGDOAN = contentValue.CONGDOAN;
-        let TENCONGDOAN = contentValue.TENCONGDOAN.replace(/\n|\r/g, "");
-        let KYHIEUMAY = contentValue.KYHIEUMAY;
         let LOAIMAY = contentValue.LOAIMAY;
+        let KYHIEUMAY = contentValue.KYHIEUMAY;
         let MAVITRICHI = contentValue.MAVITRICHI;
         let LOAICHI = contentValue.LOAICHI;
-        let BIENDO = contentValue.BIENDO === "" ? 0 : contentValue.BIENDO;
-        let MATDO = contentValue.MATDO === "" ? 0 : contentValue.MATDO;
-        let VITRI=contentValue.VITRI === "" ? 0 : contentValue.VITRI;
-        let BERONGDAYVAI=contentValue.BERONGDAYVAI === "" ? 0 : contentValue.BERONGDAYVAI;
-        let MET_PCS=contentValue.MET_PCS === "" ? 0 : contentValue.MET_PCS;
-        let GHICHU=contentValue.GHICHU.replace(/\n|\r/g, "");
+        let MAUNL = contentValue.MAUNL;
+        let MAMAUCHI = contentValue.MAMAUCHI.toString(); 
+        let MET_PSC=contentValue.MET_PSC === "" ? 0 : contentValue.MET_PSC;
+        let VITRIMAY=contentValue.VITRI === "" ? 0 : contentValue.VITRIMAY;      
 
-        tGCDV.rows.add(MAHANG,
+        tGCDV.rows.add(
+            MAHANG,
             MAUMH,
-            MAUNL,
-            MAMAUCHI,
-            QUYCACH,
-            CONGDOAN,
-            TENCONGDOAN,
-            KYHIEUMAY,
             LOAIMAY,
+            KYHIEUMAY,
             MAVITRICHI,
             LOAICHI,
-            BIENDO,
-            MATDO,
-            VITRI,
-            BERONGDAYVAI,
-            MET_PCS,
-            GHICHU)
+            MAUNL,
+            MAMAUCHI,
+            MET_PSC,
+            VITRIMAY
+          )
       }
 
       await pool.request()
       .input('tyleGCDV',tGCDV)
       .input('UserName',sql.NVarChar(50),userId)
-      .execute('wacoal_GIACONGDAYVAI_Input_By_Type_Web_V1')
+      .execute('wacoal_GIACONGDAYVAI_Input_By_Type_Web_V2')
 
       await del([`./public/uploads/${filename}`]);
       return lError;
@@ -203,5 +176,42 @@ module.exports.GiaCongDayVaiInput = async (filename, userId) => {
     }
   }
 
+  module.exports.wacoal_MaHang_GCDV_Select_V1 = async () => {
+    try {
+      let pool = await sql.connect(sqlConfig);
+      let res = await pool
+        .request()
+        .execute("wacoal_MaHang_GCDV_Select_V1");
+      return res.recordset;
+    } catch (error) {
+      throw error
+    }
+  };
+
+  module.exports.GCDV_Load_By_MaHang_Web_Wacoal_V1 = async (params) => {
+    try {
+      let pool = await sql.connect(sqlConfig);
+      let res = await pool
+        .request()
+        .input('MAHANG',sql.NVarChar(50),params.MaHang)
+        .execute("GCDV_Load_By_MaHang_Web_Wacoal_V1");
+      return res.recordset;
+    } catch (error) {
+      return res.error;
+    }
+  };
+
+  module.exports.wacoal_TinhChi_GCDV_MaHang_V1 = async (maHang) => {
+    try {
+      let pool = await sql.connect(sqlConfig);
+      let res = await pool
+        .request()
+        .input("MAHANG", sql.NVarChar(50), maHang)
+        .execute("wacoal_TinhChi_GCDV_MaHang_V1");
+      return res.recordset;
+    } catch (error) {
+      throw error
+    }
+  };
 
   

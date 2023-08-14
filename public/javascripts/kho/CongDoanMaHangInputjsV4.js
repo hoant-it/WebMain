@@ -1801,6 +1801,8 @@ const uploadButton = () => {
 // }
 
 $(function () {
+
+
   MaHang = "None";
   boxOption();
   // searchBoxMaHang();
