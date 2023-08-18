@@ -154,6 +154,24 @@ module.exports.QuyTrinhCatThe = async(req, res) => {
     })
 }
 
+module.exports.CatHDCVTNSup = async(req, res) => {
+    res.render('Cat/CatHDCVTNSup', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+module.exports.CatHDCVTNLead = async(req, res) => {
+    res.render('Cat/CatHDCVTNLead', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+
+
 
 
 

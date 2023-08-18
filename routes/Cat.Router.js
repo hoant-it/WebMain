@@ -7,6 +7,8 @@ const CatVaiControl= require('../Controlers/cat/CatVai.control')
 const CatLinningControl= require('../Controlers/cat/CatLinning.control')
 const catTraiVaiControl= require('../Controlers/cat/catTraiVai.control')
 const CatQTGiacSDControl = require('../Controlers/cat/CatQTGiacSD.control')
+const CatHDCVTNSupControl = require('../Controlers/cat/CatHDCVTNSup.control')
+const CatHDCVTNLeadControl = require('../Controlers/cat/CatHDCVTNLead.control')
 //SDTC
 router.get('/SDTC',CatControl.CatSDTC)
 //TDLCard
@@ -53,7 +55,9 @@ router.get('/XaVai',CatRenControl.XaVai)
 
 router.get('/QuyTrinhCatThe',CatControl.QuyTrinhCatThe)
 
+router.get('/CatHDCVTNSup',CatControl.CatHDCVTNSup)
 
+router.get('/CatHDCVTNLead',CatControl.CatHDCVTNLead)
 
 
 
@@ -159,6 +163,24 @@ router.get('/GiacSoDoKTDMGemini',CatQTGiacSDControl.GiacSoDoKTDMGemini)
 router.get('/GiacSoDoKTDMWacoalCad',CatQTGiacSDControl.GiacSoDoKTDMWacoalCad)
 router.get('/InSoDoWacoalCad',CatQTGiacSDControl.InSoDoWacoalCad)
 router.get('/CatSoDoToMauBangTienDoGiacSoDoGiaoXeSoDo',CatQTGiacSDControl.CatSoDoToMauBangTienDoGiacSoDoGiaoXeSoDo)
+
+//CatHDCVTNSupControl
+router.get('/CatHDCVTNSup1',CatHDCVTNSupControl.CatHDCVTNSup1)
+router.get('/CatHDCVTNSup2',CatHDCVTNSupControl.CatHDCVTNSup2)
+router.get('/CatHDCVTNSup3',CatHDCVTNSupControl.CatHDCVTNSup3)
+router.get('/CatHDCVTNSup4',CatHDCVTNSupControl.CatHDCVTNSup4)
+
+//CatHDCVTNLeadControl
+router.get('/CatHDCVTNLead1',CatHDCVTNLeadControl.CatHDCVTNLead1)
+router.get('/CatHDCVTNLead2',CatHDCVTNLeadControl.CatHDCVTNLead2)
+router.get('/CatHDCVTNLead3',CatHDCVTNLeadControl.CatHDCVTNLead3)
+router.get('/CatHDCVTNLead4',CatHDCVTNLeadControl.CatHDCVTNLead4)
+router.get('/CatHDCVTNLead5',CatHDCVTNLeadControl.CatHDCVTNLead5)
+router.get('/CatHDCVTNLead6',CatHDCVTNLeadControl.CatHDCVTNLead6)
+router.get('/CatHDCVTNLead7',CatHDCVTNLeadControl.CatHDCVTNLead7)
+router.get('/CatHDCVTNLead8',CatHDCVTNLeadControl.CatHDCVTNLead8)
+router.get('/CatHDCVTNLead9',CatHDCVTNLeadControl.CatHDCVTNLead9)
+
 
 
 
