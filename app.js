@@ -1,7 +1,7 @@
 
 const dotenv = require("dotenv");
 dotenv.config();
-// console.log(process.env.NODE_ENV);
+
 
 var createError = require("http-errors");
 var express = require("express");
@@ -24,9 +24,11 @@ var app = express();
 app.use(compression());
 
 // view engine setup
+// console.log(path.join(__dirname, "views"))
 app.set("views", path.join(__dirname, "views"));
 app.use(expressLayouts);
-app.set("layout", "./layouts/main");
+app.set("layout", path.join(__dirname, "views/layouts/main"));
+// app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
 
 app.use(logger("dev"));
@@ -53,13 +55,17 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
+  console.log(req.app.get("env"));
   // set locals, only providing error in development
+  var env =process.env.NODE_ENV
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = env === "development" ? err : {};
+  // res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
   res.render(err.status);
+  // next(createError(404));
 });
 
 module.exports = app;
