@@ -21,23 +21,23 @@ module.exports.GiaCongDayVaiInput = async (filename, userId) => {
       tGCDV.columns.add("MAHANG", sql.NVarChar(50));
       tGCDV.columns.add("MAUMH", sql.NVarChar(10));
       tGCDV.columns.add("LOAIMAY", sql.NVarChar(50));
-      tGCDV.columns.add("KYHIEUMAY", sql.NVarChar(sql.MAX));
-      tGCDV.columns.add("MAVITRICHI", sql.VarChar(5));
-      tGCDV.columns.add("LOAICHI", sql.NVarChar(50));
+      // tGCDV.columns.add("KYHIEUMAY", sql.NVarChar(sql.MAX));
+      tGCDV.columns.add("MAVITRICHI", sql.NVarChar(20));
+      tGCDV.columns.add("LOAICHI", sql.NVarChar(10));
       tGCDV.columns.add("MAUNL", sql.NVarChar(10));
       tGCDV.columns.add("MAMAUCHI", sql.NVarChar(10));
-      tGCDV.columns.add("MET_PSC", sql.Numeric(9,3));
+      // tGCDV.columns.add("MET_PSC", sql.Numeric(9,3));
       tGCDV.columns.add("VITRIMAY", sql.Int);
       const formatHeader = [
         "MAHANG",
         "MAUMH",
         "LOAIMAY",
-        "KYHIEUMAY",
+        // "KYHIEUMAY",
         "MAVITRICHI",
         "LOAICHI",
         "MAUNL",
         "MAMAUCHI",
-        "MET_PSC",
+        // "MET_PSC",
         "VITRIMAY"
       ];
       if (columnsArrayHeaders.length !== formatHeader.length) {
@@ -73,24 +73,24 @@ module.exports.GiaCongDayVaiInput = async (filename, userId) => {
         let MAHANG = contentValue.MAHANG;
         let MAUMH = contentValue.MAUMH;
         let LOAIMAY = contentValue.LOAIMAY;
-        let KYHIEUMAY = contentValue.KYHIEUMAY;
+        // let KYHIEUMAY = contentValue.KYHIEUMAY;
         let MAVITRICHI = contentValue.MAVITRICHI;
         let LOAICHI = contentValue.LOAICHI;
         let MAUNL = contentValue.MAUNL;
         let MAMAUCHI = contentValue.MAMAUCHI.toString(); 
-        let MET_PSC=contentValue.MET_PSC === "" ? 0 : contentValue.MET_PSC;
+        // let MET_PSC=contentValue.MET_PSC === "" ? 0 : contentValue.MET_PSC;
         let VITRIMAY=contentValue.VITRI === "" ? 0 : contentValue.VITRIMAY;      
 
         tGCDV.rows.add(
             MAHANG,
             MAUMH,
             LOAIMAY,
-            KYHIEUMAY,
+            // KYHIEUMAY,
             MAVITRICHI,
             LOAICHI,
             MAUNL,
             MAMAUCHI,
-            MET_PSC,
+            // MET_PSC,
             VITRIMAY
           )
       }
@@ -98,7 +98,8 @@ module.exports.GiaCongDayVaiInput = async (filename, userId) => {
       await pool.request()
       .input('tyleGCDV',tGCDV)
       .input('UserName',sql.NVarChar(50),userId)
-      .execute('wacoal_GIACONGDAYVAI_Input_By_Type_Web_V2')
+      .execute('wacoal_GIACONGDAYVAI_Input_By_Type_Web_V3')
+      // wacoal_GIACONGDAYVAI_Input_By_Type_Web_V2
 
       await del([`./public/uploads/${filename}`]);
       return lError;
@@ -122,7 +123,7 @@ module.exports.GiaCongDayVaiInput = async (filename, userId) => {
     }
   };
 
-  module.exports.wacoal_MaHang_GCDV_Select_V1 = async (maHang) => {
+  module.exports.wacoal_MaHang_GCDV_Select_V1 = async () => {
     try {
       let pool = await sql.connect(sqlConfig);
       let res = await pool
@@ -148,28 +149,28 @@ module.exports.GiaCongDayVaiInput = async (filename, userId) => {
   };
 
   
-  module.exports.Order_TinhChi_GCDV_Web_V1=async(params)=>{
+  module.exports.Order_TinhChi_GCDV_Web_V2=async(params)=>{
     const{order,groupKH}=params;
     try {
         let pool=await sql.connect(sqlConfig)
         let result=await pool.request()
         .input('ORDERNO',sql.NVarChar(50),order)
         .input('GROUPKH',sql.NVarChar(50),groupKH)
-        .execute('Order_TinhChi_GCDV_Web_V1')
+        .execute('[Order_TinhChi_GCDV_Web_V2]')
         return result.recordset
     } catch (error) {
         throw error
     }
   }
 
-  module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1=async(params)=>{
+  module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V2=async(params)=>{
     const{order,groupKH}=params;
     try {
         let pool=await sql.connect(sqlConfig)
         let result=await pool.request()
         .input('ORDERNO',sql.NVarChar(50),order)
         .input('GROUPKH',sql.NVarChar(50),groupKH)
-        .execute('wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1')
+        .execute('wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V2')
         return result.recordset
     } catch (error) {
         throw error

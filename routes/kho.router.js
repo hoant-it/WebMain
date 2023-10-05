@@ -14,6 +14,8 @@ const giaCongDayVaiControl= require('../Controlers/Kho/GiaCongDayVai.Control');
 const khoOrderTinhChiHisControl= require('../Controlers/Kho/KhoOrderTinhChiHis.Control')
 const XuatNhapKhoControl=require('../Controlers/Kho/XuatNhapKho.Control');
 
+const LoaiMayCongThucControl=require('../Controlers/Kho/LoaiMayCongThuc.control')
+
 //Order
 router.get('/Order',orderControl.OrderLoad);
 router.get('/DONHANGITEM_3_MY_SearchBox_Web_V1',orderControl.DONHANGITEM_3_MY_SearchBox_Web_V1)
@@ -209,10 +211,10 @@ router.get('/wacoal_MaHang_GCDV_Select_V1',giaCongDayVaiControl.wacoal_MaHang_GC
 
 
 
-//Gia Cong Day Vai V2
+//tinh chi Gia Cong Day Vai V2
 router.get('/GCDVOrderTinhChi',giaCongDayVaiControl.GCDVOrderTinhChi)
-router.get('/Order_TinhChi_GCDV_Web_V1/:order/:groupKH',giaCongDayVaiControl.Order_TinhChi_GCDV_Web_V1)
-router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1/:order/:groupKH',giaCongDayVaiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1)
+router.get('/Order_TinhChi_GCDV_Web_V2/:order/:groupKH',giaCongDayVaiControl.Order_TinhChi_GCDV_Web_V2)
+router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V2/:order/:groupKH',giaCongDayVaiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V2)
 
 router.get('/GCDV_Load_By_MaHang_Web_Wacoal_V1/:MaHang',giaCongDayVaiControl.GCDV_Load_By_MaHang_Web_Wacoal_V1)
 router.get('/wacoal_TinhChi_GCDV_MaHang_V1/:MaHang',giaCongDayVaiControl.wacoal_TinhChi_GCDV_MaHang_V1)
@@ -251,6 +253,14 @@ router.get('/KHOCHITON_LichSuNhap_web_wacoal_v1',XuatNhapKhoControl.KHOCHITON_Li
 router.get('/KHOCHITON_LichSuXuat_web_wacoal_v1',XuatNhapKhoControl.KHOCHITON_LichSuXuat_web_wacoal_v1)
 router.post('/NhapKhoImportExcel',upload.single('filenameNhapKho'),XuatNhapKhoControl.NhapKhoImportExcel)
 // router.post('/Order', upload.single('filename'), orderControl.OrderInserByType)
+
+
+//Loai May Cong Thuc
+
+router.get('/LoaiMayCongThuc',LoaiMayCongThucControl.LoaiMayCongThucLoad)
+router.get('/wacoal_LOAIMAYCT_Load_Web_V1',LoaiMayCongThucControl.wacoal_LOAIMAYCT_Load_Web_V1)
+router.post('/LOAIMAYCTUpdate',LoaiMayCongThucControl.LOAIMAYCTUpdate)
+router.post('/wacoal_LOAIMAYCT_Delete_Web_V1',LoaiMayCongThucControl.wacoal_LOAIMAYCT_Delete_Web_V1)
 
 
 

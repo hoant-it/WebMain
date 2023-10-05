@@ -86,9 +86,9 @@ module.exports.GCDVOrderTinhChi = async (req,res) =>{
     })
   }
 
-  module.exports.Order_TinhChi_GCDV_Web_V1=async(req,res)=>{
+  module.exports.Order_TinhChi_GCDV_Web_V2=async(req,res)=>{
     try {
-      let result=await db.Order_TinhChi_GCDV_Web_V1(req.params)
+      let result=await db.Order_TinhChi_GCDV_Web_V2(req.params)
       res.json({
           data:result
       })
@@ -100,9 +100,9 @@ module.exports.GCDVOrderTinhChi = async (req,res) =>{
   
   }
 
-  module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1=async(req,res)=>{
+  module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V2=async(req,res)=>{
     try {
-      let result=await db.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1(req.params)
+      let result=await db.wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V2(req.params)
       res.json({
           data:result
       })

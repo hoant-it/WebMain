@@ -339,7 +339,7 @@ CTSheet.mergeCells(5, 4, 5, 4);
 
 const tabPanelLoad = (oderNo,khachHang) => {
 
-    var urlDatChiCT = "wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V1/"+ oderNo+'/'+khachHang
+    var urlDatChiCT = "wacoal_OrderTinhChi_ChiTiet_MaHang_GCDV_Load_Web_V2/"+ oderNo+'/'+khachHang
   
 
     var listDataDatChiCT = DevExpress.data.AspNet.createStore({
@@ -354,7 +354,7 @@ const tabPanelLoad = (oderNo,khachHang) => {
 
 
 
-    var urlDatChiTotal = "Order_TinhChi_GCDV_Web_V1/"+ oderNo +'/'+khachHang;
+    var urlDatChiTotal = "Order_TinhChi_GCDV_Web_V2/"+ oderNo +'/'+khachHang;
   
     var listDataTinhChiChiTotal= DevExpress.data.AspNet.createStore({
         key: "numberLoaichi",
