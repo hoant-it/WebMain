@@ -1,4 +1,14 @@
-var MY = "";
+let _ID,
+_Classification='',
+_OrderNo='',
+_UnitNo='',
+_Style='',
+_Cup='',
+_Size='',
+_Color='',
+_OrderQty='',
+_Note='',
+_MY=''
 let strValueTagBoxDraft = `''`;
 let arrValueTagBoxDraft = [];
 let strValueTagBoxCT = `''`;
@@ -19,12 +29,25 @@ const OrderDraftGridLoad = (MY) => {
     .dxDataGrid({
       dataSource: listTinhChi,
       columnsAutoWidth: true,
-      height: 450,
+      height: 650,
       allowColumnReordering: true,
       rowAlternationEnabled: true,
       showColumnLines: true,
       showRowLines: true,
       showBorders: true,
+      searchPanel: {
+        visible: true,
+        // highlightCaseSensitive: true,
+      },
+      loadPanel:{
+        enabled:true
+      },
+      width: '100%',
+      allowColumnResizing: true,
+      columnAutoWidth: true,
+      columnFixing: { enabled: true },
+      // columnChooser: { enabled: true },
+       // sorting: { mode: "single" },
       export: {
         enabled: true,
       },
@@ -52,47 +75,64 @@ const OrderDraftGridLoad = (MY) => {
       scrolling: {
         mode: "virtual",
       },
+      // editing: {
+      //   mode: 'row',
+      //   allowUpdating: true,
+      //   allowDeleting: true,
+      //   allowAdding: true,
+      // },
       columns: [
         {
           caption: "STT",
           alignment: "left",
           dataField: "STT",
           visible: false,
+          // width:100
         },
         {
           caption: "Classification",
           alignment: "left",
           dataField: "Classification",
+          fixed: true,
+          // allowEditing: false,
+          // sortOrder: "asc",
+          // width:70
         },
         {
           caption: "OrderNo",
           alignment: "left",
           dataField: "OrderNo",
+          // allowEditing: false,
         },
         {
           caption: "UnitNo",
           alignment: "left",
           dataField: "UnitNo",
+          // allowEditing: false,
         },
         {
           caption: "Style",
           alignment: "left",
           dataField: "Style",
+          // allowEditing: false,
         },
         {
           caption: "Cup",
           alignment: "left",
           dataField: "Cup",
+          // allowEditing: false,
         },
         {
           caption: "Size",
           alignment: "left",
           dataField: "Size",
+          // allowEditing: false,
         },
         {
           caption: "Color",
           alignment: "left",
           dataField: "Color",
+          // allowEditing: false,
         },
         {
           caption: "OrderQty",
@@ -103,37 +143,49 @@ const OrderDraftGridLoad = (MY) => {
           caption: "Note",
           alignment: "right",
           dataField: "Note",
+          // allowEditing: false,
         },
         {
           caption: "MY",
           alignment: "left",
           dataField: "MY",
+          // allowEditing: false,
         },
         {
           caption: "TIMECREATE",
           alignment: "left",
           dataField: "TIMECREATE",
+          // allowEditing: false,
+          // dataType: "date",
         },
         {
           caption: "USERCREATE",
           alignment: "left",
           dataField: "USERCREATE",
+          // allowEditing: false,
         },
         {
           caption: "TIMEUPDATE",
           alignment: "left",
           dataField: "TIMEUPDATE",
+          // allowEditing: false,
         },
         {
           caption: "USERUPDATE",
           alignment: "left",
           dataField: "USERUPDATE",
+          // allowEditing: false,
         },
         {
           caption: "DRAFT",
           alignment: "left",
+          // allowEditing: false,
         },
       ],
+      onSaved(e) {
+        // const rowData= e.row && e.row.data
+        alert('Saved');
+      },
       onCellPrepared: function(e) {  
         if(e.rowType === 'header') {  
            e.cellElement.css("color", "blue");  
@@ -231,12 +283,158 @@ const OrderDraftGridLoad = (MY) => {
                 OrderDraftGridLoad(strValueTagBoxDraft);
               },
             },
-          }
+          },
+          {
+            location:"alter",
+            widget:"dxButton",
+            options:{
+                icon:"add",
+                text:"",
+                onInitialized: function (e) {
+                    e.element.attr("id", "btnAdd");
+                },
+                onClick: function (){
+                    // console.log("clicker")
+                    resetForm();
+                    // mauChiMauNL.resetForm();
+                }
+            }
+        },{
+            location:"alter",
+            widget:"dxButton",
+            options:{
+                icon:"edit",
+                text:"",
+                onInitialized: function (e) {
+                    e.element.attr("id", "btnEdit");
+                },
+                onClick: function (){
+                    // console.log("clicker")
+                    EditForm();
+                }
+            }
+        },{
+            location:"alter",
+            widget:"dxButton",
+            options:{
+                icon:"remove",
+                text:"",
+                onInitialized: function (e) {
+                    e.element.attr("id", "btnDelete");
+                },
+                onClick: function (){
+                    // console.log("clicker")
+                    if (!confirm("Are you sure you want to Delete selected row?")){
+                    }else{
+                        deleteData();
+                    }
+                    // deleteData();
+                }
+            }
+
+        }
         );
       },
+      onFocusedRowChanged: function(e) {
+
+        const rowData= e.row && e.row.data
+        _ID=rowData.ID
+        _Classification=rowData.Classification
+        _OrderNo=rowData.OrderNo
+        _UnitNo=rowData.UnitNo
+        _Style=rowData.Style
+        _Cup= rowData.Cup 
+        _Size=rowData.Size
+        _Color=rowData.Color
+        _OrderQty=rowData.OrderQty
+        _Note=rowData.Note
+        _MY=rowData.MY
+    
+      
+    }
+  
     })
     .dxDataGrid("instance");
 };
+
+const resetForm = () => {
+  $('#modalAddUpdate').modal('show');
+      $('#btnSave').val("submitInsert");
+      $('#modalAddUpdate').on('shown.bs.modal', function () {
+        txtClassification.focus();
+         
+      }) 
+      txtClassification.option('value','')
+      txtClassification.option('readOnly',false)
+
+      txtOrderNo.option('value','')
+      txtOrderNo.option('readOnly',false)
+
+      txtUnitNo.option('value','')
+      txtUnitNo.option('readOnly',false)
+
+      txtStyle.option('value','')
+      txtStyle.option('readOnly',false)
+
+      txtCup.option('value','')
+      txtCup.option('readOnly',false)
+
+      txtSize.option('value','')
+      txtSize.option('readOnly',false)
+
+      txtColor.option('value','')
+      txtColor.option('readOnly',false)
+
+      iOrderQty.option('value','')
+      // txtClassification.option('readOnly',true)
+
+      txtNote.option('value','')
+      txtNote.option('readOnly',false)
+
+      txtMY.option('value','')
+      txtMY.option('readOnly',false)
+
+}
+
+const EditForm = () => {
+  $('#modalAddUpdate').modal('show');
+      $('#btnSave').val("submitEdit");
+      $('#modalAddUpdate').on('shown.bs.modal', function () {
+          iOrderQty.focus();
+          // $('#txtMauChi').focus();
+      }) 
+      txtClassification.option('value',_Classification)
+      txtClassification.option('readOnly',true)
+
+      txtOrderNo.option('value',_OrderNo)
+      txtOrderNo.option('readOnly',true)
+
+      txtUnitNo.option('value',_UnitNo)
+      txtUnitNo.option('readOnly',true)
+
+      txtStyle.option('value',_Style)
+      txtStyle.option('readOnly',true)
+
+      txtCup.option('value',_Cup)
+      txtCup.option('readOnly',true)
+
+      txtSize.option('value',_Size)
+      txtSize.option('readOnly',true)
+
+      txtColor.option('value',_Color)
+      txtColor.option('readOnly',true)
+
+      iOrderQty.option('value',_OrderQty)
+      // txtClassification.option('readOnly',true)
+
+      txtNote.option('value',_Note)
+      txtNote.option('readOnly',true)
+
+      txtMY.option('value',_Classification)
+      txtMY.option('readOnly',true)
+      
+ 
+}
 
 const OrderGridLoad = (MY) => {
   var url = "DONHANGITEM_3_Load_Web_V2/";
@@ -669,6 +867,106 @@ const loadTooltip = (id, targetButton) => {
     closeOnOutsideClick: false,
   });
 };
+
+
+
+const txtClassification=$('#txtClassification').dxTextBox({
+  // mode: "url"
+  // label: "Link",
+  // labelMode: "floating"
+  // maxLength: 5,
+  showClearButton: true,
+  // placeholder: '5 ký tự',
+  // readOnly: true,
+}).dxTextBox('instance')
+
+const txtOrderNo=$('#txtOrderNo').dxTextBox({
+  // mode: "url"
+  // label: "Link",
+  // labelMode: "floating"
+  // maxLength: 5,
+  showClearButton: true,
+  // placeholder: '5 ký tự',
+  // readOnly: true,
+}).dxTextBox('instance')
+
+const txtUnitNo=$('#txtUnitNo').dxTextBox({
+  // mode: "url"
+  // label: "Link",
+  // labelMode: "floating"
+  // maxLength: 5,
+  showClearButton: true,
+  // placeholder: '5 ký tự',
+  // readOnly: true,
+}).dxTextBox('instance')
+
+const txtStyle=$('#txtStyle').dxTextBox({
+  // mode: "url"
+  // label: "Link",
+  // labelMode: "floating"
+  // maxLength: 5,
+  showClearButton: true,
+  // placeholder: '5 ký tự',
+  // readOnly: true,
+}).dxTextBox('instance')
+
+const txtCup=$('#txtCup').dxTextBox({
+  // mode: "url"
+  // label: "Link",
+  // labelMode: "floating"
+  // maxLength: 5,
+  showClearButton: true,
+  // placeholder: '5 ký tự',
+  // readOnly: true,
+}).dxTextBox('instance')
+
+const txtSize=$('#txtSize').dxTextBox({
+  // mode: "url"
+  // label: "Link",
+  // labelMode: "floating"
+  // maxLength: 5,
+  showClearButton: true,
+  // placeholder: '5 ký tự',
+  // readOnly: true,
+}).dxTextBox('instance')
+
+const txtColor=$('#txtColor').dxTextBox({
+  // mode: "url"
+  // label: "Link",
+  // labelMode: "floating"
+  // maxLength: 5,
+  showClearButton: true,
+  // placeholder: '5 ký tự',
+  // readOnly: true,
+}).dxTextBox('instance')
+
+const iOrderQty= $('#iOrderQty').dxNumberBox({
+  format: '#',
+  value: '',
+  // showSpinButtons: true,
+  showClearButton: true,
+  // inputAttr: { 'aria-label': 'Integer' },
+}).dxNumberBox('instance');
+
+const txtNote=$('#txtNote').dxTextBox({
+  // mode: "url"
+  // label: "Link",
+  // labelMode: "floating"
+  // maxLength: 5,
+  showClearButton: true,
+  // placeholder: '5 ký tự',
+  // readOnly: true,
+}).dxTextBox('instance')
+
+const txtMY=$('#txtMY').dxTextBox({
+  // mode: "url"
+  // label: "Link",
+  // labelMode: "floating"
+  // maxLength: 5,
+  showClearButton: true,
+  // placeholder: '5 ký tự',
+  // readOnly: true,
+}).dxTextBox('instance')
 
 $(function () {
   MY = `'None'`;
