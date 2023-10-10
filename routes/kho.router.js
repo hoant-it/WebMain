@@ -86,6 +86,27 @@ router.get('/GIAOHANG',QTQLNVLControl.GIAOHANG)
 //QLNVLDU
 router.get('/QLNVLDU',QTQLNVLControl.QLNVLDU)
 
+// TinhChiChuyenMay
+router.get('/TinhChiChuyenMay',QTQLNVLControl.TinhChiChuyenMay)
+
+router.get('/TinhChiDayVai',QTQLNVLControl.TinhChiDayVai)
+
+router.get('/DatChi',QTQLNVLControl.DatChi)
+
+router.get('/TinhChiLai',QTQLNVLControl.TinhChiLai)
+
+router.get('/CapPhatChi',QTQLNVLControl.CapPhatChi)
+router.get('/QuanLyTonKhoChi',QTQLNVLControl.QuanLyTonKhoChi)
+
+
+
+
+
+
+
+
+
+
 //Tinh chi theo Order
 // router.get('/KhoOderTinhChiGridViewDev',OrderTinhChiControl.OrderTinhChiLoad)
 router.get('/Khowacoal_KHACHHANG_load_Web_V1',OrderTinhChiControl.Khowacoal_KHACHHANG_load_Web_V1)

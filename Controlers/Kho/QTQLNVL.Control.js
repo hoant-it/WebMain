@@ -94,3 +94,62 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
     }
     
 
+       //TinhChiChuyenMay
+       module.exports.TinhChiChuyenMay= async(req, res) =>{
+        res.render('kho/QuyTrinh/TinhChiChuyenMay',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.TinhChiDayVai= async(req, res) =>{
+        res.render('kho/QuyTrinh/TinhChiDayVai',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.DatChi= async(req, res) =>{
+        res.render('kho/QuyTrinh/DatChi',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.TinhChiLai= async(req, res) =>{
+        res.render('kho/QuyTrinh/TinhChiLai',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.CapPhatChi= async(req, res) =>{
+        res.render('kho/QuyTrinh/CapPhatChi',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QuanLyTonKhoChi= async(req, res) =>{
+        res.render('kho/QuyTrinh/QuanLyTonKhoChi',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+
+    
+
+    
+
+    
+
+    
+    
+
