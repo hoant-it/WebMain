@@ -83,9 +83,9 @@ const OrderDraftGridLoad = (MY) => {
       // },
       columns: [
         {
-          caption: "STT",
+          caption: "ID",
           alignment: "left",
-          dataField: "STT",
+          dataField: "ID",
           visible: false,
           // width:100
         },
@@ -968,9 +968,61 @@ const txtMY=$('#txtMY').dxTextBox({
   // readOnly: true,
 }).dxTextBox('instance')
 
+const SaveData = () => {
+
+   
+    
+  let data = {
+      Id:_ID,
+      Classification: txtClassification.option('value'),
+      OrderNo:txtOrderNo.option('value'),
+      UnitNo: txtUnitNo.option('value'),
+      Style:txtStyle.option('value'),
+      Cup:txtCup.option('value'),
+      Size:txtSize.option('value'),
+      Color:txtColor.option('value'),
+      OrderQty:iOrderQty.option('value'),
+      Note:txtNote.option('value'),
+      MY:txtMY.option('value'),
+      status : $("#btnSave").val()
+  };
+
+  $.ajax({
+      type:'POST',
+      data:JSON.stringify(data),
+      contentType: 'application/json',
+      url:'OrderUpdate',
+      success: (res) => {
+          if(res.statusErr){
+              $('#modalAddUpdate').modal('hide');
+              DevExpress.ui.notify({
+                  message: res.errMes,
+                  width: 450
+              },"success",5000), 
+              //error,success,warning
+              // alert(res.errMes);
+              OrderDraftGridLoad(MY);
+          } else{
+              DevExpress.ui.notify({
+                  message: res.errMes,
+                  width: 450
+              },"error",5000)
+              // alert(res.errMes);
+          }
+      }
+
+  })
+
+}
+
 $(function () {
   MY = `'None'`;
   OrderDraftGridLoad(MY);
   OrderGridLoad(MY);
   loadTooltip("tooltipUpload", "btnUpload");
+
+  $('#btnSave').click((e) => {
+    e.preventDefault();
+    SaveData();
+})
 });

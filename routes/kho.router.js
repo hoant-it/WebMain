@@ -27,6 +27,11 @@ router.get('/DONHANGITEM_DRAFT_Load_Web_V2/:MY',orderControl.DONHANGITEM_DRAFT_L
 router.get('/DONHANGITEM_DRAFT_MY_SearchBox_Web_V1',orderControl.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1)
 router.post('/OrderDraftImportExcel',upload.single('filenameDraft'),orderControl.OrderDraftImportExcel)
 
+router.post('/OrderUpdate',orderControl.OrderUpdate)
+
+
+
+
 //Cong Doan Ma Hang
 
 router.get('/congodanmahanginputv2',congdoanmahangControl.CongDoanMaHangLoad)
@@ -91,7 +96,7 @@ router.get('/TinhChiChuyenMay',QTQLNVLControl.TinhChiChuyenMay)
 
 router.get('/TinhChiDayVai',QTQLNVLControl.TinhChiDayVai)
 
-router.get('/DatChi',QTQLNVLControl.DatChi)
+router.get('/QTDatChi',QTQLNVLControl.DatChi)
 
 router.get('/TinhChiLai',QTQLNVLControl.TinhChiLai)
 

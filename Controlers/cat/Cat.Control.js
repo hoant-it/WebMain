@@ -15,6 +15,14 @@ module.exports.QTSaoPattern = async(req, res) => {
     })
 }
 
+module.exports.QTLuuPatternSao = async(req, res) => {
+    res.render('Cat/QTLuuPatternSao', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 module.exports.CatLHKHCard = async(req, res) => {
     res.render('Cat/CatLLKHCard', {
         title: 'Express',

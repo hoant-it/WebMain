@@ -260,3 +260,17 @@ module.exports.OrderImportExcel = async (req, res) => {
     return res.send(lError);
   }
 };
+
+module.exports.OrderUpdate=async(req,res)=>{
+  let lError={}
+  try {
+    await db.OrderUpdate(req.body,req.signedCookies.userId)
+    lError.errMes='Thành công'
+    lError.statusErr=true;
+    res.send(lError)
+  } catch (error) {
+    lError.errMes='Lỗi: '+error
+    lError.statusErr=false;
+    res.send(lError)
+  }
+}

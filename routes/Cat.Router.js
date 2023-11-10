@@ -22,6 +22,9 @@ router.get('/GKT',CatControl.CatGKT)
 
 router.get('/QTSaoPattern',CatControl.QTSaoPattern)
 
+router.get('/QTLuuPatternSao',CatControl.QTLuuPatternSao)
+
+
 router.get('/DoiUngGiacSoDo',CatControl.DoiUngGiacSoDo)
 
 router.get('/LLKHThieuDM',CatControl.LLKHThieuDM)

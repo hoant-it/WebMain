@@ -244,3 +244,37 @@ sql.on("error", (err) => {
   return lError;
   // ... error handler
 });
+
+
+module.exports.OrderUpdate = async (body, userName) => {
+  const {Id, Classification, OrderNo, UnitNo,Style,Cup,Size,Color,OrderQty, Note,MY,status } = body;
+  try {
+    let pool = await sql.connect(sqlConfig);
+    if (status === "submitInsert") {
+      await pool
+        .request()
+        .input("Classification", sql.NVarChar(50), Classification)
+        .input("OrderNo", sql.NVarChar(50), OrderNo)
+        .input("UnitNo", sql.NVarChar(50), UnitNo)
+        .input("Style", sql.NVarChar(50), Style)
+        .input("Cup", sql.NVarChar(50), Cup)
+        .input("Size", sql.NVarChar(50), Size.toString())
+        .input("Color", sql.NVarChar(50), Color)
+        .input("OrderQty", sql.Int, OrderQty)
+        .input("Note", sql.NVarChar(50), Note)
+        .input("MY", sql.NVarChar(10), MY.toString())
+        .input("UserName", sql.NVarChar(50), userName)
+        .execute("DONHANGITEM_DRAFT_Insert_Record_Web_V1");
+    }
+    if(status==="submitEdit"){
+        await pool
+        .request()
+        .input("ID", sql.BigInt, Id)
+        .input("OrderQty", sql.Int, OrderQty)
+        .input("UserName", sql.NVarChar(50), userName)
+        .execute("DONHANGITEM_DRAFT_Update_Record_Web_V1");
+    }
+  } catch (error) {
+    throw error
+  }
+};
