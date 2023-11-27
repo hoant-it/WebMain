@@ -42,6 +42,14 @@ module.exports.LAMBANGHUONGDANCATREN= async(req,res) =>{
     })
 }
 
+module.exports.REN_LAMMAQRCHOBANGHUONGDANCATRENVASODODM= async(req,res) =>{
+    res.render('Cat/REN_LAMMAQRCHOBANGHUONGDANCATRENVASODODM', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
 //CAT_VA_KIEM_TRA_MC_VOI_PATTERN
 module.exports.CAT_VA_KIEM_TRA_MC_VOI_PATTERN= async(req,res) =>{
     res.render('Cat/CAT_VA_KIEM_TRA_MC_VOI_PATTERN', {
