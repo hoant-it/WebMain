@@ -67,13 +67,13 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
     }
     
     //KIEMTRACHATLUONG
-    module.exports.KIEMTRACHATLUONG= async(req, res) =>{
-        res.render('kho/KIEMTRACHATLUONG',{
-            title:'',
-            userId:req.signedCookies.userId,
-           html:''
-        })
-    }
+    // module.exports.KIEMTRACHATLUONG= async(req, res) =>{
+    //     res.render('kho/KIEMTRACHATLUONG',{
+    //         title:'',
+    //         userId:req.signedCookies.userId,
+    //        html:''
+    //     })
+    // }
     
     //GIAOHANG
     module.exports.GIAOHANG= async(req, res) =>{
@@ -137,6 +137,22 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
 
     module.exports.QuanLyTonKhoChi= async(req, res) =>{
         res.render('kho/QuyTrinh/QuanLyTonKhoChi',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.KiemTraChatLuong= async(req, res) =>{
+        res.render('kho/QuyTrinh/KiemTraChatLuong',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.InPhieuGiaoHangPhuLieu= async(req, res) =>{
+        res.render('kho/InPhieuGiaoHangPhuLieu',{
             title:'',
             userId:req.signedCookies.userId,
            html:''

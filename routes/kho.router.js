@@ -85,7 +85,7 @@ router.get('/SXNVLLENKE',QTQLNVLControl.SXNVLLENKE)
 //LAYHANG
 router.get('/LAYHANG',QTQLNVLControl.LAYHANG)
 //KIEMTRACHATLUONG
-router.get('/KIEMTRACHATLUONG',QTQLNVLControl.KIEMTRACHATLUONG)
+// router.get('/KIEMTRACHATLUONG',QTQLNVLControl.KIEMTRACHATLUONG)
 //GIAOHANG
 router.get('/GIAOHANG',QTQLNVLControl.GIAOHANG)
 //QLNVLDU
@@ -102,6 +102,10 @@ router.get('/TinhChiLai',QTQLNVLControl.TinhChiLai)
 
 router.get('/CapPhatChi',QTQLNVLControl.CapPhatChi)
 router.get('/QuanLyTonKhoChi',QTQLNVLControl.QuanLyTonKhoChi)
+
+router.get('/KiemTraChatLuong',QTQLNVLControl.KiemTraChatLuong)
+router.get('/InPhieuGiaoHangPhuLieu',QTQLNVLControl.InPhieuGiaoHangPhuLieu)
+
 
 
 
