@@ -151,6 +151,14 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.SoanHangPhuLieu= async(req, res) =>{
+        res.render('kho/QuyTrinh/SoanHangPhuLieu',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
     module.exports.InPhieuGiaoHangPhuLieu= async(req, res) =>{
         res.render('kho/InPhieuGiaoHangPhuLieu',{
             title:'',

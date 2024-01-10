@@ -103,7 +103,8 @@ router.get('/TinhChiLai',QTQLNVLControl.TinhChiLai)
 router.get('/CapPhatChi',QTQLNVLControl.CapPhatChi)
 router.get('/QuanLyTonKhoChi',QTQLNVLControl.QuanLyTonKhoChi)
 
-router.get('/KiemTraChatLuong',QTQLNVLControl.KiemTraChatLuong)
+// router.get('/KiemTraChatLuong',QTQLNVLControl.KiemTraChatLuong)
+router.get('/SoanHangPhuLieu',QTQLNVLControl.SoanHangPhuLieu)
 router.get('/InPhieuGiaoHangPhuLieu',QTQLNVLControl.InPhieuGiaoHangPhuLieu)
 
 
