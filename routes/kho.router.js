@@ -107,6 +107,30 @@ router.get('/QuanLyTonKhoChi',QTQLNVLControl.QuanLyTonKhoChi)
 router.get('/SoanHangPhuLieu',QTQLNVLControl.SoanHangPhuLieu)
 router.get('/InPhieuGiaoHangPhuLieu',QTQLNVLControl.InPhieuGiaoHangPhuLieu)
 
+router.get('/DoiVoiMaHangMoi',QTQLNVLControl.DoiVoiMaHangMoi)
+router.get('/DoiVoiMaHangMoiAVWAPS',QTQLNVLControl.DoiVoiMaHangMoiAVWAPS)
+router.get('/DoiVoiMaHangMoiBVWBVC',QTQLNVLControl.DoiVoiMaHangMoiBVWBVC)
+router.get('/DoiVoiMaHangMoiCWXAMPHIAWIV',QTQLNVLControl.DoiVoiMaHangMoiCWXAMPHIAWIV)
+router.get('/DoiVoiMaHangMoiTAIWAN',QTQLNVLControl.DoiVoiMaHangMoiTAIWAN)
+
+router.get('/NhanOrderTuKHSX',QTQLNVLControl.NhanOrderTuKHSX)
+router.get('/NhanOrderTuKHSXAVWAPS',QTQLNVLControl.NhanOrderTuKHSXAVWAPS)
+router.get('/NhanOrderTuKHSXBVWBVC',QTQLNVLControl.NhanOrderTuKHSXBVWBVC)
+router.get('/NhanOrderTuKHSXCWX',QTQLNVLControl.NhanOrderTuKHSXCWX)
+router.get('/NhanOrderTuKHSXAMPHI',QTQLNVLControl.NhanOrderTuKHSXAMPHI)
+router.get('/NhanOrderTuKHSXTAIWAN',QTQLNVLControl.NhanOrderTuKHSXTAIWAN)
+router.get('/NhanOrderTuKHSXWIV',QTQLNVLControl.NhanOrderTuKHSXWIV)
+
+
+
+
+
+
+
+
+
+
+
 
 
 

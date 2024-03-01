@@ -167,6 +167,118 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.DoiVoiMaHangMoi= async(req, res) =>{
+        res.render('kho/QuyTrinh/DoiVoiMaHangMoi',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.DoiVoiMaHangMoiAVWAPS= async(req, res) =>{
+        res.render('kho/QuyTrinh/DoiVoiMaHangMoiAVWAPS',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.DoiVoiMaHangMoiBVWBVC= async(req, res) =>{
+        res.render('kho/QuyTrinh/DoiVoiMaHangMoiBVWBVC',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.DoiVoiMaHangMoiCWXAMPHIAWIV= async(req, res) =>{
+        res.render('kho/QuyTrinh/DoiVoiMaHangMoiCWXAMPHIAWIV',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.DoiVoiMaHangMoiTAIWAN= async(req, res) =>{
+        res.render('kho/QuyTrinh/DoiVoiMaHangMoiTAIWAN',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.NhanOrderTuKHSX= async(req, res) =>{
+        res.render('kho/QuyTrinh/NhanOrderTuKHSX',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.NhanOrderTuKHSXAVWAPS= async(req, res) =>{
+        res.render('kho/QuyTrinh/NhanOrderTuKHSXAVWAPS',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.NhanOrderTuKHSXBVWBVC= async(req, res) =>{
+        res.render('kho/QuyTrinh/NhanOrderTuKHSXBVWBVC',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.NhanOrderTuKHSXCWX= async(req, res) =>{
+        res.render('kho/QuyTrinh/NhanOrderTuKHSXCWX',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.NhanOrderTuKHSXAMPHI= async(req, res) =>{
+        res.render('kho/QuyTrinh/NhanOrderTuKHSXAMPHI',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.NhanOrderTuKHSXTAIWAN= async(req, res) =>{
+        res.render('kho/QuyTrinh/NhanOrderTuKHSXTAIWAN',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.NhanOrderTuKHSXWIV= async(req, res) =>{
+        res.render('kho/QuyTrinh/NhanOrderTuKHSXWIV',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
 
     
 
