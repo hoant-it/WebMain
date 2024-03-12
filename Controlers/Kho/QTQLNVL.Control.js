@@ -263,6 +263,82 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+
+    module.exports.YeuCauKiThuat= async(req, res) =>{
+        res.render('kho/QuyTrinh/YeuCauKiThuat',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.YeuCauKiThuatAmphiAWIV= async(req, res) =>{
+        res.render('kho/QuyTrinh/YeuCauKiThuatAmphiAWIV',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.YeuCauKiThuatAVWAPSBVWBVC= async(req, res) =>{
+        res.render('kho/QuyTrinh/YeuCauKiThuatAVWAPSBVWBVC',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.YeuCauKiThuatCWX= async(req, res) =>{
+        res.render('kho/QuyTrinh/YeuCauKiThuatCWX',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.YeuCauKiThuatTAIWAN= async(req, res) =>{
+        res.render('kho/QuyTrinh/YeuCauKiThuatTAIWAN',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.DoiVoiMaHangCuMauMoi= async(req, res) =>{
+        res.render('kho/QuyTrinh/DoiVoiMaHangCuMauMoi',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.DoiVoiMHCuMauMoiAVWAPSBVWBVCAMPHICWXAWIV= async(req, res) =>{
+        res.render('kho/QuyTrinh/DoiVoiMHCuMauMoiAVWAPSBVWBVCAMPHICWXAWIV',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.DoiVoiMHCuMauMoiTAIWAN= async(req, res) =>{
+        res.render('kho/QuyTrinh/DoiVoiMHCuMauMoiTAIWAN',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
     
 
     

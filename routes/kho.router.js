@@ -122,6 +122,22 @@ router.get('/NhanOrderTuKHSXTAIWAN',QTQLNVLControl.NhanOrderTuKHSXTAIWAN)
 router.get('/NhanOrderTuKHSXWIV',QTQLNVLControl.NhanOrderTuKHSXWIV)
 
 
+router.get('/YeuCauKiThuat',QTQLNVLControl.YeuCauKiThuat)
+router.get('/YeuCauKiThuatAmphiAWIV',QTQLNVLControl.YeuCauKiThuatAmphiAWIV)
+router.get('/YeuCauKiThuatAVWAPSBVWBVC',QTQLNVLControl.YeuCauKiThuatAVWAPSBVWBVC)
+// YeuCauKiThuatCWX
+router.get('/YeuCauKiThuatCWX',QTQLNVLControl.YeuCauKiThuatCWX)
+router.get('/YeuCauKiThuatTAIWAN',QTQLNVLControl.YeuCauKiThuatTAIWAN)
+
+router.get('/DoiVoiMaHangCuMauMoi',QTQLNVLControl.DoiVoiMaHangCuMauMoi)
+router.get('/DoiVoiMHCuMauMoiAVWAPSBVWBVCAMPHICWXAWIV',QTQLNVLControl.DoiVoiMHCuMauMoiAVWAPSBVWBVCAMPHICWXAWIV)
+router.get('/DoiVoiMHCuMauMoiTAIWAN',QTQLNVLControl.DoiVoiMHCuMauMoiTAIWAN)
+
+
+
+
+
+
 
 
 
