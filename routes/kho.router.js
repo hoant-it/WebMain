@@ -132,6 +132,14 @@ router.get('/YeuCauKiThuatTAIWAN',QTQLNVLControl.YeuCauKiThuatTAIWAN)
 router.get('/DoiVoiMaHangCuMauMoi',QTQLNVLControl.DoiVoiMaHangCuMauMoi)
 router.get('/DoiVoiMHCuMauMoiAVWAPSBVWBVCAMPHICWXAWIV',QTQLNVLControl.DoiVoiMHCuMauMoiAVWAPSBVWBVCAMPHICWXAWIV)
 router.get('/DoiVoiMHCuMauMoiTAIWAN',QTQLNVLControl.DoiVoiMHCuMauMoiTAIWAN)
+router.get('/YeuCauKyThuatDoCDCD_4',QTQLNVLControl.YeuCauKyThuatDoCDCD_4)
+router.get('/YeuCauKTDoCDCDTAIWAN',QTQLNVLControl.YeuCauKTDoCDCDTAIWAN)
+router.get('/YeuCauKTDoCDCDAVWAPSCWXAMPHIAWIVBVWBVC',QTQLNVLControl.YeuCauKTDoCDCDAVWAPSCWXAMPHIAWIVBVWBVC)
+
+
+router.get('/TinhCDCD_5',QTQLNVLControl.TinhCDCD_5)
+
+
 
 
 

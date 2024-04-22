@@ -328,6 +328,42 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.TinhCDCD_5= async(req, res) =>{
+        res.render('kho/QuyTrinh/TinhCDCD_5',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.YeuCauKyThuatDoCDCD_4= async(req, res) =>{
+        res.render('kho/QuyTrinh/YeuCauKyThuatDoCDCD_4',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.YeuCauKTDoCDCDTAIWAN= async(req, res) =>{
+        res.render('kho/QuyTrinh/YeuCauKTDoCDCDTAIWAN',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.YeuCauKTDoCDCDAVWAPSCWXAMPHIAWIVBVWBVC= async(req, res) =>{
+        res.render('kho/QuyTrinh/YeuCauKTDoCDCDAVWAPSCWXAMPHIAWIVBVWBVC',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+
+    
+    
+
     
 
     
