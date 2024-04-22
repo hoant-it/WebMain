@@ -360,6 +360,77 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVLB3= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB3',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVLB3IA= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB3IA',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVLB3IB= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB3IB',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVLB3IIA= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB3IIA',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVLB3IIB= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB3IIB',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVLB3IIIA= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB3IIIA',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVLB3IIIB= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB3IIIB',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
 
     
     
