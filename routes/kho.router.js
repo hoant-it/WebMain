@@ -135,7 +135,13 @@ router.get('/DoiVoiMHCuMauMoiTAIWAN',QTQLNVLControl.DoiVoiMHCuMauMoiTAIWAN)
 router.get('/YeuCauKyThuatDoCDCD_4',QTQLNVLControl.YeuCauKyThuatDoCDCD_4)
 router.get('/YeuCauKTDoCDCDTAIWAN',QTQLNVLControl.YeuCauKTDoCDCDTAIWAN)
 router.get('/YeuCauKTDoCDCDAVWAPSCWXAMPHIAWIVBVWBVC',QTQLNVLControl.YeuCauKTDoCDCDAVWAPSCWXAMPHIAWIVBVWBVC)
+
+router.get('/TinhCDCD_5_TW',QTQLNVLControl.TinhCDCD_5_TW)
 router.get('/TinhCDCD_5',QTQLNVLControl.TinhCDCD_5)
+router.get('/TinhChiChuyenMay_5_1',QTQLNVLControl.TinhChiChuyenMay_5_1)
+
+
+router.get('/TinhChiChuyenMay_6',QTQLNVLControl.TinhChiChuyenMay_6)
 
 
 router.get('/QTQLNVLB3',QTQLNVLControl.QTQLNVLB3)
@@ -148,6 +154,10 @@ router.get('/QTQLNVLB3IIIB',QTQLNVLControl.QTQLNVLB3IIIB)
 
 router.get('/QTQLNVLB8_1',QTQLNVLControl.QTQLNVLB8_1)
 router.get('/QTQLNVLB8_1_I',QTQLNVLControl.QTQLNVLB8_1_I)
+router.get('/QTQLNVLB8_1_I_B1',QTQLNVLControl.QTQLNVLB8_1_I_B1)
+
+
+
 router.get('/QTQLNVLB8_1_IIA',QTQLNVLControl.QTQLNVLB8_1_IIA)
 router.get('/QTQLNVLB8_1_IIB',QTQLNVLControl.QTQLNVLB8_1_IIB)
 

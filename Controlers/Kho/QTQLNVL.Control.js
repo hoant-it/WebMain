@@ -328,6 +328,14 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.TinhCDCD_5_TW= async(req, res) =>{
+        res.render('kho/QuyTrinh/TinhCDCD_5_TW',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
     module.exports.TinhCDCD_5= async(req, res) =>{
         res.render('kho/QuyTrinh/TinhCDCD_5',{
             title:'',
@@ -335,6 +343,26 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
            html:''
         })
     }
+
+    module.exports.TinhChiChuyenMay_5_1= async(req, res) =>{
+        res.render('kho/QuyTrinh/TinhChiChuyenMay_5_1',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    module.exports.TinhChiChuyenMay_6= async(req, res) =>{
+        res.render('kho/QuyTrinh/TinhChiChuyenMay_6',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
 
     module.exports.YeuCauKyThuatDoCDCD_4= async(req, res) =>{
         res.render('kho/QuyTrinh/YeuCauKyThuatDoCDCD_4',{
@@ -426,6 +454,14 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
 
     module.exports.QTQLNVLB8_1_I= async(req, res) =>{
         res.render('kho/QuyTrinh/QTQLNVLB8_1_I',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVLB8_1_I_B1= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB8_1_I_B1',{
             title:'',
             userId:req.signedCookies.userId,
            html:''
