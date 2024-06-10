@@ -105,6 +105,15 @@ router.get('/QuanLyTonKhoChi',QTQLNVLControl.QuanLyTonKhoChi)
 
 // router.get('/KiemTraChatLuong',QTQLNVLControl.KiemTraChatLuong)
 router.get('/SoanHangPhuLieu',QTQLNVLControl.SoanHangPhuLieu)
+
+router.get('/QTQLNVL_B5_NL',QTQLNVLControl.QTQLNVL_B5_NL)
+router.get('/QTQLNVL_B5_NL_4A1',QTQLNVLControl.QTQLNVL_B5_NL_4A1)
+router.get('/QTQLNVL_B5_NL_4A2',QTQLNVLControl.QTQLNVL_B5_NL_4A2)
+router.get('/QTQLNVL_B5_NL_4A3',QTQLNVLControl.QTQLNVL_B5_NL_4A3)
+router.get('/QTQLNVL_B5_NL_4B1',QTQLNVLControl.QTQLNVL_B5_NL_4B1)
+router.get('/QTQLNVL_B5_NL_4B2',QTQLNVLControl.QTQLNVL_B5_NL_4B2)
+router.get('/QTQLNVL_B5_NL_4B3',QTQLNVLControl.QTQLNVL_B5_NL_4B3)
+
 router.get('/InPhieuGiaoHangPhuLieu',QTQLNVLControl.InPhieuGiaoHangPhuLieu)
 
 router.get('/DoiVoiMaHangMoi',QTQLNVLControl.DoiVoiMaHangMoi)
