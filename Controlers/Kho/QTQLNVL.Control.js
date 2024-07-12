@@ -119,6 +119,15 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTDC_I_2_1= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTDC_I_2_1',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+
     module.exports.TinhChiLai= async(req, res) =>{
         res.render('kho/QuyTrinh/TinhChiLai',{
             title:'',
@@ -500,6 +509,16 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVLB4= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB4',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
     module.exports.QTQLNVLB8_1= async(req, res) =>{
         res.render('kho/QuyTrinh/QTQLNVLB8_1',{
             title:'',
@@ -539,6 +558,15 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
            html:''
         })
     }
+
+    module.exports.QTQLNVLB10= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVLB10',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
 
     
     
