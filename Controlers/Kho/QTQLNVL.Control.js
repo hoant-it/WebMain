@@ -567,6 +567,16 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTDC_I_2_2= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTDC_I_2_2',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
 
     
     

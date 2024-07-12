@@ -176,6 +176,9 @@ router.get('/QTQLNVLB8_1_IIB',QTQLNVLControl.QTQLNVLB8_1_IIB)
 
 router.get('/QTQLNVLB10',QTQLNVLControl.QTQLNVLB10)
 
+router.get('/QTDC_I_2_2',QTQLNVLControl.QTDC_I_2_2)
+
+
 
 
 
