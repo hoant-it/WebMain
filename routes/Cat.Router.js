@@ -53,6 +53,9 @@ router.get('/TraiVaiHemPanel',CatRenControl.TraiVaiHemPanel)
 //Quy trinh nhan nguyen lieu
 router.get('/NhanNguyenLieu',CatRenControl.NhanNguyenLieu)
 
+router.get('/CatSDTC_B1_QDGNL',CatRenControl.CatSDTC_B1_QDGNL)
+
+
 //Quy trinh nhan nguyen lieu
 router.get('/XaVai',CatRenControl.XaVai)
 

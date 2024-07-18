@@ -113,3 +113,21 @@ module.exports.QLTDXH= async(req,res) =>{
     html:'',
     })
 }
+
+module.exports.QTSXA= async(req,res) =>{
+    res.render('SanXuat/QTSXA',{
+        title:'Quy Trình Sản Xuất',
+        userId:req.signedCookies.userId,
+    html:'',
+    })
+}
+
+module.exports.QTSXB= async(req,res) =>{
+    res.render('SanXuat/QTSXB',{
+        title:'Quy Trình Sản Xuất',
+        userId:req.signedCookies.userId,
+    html:'',
+    })
+}
+
+

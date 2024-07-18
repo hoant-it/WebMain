@@ -102,6 +102,16 @@ module.exports.NhanNguyenLieu= async(req,res) =>{
     })
 }
 
+module.exports.CatSDTC_B1_QDGNL= async(req,res) =>{
+    res.render('Cat/CatSDTC_B1_QDGNL', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+
+
 module.exports.XaVai= async(req,res) =>{
     res.render('Cat/XaVai', {
         title: 'Express',

@@ -176,6 +176,22 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_B5_QDGNL= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B5_QDGNL',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B5_QDGPL= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B5_QDGPL',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
     module.exports.QTQLNVL_B5_NL_4A1= async(req, res) =>{
         res.render('kho/QuyTrinh/QTQLNVL_B5_NL_4A1',{
             title:'',
@@ -583,7 +599,26 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_B11_2_QLCMDH= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B11_2_QLCMDH',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
 
+    module.exports.QTQLNVL_B11_2_QLNVLDH= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B11_2_QLNVLDH',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+
+    
     
     
 
