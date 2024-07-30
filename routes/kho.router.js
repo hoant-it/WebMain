@@ -99,7 +99,6 @@ router.get('/TinhChiDayVai',QTQLNVLControl.TinhChiDayVai)
 router.get('/QTDatChi',QTQLNVLControl.DatChi)
 router.get('/QTDC_I_2_1',QTQLNVLControl.QTDC_I_2_1)
 
-
 router.get('/TinhChiLai',QTQLNVLControl.TinhChiLai)
 
 router.get('/CapPhatChi',QTQLNVLControl.CapPhatChi)
@@ -108,16 +107,16 @@ router.get('/QuanLyTonKhoChi',QTQLNVLControl.QuanLyTonKhoChi)
 // router.get('/KiemTraChatLuong',QTQLNVLControl.KiemTraChatLuong)
 router.get('/SoanHangPhuLieu',QTQLNVLControl.SoanHangPhuLieu)
 
-router.get('/QTQLNVL_B5_NL',QTQLNVLControl.QTQLNVL_B5_NL)
-router.get('/QTQLNVL_B5_NL_4A1',QTQLNVLControl.QTQLNVL_B5_NL_4A1)
-router.get('/QTQLNVL_B5_NL_4A2',QTQLNVLControl.QTQLNVL_B5_NL_4A2)
-router.get('/QTQLNVL_B5_NL_4A3',QTQLNVLControl.QTQLNVL_B5_NL_4A3)
-router.get('/QTQLNVL_B5_NL_4B1',QTQLNVLControl.QTQLNVL_B5_NL_4B1)
-router.get('/QTQLNVL_B5_NL_4B2',QTQLNVLControl.QTQLNVL_B5_NL_4B2)
-router.get('/QTQLNVL_B5_NL_4B3',QTQLNVLControl.QTQLNVL_B5_NL_4B3)
+router.get('/QTQLNVL_B8_NL',QTQLNVLControl.QTQLNVL_B8_NL)
+router.get('/QTQLNVL_B8_NL_4A1',QTQLNVLControl.QTQLNVL_B8_NL_4A1)
+router.get('/QTQLNVL_B8_NL_4A2',QTQLNVLControl.QTQLNVL_B8_NL_4A2)
+router.get('/QTQLNVL_B8_NL_4A3',QTQLNVLControl.QTQLNVL_B8_NL_4A3)
+router.get('/QTQLNVL_B8_NL_4B1',QTQLNVLControl.QTQLNVL_B8_NL_4B1)
+router.get('/QTQLNVL_B8_NL_4B2',QTQLNVLControl.QTQLNVL_B8_NL_4B2)
+router.get('/QTQLNVL_B8_NL_4B3',QTQLNVLControl.QTQLNVL_B8_NL_4B3)
 
-router.get('/QTQLNVL_B5_QDGNL',QTQLNVLControl.QTQLNVL_B5_QDGNL)
-router.get('/QTQLNVL_B5_QDGPL',QTQLNVLControl.QTQLNVL_B5_QDGPL)
+router.get('/QTQLNVL_B8_QDGNL',QTQLNVLControl.QTQLNVL_B8_QDGNL)
+router.get('/QTQLNVL_B8_QDGPL',QTQLNVLControl.QTQLNVL_B8_QDGPL)
 
 
 router.get('/InPhieuGiaoHangPhuLieu',QTQLNVLControl.InPhieuGiaoHangPhuLieu)
@@ -168,6 +167,12 @@ router.get('/QTQLNVLB3IIIA',QTQLNVLControl.QTQLNVLB3IIIA)
 router.get('/QTQLNVLB3IIIB',QTQLNVLControl.QTQLNVLB3IIIB)
 
 router.get('/QTQLNVLB4',QTQLNVLControl.QTQLNVLB4)
+router.get('/QTQLNVLB7',QTQLNVLControl.QTQLNVLB7)
+router.get('/QTQLNVL_B8_NL',QTQLNVLControl.QTQLNVL_B8_NL)
+
+
+
+
 
 router.get('/QTQLNVLB8_1',QTQLNVLControl.QTQLNVLB8_1)
 router.get('/QTQLNVLB8_1_I',QTQLNVLControl.QTQLNVLB8_1_I)
@@ -186,6 +191,16 @@ router.get('/QTQLNVLB8_1_I_B2',QTQLNVLControl.QTQLNVLB8_1_I_B2)
 
 router.get('/QTQLNVL_B11_2_QLCMDH',QTQLNVLControl.QTQLNVL_B11_2_QLCMDH)
 router.get('/QTQLNVL_B11_2_QLNVLDH',QTQLNVLControl.QTQLNVL_B11_2_QLNVLDH)
+router.get('/QTQLNVL_B13_NVLD',QTQLNVLControl.QTQLNVL_B13_NVLD)
+router.get('/QTQLNVL_B13_CMD',QTQLNVLControl.QTQLNVL_B13_CMD)
+router.get('/DNPLDNCCTNTL_1',QTQLNVLControl.DNPLDNCCTNTL_1)
+router.get('/DNPLDNCCTNTL_2',QTQLNVLControl.DNPLDNCCTNTL_2)
+router.get('/DNPLDNCCTNTL_3',QTQLNVLControl.DNPLDNCCTNTL_3)
+
+
+
+
+
 
 
 
