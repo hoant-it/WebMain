@@ -197,6 +197,17 @@ router.get('/DNPLDNCCTNTL_1',QTQLNVLControl.DNPLDNCCTNTL_1)
 router.get('/DNPLDNCCTNTL_2',QTQLNVLControl.DNPLDNCCTNTL_2)
 router.get('/DNPLDNCCTNTL_3',QTQLNVLControl.DNPLDNCCTNTL_3)
 
+router.get('/QTQLNVL_B9_QDKTMC',QTQLNVLControl.QTQLNVL_B9_QDKTMC)
+router.get('/QTDC_I_2_3',QTQLNVLControl.QTDC_I_2_3)
+router.get('/QTDC_I_2_31',QTQLNVLControl.QTDC_I_2_31)
+router.get('/QTDC_I_2_32',QTQLNVLControl.QTDC_I_2_32)
+router.get('/QTDC_I_2_33',QTQLNVLControl.QTDC_I_2_33)
+
+
+
+
+
+
 
 
 

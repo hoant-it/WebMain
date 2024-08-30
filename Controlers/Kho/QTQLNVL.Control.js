@@ -669,8 +669,57 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
            html:''
         })
     }
+
+    module.exports.QTQLNVL_B9_QDKTMC= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B9_QDKTMC',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTDC_I_2_3= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTDC_I_2_3',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTDC_I_2_31= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTDC_I_2_31',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTDC_I_2_32= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTDC_I_2_32',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTDC_I_2_33= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTDC_I_2_33',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
     
 
+    
+
+
+    
+
+    
+    
+    
     
     
 
