@@ -670,8 +670,8 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
-    module.exports.QTQLNVL_B9_QDKTMC= async(req, res) =>{
-        res.render('kho/QuyTrinh/QTQLNVL_B9_QDKTMC',{
+    module.exports.QTQLNVL_KTCLVQMQRCV_QDKTMC= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_KTCLVQMQRCV_QDKTMC',{
             title:'',
             userId:req.signedCookies.userId,
            html:''
