@@ -710,6 +710,111 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.DatThemLai_NVL= async(req, res) =>{
+        res.render('kho/QuyTrinh/DatThemLai_NVL',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_DatThemLai_NVL_Nhat= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_DatThemLai_NVL_Nhat',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_DatThemLai_NVL_HK_EU= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_DatThemLai_NVL_HK_EU',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_DatThemLai_NVL_TW= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_DatThemLai_NVL_TW',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.PhaHanhDebitNote= async(req, res) =>{
+        res.render('kho/QuyTrinh/PhaHanhDebitNote',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_PhaHanhDebitNote_WE= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_PhaHanhDebitNote_WE',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_PhaHanhDebitNote_WI_WB= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_PhaHanhDebitNote_WI_WB',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_PhaHanhDebitNote_CWX_HX_TW= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_PhaHanhDebitNote_CWX_HX_TW',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+    module.exports.QTQLNVL_XNLNVNHDSCSVPL= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_XNLNVNHDSCSVPL',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.DNPLDNCCTNTL_4= async(req, res) =>{
+        res.render('kho/QuyTrinh/DNPLDNCCTNTL_4',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+    module.exports.DNPLDNCCTNTL_5= async(req, res) =>{
+        res.render('kho/QuyTrinh/DNPLDNCCTNTL_5',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+    
+
+
+    
+    
+
+    
+    
+
+    
+
+    
+
+
+    
+
     
 
     

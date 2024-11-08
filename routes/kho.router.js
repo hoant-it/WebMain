@@ -203,6 +203,41 @@ router.get('/QTDC_I_2_31',QTQLNVLControl.QTDC_I_2_31)
 router.get('/QTDC_I_2_32',QTQLNVLControl.QTDC_I_2_32)
 router.get('/QTDC_I_2_33',QTQLNVLControl.QTDC_I_2_33)
 
+router.get('/DatThemLai_NVL',QTQLNVLControl.DatThemLai_NVL)
+router.get('/QTQLNVL_DatThemLai_NVL_Nhat',QTQLNVLControl.QTQLNVL_DatThemLai_NVL_Nhat)
+router.get('/QTQLNVL_DatThemLai_NVL_HK_EU',QTQLNVLControl.QTQLNVL_DatThemLai_NVL_HK_EU)
+router.get('/QTQLNVL_DatThemLai_NVL_TW',QTQLNVLControl.QTQLNVL_DatThemLai_NVL_TW)
+
+router.get('/PhaHanhDebitNote',QTQLNVLControl.PhaHanhDebitNote)
+router.get('/QTQLNVL_PhaHanhDebitNote_WE',QTQLNVLControl.QTQLNVL_PhaHanhDebitNote_WE)
+router.get('/QTQLNVL_PhaHanhDebitNote_WI_WB',QTQLNVLControl.QTQLNVL_PhaHanhDebitNote_WI_WB)
+router.get('/QTQLNVL_PhaHanhDebitNote_CWX_HX_TW',QTQLNVLControl.QTQLNVL_PhaHanhDebitNote_CWX_HX_TW)
+
+router.get('/QTQLNVL_XNLNVNHDSCSVPL',QTQLNVLControl.QTQLNVL_XNLNVNHDSCSVPL)
+
+router.get('/DNPLDNCCTNTL_4',QTQLNVLControl.DNPLDNCCTNTL_4)
+router.get('/DNPLDNCCTNTL_5',QTQLNVLControl.DNPLDNCCTNTL_5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
