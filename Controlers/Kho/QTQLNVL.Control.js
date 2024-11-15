@@ -796,6 +796,86 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_B8_NL_XKHSX= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_NL_XKHSX',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B8_NL_KTDSCB= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_NL_KTDSCB',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B8_NL_CDSPXKULX= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_NL_CDSPXKULX',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B8_NL_BCLDCD= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_NL_BCLDCD',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_ITQRKCCTTPLVDTVCV= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_ITQRKCCTTPLVDTVCV',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_ITQRKCCTTPLVDTVCV_ITQRKCTVLN= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_ITQRKCCTTPLVDTVCV_ITQRKCTVLN',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_ITQRKCCTTPLVDTVCV_DTQRVLNDTCCT= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_ITQRKCCTTPLVDTVCV_DTQRVLNDTCCT',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_ITQRKCCTTPLVDTVCV_VLNDCDSTQR= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_ITQRKCCTTPLVDTVCV_VLNDCDSTQR',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
