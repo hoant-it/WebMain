@@ -860,6 +860,55 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_ITQRKCCTTPLVDTVCV_ITQRKCTDVR= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_ITQRKCCTTPLVDTVCV_ITQRKCTDVR',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_ITQRKCCTTPLVDTVCV_DTQRCCT= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_ITQRKCCTTPLVDTVCV_DTQRCCT',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B2= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B2',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B2_1= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B2_1',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B2_2= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B2_2',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+    
+
+
+    
+
+    
+    
+
     
 
     
