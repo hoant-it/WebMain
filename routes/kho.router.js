@@ -240,6 +240,11 @@ router.get('/QTQLNVL_B5',QTQLNVLControl.QTQLNVL_B5)
 router.get('/QTQLNVL_B5_1',QTQLNVLControl.QTQLNVL_B5_1)
 router.get('/QTQLNVL_B5_2',QTQLNVLControl.QTQLNVL_B5_2)
 
+router.get('/QTQLNVL_ITQRKDSS',QTQLNVLControl.QTQLNVL_ITQRKDSS)
+
+
+
+
 
 
 

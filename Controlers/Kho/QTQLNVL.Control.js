@@ -931,6 +931,16 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
            html:''
         })
     }
+
+    module.exports.QTQLNVL_ITQRKDSS= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_ITQRKDSS',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
     
 
     
