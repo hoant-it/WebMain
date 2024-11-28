@@ -940,6 +940,26 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_B6= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B6',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B9= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B9',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+
     
     
 

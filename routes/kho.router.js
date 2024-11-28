@@ -242,6 +242,16 @@ router.get('/QTQLNVL_B5_2',QTQLNVLControl.QTQLNVL_B5_2)
 
 router.get('/QTQLNVL_ITQRKDSS',QTQLNVLControl.QTQLNVL_ITQRKDSS)
 
+router.get('/QTQLNVL_B6',QTQLNVLControl.QTQLNVL_B6)
+
+router.get('/QTQLNVL_B9',QTQLNVLControl.QTQLNVL_B9)
+
+
+
+
+
+
+
 
 
 
