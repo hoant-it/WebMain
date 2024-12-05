@@ -964,6 +964,66 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_B8_QDGBNL= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_QDGBNL',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B8_QDGBNL_TH1= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_QDGBNL_TH1',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B8_QDGBNL_TH2= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_QDGBNL_TH2',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B8_QDGBNL_TH3= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_QDGBNL_TH3',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B8_QDGBNL_TH4= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_QDGBNL_TH4',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B10_QMQRCV= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B10_QMQRCV',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
