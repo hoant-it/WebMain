@@ -256,6 +256,16 @@ router.get('/QTQLNVL_B8_QDGBNL_TH4',QTQLNVLControl.QTQLNVL_B8_QDGBNL_TH4)
 
 router.get('/QTQLNVL_B10_QMQRCV',QTQLNVLControl.QTQLNVL_B10_QMQRCV)
 
+router.get('/QTQLNVL_B7',QTQLNVLControl.QTQLNVL_B7)
+
+router.get('/QTQLNVL_B12',QTQLNVLControl.QTQLNVL_B12)
+
+
+
+
+
+
+
 
 
 
