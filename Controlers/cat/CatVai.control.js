@@ -93,3 +93,21 @@ module.exports.CatThe= async(req,res) =>{
         html: ''
     })
 }
+
+module.exports.SDQTVai_B4_1= async(req,res) =>{
+    res.render('Cat/SDQTVai_B4_1', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+module.exports.CatLinningSDQT_B4_1= async(req,res) =>{
+    res.render('Cat/CatLinningSDQT_B4_1', {
+        title: 'Express',
+        userId: req.signedCookies.userId,
+        html: ''
+    })
+}
+
+

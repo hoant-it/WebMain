@@ -133,6 +133,14 @@ router.get('/B61KiemXuLyMauCatMepHem',CatVaiControl.B61KiemXuLyMauCatMepHem)
 router.get('/B61DownSize',CatVaiControl.B61DownSize)
 router.get('/CatThe',CatVaiControl.CatThe)
 
+router.get('/SDQTVai_B4_1',CatVaiControl.SDQTVai_B4_1)
+router.get('/CatLinningSDQT_B4_1',CatVaiControl.CatLinningSDQT_B4_1)
+
+
+
+
+
+
 
 
 
