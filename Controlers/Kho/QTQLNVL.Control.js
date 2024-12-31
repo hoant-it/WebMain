@@ -1060,6 +1060,35 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_B13= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B13',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B13_1= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B13_1',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_B13_2= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B13_2',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+    
+
     
 
     
