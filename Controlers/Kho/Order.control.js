@@ -85,7 +85,10 @@ module.exports.OrderDraftImportExcel = async (req, res) => {
   let lError = {};
   try {
     var filename = req.file.filename;
-    let filePath = "./public/uploads/" + filename;
+    const destinationPath= path.join(__dirname,"../../public/uploads/")
+    const filePath = `${destinationPath}${filename}`;
+
+    let filePathDel = "./public/uploads/" + filename;
 
     // doc file excel
     const workbook = await xlsx.readFile(filePath);
@@ -160,7 +163,7 @@ module.exports.OrderDraftImportExcel = async (req, res) => {
       );
     }
     // console.log(super_array);
-    del([filePath]);
+    del([filePathDel]);
     lError.errMes = "Nhập file excel" + filename + " thành công";
     lError.statusErr = true;
     return res.send(lError);
@@ -175,7 +178,10 @@ module.exports.OrderImportExcel = async (req, res) => {
   let lError = {};
   try {
     var filename = req.file.filename;
-    let filePath = "./public/uploads/" + filename;
+    const destinationPath= path.join(__dirname,"../../public/uploads/")
+    const filePath = `${destinationPath}${filename}`;
+
+    let filePathDel = "./public/uploads/" + filename;
 
     // doc file excel
     const workbook = await xlsx.readFile(filePath);
@@ -250,7 +256,7 @@ module.exports.OrderImportExcel = async (req, res) => {
     }
 
     // console.log(super_array);
-    del([filePath]);
+    del([filePathDel]);
     lError.errMes = "Nhập file excel" + filename + " thành công";
     lError.statusErr = true;
     return res.send(lError);

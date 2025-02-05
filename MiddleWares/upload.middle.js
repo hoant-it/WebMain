@@ -10,8 +10,11 @@ const excelFilter = (req, file, cb) => {
   }
 };
 var storage = multer.diskStorage({
+
   destination: (req, file, cb) => {
-    cb(null, "./public/uploads/");
+  const destinationPath= path.join(__dirname,'../public/uploads/')
+
+    cb(null, destinationPath);
   },
   filename: (req, file, cb) => {
     // console.log(file.originalname);

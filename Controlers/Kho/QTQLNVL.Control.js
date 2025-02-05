@@ -1084,6 +1084,15 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_TNLVK= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_TNLVK',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
     
 
     

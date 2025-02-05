@@ -30,7 +30,10 @@ module.exports.MauChiMauNLInputajax = async (req, res) => {
     let lError = { errMes: "thành công", statusErr: true };
     try {
     var filename=req.file.filename;
-    let filePath='./public/uploads/'+filename+'';
+    const destinationPath= path.join(__dirname,"../../public/uploads/")
+    const filePath = `${destinationPath}${filename}`;
+
+    // let filePath='./public/uploads/'+filename+'';
     const workbook = await xlsx.readFile(filePath);
     const sheet_name_list = workbook.SheetNames;
     const workbookHeaders = await xlsx.readFile(filePath, { sheetRows: 1 });
@@ -70,7 +73,7 @@ module.exports.MauChiMauNLInputajax = async (req, res) => {
         if(arrJS.MAUCHI=='')continue;
         await db.wacoal_MAUCHIMAUNL_Import_excel_Web_V1(arrJS.MAUNL,arrJS.LOAICHI,arrJS.MAUCHI,req.signedCookies.userId)
         }
-        del(['./public/excel/' + filename]);
+        del(['./public/uploads/' + filename]);
         return res.send(lError); 
     } catch (error) {
         lError.errMes = 'Lỗi' +error

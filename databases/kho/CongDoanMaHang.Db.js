@@ -66,8 +66,10 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
   let lError = { errMes: "thành công", statusErr: true };
   let pool = await sql.connect(sqlConfig);
   try {
+    const destinationPath= path.join(__dirname,"../../public/uploads/")
+    const filePath = `${destinationPath}${filename}`;
     
-    const filePath = `./public/uploads/${filename}`;
+    // const filePath = `./public/uploads/${filename}`;
     const workbook = await xlsx.readFile(filePath);
     const sheet_name_list = workbook.SheetNames;
     const workbookHeaders = await xlsx.readFile(filePath, { sheetRows: 1 });

@@ -38,7 +38,10 @@ module.exports.DONHANGITEM_3_Load_Web_V2 = async (MY) => {
 module.exports.OrderInsertByType = async (filename, userId) => {
   let lError = { errMes: "thành công", statusErr: true };
   try {
-    const filePath = `./public/uploads/${filename}`;
+    const destinationPath= path.join(__dirname,"../../public/uploads/")
+    const filePath = `${destinationPath}${filename}`;
+ 
+    // const filePath = `./public/uploads/${filename}`;
     const workbook = xlsx.readFile(filePath);
     const sheet_name_list = workbook.SheetNames;
     const workbookHeaders = xlsx.readFile(filePath, { sheetRows: 1 });

@@ -270,6 +270,11 @@ router.get('/QTQLNVL_B13',QTQLNVLControl.QTQLNVL_B13)
 router.get('/QTQLNVL_B13_1',QTQLNVLControl.QTQLNVL_B13_1)
 router.get('/QTQLNVL_B13_2',QTQLNVLControl.QTQLNVL_B13_2)
 
+router.get('/QTQLNVL_TNLVK',QTQLNVLControl.QTQLNVL_TNLVK)
+
+
+
+
 
 
 

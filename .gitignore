@@ -2,3 +2,5 @@ node_modules/
 .env
 public/pdf
 public/uploads
+bin
+app
