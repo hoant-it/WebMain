@@ -1092,6 +1092,26 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_ITQRKCCTTPLVDTVCV_DTQRVLNDCCCT= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_ITQRKCCTTPLVDTVCV_DTQRVLNDCCCT',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    module.exports.QTQLNVL_QMQR_TLNVLVKQHTSB= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_QMQR_TLNVLVKQHTSB',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+
     
     
 

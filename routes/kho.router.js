@@ -420,6 +420,13 @@ router.get('/QTQLNVL_TNLVK',QTQLNVLControl.QTQLNVL_TNLVK)
 
 
 
+
+
+
+
+
+
+
 //Tinh chi theo Order
 // router.get('/KhoOderTinhChiGridViewDev',OrderTinhChiControl.OrderTinhChiLoad)
 router.get('/Khowacoal_KHACHHANG_load_Web_V1',OrderTinhChiControl.Khowacoal_KHACHHANG_load_Web_V1)
