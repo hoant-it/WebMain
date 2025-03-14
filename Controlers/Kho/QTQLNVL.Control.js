@@ -1108,6 +1108,16 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_B8_QDGBNL_TH5= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B8_QDGBNL_TH5',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
     
 
     
