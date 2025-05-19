@@ -1140,6 +1140,16 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.DNPLDNCCTNTL_6= async(req, res) =>{
+        res.render('kho/QuyTrinh/DNPLDNCCTNTL_6',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
     
 
 
