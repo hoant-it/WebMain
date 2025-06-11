@@ -5,7 +5,7 @@ let chuyen = "";
 let order = "";
 const datChiCaptionTotal = "Total";
 const datChiCaptionCT = "Details";
-
+const datchiCapPGPL="PGPL";
 const topRowCell=10
 
 
@@ -174,8 +174,17 @@ const tabPanelLoad = () => {
     },
   });
 
- 
+  var urlPGPL= "wacoal_TinhChi_MaHang_Mau_SL_V2_1/";
 
+  var listDataPGPL = DevExpress.data.AspNet.createStore({
+    key: "KeyChi",
+    loadUrl: urlPGPL + maHang + "/" + mauMH + "/" + soLuong,
+    onBeforeSend: function (method, ajaxOptions) {
+      ajaxOptions.xhrFields = {
+        withCredentials: true,
+      };
+    },
+  });
 
   $("#tabPanel").dxTabPanel({
     dataSource: [
@@ -565,6 +574,86 @@ const tabPanelLoad = () => {
         },
       },
       {
+        title: datchiCapPGPL,
+        template() {
+          return $("<div id='GridPGPL'>").dxDataGrid({
+            width: "100%",
+            columns: [
+              {
+                caption: "LOẠI CHỈ",
+                alignment: "left",
+                dataField: "LOAICHI",
+              },
+              {
+                caption: "MÀU CHỈ",
+                alignment: "left",
+                dataField: "MAUCHI",
+              },
+              {
+                caption: "LƯỢNG SỬ DỤNG",
+                alignment: "left",
+                dataField: "MET_PSC",
+                dataType: 'number',
+                format:"#,##0",
+              },
+              {
+                caption: "SỐ LƯỢNG GIAO",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "MỚI",
+                    alignment: "center",
+                    // dataField: "COLOR_R60",
+                    // format: "string",
+                  },
+                  {
+                    caption: "ĐÃ SỬ DỤNG",
+                    alignment: "center",
+                    // dataField: "SL_R60",
+                    // format: {
+                    //   precision: 1,
+                    // },
+                  },
+               
+                ],
+              },
+              {
+                caption: "HOÀN TRẢ",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "MỚI",
+                    alignment: "center",
+                    // dataField: "COLOR_R60",
+                    // format: "string",
+                  },
+                  {
+                    caption: "ĐÃ SỬ DỤNG",
+                    alignment: "center",
+                    // dataField: "SL_R60",
+                    // format: {
+                    //   precision: 1,
+                    // },
+                  },
+               
+                ],
+              },
+
+              {
+                caption: "GHI CHÚ",
+                alignment: "center",
+                dataField: "",
+              },
+            ],
+      
+            showBorders: true,
+            rowAlternationEnabled: true,
+            dataSource: listDataPGPL,
+ 
+          });
+        },
+      },
+      {
         title: datChiCaptionCT,
         template() {
           return $("<div id='GridDatChiCT'>").dxDataGrid({
@@ -731,6 +820,15 @@ const formatHeaderRow=(sheetName)=>{
   }
 }
 
+const borderRowCellExcel=(ws,r,c)=>{
+  ws.getRow(r).getCell(c).border= {
+    top: {style:'thin'},
+    left: {style:'thin'},
+    bottom: {style:'thin'},
+    right: {style:'thin'}
+  };
+}
+
 const btnExportMultiExcel = () => {
   const generalsa=new generals();
   $("#exportButton").dxButton({
@@ -739,10 +837,13 @@ const btnExportMultiExcel = () => {
     onClick() {
       const dataGridDatChiTotal = $("#GridDatChiTotal").dxDataGrid("instance");
       const dataGridDatChiCT = $("#GridDatChiCT").dxDataGrid("instance");
+      const dataGridPGPL = $("#GridPGPL").dxDataGrid("instance");
+
 
       const workbook = new ExcelJS.Workbook();
       const TotalSheet = workbook.addWorksheet(datChiCaptionTotal);
       const CTSheet = workbook.addWorksheet(datChiCaptionCT);
+      const PGPLShheet=workbook.addWorksheet(datchiCapPGPL);
 
       TotalSheet.getRow(1).getCell(1).value = "Đánh chỉ Tổng";
       TotalSheet.getRow(1).getCell(1).font = {
@@ -763,6 +864,154 @@ const btnExportMultiExcel = () => {
       TotalSheet.getRow(8).getCell(1).value = "Thời Gian";
       TotalSheet.getRow(8).getCell(2).value = generalsa.getDateTime();
       formatHeaderRow(TotalSheet)
+
+      
+      PGPLShheet.getRow(1).getCell(1).value = "VIETNAM WACOALCOAL CORP.";
+      PGPLShheet.getRow(1).getCell(1).font = {
+        bold: true,
+        size: 10,
+        // underline: "double",
+      };
+      PGPLShheet.getRow(1).getCell(1).alignment = { vertical: 'middle', horizontal: 'center' };
+      PGPLShheet.mergeCells(1,1,1,8);
+
+      // PGPLShheet.getCell('A1:I7').border = {
+      //   top: {style:'thin'},
+      //   left: {style:'thin'},
+      //   bottom: {style:'thin'},
+      //   right: {style:'thin'}
+      // };
+
+      PGPLShheet.getRow(2).getCell(1).value = "PHIẾU GIAO PHỤ LIỆU - CHỈ MAY";
+      PGPLShheet.getRow(2).getCell(1).font = {
+        bold: true,
+        size: 18,
+        // underline: "double",
+      };
+      PGPLShheet.getRow(2).getCell(1).alignment = { vertical: 'middle', horizontal: 'center',wrapText: true  };    
+      PGPLShheet.mergeCells(2,1,2,8);
+
+      PGPLShheet.getRow(4).getCell(1).value = "CHUYỀN";
+      PGPLShheet.getRow(4).getCell(1).alignment = { vertical: 'middle', horizontal: 'center',wrapText: true  };  
+      borderRowCellExcel(PGPLShheet,4,1)
+      PGPLShheet.getRow(5).getCell(1).value = chuyen; 
+      PGPLShheet.getRow(5).getCell(1).alignment = { vertical: 'middle', horizontal: 'center',wrapText: true  };
+      PGPLShheet.getRow(5).getCell(1).font = {
+        bold: true,
+        size: 12,
+        // underline: "double",
+      };
+      borderRowCellExcel(PGPLShheet,5,1)
+
+      PGPLShheet.getRow(4).getCell(2).value = "NGÀY GIAO";
+      PGPLShheet.getRow(4).getCell(2).alignment = { vertical: 'middle', horizontal: 'center' }; 
+   
+      borderRowCellExcel(PGPLShheet,4,2)
+      PGPLShheet.getRow(5).getCell(2).value = generalsa.getDateTime();
+      PGPLShheet.getRow(5).getCell(2).alignment = { vertical: 'middle', horizontal: 'center',wrapText: true  };
+      PGPLShheet.getRow(5).getCell(2).font = {
+        bold: true,
+        size: 12,
+        // underline: "double",
+      };
+      borderRowCellExcel(PGPLShheet,5,2)
+
+
+      PGPLShheet.getRow(4).getCell(3).value = "KÝ NHẬN";
+      PGPLShheet.getRow(4).getCell(3).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      borderRowCellExcel(PGPLShheet,4,3)
+      borderRowCellExcel(PGPLShheet,5,3)
+
+      PGPLShheet.getRow(4).getCell(4).value = "NGƯỜI GIAO";
+      PGPLShheet.getRow(4).getCell(4).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      borderRowCellExcel(PGPLShheet,4,4)
+      borderRowCellExcel(PGPLShheet,5,4)
+
+      PGPLShheet.getRow(4).getCell(5).value = "NGƯỜI NHẬN";
+      PGPLShheet.getRow(4).getCell(5).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      borderRowCellExcel(PGPLShheet,4,5)
+      borderRowCellExcel(PGPLShheet,5,5)
+
+
+      PGPLShheet.getRow(4).getCell(6).value = "NGƯỜI TRẢ";
+      PGPLShheet.getRow(4).getCell(6).alignment = { vertical: 'middle', horizontal: 'center' };
+      borderRowCellExcel(PGPLShheet,4,6)
+      borderRowCellExcel(PGPLShheet,5,6) 
+
+      PGPLShheet.getRow(4).getCell(7).value = "VÀO SỔ";
+      PGPLShheet.getRow(4).getCell(7).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      borderRowCellExcel(PGPLShheet,4,7)
+      borderRowCellExcel(PGPLShheet,5,7)
+      borderRowCellExcel(PGPLShheet,6,7)
+      borderRowCellExcel(PGPLShheet,7,7)
+
+      PGPLShheet.getRow(6).getCell(1).value = "ORDER";
+      PGPLShheet.getRow(6).getCell(1).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      PGPLShheet.getRow(7).getCell(1).value = order;
+      PGPLShheet.getRow(7).getCell(1).alignment = { vertical: 'middle', horizontal: 'center',wrapText: true  };
+      PGPLShheet.getRow(7).getCell(1).font = {
+        bold: true,
+        size: 12,
+        // underline: "double",
+      };
+
+      borderRowCellExcel(PGPLShheet,6,1)
+      borderRowCellExcel(PGPLShheet,7,1)
+
+
+
+      PGPLShheet.getRow(6).getCell(2).value = "MÃ HÀNG";
+      PGPLShheet.getRow(6).getCell(2).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      borderRowCellExcel(PGPLShheet,6,2)
+      PGPLShheet.getRow(7).getCell(2).value = maHang;
+      PGPLShheet.getRow(7).getCell(2).alignment = { vertical: 'middle', horizontal: 'center',wrapText: true  };
+      PGPLShheet.getRow(7).getCell(2).font = {
+        bold: true,
+        size: 12,
+        // underline: "double",
+      };
+      borderRowCellExcel(PGPLShheet,7,2)
+
+      PGPLShheet.getRow(6).getCell(3).value = "MÀU";
+      PGPLShheet.getRow(6).getCell(3).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      borderRowCellExcel(PGPLShheet,6,3)
+      PGPLShheet.getRow(7).getCell(3).value = mauMH
+      PGPLShheet.getRow(7).getCell(3).alignment = { vertical: 'middle', horizontal: 'center',wrapText: true  };
+      PGPLShheet.getRow(7).getCell(3).font = {
+        bold: true,
+        size: 12,
+        // underline: "double",
+      };
+      borderRowCellExcel(PGPLShheet,7,3)
+
+      PGPLShheet.getRow(6).getCell(4).value = "MÀU NGUYÊN LIỆU";
+      PGPLShheet.getRow(6).getCell(4).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      borderRowCellExcel(PGPLShheet,6,4)
+      borderRowCellExcel(PGPLShheet,7,4)
+
+      PGPLShheet.getRow(6).getCell(5).value = "TỔNG SỐ";
+      PGPLShheet.getRow(6).getCell(5).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      PGPLShheet.getRow(7).getCell(5).value = soLuong;
+      PGPLShheet.getRow(7).getCell(5).alignment = { vertical: 'middle', horizontal: 'center',wrapText: true  };
+      PGPLShheet.getRow(7).getCell(5).font = {
+        bold: true,
+        size: 12,
+        // underline: "double",
+      };
+      borderRowCellExcel(PGPLShheet,6,5)
+      borderRowCellExcel(PGPLShheet,7,5)
+
+      PGPLShheet.getRow(6).getCell(6).value = "SIZE";
+      PGPLShheet.getRow(6).getCell(6).alignment = { vertical: 'middle', horizontal: 'center' }; 
+      borderRowCellExcel(PGPLShheet,6,6)
+      borderRowCellExcel(PGPLShheet,7,6)
+
+
+
+
+
+
+
 
    
       CTSheet.getRow(1).getCell(1).value = "Đánh chỉ Chi Tiết";
@@ -788,20 +1037,23 @@ const btnExportMultiExcel = () => {
       
 
       function setAlternatingRowsBackground(gridCell, excelCell) {
-        if (gridCell.rowType === "header" || gridCell.rowType === "data") {
-          if (excelCell.fullAddress.row % 2 === 0) {
-            excelCell.fill = {
-              type: "pattern",
-              pattern: "solid",
-              fgColor: { argb: "D3D3D3" },
-              bgColor: { argb: "D3D3D3" },
-            };
+     
+        if ( gridCell.rowType === "data") {
+          // if (excelCell.fullAddress.row % 2 === 0) {
+          //   excelCell.fill = {
+          //     type: "pattern",
+          //     pattern: "solid",
+          //     fgColor: { argb: "D3D3D3" },
+          //     bgColor: { argb: "D3D3D3" },
+          //   };
           
-          }
+          // }
           excelCell.font={
-            size:'14',
+            size:'11',
             name:'EUDC'
           }
+          excelCell.numFmt="#,##0"
+
           excelCell.border = {
             top: {style:'thin', color: {argb:'00000000'}},
             left: {style:'thin', color: {argb:'00000000'}},
@@ -820,7 +1072,22 @@ const btnExportMultiExcel = () => {
             fgColor: { argb: "D3D3D3" },
             bgColor: { argb: "D3D3D3" },
           };
+
+          excelCell.font={
+            size:'11',
+            bold:true,
+            name:'EUDC'
+          }
+
+          excelCell.border = {
+            top: {style:'thin', color: {argb:'00000000'}},
+            left: {style:'thin', color: {argb:'00000000'}},
+            bottom: {style:'thin', color: {argb:'00000000'}},
+            right: {style:'thin', color: {argb:'00000000'}}
+          };
         }
+
+      
       }
 
       DevExpress.excelExporter
@@ -830,7 +1097,7 @@ const btnExportMultiExcel = () => {
           topLeftCell: { row: topRowCell, column: 1 },
           customizeCell(options) {
             setHeaderRowsBackground(options.gridCell, options.excelCell);
-            // setAlternatingRowsBackground(options.gridCell, options.excelCell);
+            setAlternatingRowsBackground(options.gridCell, options.excelCell);
           },
         })
         .then(() =>
@@ -842,6 +1109,29 @@ const btnExportMultiExcel = () => {
               var excelCell = options;
               excelCell.font = { name: "EUDC", size: 12 };
               excelCell.alignment = { horizontal: "left" };
+              setHeaderRowsBackground( excelCell.gridCell,
+                excelCell.excelCell)
+              setAlternatingRowsBackground(
+                excelCell.gridCell,
+                excelCell.excelCell
+              );
+
+             
+            },
+          })
+        )
+        .then(() =>
+          DevExpress.excelExporter.exportDataGrid({
+            worksheet: PGPLShheet,
+            component: dataGridPGPL,
+            topLeftCell: { row: topRowCell, column: 1 },
+            customizeCell(options) {
+              var excelCell = options;
+              excelCell.font = { name: "Calibri", size: 10 };
+              excelCell.alignment = { horizontal: "left" };
+              excelCell.numFmt ="#,##0"
+              setHeaderRowsBackground(options.gridCell, options.excelCell);
+           
               setAlternatingRowsBackground(
                 excelCell.gridCell,
                 excelCell.excelCell

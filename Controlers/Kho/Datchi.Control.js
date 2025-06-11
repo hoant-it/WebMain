@@ -55,6 +55,18 @@ module.exports.wacoal_CHUYEN_Load_Web_V1 = async (req, res) => {
     }
   };
 
+  module.exports.wacoal_TinhChi_MaHang_Mau_SL_V2_1 = async (req, res) => {
+    try {
+        const{MAHANG,MAUMH,Qty}=req.params
+      const result = await db.wacoal_TinhChi_MaHang_Mau_SL_V2_1(MAHANG,MAUMH,Qty);
+      res.json({
+        data: result,
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
 
   
 

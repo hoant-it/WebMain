@@ -562,6 +562,8 @@ router.get('/wacoal_Datchi_MauMH_Load_Web_V1/:MAHANG',datChiControl.wacoal_Datch
 router.get('/wacoal_CHUYEN_Load_Web_V1',datChiControl.wacoal_CHUYEN_Load_Web_V1)
 router.get('/wacoal_DatChi_MH_Mau_SL_Web_V1/:MAHANG/:MAUMH/:Qty',datChiControl.wacoal_DatChi_MH_Mau_SL_Web_V1)
 router.get('/wacoal_TinhChi_MaHang_Mau_SL_V2/:MAHANG/:MAUMH/:Qty',datChiControl.wacoal_TinhChi_MaHang_Mau_SL_V2)
+// router.get('/wacoal_TinhChi_MaHang_Mau_SL_V2_1/:MAHANG/:MAUMH/:Qty',datChiControl.wacoal_TinhChi_MaHang_Mau_SL_V2_1)
+
 
 //Gia Cong Day Vai
 router.get('/giacongdayvai',giaCongDayVaiControl.GiaCongDayVaiLoad)
