@@ -1148,6 +1148,36 @@ module.exports.QTQLNVLLoad = async(req,res) =>{
         })
     }
 
+    module.exports.QTQLNVL_B10_QDKTNL_2_1_a= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B10_QDKTNL_2_1_a',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+      module.exports.QTQLNVL_B10_QDKTNL_2_2= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B10_QDKTNL_2_2',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+      module.exports.QTQLNVL_B10_QDKTNL_2_3= async(req, res) =>{
+        res.render('kho/QuyTrinh/QTQLNVL_B10_QDKTNL_2_3',{
+            title:'',
+            userId:req.signedCookies.userId,
+           html:''
+        })
+    }
+
+    
+
+    
+
+    
+
     
 
     
