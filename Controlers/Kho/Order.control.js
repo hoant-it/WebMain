@@ -1,6 +1,9 @@
 const db = require("../../databases/kho/orderdb");
+const sqlConfig = require("../../databases/dbconfig");
 const xlsx = require("xlsx");
 const del = require("del");
+const path= require('path')
+const sql = require("mssql");
 module.exports.OrderLoad = async (req, res) => {
   res.render("kho/Order", {
     title: "Order",
@@ -83,21 +86,25 @@ module.exports.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1 = async (req, res) => {
 
 module.exports.OrderDraftImportExcel = async (req, res) => {
   let lError = {};
+    let transaction;
   try {
+    const pool = await sql.connect(sqlConfig);
+    transaction = new sql.Transaction(pool);
+    await transaction.begin()
     var filename = req.file.filename;
-    const destinationPath= path.join(__dirname,"../../public/uploads/")
+    const destinationPath = path.join(__dirname, "../../public/uploads/");
     const filePath = `${destinationPath}${filename}`;
 
     let filePathDel = "./public/uploads/" + filename;
 
     // doc file excel
     const workbook = await xlsx.readFile(filePath);
-    const sheet_name_list = workbook.SheetNames;
+    const sheet_name_list = workbook.SheetNames[1];
     //lay header cua excel file
     const workbookHeaders = await xlsx.readFile(filePath, { sheetRows: 1 });
     //tao mang tu workbookHeaders
     const columnsArrayHeaders = await xlsx.utils.sheet_to_json(
-      workbookHeaders.Sheets[workbook.SheetNames[0]],
+      workbookHeaders.Sheets[workbook.SheetNames[1]],
       { header: 1 }
     )[0];
     const formatHeader = [
@@ -133,18 +140,16 @@ module.exports.OrderDraftImportExcel = async (req, res) => {
     }
 
     //do du lieu tu file excel vao mang jsonPagesArray
-    let jsonPagesArray = [];
-    sheet_name_list.forEach(function (sheet) {
-      const jsonPage = {
-        name: sheet,
+    let jsonPagesArray = [
+      {
+        name: sheet_name_list,
         content: JSON.parse(
           JSON.stringify(
-            xlsx.utils.sheet_to_json(workbook.Sheets[sheet], { defval: "" })
+            xlsx.utils.sheet_to_json(workbook.Sheets[sheet_name_list], { defval: "" })
           )
         ),
-      };
-      jsonPagesArray.push(jsonPage);
-    });
+      },
+    ];
 
     var arrContent = jsonPagesArray[0].content;
     var arrContentEmptyColor = arrContent.filter((item) => {
@@ -159,15 +164,18 @@ module.exports.OrderDraftImportExcel = async (req, res) => {
     for (let i = 0; i < jsonPagesArray[0].content.length; i++) {
       await db.DONHANGITEM_DRAFT_Insert_Web_V1(
         jsonPagesArray[0].content[i],
-        req.signedCookies.userId
+        req.signedCookies.userId,
+        transaction
       );
     }
     // console.log(super_array);
+    await transaction.commit();
     del([filePathDel]);
     lError.errMes = "Nhập file excel" + filename + " thành công";
     lError.statusErr = true;
     return res.send(lError);
   } catch (error) {
+    if (transaction) await transaction.rollback();
     lError.errMes = "Lỗi " + error;
     lError.statusErr = false;
     return res.send(lError);
@@ -225,7 +233,9 @@ module.exports.OrderImportExcel = async (req, res) => {
     }
 
     //do du lieu tu file excel vao mang jsonPagesArray
-    let jsonPagesArray = [];
+
+
+   let jsonPagesArray = [];
     sheet_name_list.forEach(function (sheet) {
       const jsonPage = {
         name: sheet,
@@ -237,6 +247,7 @@ module.exports.OrderImportExcel = async (req, res) => {
       };
       jsonPagesArray.push(jsonPage);
     });
+
 
     var arrContent = jsonPagesArray[0].content;
     var arrContentEmptyColor = arrContent.filter((item) => {

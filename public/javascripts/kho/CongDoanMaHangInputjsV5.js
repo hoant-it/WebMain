@@ -317,6 +317,7 @@ const tabPanelLoad = (MaHang) => {
                 alignment: "left",
                 dataField: "MAUMH",
               },
+          
 
               {
                 caption: "R60",
@@ -596,6 +597,11 @@ const tabPanelLoad = (MaHang) => {
                 caption: "MÀU MH",
                 alignment: "left",
                 dataField: "MAUMH",
+              },
+              {
+                caption: "SIZE/CUP MH",
+                alignment: "left",
+                dataField: "SIZECUP",
               },
               {
                 caption: "CONGDOAN",
@@ -1011,7 +1017,7 @@ const tabPanelLoaiMayNewLoad = () => {
   //   },
   // });
 
-  var urlMauChiMauNlTotal = "LOAIMAY_New_load_Wacoal_Web_V1";
+  var urlMauChiMauNlTotal = "LOAIMAY_New_load_Wacoal_Web_V2";
 
   var listDataLoaiMayNewTotal = DevExpress.data.AspNet.createStore({
     key: "keyLoaiMayNew",

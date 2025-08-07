@@ -39,6 +39,8 @@ router.get('/congodanmahanginputv2',congdoanmahangControl.CongDoanMaHangLoad)
 router.get('/CongDoanMaHangV3',congdoanmahangControl.CongDoanMaHangV3)
 
 router.get('/CongDoanMaHangV4',congdoanmahangControl.CongDoanMaHangV4)
+// router.get('/CongDoanMaHangV5',congdoanmahangControl.CongDoanMaHangV5)
+
 
 
 router.get('/wacoal_MaHang_Select_V1', congdoanmahangControl.wacoal_MaHang_Select_V1)
@@ -48,16 +50,20 @@ router.get('/CONGDOAN_MAHANG_New_Web_Load_V1', congdoanmahangControl.CONGDOAN_MA
 router.get('/wacoal_MauNL_LoaiChi_Moi_Load_Web_V1', congdoanmahangControl.wacoal_MauNL_LoaiChi_Moi_Load_Web_V1)
 router.get('/wacoal_MauNL_LoaiChi_Moi_MH_Load_Web_V1', congdoanmahangControl.wacoal_MauNL_LoaiChi_Moi_MH_Load_Web_V1)
 
-router.get('/LOAIMAY_New_load_Wacoal_Web_V1', congdoanmahangControl.LOAIMAY_New_load_Wacoal_Web_V1)
-router.get('/LoaiChi_New_load_Wacoal_Web_V1', congdoanmahangControl.LoaiChi_New_load_Wacoal_Web_V1)
+router.get('/LOAIMAY_New_load_Wacoal_Web_V2', congdoanmahangControl.LOAIMAY_New_load_Wacoal_Web_V2)
+router.get('/LoaiChi_New_load_Wacoal_Web_V2', congdoanmahangControl.LoaiChi_New_load_Wacoal_Web_V2)
 
 
 
 
 
 
-router.post('/congodanmahanginputv2',upload.single('filename'), congdoanmahangControl.CongDoanMaHangInput)
-router.get('/CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1/:MaHang',congdoanmahangControl.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1)
+// router.post('/congodanmahanginputv2',upload.single('filename'), congdoanmahangControl.CongDoanMaHangInput)
+router.post('/congodanmahanginputv2',upload.single('filename'), congdoanmahangControl.CongDoanMaHangInput_V2)
+
+// router.get('/CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1/:MaHang',congdoanmahangControl.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1)
+router.get('/CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2/:MaHang',congdoanmahangControl.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2)
+
 
 
 //Mau chi Mau NL

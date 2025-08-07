@@ -24,6 +24,14 @@ module.exports.CongDoanMaHangV4= async (req, res ) => {
     })
 }
 
+module.exports.CongDoanMaHangV5= async (req, res ) => {
+    res.render('kho/CongDoanMaHangV5',{
+        title:'Cong Doan Ma Hang',
+        userId:req.signedCookies.userId,
+        html:'',
+    })
+}
+
 module.exports.wacoal_MaHang_Select_V1 = async(req, res) =>{
     try {
         const result= await db.wacoal_MaHang_Select_V1()
@@ -130,6 +138,18 @@ module.exports.CongDoanMaHangInput = async(req,res)=>{
     }
 }
 
+module.exports.CongDoanMaHangInput_V2 = async(req,res)=>{
+    let lError={}
+    try {
+        let result= await db.CongDoanMaHangInput_V2(req.file.filename,req.signedCookies.userId)
+        res.send(result);
+    } catch (error) {
+        lError.errMes = "Lỗi: " + error;
+        lError.statusErr = false;
+        res.send(lError)
+    }
+}
+
 module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async(req,res) =>{
     try {
         await db.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1(req.params).then(result=>{
@@ -148,9 +168,9 @@ module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async(req,res) =>{
     }
 }
 
-module.exports.LOAIMAY_New_load_Wacoal_Web_V1 = async(req,res) =>{
+module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async(req,res) =>{
     try {
-        await db.LOAIMAY_New_load_Wacoal_Web_V1(req.params).then(result=>{
+        await db.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1(req.params).then(result=>{
             res.json({
                 data:result,
                 message:'ok'
@@ -166,9 +186,47 @@ module.exports.LOAIMAY_New_load_Wacoal_Web_V1 = async(req,res) =>{
     }
 }
 
-module.exports.LoaiChi_New_load_Wacoal_Web_V1 = async(req,res) =>{
+module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2 = async(req,res) =>{
     try {
-        await db.LoaiChi_New_load_Wacoal_Web_V1(req.params).then(result=>{
+        await db.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2(req.params).then(result=>{
+            res.json({
+                data:result,
+                message:'ok'
+            })
+        })
+        
+    } catch (error) {
+        res.json({
+            data:{},
+            message:'Err: '+error
+        })
+        
+    }
+}
+
+module.exports.LoaiChi_New_load_Wacoal_Web_V2 = async(req,res) =>{
+    try {
+        await db.LoaiChi_New_load_Wacoal_Web_V2(req.params).then(result=>{
+            res.json({
+                data:result,
+                message:'ok'
+            })
+        })
+        
+    } catch (error) {
+        res.json({
+            data:{},
+            message:'Err: '+error
+        })
+        
+    }
+}
+
+
+
+module.exports.LOAIMAY_New_load_Wacoal_Web_V2 = async(req,res) =>{
+    try {
+        await db.LOAIMAY_New_load_Wacoal_Web_V2(req.params).then(result=>{
             res.json({
                 data:result,
                 message:'ok'
