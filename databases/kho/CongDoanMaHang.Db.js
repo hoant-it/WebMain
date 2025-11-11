@@ -187,7 +187,7 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
         .request()
         .input("MAHANG", sql.NVarChar(50), MAHANG)
         .input("MAUMH", sql.NVarChar(50), MAUMH)
-        .input("CONGDOAN", sql.BigInt, CONGDOAN)
+        .input("CONGDOAN", sql.Numeric(9, 3), Number(CONGDOAN))
         .input("TENCONGDOAN", sql.NVarChar(sql.MAX), TENCONGDOAN)
         .input("KYHIEUMAY", sql.NVarChar(sql.MAX), KYHIEUMAY)
         .input("LOAIMAY", sql.NVarChar(50), LOAIMAY)
@@ -344,7 +344,7 @@ module.exports.CongDoanMaHangInput_V2 = async (filename, userId) => {
               await transaction.request()
           .input("MAHANG", sql.NVarChar(50), MAHANG)
           .input("MAUMH", sql.NVarChar(50), MAUMH)
-          .input("CONGDOAN", sql.BigInt, CONGDOAN)
+          .input("CONGDOAN", sql.Numeric(9, 3), Number(CONGDOAN))
           .input("TENCONGDOAN", sql.NVarChar(sql.MAX), TENCONGDOAN)
           .input("KYHIEUMAY", sql.NVarChar(sql.MAX), KYHIEUMAY)
           .input("LOAIMAY", sql.NVarChar(50), LOAIMAY)
@@ -377,7 +377,7 @@ module.exports.CongDoanMaHangInput_V2 = async (filename, userId) => {
       return lError;
       }
     }
-    await pool
+    await pool.request()
       .input("MAHANG", sql.NVarChar(50), MaHang)
         .input("MAUMH", sql.NVarChar(50), MauMH)
         .input("SIZECUP", sql.NVarChar(50), sizeCup)

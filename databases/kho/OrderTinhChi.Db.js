@@ -30,7 +30,7 @@ module.exports.khoOrderTinhchiGridviewMaHangMiss=async(params)=>{
         let result=await pool.request()
         .input('ORDERNO',sql.NVarChar(50),Order)
         .input('MAKH',sql.NVarChar(50),KhachHang)
-        .execute('wacoal_OrderTinhChiMaHangMiss_Web_v1')
+        .execute('wacoal_OrderTinhChiMaHangMiss_Web_v2')
         return result.recordset
     } catch (error) {
         throw error
@@ -59,6 +59,20 @@ module.exports.OrderTinhChiPost=async(body)=>{
         let result=await pool.request()
         .input('ORDERNO',sql.NVarChar(50),oderNo)
         .input('MAKH',sql.NVarChar(50),khachHang)
+        .execute('wacoal_OrderTinhChiMaHangMiss_Web_v2')
+        return result.recordset
+    } catch (error) {
+        throw error
+    }
+}
+
+module.exports.OrderMaHangMiss=async(params)=>{
+    try {
+        const{Order,KhachHang}=params
+        let pool=await sql.connect(sqlConfig)
+        let result=await pool.request()
+        .input('ORDERNO',sql.NVarChar(50),Order)
+        .input('MAKH',sql.NVarChar(50),KhachHang)
         .execute('wacoal_OrderTinhChiMaHangMiss_Web_v2')
         return result.recordset
     } catch (error) {

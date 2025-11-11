@@ -6,7 +6,7 @@ const GridviewMaHangMissLoad = (oderNo,khachHang) => {
     var url = "khoOrderTinhchiGridviewMaHangMiss/";
     // console.log(" url " + url + oderNo+khachHang);
     var arrMaHangmiss = DevExpress.data.AspNet.createStore({
-        key: "MAHANG",
+        key: "Style",
         loadUrl: url  + oderNo +'/'+khachHang,
        
         // insertUrl: url + "/InsertOrder",
@@ -20,7 +20,7 @@ const GridviewMaHangMissLoad = (oderNo,khachHang) => {
     })
 
 
-    $("#GridTinhChi").dxDataGrid({
+    $("#GridTinhChiMiss").dxDataGrid({
         dataSource: arrMaHangmiss,
         // reshapeOnPush: true,
         columnsAutoWidth: true,
@@ -63,7 +63,7 @@ const GridviewMaHangMissLoad = (oderNo,khachHang) => {
         // paging: {
         //     pageSize: 10
         // },
-        columns: ["MAHANG"],
+        columns: ["Style"],
 
         onFocusedRowChanging: function(e) {
             var rowsCount = e.component.getVisibleRows().length,

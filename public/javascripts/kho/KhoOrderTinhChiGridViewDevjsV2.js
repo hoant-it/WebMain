@@ -1,5 +1,6 @@
 const datChiCaptionTotal = "Total";
 const datChiCaptionCT = "Details";
+const datchiCaptionMaHangMiss="StyleMissing";
 const topRowCell=10
 const generalsa=new generals();
 var datchiStatus=0;
@@ -141,10 +142,14 @@ const datChiXuatExcel=(oderNo,khachHang)=>{
    
     const dataGridDatChiTotal = $("#GridDatChiTotal").dxDataGrid("instance");
     const dataGridDatChiCT = $("#GridDatChiCT").dxDataGrid("instance");
+    const dataGridDatChiMiss=$("#GridDataStyleMiss").dxDataGrid("instance");
 
     const workbook = new ExcelJS.Workbook();
     const TotalSheet = workbook.addWorksheet(datChiCaptionTotal);
     const CTSheet = workbook.addWorksheet(datChiCaptionCT);
+    const MissSheet = workbook.addWorksheet(datchiCaptionMaHangMiss);
+
+    
 
     TotalSheet.getRow(8).getCell(1).value = "Thời Gian";
     TotalSheet.getRow(8).getCell(2).value = generalsa.getDateTime();
@@ -324,6 +329,26 @@ CTSheet.mergeCells(5, 4, 5, 4);
           },
         })
       )
+       .then(() =>
+        DevExpress.excelExporter.exportDataGrid({
+          worksheet: MissSheet,
+          component: dataGridDatChiMiss,
+          topLeftCell: { row: topRowCell, column: 1 },
+          customizeCell(options) {
+            var excelCell = options;
+            excelCell.font = { name: "EUDC", size: 12 };
+            excelCell.alignment = { horizontal: "left" };
+            // setAlternatingRowsBackground(
+            //   excelCell.gridCell,
+            //   excelCell.excelCell
+            // );
+           generalsa.setAlternatingRowsBackgroundExcel(
+                excelCell.gridCell,
+                excelCell.excelCell
+              );
+          },
+        })
+      )
       .then(() => {
         
         workbook.xlsx.writeBuffer().then((buffer) => {
@@ -337,315 +362,370 @@ CTSheet.mergeCells(5, 4, 5, 4);
 
 }
 
-const tabPanelLoad = (length,oderNo,khachHang) => {
-    //  listDataTinhChiChiTotal=[]
-    var urlDatChiCT = "wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V5/";
-  
+const tabPanelLoad = (length, oderNo, khachHang) => {
+  //  listDataTinhChiChiTotal=[]
 
-    var listDataDatChiCT = DevExpress.data.AspNet.createStore({
-        key: "keyMAHANG",
-        loadUrl: urlDatChiCT  + oderNo+'/'+khachHang+'/'+datchiStatus ,
-        onBeforeSend: function(method, ajaxOptions) {
-            ajaxOptions.xhrFields = {
-                withCredentials: true
-            };
-        }
-    })
+  var orderFn = length > 0 ? "none" : oderNo;
+  var khachHangFn = length > 0 ? "none" : khachHang;
 
- var orderFn=length>0?"none":oderNo
- var khachHangFn=length>0?"none":khachHang
+  var urlDatChiCT = "wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V5/";
+  var listDataDatChiCT = DevExpress.data.AspNet.createStore({
+    key: "keyMAHANG",
+    loadUrl: urlDatChiCT + oderNo + "/" + khachHang + "/" + datchiStatus,
+    onBeforeSend: function (method, ajaxOptions) {
+      ajaxOptions.xhrFields = {
+        withCredentials: true,
+      };
+    },
+  });
 
-    var urlDatChiTotal = "Order_TinhChi_Web_V5/"+ orderFn +'/'+khachHangFn+'/'+datchiStatus;
-  
-    var listDataTinhChiChiTotal= DevExpress.data.AspNet.createStore({
-        key: "numberLoaichi",
-        loadUrl: urlDatChiTotal  ,
-        onBeforeSend: function(method, ajaxOptions) {
-            ajaxOptions.xhrFields = {
-                withCredentials: true
-            };
-        }
-    })
-  
-    
-    $("#tabPanel").dxTabPanel({
-      dataSource: [
-        {
-          title: datChiCaptionTotal,
-          template() {
-            return $("<div id='GridDatChiTotal'>").dxDataGrid({
-              width: "100%",
-              columns: [
-                {
-                    caption: "R60",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_R60",
-                        format: "string"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_R60",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                },
-                {
-                    caption: "WA",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_WA",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_WA",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                }
-                ,
-                {
-                    caption: "WB",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_WB",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_WB",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                }
-                ,
-                {
-                    caption: "W300",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_W300",
-                      
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_W300",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-                {
-                    caption: "KS60",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_KS60",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_KS60",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-                {
-                    caption: "UN420",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_UN420",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_UN420",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-                {
-                    caption: "UN280",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_UN280",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_UN280",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-                // {
-                //     caption: "GOMU",
-                //     alignment:"center",
-                //     columns: [{
-                //         caption: "COLOR",
-                //         alignment:"center",
-                //         dataField: "COLOR_GOMU",
-                //         // format: "fixedPoint"
-                //     }, {
-                //         caption: "QTY",
-                //         alignment:"center",
-                //         dataField: "SL_GOMU",
-                //         // format: function(value) {
-                //         //     return value==0?'-':value;
-                //         //   }
-                //         // format: "percent"
-                //     }]
-                // } ,
-                {
-                    caption: "R50",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_R50",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_R50",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-                {
-                    caption: "S80",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_S80",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_S80",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-    
-                // 10:24 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
-    
-                // {
-                //     caption: "300W",
-                //     alignment:"center",
-                //     columns: [{
-                //         caption: "COLOR",
-                //         alignment:"center",
-                //         dataField: "COLOR_300W",
-                //         // format: "fixedPoint"
-                //     }, {
-                //         caption: "QTY",
-                //         alignment:"center",
-                //         dataField: "SL_300W",
-                //         // format: function(value) {
-                //         //     return value==0?'-':value;
-                //         //   }
-                //         // format: "percent"
-                //     }]
-                // } ,
+  var urlDatChiTotal =
+    "Order_TinhChi_Web_V5/" + orderFn + "/" + khachHangFn + "/" + datchiStatus;
+
+  var listDataTinhChiChiTotal = DevExpress.data.AspNet.createStore({
+    key: "numberLoaichi",
+    loadUrl: urlDatChiTotal,
+    onBeforeSend: function (method, ajaxOptions) {
+      ajaxOptions.xhrFields = {
+        withCredentials: true,
+      };
+    },
+  });
+
+  var urlDataMaHangMiss=`OrderMaHangMiss/${oderNo}/${khachHang}`
+  var listDataMaHangMiss= DevExpress.data.AspNet.createStore({
+    key: "Style",
+    loadUrl: urlDataMaHangMiss,
+    onBeforeSend: function (method, ajaxOptions) {
+      ajaxOptions.xhrFields = {
+        withCredentials: true,
+      };
+    },
+  });
+
+  $("#tabPanel").dxTabPanel({
+    dataSource: [
+      {
+        title: datChiCaptionTotal,
+        template() {
+          return $("<div id='GridDatChiTotal'>").dxDataGrid({
+            width: "100%",
+            columns: [
+              {
+                caption: "R60",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_R60",
+                    format: "string",
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_R60",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "WA",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_WA",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_WA",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "WB",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_WB",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_WB",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "W300",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_W300",
+
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_W300",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "KS60",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_KS60",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_KS60",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "UN420",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_UN420",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_UN420",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "UN280",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_UN280",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_UN280",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              // {
+              //     caption: "GOMU",
+              //     alignment:"center",
+              //     columns: [{
+              //         caption: "COLOR",
+              //         alignment:"center",
+              //         dataField: "COLOR_GOMU",
+              //         // format: "fixedPoint"
+              //     }, {
+              //         caption: "QTY",
+              //         alignment:"center",
+              //         dataField: "SL_GOMU",
+              //         // format: function(value) {
+              //         //     return value==0?'-':value;
+              //         //   }
+              //         // format: "percent"
+              //     }]
+              // } ,
+              {
+                caption: "R50",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_R50",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_R50",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "S80",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_S80",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_S80",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+
+              // 10:24 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa
+
+              // {
+              //     caption: "300W",
+              //     alignment:"center",
+              //     columns: [{
+              //         caption: "COLOR",
+              //         alignment:"center",
+              //         dataField: "COLOR_300W",
+              //         // format: "fixedPoint"
+              //     }, {
+              //         caption: "QTY",
+              //         alignment:"center",
+              //         dataField: "SL_300W",
+              //         // format: function(value) {
+              //         //     return value==0?'-':value;
+              //         //   }
+              //         // format: "percent"
+              //     }]
+              // } ,
             ],
             summary: {
-                totalItems: [{
-                    column: "COLOR_R60",
-                    summaryType: "count",
-                    customizeText: function(data) {
-                        return "Total";
-                    }},
-                    {column: "SL_R60",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_WA",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_WB",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_W300",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_KS60",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    // {column: "SL_GOMU",
-                    // summaryType: "sum",
-                    // customizeText: function(data) {
-                    //     return data.value;
-                    // }},
-                    {column: "SL_UN420",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_UN280",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                   {column: "SL_R50",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_S80",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    // 10:24 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
-    
-                    // {column: "SL_300W",
-                    // summaryType: "sum",
-                    // customizeText: function(data) {
-                    //     return data.value;
-                    // }},
-            ]
+              totalItems: [
+                {
+                  column: "COLOR_R60",
+                  summaryType: "count",
+                  customizeText: function (data) {
+                    return "Total";
+                  },
+                },
+                {
+                  column: "SL_R60",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_WA",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_WB",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_W300",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_KS60",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                // {column: "SL_GOMU",
+                // summaryType: "sum",
+                // customizeText: function(data) {
+                //     return data.value;
+                // }},
+                {
+                  column: "SL_UN420",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_UN280",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_R50",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_S80",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                // 10:24 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa
+
+                // {column: "SL_300W",
+                // summaryType: "sum",
+                // customizeText: function(data) {
+                //     return data.value;
+                // }},
+              ],
             },
             showBorders: true,
             rowAlternationEnabled: true,
@@ -661,338 +741,422 @@ const tabPanelLoad = (length,oderNo,khachHang) => {
             scrolling: {
               mode: "virtual",
             },
-        
-              dataSource: listDataTinhChiChiTotal,
-   
-            });
-          },
+
+            dataSource: listDataTinhChiChiTotal,
+          });
         },
-        {
-          title: datChiCaptionCT,
-          template() {
-            return $("<div id='GridDatChiCT'>").dxDataGrid({
-              width: "100%",
-              columns: [
-                {
-                    caption: "MÃ HÀNG",
-                    alignment:"left",
-                    dataField: "MAHANG",
-                },
-                {
-                    caption: "MÀU MH",
-                    alignment:"left",
-                    dataField: "MAUMH",
-                },
-                {
-                    caption: "SL Order",
-                    alignment:"left",
-                    dataField: "OrderQty",
-                },
-                {
-                    caption: "KH Order",
-                    alignment:"left",
-                    dataField: "Note",
-                },
-              
-                {
-                    caption: "R60",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"left",
-                        dataField: "COLOR_R60",
-                        format: "string"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_R60",
-                        format: {
-                            // type: 'percent',
-                            precision: 1
-                          }
-                        // dataType: "number",
-                        // format:"number"
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                },
-                {
-                    caption: "WA",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_WA",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_WA",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                }
-                ,
-                {
-                    caption: "WB",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_WB",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_WB",
-                        // dataType: "number",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                }
-                ,
-                {
-                    caption: "W300",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_W300",
-                      
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_W300",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-             
-                {
-                    caption: "KS60",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_KS60",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_KS60",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-                {
-                    caption: "UN420",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_UN420",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_UN420",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-                {
-                    caption: "UN280",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_UN280",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_UN280",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-                // {
-                //     caption: "GOMU",
-                //     alignment:"center",
-                //     columns: [{
-                //         caption: "COLOR",
-                //         alignment:"center",
-                //         dataField: "COLOR_GOMU",
-                //         // format: "fixedPoint"
-                //     }, {
-                //         caption: "QTY",
-                //         alignment:"center",
-                //         dataField: "SL_GOMU",
-                //         // format: function(value) {
-                //         //     return value==0?'-':value;
-                //         //   }
-                //         // format: "percent"
-                //     }]
-                // } ,
-                {
-                    caption: "R50",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_R50",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_R50",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,    {
-                    caption: "S80",
-                    alignment:"center",
-                    columns: [{
-                        caption: "COLOR",
-                        alignment:"center",
-                        dataField: "COLOR_S80",
-                        // format: "fixedPoint"
-                    }, {
-                        caption: "QTY",
-                        alignment:"center",
-                        dataField: "SL_S80",
-                        // format: function(value) {
-                        //     return value==0?'-':value;
-                        //   }
-                        // format: "percent"
-                    }]
-                } ,
-                // 10:31 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
-                //    {
-                //     caption: "300W",
-                //     alignment:"center",
-                //     columns: [{
-                //         caption: "COLOR",
-                //         alignment:"center",
-                //         dataField: "COLOR_300W",
-                //         // format: "fixedPoint"
-                //     }, {
-                //         caption: "QTY",
-                //         alignment:"center",
-                //         dataField: "SL_300W",
-                //         // format: function(value) {
-                //         //     return value==0?'-':value;
-                //         //   }
-                //         // format: "percent"
-                //     }]
-                // } ,
+      },
+      {
+        title: datChiCaptionCT,
+        template() {
+          return $("<div id='GridDatChiCT'>").dxDataGrid({
+            width: "100%",
+            columns: [
+              {
+                caption: "MÃ HÀNG",
+                alignment: "left",
+                dataField: "MAHANG",
+              },
+              {
+                caption: "MÀU MH",
+                alignment: "left",
+                dataField: "MAUMH",
+              },
+              {
+                caption: "SL Order",
+                alignment: "left",
+                dataField: "OrderQty",
+              },
+              {
+                caption: "KH Order",
+                alignment: "left",
+                dataField: "Note",
+              },
+
+              {
+                caption: "R60",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "left",
+                    dataField: "COLOR_R60",
+                    format: "string",
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_R60",
+                    format: {
+                      // type: 'percent',
+                      precision: 1,
+                    },
+                    // dataType: "number",
+                    // format:"number"
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "WA",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_WA",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_WA",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "WB",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_WB",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_WB",
+                    // dataType: "number",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "W300",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_W300",
+
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_W300",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+
+              {
+                caption: "KS60",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_KS60",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_KS60",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "UN420",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_UN420",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_UN420",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "UN280",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_UN280",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_UN280",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              // {
+              //     caption: "GOMU",
+              //     alignment:"center",
+              //     columns: [{
+              //         caption: "COLOR",
+              //         alignment:"center",
+              //         dataField: "COLOR_GOMU",
+              //         // format: "fixedPoint"
+              //     }, {
+              //         caption: "QTY",
+              //         alignment:"center",
+              //         dataField: "SL_GOMU",
+              //         // format: function(value) {
+              //         //     return value==0?'-':value;
+              //         //   }
+              //         // format: "percent"
+              //     }]
+              // } ,
+              {
+                caption: "R50",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_R50",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_R50",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              {
+                caption: "S80",
+                alignment: "center",
+                columns: [
+                  {
+                    caption: "COLOR",
+                    alignment: "center",
+                    dataField: "COLOR_S80",
+                    // format: "fixedPoint"
+                  },
+                  {
+                    caption: "QTY",
+                    alignment: "center",
+                    dataField: "SL_S80",
+                    // format: function(value) {
+                    //     return value==0?'-':value;
+                    //   }
+                    // format: "percent"
+                  },
+                ],
+              },
+              // 10:31 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa
+              //    {
+              //     caption: "300W",
+              //     alignment:"center",
+              //     columns: [{
+              //         caption: "COLOR",
+              //         alignment:"center",
+              //         dataField: "COLOR_300W",
+              //         // format: "fixedPoint"
+              //     }, {
+              //         caption: "QTY",
+              //         alignment:"center",
+              //         dataField: "SL_300W",
+              //         // format: function(value) {
+              //         //     return value==0?'-':value;
+              //         //   }
+              //         // format: "percent"
+              //     }]
+              // } ,
             ],
             summary: {
-                totalItems: [{
-                    column: "COLOR_R60",
-                    summaryType: "count",
-                    customizeText: function(data) {
-                        return "Total";
-                    }},
-                    {column: "SL_R60",
-                    summaryType: "sum",
-                    valueFormat: "Decimal",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-               
-                    {column: "SL_WA",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_WB",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_W300",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-             
-                    {column: "SL_KS60",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_UN420",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-                    {column: "SL_UN280",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-    
-                    {column: "SL_R50",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},  
-                    {column: "SL_S80",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                        return data.value;
-                    }},
-    
-                    // 10:31 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa 
-                    // {column: "SL_300W",
-                    // summaryType: "sum",
-                    // customizeText: function(data) {
-                    //     return data.value;
-                    // }},
-            ]},
-              showBorders: true,
-              rowAlternationEnabled: true,
-              dataSource: listDataDatChiCT,
-              columnsAutoWidth: true,
-              height: 450,
-              allowColumnReordering: true,
-              rowAlternationEnabled: true,
-              showColumnLines: true,
-              showRowLines: true,
-              showBorders: true,
-              focusedRowEnabled: true,
-              wordWrapEnabled: true,
-              scrolling: {
-                mode: "virtual",
-              },
-            });
-          },
+              totalItems: [
+                {
+                  column: "COLOR_R60",
+                  summaryType: "count",
+                  customizeText: function (data) {
+                    return "Total";
+                  },
+                },
+                {
+                  column: "SL_R60",
+                  summaryType: "sum",
+                  valueFormat: "Decimal",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+
+                {
+                  column: "SL_WA",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_WB",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_W300",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+
+                {
+                  column: "SL_KS60",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_UN420",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_UN280",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+
+                {
+                  column: "SL_R50",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+                {
+                  column: "SL_S80",
+                  summaryType: "sum",
+                  customizeText: function (data) {
+                    return data.value;
+                  },
+                },
+
+                // 10:31 23-06-2022 bo cot 300W (300W, W300, N300 la 1) edit by Hoa
+                // {column: "SL_300W",
+                // summaryType: "sum",
+                // customizeText: function(data) {
+                //     return data.value;
+                // }},
+              ],
+            },
+            showBorders: true,
+            rowAlternationEnabled: true,
+            dataSource: listDataDatChiCT,
+            columnsAutoWidth: true,
+            height: 450,
+            allowColumnReordering: true,
+            rowAlternationEnabled: true,
+            showColumnLines: true,
+            showRowLines: true,
+            showBorders: true,
+            focusedRowEnabled: true,
+            wordWrapEnabled: true,
+            scrolling: {
+              mode: "virtual",
+            },
+          });
         },
-      ],
-      itemTitleTemplate(itemData, itemIndex, itemElement) {
-        itemElement.append(`<span class='dx-tab-text'>${itemData.title}</span>`);
       },
-      deferRendering: false,
-    });
-  };
+       {
+        title: datchiCaptionMaHangMiss,
+        template() {
+          return $("<div id='GridDataStyleMiss'>").dxDataGrid({
+            width: "100%",
+              columns: [
+              {
+                caption: "MÃ HÀNG",
+                alignment: "left",
+                dataField: "Style",
+              },
+                {
+                caption: "MÀU",
+                alignment: "left",
+                dataField: "Color",
+              },
+            ],
+          
+         
+            showBorders: true,
+            rowAlternationEnabled: true,
+            columnsAutoWidth: true,
+            height: 450,
+            allowColumnReordering: true,
+            rowAlternationEnabled: true,
+            showColumnLines: true,
+            showRowLines: true,
+            showBorders: true,
+            focusedRowEnabled: true,
+            wordWrapEnabled: true,
+            scrolling: {
+              mode: "virtual",
+            },
+
+            dataSource: listDataMaHangMiss,
+          });
+        },
+      },
+    ],
+    itemTitleTemplate(itemData, itemIndex, itemElement) {
+      itemElement.append(`<span class='dx-tab-text'>${itemData.title}</span>`);
+    },
+    deferRendering: false,
+  });
+};
 
   const datChi =()=>{
     var oderNo=$('#searchBoxNam').dxSelectBox('instance').option('value');
@@ -1015,8 +1179,6 @@ const tabPanelLoad = (length,oderNo,khachHang) => {
                     tabPanelLoad(res.length,oderNo,khachHang)
                 }else{
                     alert("Một số Mã Hàng chưa liệt kê công đoạn theo mã Hàng. Không thể đặt chỉ")
-                    oderNo='none';
-                    khachHang='none'
                     tabPanelLoad(res.length,oderNo,khachHang)
                 }
             }

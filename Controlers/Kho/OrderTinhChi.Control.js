@@ -73,6 +73,19 @@ module.exports.OrderTinhChiPost=async(req,res)=>{
     }
 }
 
+module.exports.OrderMaHangMiss=async(req,res)=>{
+    try {
+        let result=await db.OrderMaHangMiss(req.params)
+         res.json({
+          data:result
+      })
+    } catch (error) {
+         res.json({
+          data:[]
+      })
+    }
+}
+
 module.exports.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4=async(req,res)=>{
     try {
       let result=await db.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4(req.params)

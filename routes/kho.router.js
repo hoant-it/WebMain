@@ -59,7 +59,7 @@ router.get('/LoaiChi_New_load_Wacoal_Web_V2', congdoanmahangControl.LoaiChi_New_
 
 
 // router.post('/congodanmahanginputv2',upload.single('filename'), congdoanmahangControl.CongDoanMaHangInput)
-router.post('/congodanmahanginputv2',upload.single('filename'), congdoanmahangControl.CongDoanMaHangInput_V2)
+router.post('/congodanmahanginputv2',upload.single('filename'), congdoanmahangControl.CongDoanMaHangInput)
 
 // router.get('/CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1/:MaHang',congdoanmahangControl.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1)
 router.get('/CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2/:MaHang',congdoanmahangControl.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2)
@@ -473,6 +473,7 @@ router.get('/wacoal_DONHANGHEAD_Load_Web_V1',OrderTinhChiControl.wacoal_DONHANGH
 router.get('/khoOrderTinhchiGridviewMaHangMiss/:Order/:KhachHang',OrderTinhChiControl.khoOrderTinhchiGridviewMaHangMiss)
 router.get('/Order_TinhChi_Web_V4/:Order/:KhachHang',OrderTinhChiControl.Order_TinhChi_Web_V4)
 router.post('/OrderTinhChiPost',OrderTinhChiControl.OrderTinhChiPost)
+router.get('/OrderMaHangMiss/:Order/:KhachHang',OrderTinhChiControl.OrderMaHangMiss)
 router.get('/wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4/:Order/:KhachHang',OrderTinhChiControl.wacoal_OrderTinhChi_ChiTiet_MaHang_Load_Web_V4)
 
 //tinh chi theo order V2
