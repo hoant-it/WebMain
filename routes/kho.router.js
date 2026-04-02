@@ -15,6 +15,7 @@ const khoOrderTinhChiHisControl= require('../Controlers/Kho/KhoOrderTinhChiHis.C
 const XuatNhapKhoControl=require('../Controlers/Kho/XuatNhapKho.Control');
 
 const LoaiMayCongThucControl=require('../Controlers/Kho/LoaiMayCongThuc.control')
+const LineControl= require('../Controlers/Kho/Line.Control')
 
 //Order
 router.get('/Order',orderControl.OrderLoad);
@@ -73,6 +74,15 @@ router.post('/MauChiMauNlInput',upload.single('filename'), MauChiMauNLControl.Ma
 router.post('/MauChiMauNLUpdate',MauChiMauNLControl.MauChiMauNLUpdate)
 router.get('/wacoal_LOAICHIITEM_Load_V1',MauChiMauNLControl.wacoal_LOAICHIITEM_Load_V1)
 router.post('/MAUCHIMAUNL_Delete_Web_V1',MauChiMauNLControl.MAUCHIMAUNL_Delete_Web_V1)
+
+
+//Line
+router.get('/Line',LineControl.Line)
+router.get('/wacoal_Line_Load_Web_V1',LineControl.wacoal_Line_Load_Web_V1)
+router.post('/LineUpdate',LineControl.LineUpdate)
+router.post('/Line_Delete_Web_V1',LineControl.Line_Delete_Web_V1)
+
+
 
 //QTQLNVL
 router.get('/QTQLNVL',QTQLNVLControl.QTQLNVLLoad)

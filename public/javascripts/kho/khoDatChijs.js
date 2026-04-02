@@ -664,7 +664,7 @@ const tabPanelLoad = () => {
                 // format: "number",
               },
               {
-                caption: "Số ống chỉ cần",
+                caption: "Số máy cần",
                 // alignment: "",
                 // dataField: "",
                 // width: 150,
