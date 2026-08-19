@@ -376,6 +376,7 @@ const tabPanelLoad = (length, oderNo, khachHang) => {
       ajaxOptions.xhrFields = {
         withCredentials: true,
       };
+      // ajaxOptions.timeout = 300000
     },
   });
 
@@ -1108,7 +1109,10 @@ const tabPanelLoad = (length, oderNo, khachHang) => {
             wordWrapEnabled: true,
             scrolling: {
               mode: "virtual",
-            },
+              // paging:{
+              //   pageSize:20
+              // }
+            },          
           });
         },
       },

@@ -1,8 +1,11 @@
 const sql = require("../../databases/mainDb");
 var cryptoJs = require("crypto-js");
+const jwt = require("jsonwebtoken");
+// const bcrypt = require("bcrypt"); // Khuyên dùng bcrypt thay cho CryptoJS để kiểm tra mật khẩu
 
 
 module.exports.LoginAjax = async (req, res) => {
+  //sua lai logic ma hoa
   try {
     const { userName, password } = req.body;
   let dataUserA = await sql.sp_Wacoal_Web_ListUserGetRole(userName.toUpperCase())
@@ -46,6 +49,77 @@ module.exports.LoginAjax = async (req, res) => {
   
 };
 
+
+
+module.exports.LoginAjaxV2 = async (req, res) => {
+  try {
+    const { userName, password } = req.body;
+
+    // 1. Kiểm tra User tồn tại
+    const dataUserA = await sql.sp_Wacoal_Web_ListUserGetRole(userName.toUpperCase());
+
+    if (!dataUserA || dataUserA.length < 1) {
+      return res.render("main/login", {
+        layout: "./layouts/loginlayout",
+        title: "Login",
+        messageError: "User name không tồn tại",
+      });
+    }
+
+    const user = dataUserA[0];
+
+    // 2. Kiểm tra Mật khẩu
+    // Trường hợp 1: Nếu DB đang lưu password dạng Bcrypt hash (Khuyên dùng)
+    // const isMatch = await bcrypt.compare(password, user.WebPass);
+    
+    // Trường hợp 2: Nếu DB vẫn đang dùng CryptoJS AES như cũ (Chờ migration)
+    const bytes = cryptoJs.AES.decrypt(user.WebPass.toString(), process.env.SECRET_KEY || "itsasecret123");
+    const message_decode = bytes.toString(cryptoJs.enc.Utf8);
+    const isMatch = (message_decode === password);
+
+    if (!isMatch) {
+      return res.render("main/login", {
+        layout: "./layouts/loginlayout",
+        title: "Login",
+        messageError: "Password không đúng",
+      });
+    }
+
+    // 3. Khởi tạo Payload và Tạo Token (JWT)
+    const payload = {
+      userId: userName,
+      iDAuthorization: user.IDAuthorization,
+      userInGroupID: user.UserInGroupID,
+      webLoginFist: user.WebLoginFrist,
+    };
+
+    const token = jwt.sign(
+      payload, 
+      process.env.JWT_SECRET || "JWT_SECRET_KEY_SECURE", 
+      { expiresIn: "8h" } // Thời gian sống của token
+    );
+
+    // 4. Lưu JWT vào Cookie (HttpOnly để phòng chống XSS)
+    res.cookie("accessToken", token, {
+      // httpOnly: true, // Bảo mật chống XSS
+      signed: true,   // Ký cookie chống chỉnh sửa
+      // secure: process.env.NODE_ENV === "production", // Chỉ gửi qua HTTPS khi ở production
+      maxAge: 8 * 60 * 60 * 1000, // 8 tiếng
+    });
+    res.cookie("userId",userName,{signed:true})
+
+    return res.redirect("/home");
+
+  } catch (error) {
+    return res.render("main/login", {
+      layout: "./layouts/loginlayout",
+      title: "Login",
+      messageError: error.message || "Lỗi hệ thống",
+    });
+  }
+};
+
+
 module.exports.LoginLoad = async (req, res) => {
   res.render("main/login", {
     layout: "./layouts/loginlayout",
@@ -56,8 +130,7 @@ module.exports.LoginLoad = async (req, res) => {
 
 module.exports.LogOut = async (req, res) => {
   res.clearCookie("userId");
-  res.clearCookie("IDAuthorization");
-  res.clearCookie("UserInGroupID");
+  res.clearCookie("accessToken");
   res.redirect("/login");
 };
 
@@ -101,14 +174,14 @@ module.exports.HomeLoad = async (req, res, next) => {
   try {
     html="";
     html=`<ul class="nav side-menu" id="side-menu">`;
-   await sql.sp_Wacoal_LoadMenuWeb_V1(req.signedCookies.IDAuthorization,req.signedCookies.UserInGroupID).then(result=>{
+   await sql.sp_Wacoal_LoadMenuWeb_V1(req.user.iDAuthorization,req.user.userInGroupID).then(result=>{
     //  console.log(result);
       list_cat=data_Tree(result,"0");
       html+=`</ul>`
     })
    res.render('main/home',{
      title:'Việt Nam Wacoal',
-     userId:req.signedCookies.userId,
+     userId:req.user.userId,
      html:html,
    })
   } catch (error) {

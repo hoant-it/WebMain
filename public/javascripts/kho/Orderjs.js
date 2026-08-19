@@ -65,7 +65,7 @@ const OrderDraftGridLoad = (MY) => {
             workbook.xlsx.writeBuffer().then((buffer) => {
               saveAs(
                 new Blob([buffer], { type: "application/octet-stream" }),
-                `Order_Draft_${MY}.xlsx`
+                `Order_${MY}.xlsx`
               );
             });
           });
@@ -176,11 +176,11 @@ const OrderDraftGridLoad = (MY) => {
           dataField: "USERUPDATE",
           // allowEditing: false,
         },
-        {
-          caption: "DRAFT",
-          alignment: "left",
-          // allowEditing: false,
-        },
+        // {
+        //   caption: "DRAFT",
+        //   alignment: "left",
+        //   allowEditing: false,
+        // },
       ],
       onSaved(e) {
         // const rowData= e.row && e.row.data
@@ -262,7 +262,7 @@ const OrderDraftGridLoad = (MY) => {
                 loadMode: "raw",
                 loadUrl: "DONHANGITEM_DRAFT_MY_SearchBox_Web_V1",
               }),
-              placeholder: "Chọn Order Draft*",
+              placeholder: "Chọn Order *",
               width: 200,
               displayExpr: "MY",
               valueExpr: "MY",

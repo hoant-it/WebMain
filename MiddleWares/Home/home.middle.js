@@ -1,8 +1,8 @@
 module.exports.redirectLogin= (req,res,next) =>{
-  if(req.signedCookies.webLoginFist === "false"){
+  if(req.user.webLoginFist === "false"){
     res.redirect("/changePasswordFirst");
   }else{
-    if(!req.signedCookies.userId){
+    if(!req.user.userId){
       res.redirect('/login')
     } 
         next();

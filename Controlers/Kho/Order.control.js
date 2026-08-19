@@ -122,7 +122,7 @@ module.exports.OrderDraftImportExcel = async (req, res) => {
       "USERCREATE",
       "TIMEUPDATE",
       "USERUPDATE",
-      "DRAFT",
+      // "DRAFT",
     ];
     if (columnsArrayHeaders.length != formatHeader.length) {
       lError.errMes = "Lỗi: Định dạng cột sai";

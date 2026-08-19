@@ -2,17 +2,15 @@ const sql = require("mssql");
 const sqlConfig = require("../dbconfig");
 const del = require("del");
 const xlsx = require("xlsx");
-const path =require("path")
+const path = require("path");
 
 module.exports.wacoal_MaHang_Select_V1 = async () => {
   try {
     let pool = await sql.connect(sqlConfig);
-    let res = await pool
-      .request()
-      .execute("wacoal_MaHang_Select_V1");
+    let res = await pool.request().execute("wacoal_MaHang_Select_V1");
     return res.recordset;
   } catch (error) {
-    throw error
+    throw error;
   }
 };
 
@@ -25,7 +23,7 @@ module.exports.wacoal_TinhChi_MaHang_V3 = async (maHang) => {
       .execute("wacoal_TinhChi_MaHang_V3");
     return res.recordset;
   } catch (error) {
-    throw error
+    throw error;
   }
 };
 
@@ -67,16 +65,16 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
   let lError = { errMes: "thành công", statusErr: true };
   let pool = await sql.connect(sqlConfig);
   try {
-    const destinationPath= path.join(__dirname,"../../public/uploads/")
+    const destinationPath = path.join(__dirname, "../../public/uploads/");
     const filePath = `${destinationPath}${filename}`;
-    
+
     // const filePath = `./public/uploads/${filename}`;
     const workbook = await xlsx.readFile(filePath);
     const sheet_name_list = workbook.SheetNames;
     const workbookHeaders = await xlsx.readFile(filePath, { sheetRows: 1 });
     const columnsArrayHeaders = await xlsx.utils.sheet_to_json(
       workbookHeaders.Sheets[workbook.SheetNames[0]],
-      { header: 1 }
+      { header: 1 },
     )[0];
     const formatHeader = [
       "MAHANG",
@@ -112,8 +110,8 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
         name: sheet,
         content: JSON.parse(
           JSON.stringify(
-            xlsx.utils.sheet_to_json(workbook.Sheets[sheet], { defval: "" })
-          )
+            xlsx.utils.sheet_to_json(workbook.Sheets[sheet], { defval: "" }),
+          ),
         ),
       };
       jsonPagesArray.push(jsonPage);
@@ -122,14 +120,13 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
     var MaHang, MauMH;
     MaHang = jsonPagesArray[0].content[0].MAHANG;
     MauMH = jsonPagesArray[0].content[0].MAUMH;
-    
 
     await pool
       .request()
       .input("MAHANG", sql.NVarChar(50), MaHang)
       .input("MAUMH", sql.NVarChar(50), MauMH)
-      .input('UserName',sql.NVarChar(50),userId)
-      .input('statusErr',sql.Bit,1)
+      .input("UserName", sql.NVarChar(50), userId)
+      .input("statusErr", sql.Bit, 1)
       .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
 
     for (let i = 0; i < jsonPagesArray[0].content.length; i++) {
@@ -151,37 +148,56 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
           ? 0
           : contentValue.CHIEUDAI_CONGDOAN;
 
-          if(
-          (LOAIMAY.includes("ZIGZAG") && BIENDO==0)
-          ){
-            lError.errMes = "Lỗi: Công đoạn "+ CONGDOAN +" "+TENCONGDOAN+" "+LOAIMAY+" Biên Độ <=0" ;
-            lError.statusErr = false;
-            await pool
+      if (LOAIMAY.includes("ZIGZAG") && BIENDO == 0) {
+        lError.errMes =
+          "Lỗi: Công đoạn " +
+          CONGDOAN +
+          " " +
+          TENCONGDOAN +
+          " " +
+          LOAIMAY +
+          " Biên Độ <=0";
+        lError.statusErr = false;
+        await pool
+          .request()
+          .input("MAHANG", sql.NVarChar(50), MaHang)
+          .input("MAUMH", sql.NVarChar(50), MauMH)
+          .input("UserName", sql.NVarChar(50), userId)
+          .input("statusErr", sql.Bit, 0)
+          .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
+        return lError;
+      } else if (LOAIMAY.includes("INTERLOCK") || LOAIMAY.includes("VATSO")) {
+        if (BIENDO == 0 || MATDO == 0) {
+          lError.errMes =
+            "Lỗi: Công đoạn " +
+            CONGDOAN +
+            " " +
+            TENCONGDOAN +
+            " " +
+            LOAIMAY +
+            " Biên Độ hoặc Mật Độ <=0";
+          lError.statusErr = false;
+          await pool
             .request()
             .input("MAHANG", sql.NVarChar(50), MaHang)
             .input("MAUMH", sql.NVarChar(50), MauMH)
-            .input('UserName',sql.NVarChar(50),userId)
-            .input('statusErr',sql.Bit,0)
+            .input("UserName", sql.NVarChar(50), userId)
+            .input("statusErr", sql.Bit, 0)
             .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
-            return lError;
-          } else if(LOAIMAY.includes("INTERLOCK") || LOAIMAY.includes("VATSO")){
-            if((BIENDO==0 || MATDO==0)){
-              lError.errMes = "Lỗi: Công đoạn "+ CONGDOAN +" "+TENCONGDOAN+" "+LOAIMAY+" Biên Độ hoặc Mật Độ <=0" ;
-              lError.statusErr = false;
-              await pool
-              .request()
-              .input("MAHANG", sql.NVarChar(50), MaHang)
-              .input("MAUMH", sql.NVarChar(50), MauMH)
-              .input('UserName',sql.NVarChar(50),userId)
-              .input('statusErr',sql.Bit,0)
-              .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
-              return lError;
-            }
+          return lError;
+        }
+      }
+      const validTenCD = ["Attach cup", "Attach upper cup narrow piece"];
+      const validMaViTri = ["V2KK1", "V2KK2"];
 
-          }
-          
-           
-          
+      if (
+        MAHANG.startsWith("ET") &&
+        validTenCD.includes(TENCONGDOAN) &&
+        LOAIMAY === "VATSO2KIM" &&
+        validMaViTri.includes(MAVITRICHI)
+      ) {
+        CHIEUDAI_CONGDOAN *= 3; // Cách viết tắt của CHIEUDAI_CONGDOAN = CHIEUDAI_CONGDOAN * 3
+      }
 
       await pool
         .request()
@@ -197,7 +213,11 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
         .input("MATDO", sql.Numeric(9, 3), MATDO)
         .input("MAUNL", sql.NVarChar(50), MAUNL)
         .input("MAMAUCHI", sql.NVarChar(50), MAMAUCHI.toString())
-        .input("CHIEUDAI_CONGDOAN", sql.Numeric(9, 3), Number(CHIEUDAI_CONGDOAN))
+        .input(
+          "CHIEUDAI_CONGDOAN",
+          sql.Numeric(9, 3),
+          Number(CHIEUDAI_CONGDOAN),
+        )
         .input("UserName", sql.NVarChar(50), userId)
         .execute("wacoal_CONGDOAN_MAHANG_Insert_V3");
     }
@@ -208,12 +228,12 @@ module.exports.CongDoanMaHangInput = async (filename, userId) => {
       .request()
       .input("MAHANG", sql.NVarChar(50), MaHang)
       .input("MAUMH", sql.NVarChar(50), MauMH)
-      .input('UserName',sql.NVarChar(50),userId)
-      .input('statusErr',sql.Bit,0)
+      .input("UserName", sql.NVarChar(50), userId)
+      .input("statusErr", sql.Bit, 0)
       .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V3");
     lError.errMes = "Lỗi: " + error;
     lError.statusErr = false;
-  
+
     return lError;
   }
 };
@@ -233,11 +253,22 @@ module.exports.CongDoanMaHangInput_V2 = async (filename, userId) => {
     const workbookHeaders = await xlsx.readFile(filePath, { sheetRows: 1 });
     const columnsArrayHeaders = await xlsx.utils.sheet_to_json(
       workbookHeaders.Sheets[workbook.SheetNames[0]],
-      { header: 1 }
+      { header: 1 },
     )[0];
     const formatHeader = [
-      "MAHANG", "MAUMH", "CONGDOAN", "TENCONGDOAN", "KYHIEUMAY", "LOAIMAY",
-      "MAVITRICHI", "LOAICHI", "BIENDO", "MATDO", "MAUNL", "MAMAUCHI", "CHIEUDAI_CONGDOAN"
+      "MAHANG",
+      "MAUMH",
+      "CONGDOAN",
+      "TENCONGDOAN",
+      "KYHIEUMAY",
+      "LOAIMAY",
+      "MAVITRICHI",
+      "LOAICHI",
+      "BIENDO",
+      "MATDO",
+      "MAUNL",
+      "MAMAUCHI",
+      "CHIEUDAI_CONGDOAN",
     ];
     if (columnsArrayHeaders.length !== formatHeader.length) {
       lError.errMes = `Lỗi: format cột không đúng`;
@@ -261,8 +292,8 @@ module.exports.CongDoanMaHangInput_V2 = async (filename, userId) => {
         name: sheet,
         content: JSON.parse(
           JSON.stringify(
-            xlsx.utils.sheet_to_json(workbook.Sheets[sheet], { defval: "" })
-          )
+            xlsx.utils.sheet_to_json(workbook.Sheets[sheet], { defval: "" }),
+          ),
         ),
       };
       jsonPagesArray.push(jsonPage);
@@ -281,15 +312,16 @@ module.exports.CongDoanMaHangInput_V2 = async (filename, userId) => {
       return lError;
     }
 
-    const arrSizeCup = sizeCup.split('-');
+    const arrSizeCup = sizeCup.split("-");
 
     for (const sizeCup of arrSizeCup) {
-      await transaction.request()
+      await transaction
+        .request()
         .input("MAHANG", sql.NVarChar(50), MaHang)
         .input("MAUMH", sql.NVarChar(50), MauMH)
         .input("SIZECUP", sql.NVarChar(50), sizeCup)
-        .input('UserName', sql.NVarChar(50), userId)
-        .input('statusErr', sql.Bit, 1)
+        .input("UserName", sql.NVarChar(50), userId)
+        .input("statusErr", sql.Bit, 1)
         .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V4");
 
       for (let i = 0; i < jsonPagesArray[0].content.length; i++) {
@@ -311,57 +343,73 @@ module.exports.CongDoanMaHangInput_V2 = async (filename, userId) => {
             ? 0
             : contentValue.CHIEUDAI_CONGDOAN;
 
-        if (
-          (LOAIMAY.includes("ZIGZAG") && BIENDO == 0)
-        ) {
-          lError.errMes = "Lỗi: Công đoạn " + CONGDOAN + " " + TENCONGDOAN + " " + LOAIMAY + " Biên Độ <=0";
+        if (LOAIMAY.includes("ZIGZAG") && BIENDO == 0) {
+          lError.errMes =
+            "Lỗi: Công đoạn " +
+            CONGDOAN +
+            " " +
+            TENCONGDOAN +
+            " " +
+            LOAIMAY +
+            " Biên Độ <=0";
           lError.statusErr = false;
-        await transaction.request()
-        .input("MAHANG", sql.NVarChar(50), MaHang)
-        .input("MAUMH", sql.NVarChar(50), MauMH)
-        .input("SIZECUP", sql.NVarChar(50), sizeCup)
-        .input('UserName', sql.NVarChar(50), userId)
-        .input('statusErr', sql.Bit, 1)
-        .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V4");
+          await transaction
+            .request()
+            .input("MAHANG", sql.NVarChar(50), MaHang)
+            .input("MAUMH", sql.NVarChar(50), MauMH)
+            .input("SIZECUP", sql.NVarChar(50), sizeCup)
+            .input("UserName", sql.NVarChar(50), userId)
+            .input("statusErr", sql.Bit, 1)
+            .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V4");
           await transaction.rollback();
           return lError;
         } else if (LOAIMAY.includes("INTERLOCK") || LOAIMAY.includes("VATSO")) {
-          if ((BIENDO == 0 || MATDO == 0)) {
-            lError.errMes = "Lỗi: Công đoạn " + CONGDOAN + " " + TENCONGDOAN + " " + LOAIMAY + " Biên Độ hoặc Mật Độ <=0";
+          if (BIENDO == 0 || MATDO == 0) {
+            lError.errMes =
+              "Lỗi: Công đoạn " +
+              CONGDOAN +
+              " " +
+              TENCONGDOAN +
+              " " +
+              LOAIMAY +
+              " Biên Độ hoặc Mật Độ <=0";
             lError.statusErr = false;
-               await transaction.request()
-        .input("MAHANG", sql.NVarChar(50), MaHang)
-        .input("MAUMH", sql.NVarChar(50), MauMH)
-        .input("SIZECUP", sql.NVarChar(50), sizeCup)
-        .input('UserName', sql.NVarChar(50), userId)
-        .input('statusErr', sql.Bit, 1)
-        .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V4");
+            await transaction
+              .request()
+              .input("MAHANG", sql.NVarChar(50), MaHang)
+              .input("MAUMH", sql.NVarChar(50), MauMH)
+              .input("SIZECUP", sql.NVarChar(50), sizeCup)
+              .input("UserName", sql.NVarChar(50), userId)
+              .input("statusErr", sql.Bit, 1)
+              .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V4");
             await transaction.rollback();
             return lError;
           }
         }
-        if(TENCONGDOAN){
-              await transaction.request()
-          .input("MAHANG", sql.NVarChar(50), MAHANG)
-          .input("MAUMH", sql.NVarChar(50), MAUMH)
-          .input("CONGDOAN", sql.Numeric(9, 3), Number(CONGDOAN))
-          .input("TENCONGDOAN", sql.NVarChar(sql.MAX), TENCONGDOAN)
-          .input("KYHIEUMAY", sql.NVarChar(sql.MAX), KYHIEUMAY)
-          .input("LOAIMAY", sql.NVarChar(50), LOAIMAY)
-          .input("MAVITRICHI", sql.NVarChar(5), MAVITRICHI)
-          .input("LOAICHI", sql.NVarChar(50), LOAICHI)
-          .input("BIENDO", sql.Numeric(9, 3), BIENDO)
-          .input("MATDO", sql.Numeric(9, 3), MATDO)
-          .input("MAUNL", sql.NVarChar(50), MAUNL)
-          .input("MAMAUCHI", sql.NVarChar(50), MAMAUCHI.toString())
-          .input("CHIEUDAI_CONGDOAN", sql.Numeric(9, 3), Number(CHIEUDAI_CONGDOAN))
-          .input("UserName", sql.NVarChar(50), userId)
-          .input("SIZECUP", sql.NVarChar(50), sizeCup)
-          .execute("[wacoal_CONGDOAN_MAHANG_Insert_V4]");
-
+        if (TENCONGDOAN) {
+          await transaction
+            .request()
+            .input("MAHANG", sql.NVarChar(50), MAHANG)
+            .input("MAUMH", sql.NVarChar(50), MAUMH)
+            .input("CONGDOAN", sql.Numeric(9, 3), Number(CONGDOAN))
+            .input("TENCONGDOAN", sql.NVarChar(sql.MAX), TENCONGDOAN)
+            .input("KYHIEUMAY", sql.NVarChar(sql.MAX), KYHIEUMAY)
+            .input("LOAIMAY", sql.NVarChar(50), LOAIMAY)
+            .input("MAVITRICHI", sql.NVarChar(5), MAVITRICHI)
+            .input("LOAICHI", sql.NVarChar(50), LOAICHI)
+            .input("BIENDO", sql.Numeric(9, 3), BIENDO)
+            .input("MATDO", sql.Numeric(9, 3), MATDO)
+            .input("MAUNL", sql.NVarChar(50), MAUNL)
+            .input("MAMAUCHI", sql.NVarChar(50), MAMAUCHI.toString())
+            .input(
+              "CHIEUDAI_CONGDOAN",
+              sql.Numeric(9, 3),
+              Number(CHIEUDAI_CONGDOAN),
+            )
+            .input("UserName", sql.NVarChar(50), userId)
+            .input("SIZECUP", sql.NVarChar(50), sizeCup)
+            .execute("[wacoal_CONGDOAN_MAHANG_Insert_V4]");
         }
-
-    
       }
     }
 
@@ -370,32 +418,41 @@ module.exports.CongDoanMaHangInput_V2 = async (filename, userId) => {
     return lError;
   } catch (error) {
     if (transaction) {
-      try { await transaction.rollback(); } catch (e) {
-        console.error('Rollback transaction failed:', rollbackError);
-      lError.errMes = "Lỗi khi rollback transaction: " + rollbackError + " | Lỗi gốc: " + error;
-      lError.statusErr = false;
-      return lError;
+      try {
+        await transaction.rollback();
+      } catch (e) {
+        console.error("Rollback transaction failed:", rollbackError);
+        lError.errMes =
+          "Lỗi khi rollback transaction: " +
+          rollbackError +
+          " | Lỗi gốc: " +
+          error;
+        lError.statusErr = false;
+        return lError;
       }
     }
-    await pool.request()
+    await pool
+      .request()
       .input("MAHANG", sql.NVarChar(50), MaHang)
-        .input("MAUMH", sql.NVarChar(50), MauMH)
-        .input("SIZECUP", sql.NVarChar(50), sizeCup)
-        .input('UserName', sql.NVarChar(50), userId)
-        .input('statusErr', sql.Bit, 1)
-        .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V4");
+      .input("MAUMH", sql.NVarChar(50), MauMH)
+      .input("SIZECUP", sql.NVarChar(50), sizeCup)
+      .input("UserName", sql.NVarChar(50), userId)
+      .input("statusErr", sql.Bit, 1)
+      .execute("CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V4");
     lError.errMes = "Lỗi: " + error;
     lError.statusErr = false;
     return lError;
   }
 };
 
-module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async (params) => {
+module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async (
+  params,
+) => {
   try {
     let pool = await sql.connect(sqlConfig);
     let res = await pool
       .request()
-      .input('MAHANG',sql.NVarChar(50),params.MaHang)
+      .input("MAHANG", sql.NVarChar(50), params.MaHang)
       .execute("CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1");
     return res.recordset;
   } catch (error) {
@@ -403,12 +460,14 @@ module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V1 = async (params) => 
   }
 };
 
-module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2 = async (params) => {
+module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2 = async (
+  params,
+) => {
   try {
     let pool = await sql.connect(sqlConfig);
     let res = await pool
       .request()
-      .input('MAHANG',sql.NVarChar(50),params.MaHang)
+      .input("MAHANG", sql.NVarChar(50), params.MaHang)
       .execute("CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2");
     return res.recordset;
   } catch (error) {
@@ -419,9 +478,7 @@ module.exports.CONGDOAN_MAHANG_Load_By_MaHang_Web_Wacoal_V2 = async (params) => 
 module.exports.LOAIMAY_New_load_Wacoal_Web_V1 = async (params) => {
   try {
     let pool = await sql.connect(sqlConfig);
-    let res = await pool
-      .request()
-      .execute("LOAIMAY_New_load_Wacoal_Web_V1");
+    let res = await pool.request().execute("LOAIMAY_New_load_Wacoal_Web_V1");
     return res.recordset;
   } catch (error) {
     return res.error;
@@ -431,9 +488,7 @@ module.exports.LOAIMAY_New_load_Wacoal_Web_V1 = async (params) => {
 module.exports.LOAIMAY_New_load_Wacoal_Web_V2 = async (params) => {
   try {
     let pool = await sql.connect(sqlConfig);
-    let res = await pool
-      .request()
-      .execute("LOAIMAY_New_load_Wacoal_Web_V2");
+    let res = await pool.request().execute("LOAIMAY_New_load_Wacoal_Web_V2");
     return res.recordset;
   } catch (error) {
     return res.error;
@@ -443,9 +498,7 @@ module.exports.LOAIMAY_New_load_Wacoal_Web_V2 = async (params) => {
 module.exports.LoaiChi_New_load_Wacoal_Web_V1 = async (params) => {
   try {
     let pool = await sql.connect(sqlConfig);
-    let res = await pool
-      .request()
-      .execute("LoaiChi_New_load_Wacoal_Web_V1");
+    let res = await pool.request().execute("LoaiChi_New_load_Wacoal_Web_V1");
     return res.recordset;
   } catch (error) {
     return res.error;
@@ -455,23 +508,9 @@ module.exports.LoaiChi_New_load_Wacoal_Web_V1 = async (params) => {
 module.exports.LoaiChi_New_load_Wacoal_Web_V2 = async (params) => {
   try {
     let pool = await sql.connect(sqlConfig);
-    let res = await pool
-      .request()
-      .execute("LoaiChi_New_load_Wacoal_Web_V2");
+    let res = await pool.request().execute("LoaiChi_New_load_Wacoal_Web_V2");
     return res.recordset;
   } catch (error) {
     return res.error;
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
