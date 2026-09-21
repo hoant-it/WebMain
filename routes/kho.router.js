@@ -306,6 +306,23 @@ router.get('/QTQLNVL_B10_QDKTNL_2_1_b',QTQLNVLControl.QTQLNVL_B10_QDKTNL_2_1_b)
 router.get('/QTQLNVL_B10_QDKTNL_2_2',QTQLNVLControl.QTQLNVL_B10_QDKTNL_2_2)
 router.get('/QTQLNVL_B10_QDKTNL_2_3',QTQLNVLControl.QTQLNVL_B10_QDKTNL_2_3)
 
+router.get('/I_I1_A',QTQLNVLControl.I_I1_A)
+router.get('/I_I1_A1',QTQLNVLControl.I_I1_A1)
+router.get('/I_I1_A2',QTQLNVLControl.I_I1_A2)
+router.get('/I_I1_A3',QTQLNVLControl.I_I1_A3)
+router.get('/I_I1_A3_1',QTQLNVLControl.I_I1_A3_1)
+router.get('/I_I1_A3_2',QTQLNVLControl.I_I1_A3_2)
+router.get('/I_I1_A4',QTQLNVLControl.I_I1_A4)
+
+
+
+
+
+
+
+
+
+
 
 
 
