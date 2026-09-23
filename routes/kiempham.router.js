@@ -20,5 +20,10 @@ router.get('/GIAOHANG', kiemphamControl.GIAOHANG);
 // QD_XLSP_KHONG_PHU_HOP
 router.get('/QD_XLSP_KHONG_PHU_HOP', kiemphamControl.QD_XLSP_KHONG_PHU_HOP);
 
+router.get('/CN_KIEM_HE_VA_VUOT_DAY_VAI', kiemphamControl.CN_KIEM_HE_VA_VUOT_DAY_VAI);
+router.get('/CN_KIEMTRA_TRONGDIEM', kiemphamControl.CN_KIEMTRA_TRONGDIEM);
+
+
+
 
 module.exports=router;

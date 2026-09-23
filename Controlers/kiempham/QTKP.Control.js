@@ -63,5 +63,25 @@ module.exports.QD_XLSP_KHONG_PHU_HOP= async(req,res) =>{
     })
     }
 
+    module.exports.CN_KIEM_HE_VA_VUOT_DAY_VAI= async(req,res) =>{
+    res.render('KiemPham/CN_KIEM_HE_VA_VUOT_DAY_VAI',{
+        title:'Express',
+        userId:req.signedCookies.userId,
+        html:''
+    })
+    }
+
+      module.exports.CN_KIEMTRA_TRONGDIEM= async(req,res) =>{
+    res.render('KiemPham/CN_KIEMTRA_TRONGDIEM',{
+        title:'Express',
+        userId:req.signedCookies.userId,
+        html:''
+    })
+    }
+
+    
+
+    
+
 
 
