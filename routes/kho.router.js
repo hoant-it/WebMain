@@ -30,6 +30,8 @@ router.post('/OrderDraftImportExcel',upload.single('filenameDraft'),orderControl
 
 router.post('/OrderUpdate',orderControl.OrderUpdate)
 
+router.post('/DONHANGITEM_Delete_Web_V1',orderControl.DONHANGITEM_Delete_Web_V1)
+
 
 
 

@@ -71,6 +71,21 @@ module.exports.DONHANGITEM_DRAFT_Load_Web_V2 = async (req, res) => {
   }
 };
 
+module.exports.DONHANGITEM_Delete_Web_V1 = async(req,res)=>{
+ let lError={}
+  try {
+    await db.DONHANGITEM_Delete_Web_V1(req.body,req.signedCookies.userId)
+    lError.errMes='Thành công'
+    lError.statusErr=true;
+    res.send(lError)
+    
+  } catch (error) {
+    lError.errMes='Lỗi: '+error
+    lError.statusErr=false;
+    res.send(lError)
+  }
+}
+
 module.exports.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1 = async (req, res) => {
   try {
     let result = await db.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1();

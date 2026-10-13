@@ -324,9 +324,9 @@ const OrderDraftGridLoad = (MY) => {
                 },
                 onClick: function (){
                     // console.log("clicker")
-                    if (!confirm("Are you sure you want to Delete selected row?")){
+                    if (!confirm("Are you sure you want to Delete Order "+MY)){
                     }else{
-                        deleteData();
+                        deleteData(MY);
                     }
                     // deleteData();
                 }
@@ -356,6 +356,36 @@ const OrderDraftGridLoad = (MY) => {
     })
     .dxDataGrid("instance");
 };
+
+const deleteData=(MY)=>{
+      let data={
+        MY:MY,
+    };
+
+    $.ajax({
+        type:'POST',
+        data:JSON.stringify(data),
+        contentType:'application/json',
+        url:'DONHANGITEM_Delete_Web_V1',
+        success: (res) =>{
+            if(res.statusErr){
+                DevExpress.ui.notify({
+                    message: res.errMes,
+                    width: 450
+                },"success",5000),
+                // alert(res.errMes);
+                $('#modalAddUpdate').modal('hide');
+                OrderDraftGridLoad(MY);
+            } else{
+                DevExpress.ui.notify({
+                    message: res.errMes,
+                    width: 450
+                },"error",5000)
+                // alert(res.errMes);
+            }
+        }
+    })
+}
 
 const resetForm = () => {
   $('#modalAddUpdate').modal('show');

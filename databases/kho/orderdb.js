@@ -159,6 +159,22 @@ module.exports.DONHANGITEM_DRAFT_Load_Web_V2 = async (params) => {
   }
 };
 
+module.exports.DONHANGITEM_Delete_Web_V1=async(body,userId)=>{
+    try {
+        const{MY}=body
+        let pool=await sql.connect(sqlConfig)
+        await pool.request()
+        .input('MY',sql.NVarChar(sql.MAX),MY)
+        .input('UserId',sql.NVarChar(50),userId)
+        .execute('DONHANGITEM_Delete_Web_V1')
+        
+    } catch (error) {
+        throw error
+    }
+  
+
+}
+
 module.exports.DONHANGITEM_DRAFT_MY_SearchBox_Web_V1 = async () => {
   try {
     let pool = await sql.connect(sqlConfig);
