@@ -1219,3 +1219,43 @@ module.exports.I_I1_A4 = async (req, res) => {
     html: "",
   });
 };
+
+module.exports.I_I1_A5 = async (req, res) => {
+  res.render("kho/QuyTrinh/I_I1_A5", {
+    title: "",
+    userId: req.signedCookies.userId,
+    html: "",
+  });
+};
+
+module.exports.I_I1_A6 = async (req, res) => {
+  res.render("kho/QuyTrinh/I_I1_A6", {
+    title: "",
+    userId: req.signedCookies.userId,
+    html: "",
+  });
+};
+
+module.exports.I_I1_A7 = async (req, res) => {
+  res.render("kho/QuyTrinh/I_I1_A7", {
+    title: "",
+    userId: req.signedCookies.userId,
+    html: "",
+  });
+};
+
+module.exports.I_I1_A8 = async (req, res) => {
+  res.render("kho/QuyTrinh/I_I1_A8", {
+    title: "",
+    userId: req.signedCookies.userId,
+    html: "",
+  });
+};
+
+module.exports.I_I1_A9 = async (req, res) => {
+  res.render("kho/QuyTrinh/I_I1_A9", {
+    title: "",
+    userId: req.signedCookies.userId,
+    html: "",
+  });
+};

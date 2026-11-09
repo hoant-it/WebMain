@@ -315,6 +315,17 @@ router.get('/I_I1_A3',QTQLNVLControl.I_I1_A3)
 router.get('/I_I1_A3_1',QTQLNVLControl.I_I1_A3_1)
 router.get('/I_I1_A3_2',QTQLNVLControl.I_I1_A3_2)
 router.get('/I_I1_A4',QTQLNVLControl.I_I1_A4)
+router.get('/I_I1_A5',QTQLNVLControl.I_I1_A5)
+router.get('/I_I1_A6',QTQLNVLControl.I_I1_A6)
+router.get('/I_I1_A7',QTQLNVLControl.I_I1_A7)
+router.get('/I_I1_A8',QTQLNVLControl.I_I1_A8)
+router.get('/I_I1_A9',QTQLNVLControl.I_I1_A9)
+
+
+
+
+
+
 
 
 
